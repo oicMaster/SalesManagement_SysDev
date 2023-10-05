@@ -1,0 +1,17 @@
+C:\Users\retro\Desktop\シス開資料\配布プロジェクト\SalesManagement_SysDev\SalesManagement_SysDev\bin\Debug\SalesManagement_SysDev.exe.config
+C:\Users\retro\Desktop\シス開資料\配布プロジェクト\SalesManagement_SysDev\SalesManagement_SysDev\bin\Debug\SalesManagement_SysDev.exe
+C:\Users\retro\Desktop\シス開資料\配布プロジェクト\SalesManagement_SysDev\SalesManagement_SysDev\bin\Debug\SalesManagement_SysDev.pdb
+C:\Users\retro\Desktop\シス開資料\配布プロジェクト\SalesManagement_SysDev\SalesManagement_SysDev\bin\Debug\EntityFramework.dll
+C:\Users\retro\Desktop\シス開資料\配布プロジェクト\SalesManagement_SysDev\SalesManagement_SysDev\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\retro\Desktop\シス開資料\配布プロジェクト\SalesManagement_SysDev\SalesManagement_SysDev\bin\Debug\EntityFramework.xml
+C:\Users\retro\Desktop\シス開資料\配布プロジェクト\SalesManagement_SysDev\SalesManagement_SysDev\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\retro\Desktop\シス開資料\配布プロジェクト\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.csproj.AssemblyReference.cache
+C:\Users\retro\Desktop\シス開資料\配布プロジェクト\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.csproj.SuggestedBindingRedirects.cache
+C:\Users\retro\Desktop\シス開資料\配布プロジェクト\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.F_Client.resources
+C:\Users\retro\Desktop\シス開資料\配布プロジェクト\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.F_Login.resources
+C:\Users\retro\Desktop\シス開資料\配布プロジェクト\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.Properties.Resources.resources
+C:\Users\retro\Desktop\シス開資料\配布プロジェクト\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.csproj.GenerateResource.cache
+C:\Users\retro\Desktop\シス開資料\配布プロジェクト\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.csproj.CoreCompileInputs.cache
+C:\Users\retro\Desktop\シス開資料\配布プロジェクト\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.csproj.CopyComplete
+C:\Users\retro\Desktop\シス開資料\配布プロジェクト\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.exe
+C:\Users\retro\Desktop\シス開資料\配布プロジェクト\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.pdb
