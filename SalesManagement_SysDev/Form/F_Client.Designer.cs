@@ -293,6 +293,7 @@
             this.labelLoginName.Size = new System.Drawing.Size(82, 15);
             this.labelLoginName.TabIndex = 29;
             this.labelLoginName.Text = "ログイン情報";
+            this.labelLoginName.Click += new System.EventHandler(this.labelLoginName_Click);
             // 
             // buttonFirstPage
             // 
@@ -389,6 +390,7 @@
             this.dataGridViewDsp.RowTemplate.Height = 24;
             this.dataGridViewDsp.Size = new System.Drawing.Size(1092, 356);
             this.dataGridViewDsp.TabIndex = 39;
+            this.dataGridViewDsp.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewDsp_CellContentClick);
             // 
             // F_Client
             // 

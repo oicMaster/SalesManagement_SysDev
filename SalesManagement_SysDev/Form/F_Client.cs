@@ -84,5 +84,15 @@ namespace SalesManagement_SysDev
 
             dataGridViewDsp.Refresh();
         }
+
+        private void dataGridViewDsp_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void labelLoginName_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
