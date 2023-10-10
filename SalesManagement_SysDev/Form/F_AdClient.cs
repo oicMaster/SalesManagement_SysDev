@@ -94,5 +94,20 @@ namespace SalesManagement_SysDev
         {
 
         }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnRegist_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDisplay_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
