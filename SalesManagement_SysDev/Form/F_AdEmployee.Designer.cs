@@ -1,0 +1,461 @@
+﻿namespace SalesManagement_SysDev
+{
+    partial class F_AdEmployee
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.txbPoID = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.btnRegist = new System.Windows.Forms.Button();
+            this.btnDisplay = new System.Windows.Forms.Button();
+            this.btnHidden = new System.Windows.Forms.Button();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.lblLoginName = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.btnPageSizeChange = new System.Windows.Forms.Button();
+            this.lblPage = new System.Windows.Forms.Label();
+            this.txbPageNo = new System.Windows.Forms.TextBox();
+            this.btnLastPage = new System.Windows.Forms.Button();
+            this.btnNextPage = new System.Windows.Forms.Button();
+            this.btnPreviousPage = new System.Windows.Forms.Button();
+            this.btnFirstPage = new System.Windows.Forms.Button();
+            this.txbPageSize = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.dataGridViewDsp = new System.Windows.Forms.DataGridView();
+            this.txbEmPassword = new System.Windows.Forms.TextBox();
+            this.txbEmHiddin = new System.Windows.Forms.TextBox();
+            this.txbEmFlag = new System.Windows.Forms.TextBox();
+            this.txbEmHiredate = new System.Windows.Forms.TextBox();
+            this.txbEmID = new System.Windows.Forms.TextBox();
+            this.txbSoID = new System.Windows.Forms.TextBox();
+            this.txbEmName = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.txbEmPhone = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDsp)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // txbPoID
+            // 
+            this.txbPoID.Location = new System.Drawing.Point(487, 202);
+            this.txbPoID.Name = "txbPoID";
+            this.txbPoID.Size = new System.Drawing.Size(100, 22);
+            this.txbPoID.TabIndex = 131;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(492, 162);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(51, 15);
+            this.label10.TabIndex = 129;
+            this.label10.Text = "役職ID";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(387, 162);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(66, 15);
+            this.label9.TabIndex = 128;
+            this.label9.Text = "営業所ID";
+            // 
+            // btnRegist
+            // 
+            this.btnRegist.Location = new System.Drawing.Point(468, 68);
+            this.btnRegist.Name = "btnRegist";
+            this.btnRegist.Size = new System.Drawing.Size(75, 23);
+            this.btnRegist.TabIndex = 127;
+            this.btnRegist.Text = "登録";
+            this.btnRegist.UseVisualStyleBackColor = true;
+            // 
+            // btnDisplay
+            // 
+            this.btnDisplay.Location = new System.Drawing.Point(584, 68);
+            this.btnDisplay.Name = "btnDisplay";
+            this.btnDisplay.Size = new System.Drawing.Size(75, 23);
+            this.btnDisplay.TabIndex = 126;
+            this.btnDisplay.Text = "一覧表示";
+            this.btnDisplay.UseVisualStyleBackColor = true;
+            // 
+            // btnHidden
+            // 
+            this.btnHidden.Location = new System.Drawing.Point(685, 68);
+            this.btnHidden.Name = "btnHidden";
+            this.btnHidden.Size = new System.Drawing.Size(75, 23);
+            this.btnHidden.TabIndex = 125;
+            this.btnHidden.Text = "非表示";
+            this.btnHidden.UseVisualStyleBackColor = true;
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Location = new System.Drawing.Point(357, 68);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.TabIndex = 124;
+            this.btnSearch.Text = "検索";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            // 
+            // btnClose
+            // 
+            this.btnClose.Location = new System.Drawing.Point(1144, 87);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(75, 23);
+            this.btnClose.TabIndex = 123;
+            this.btnClose.Text = "閉じる";
+            this.btnClose.UseVisualStyleBackColor = true;
+            // 
+            // lblLoginName
+            // 
+            this.lblLoginName.AutoSize = true;
+            this.lblLoginName.Location = new System.Drawing.Point(1060, 134);
+            this.lblLoginName.Name = "lblLoginName";
+            this.lblLoginName.Size = new System.Drawing.Size(67, 15);
+            this.lblLoginName.TabIndex = 122;
+            this.lblLoginName.Text = "千田真隆";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(961, 134);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(82, 15);
+            this.label8.TabIndex = 121;
+            this.label8.Text = "ログイン情報";
+            // 
+            // btnPageSizeChange
+            // 
+            this.btnPageSizeChange.Location = new System.Drawing.Point(291, 722);
+            this.btnPageSizeChange.Name = "btnPageSizeChange";
+            this.btnPageSizeChange.Size = new System.Drawing.Size(75, 23);
+            this.btnPageSizeChange.TabIndex = 120;
+            this.btnPageSizeChange.Text = "行数変更";
+            this.btnPageSizeChange.UseVisualStyleBackColor = true;
+            // 
+            // lblPage
+            // 
+            this.lblPage.AutoSize = true;
+            this.lblPage.Location = new System.Drawing.Point(838, 734);
+            this.lblPage.Name = "lblPage";
+            this.lblPage.Size = new System.Drawing.Size(43, 15);
+            this.lblPage.TabIndex = 119;
+            this.lblPage.Text = "ページ";
+            // 
+            // txbPageNo
+            // 
+            this.txbPageNo.Location = new System.Drawing.Point(716, 732);
+            this.txbPageNo.Name = "txbPageNo";
+            this.txbPageNo.Size = new System.Drawing.Size(100, 22);
+            this.txbPageNo.TabIndex = 118;
+            // 
+            // btnLastPage
+            // 
+            this.btnLastPage.Location = new System.Drawing.Point(1173, 726);
+            this.btnLastPage.Name = "btnLastPage";
+            this.btnLastPage.Size = new System.Drawing.Size(75, 23);
+            this.btnLastPage.TabIndex = 117;
+            this.btnLastPage.Text = "▶|";
+            this.btnLastPage.UseVisualStyleBackColor = true;
+            // 
+            // btnNextPage
+            // 
+            this.btnNextPage.Location = new System.Drawing.Point(1092, 726);
+            this.btnNextPage.Name = "btnNextPage";
+            this.btnNextPage.Size = new System.Drawing.Size(75, 23);
+            this.btnNextPage.TabIndex = 116;
+            this.btnNextPage.Text = "▶";
+            this.btnNextPage.UseVisualStyleBackColor = true;
+            // 
+            // btnPreviousPage
+            // 
+            this.btnPreviousPage.Location = new System.Drawing.Point(1011, 726);
+            this.btnPreviousPage.Name = "btnPreviousPage";
+            this.btnPreviousPage.Size = new System.Drawing.Size(75, 23);
+            this.btnPreviousPage.TabIndex = 115;
+            this.btnPreviousPage.Text = "◀";
+            this.btnPreviousPage.UseVisualStyleBackColor = true;
+            // 
+            // btnFirstPage
+            // 
+            this.btnFirstPage.Location = new System.Drawing.Point(930, 726);
+            this.btnFirstPage.Name = "btnFirstPage";
+            this.btnFirstPage.Size = new System.Drawing.Size(75, 23);
+            this.btnFirstPage.TabIndex = 114;
+            this.btnFirstPage.Text = "|◀";
+            this.btnFirstPage.UseVisualStyleBackColor = true;
+            // 
+            // txbPageSize
+            // 
+            this.txbPageSize.Location = new System.Drawing.Point(185, 723);
+            this.txbPageSize.Name = "txbPageSize";
+            this.txbPageSize.Size = new System.Drawing.Size(100, 22);
+            this.txbPageSize.TabIndex = 113;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(98, 726);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(81, 15);
+            this.label11.TabIndex = 112;
+            this.label11.Text = "1ページ行数";
+            // 
+            // dataGridViewDsp
+            // 
+            this.dataGridViewDsp.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewDsp.Location = new System.Drawing.Point(101, 333);
+            this.dataGridViewDsp.Name = "dataGridViewDsp";
+            this.dataGridViewDsp.RowHeadersWidth = 51;
+            this.dataGridViewDsp.RowTemplate.Height = 24;
+            this.dataGridViewDsp.Size = new System.Drawing.Size(904, 316);
+            this.dataGridViewDsp.TabIndex = 111;
+            // 
+            // txbEmPassword
+            // 
+            this.txbEmPassword.Location = new System.Drawing.Point(728, 202);
+            this.txbEmPassword.Name = "txbEmPassword";
+            this.txbEmPassword.Size = new System.Drawing.Size(100, 22);
+            this.txbEmPassword.TabIndex = 110;
+            // 
+            // txbEmHiddin
+            // 
+            this.txbEmHiddin.Location = new System.Drawing.Point(238, 296);
+            this.txbEmHiddin.Name = "txbEmHiddin";
+            this.txbEmHiddin.Size = new System.Drawing.Size(100, 22);
+            this.txbEmHiddin.TabIndex = 109;
+            // 
+            // txbEmFlag
+            // 
+            this.txbEmFlag.Location = new System.Drawing.Point(112, 296);
+            this.txbEmFlag.Name = "txbEmFlag";
+            this.txbEmFlag.Size = new System.Drawing.Size(100, 22);
+            this.txbEmFlag.TabIndex = 108;
+            // 
+            // txbEmHiredate
+            // 
+            this.txbEmHiredate.Location = new System.Drawing.Point(612, 202);
+            this.txbEmHiredate.Name = "txbEmHiredate";
+            this.txbEmHiredate.Size = new System.Drawing.Size(100, 22);
+            this.txbEmHiredate.TabIndex = 107;
+            // 
+            // txbEmID
+            // 
+            this.txbEmID.Location = new System.Drawing.Point(141, 202);
+            this.txbEmID.Name = "txbEmID";
+            this.txbEmID.Size = new System.Drawing.Size(100, 22);
+            this.txbEmID.TabIndex = 106;
+            // 
+            // txbSoID
+            // 
+            this.txbSoID.Location = new System.Drawing.Point(381, 202);
+            this.txbSoID.Name = "txbSoID";
+            this.txbSoID.Size = new System.Drawing.Size(100, 22);
+            this.txbSoID.TabIndex = 105;
+            // 
+            // txbEmName
+            // 
+            this.txbEmName.Location = new System.Drawing.Point(266, 202);
+            this.txbEmName.Name = "txbEmName";
+            this.txbEmName.Size = new System.Drawing.Size(100, 22);
+            this.txbEmName.TabIndex = 104;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(729, 162);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(64, 15);
+            this.label7.TabIndex = 103;
+            this.label7.Text = "パスワード";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(244, 254);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(82, 15);
+            this.label6.TabIndex = 102;
+            this.label6.Text = "非表示理由";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(113, 254);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(99, 15);
+            this.label5.TabIndex = 101;
+            this.label5.Text = "社員管理フラグ";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(609, 162);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(82, 15);
+            this.label4.TabIndex = 100;
+            this.label4.Text = "入社年月日";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(161, 162);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(51, 15);
+            this.label3.TabIndex = 99;
+            this.label3.Text = "社員ID";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(292, 162);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(52, 15);
+            this.label1.TabIndex = 97;
+            this.label1.Text = "社員名";
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Location = new System.Drawing.Point(788, 68);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(75, 23);
+            this.btnUpdate.TabIndex = 132;
+            this.btnUpdate.Text = "更新";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            // 
+            // txbEmPhone
+            // 
+            this.txbEmPhone.Location = new System.Drawing.Point(848, 202);
+            this.txbEmPhone.Name = "txbEmPhone";
+            this.txbEmPhone.Size = new System.Drawing.Size(100, 22);
+            this.txbEmPhone.TabIndex = 134;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(849, 162);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(67, 15);
+            this.label2.TabIndex = 133;
+            this.label2.Text = "電話番号";
+            // 
+            // F_AdEmployee
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(1347, 820);
+            this.Controls.Add(this.txbEmPhone);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.btnUpdate);
+            this.Controls.Add(this.txbPoID);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.btnRegist);
+            this.Controls.Add(this.btnDisplay);
+            this.Controls.Add(this.btnHidden);
+            this.Controls.Add(this.btnSearch);
+            this.Controls.Add(this.btnClose);
+            this.Controls.Add(this.lblLoginName);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.btnPageSizeChange);
+            this.Controls.Add(this.lblPage);
+            this.Controls.Add(this.txbPageNo);
+            this.Controls.Add(this.btnLastPage);
+            this.Controls.Add(this.btnNextPage);
+            this.Controls.Add(this.btnPreviousPage);
+            this.Controls.Add(this.btnFirstPage);
+            this.Controls.Add(this.txbPageSize);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.dataGridViewDsp);
+            this.Controls.Add(this.txbEmPassword);
+            this.Controls.Add(this.txbEmHiddin);
+            this.Controls.Add(this.txbEmFlag);
+            this.Controls.Add(this.txbEmHiredate);
+            this.Controls.Add(this.txbEmID);
+            this.Controls.Add(this.txbSoID);
+            this.Controls.Add(this.txbEmName);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label1);
+            this.Name = "F_AdEmployee";
+            this.Text = "社員管理";
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDsp)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.TextBox txbPoID;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button btnRegist;
+        private System.Windows.Forms.Button btnDisplay;
+        private System.Windows.Forms.Button btnHidden;
+        private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Label lblLoginName;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button btnPageSizeChange;
+        private System.Windows.Forms.Label lblPage;
+        private System.Windows.Forms.TextBox txbPageNo;
+        private System.Windows.Forms.Button btnLastPage;
+        private System.Windows.Forms.Button btnNextPage;
+        private System.Windows.Forms.Button btnPreviousPage;
+        private System.Windows.Forms.Button btnFirstPage;
+        private System.Windows.Forms.TextBox txbPageSize;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.DataGridView dataGridViewDsp;
+        private System.Windows.Forms.TextBox txbEmPassword;
+        private System.Windows.Forms.TextBox txbEmHiddin;
+        private System.Windows.Forms.TextBox txbEmFlag;
+        private System.Windows.Forms.TextBox txbEmHiredate;
+        private System.Windows.Forms.TextBox txbEmID;
+        private System.Windows.Forms.TextBox txbSoID;
+        private System.Windows.Forms.TextBox txbEmName;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.TextBox txbEmPhone;
+        private System.Windows.Forms.Label label2;
+    }
+}

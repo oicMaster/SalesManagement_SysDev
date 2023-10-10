@@ -79,25 +79,6 @@ namespace SalesManagement_SysDev
             }
         }
 
-        public bool DeleteClientData(int delClID)
-        {
-            try
-            {
-                var context = new SalesManagement_DevContext();
-                var client = context.M_Clients.Single(x => x.ClID == delClID);
-                context.M_Clients.Remove(client);
-                context.SaveChanges();
-                context.Dispose();
-
-                return true;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-        }
-
         //データの取得
         public List<M_Client> GetClientData()
         {
@@ -122,8 +103,7 @@ namespace SalesManagement_SysDev
             try
             {
                 var context = new SalesManagement_DevContext();
-                //client = context.M_Clients.Where(x => x.ClID.Contains(selectCondition.ClID));
-                //Containsはstringで使用するため、intで使用するものを探さないといけない。
+                client = context.M_Clients.Where(x => x.ClID == selectCondition.ClID).ToList();
                 context.Dispose();
             }
             catch(Exception ex)
