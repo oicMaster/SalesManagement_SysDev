@@ -60,6 +60,7 @@
     <Compile Include="Common\DataInputFormCheck.cs" />
     <Compile Include="Common\MessageDsp.cs" />
     <Compile Include="Common\PasswordHash.cs" />
+    <Compile Include="EmployeeDateAccess.cs" />
     <Compile Include="Entity\M_MajorClassification.cs" />
     <Compile Include="Entity\M_Message.cs" />
     <Compile Include="Entity\M_Product.cs" />
