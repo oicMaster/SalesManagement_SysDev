@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace SalesManagement_SysDev
 {
-    public partial class f_arrival : Form
+    public partial class F_AdLogManagement : Form
     {
-        public f_arrival()
+        public F_AdLogManagement()
         {
             InitializeComponent();
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

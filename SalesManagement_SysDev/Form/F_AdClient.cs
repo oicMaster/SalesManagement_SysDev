@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace SalesManagement_SysDev
 {
-    public partial class F_Client : Form
+    public partial class F_AdClient : Form
     {
         MessageDsp messageDsp = new MessageDsp();
         ClientDataAccess clientDataAccess = new ClientDataAccess();
@@ -19,7 +19,7 @@ namespace SalesManagement_SysDev
 
         private static List<M_Client> Client;
 
-        public F_Client()
+        public F_AdClient()
         {
             InitializeComponent();
         }
@@ -37,8 +37,8 @@ namespace SalesManagement_SysDev
         }
         private void SetFormDataGridView()
         {
-            textBoxPageSize.Text = "10";
-            textBoxPageNo.Text = "1";
+            txbPageSize.Text = "10";
+            txbPageNo.Text = "1";
             dataGridViewDsp.ReadOnly = true;
             dataGridViewDsp.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewDsp.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -54,8 +54,8 @@ namespace SalesManagement_SysDev
 
         private void SetDataGridView()
         {
-            int pageSize = int.Parse(textBoxPageSize.Text);
-            int pageNo = int.Parse(textBoxPageNo.Text)-1;
+            int pageSize = int.Parse(txbPageSize.Text);
+            int pageNo = int.Parse(txbPageNo.Text)-1;
             dataGridViewDsp.DataSource = Client.Skip(pageSize + pageNo).Take(pageSize).ToList();
 
             dataGridViewDsp.Columns[0].Width = 100;
@@ -80,7 +80,7 @@ namespace SalesManagement_SysDev
             dataGridViewDsp.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewDsp.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            labelPage.Text = "/" + ((int)Math.Ceiling(Client.Count / (double)pageSize)) + "ページ";
+            lblPage.Text = "/" + ((int)Math.Ceiling(Client.Count / (double)pageSize)) + "ページ";
 
             dataGridViewDsp.Refresh();
         }
