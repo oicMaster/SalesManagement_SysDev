@@ -266,7 +266,7 @@
     <Compile Include="Entity\T_Warehousing.cs" />
     <Compile Include="Entity\T_WarehousingDetail.cs" />
     <Compile Include="Context\SalesManagement_DevContext.cs" />
-    <Compile Include="StockDataAcces.cs" />
+    <Compile Include="StockDataAccess.cs" />
     <EmbeddedResource Include="Form\F_AdShipment.resx">
       <DependentUpon>F_AdShipment.cs</DependentUpon>
     </EmbeddedResource>

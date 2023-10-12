@@ -28,13 +28,13 @@ namespace SalesManagement_SysDev
             return flg;
         }
 
-      public bool UpdateStockData(T_Stock updSt)//更新
-      {
+        public bool UpdateStockData(T_Stock updSt)//更新
+        {
             try
             {
                 var context = new SalesManagement_DevContext();
                 var stock = context.T_Stocks.Single(x => x.StID == updSt.StID);
-                
+
                 stock.PrID = updSt.PrID;//更新するデータ's
                 stock.StQuantity = updSt.StQuantity;
                 stock.StFlag = updSt.StFlag;
@@ -43,20 +43,20 @@ namespace SalesManagement_SysDev
                 context.Dispose();
                 return true;
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-      }
+        }
 
-        public List<T_Stock> GetStientData()//データ取得
+        public List<T_Stock> GetStockData()//データ取得
         {
             List<T_Stock> stock = new List<T_Stock>();
             try
             {
                 var context = new SalesManagement_DevContext();
-                stock = context.T_Stocks.ToList();
+                stock = context.T_Stocks.Where(x => x.StFlag == 0).ToList();
                 context.Dispose();
             }
             catch (Exception ex)
@@ -66,16 +66,16 @@ namespace SalesManagement_SysDev
             return stock;
         }
 
-        public List<T_Stock>GetStockData(T_Stock SelectCondition)//検索
+        public List<T_Stock> GetStockData(T_Stock SelectCondition)//検索
         {
-            List<T_Stock>stock=new List<T_Stock>();
+            List<T_Stock> stock = new List<T_Stock>();
             try
             {
                 var context = new SalesManagement_DevContext();
                 stock = context.T_Stocks.Where(x => x.StID == SelectCondition.StID).ToList();
                 context.Dispose();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -97,6 +97,7 @@ namespace SalesManagement_SysDev
             }
             return stock;
         }
+    }
 }
 
     
