@@ -15,7 +15,7 @@ namespace SalesManagement_SysDev
     {
         MessageDsp messageDsp = new MessageDsp();
         ClientDataAccess clientDataAccess = new ClientDataAccess();
-        DataInputFormCheck checkInputForm = new DataInputFormCheck();
+        DataInputFormCheck dataInputFormCheck = new DataInputFormCheck();
 
         private static List<M_Client> Client;
 
@@ -78,14 +78,74 @@ namespace SalesManagement_SysDev
             dataGridViewDsp.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewDsp.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewDsp.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewDsp.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewDsp.Columns[9].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             lblPage.Text = "/" + ((int)Math.Ceiling(Client.Count / (double)pageSize)) + "ページ";
 
             dataGridViewDsp.Refresh();
         }
+       
 
-        private void dataGridViewDsp_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            //妥当な顧客データを取得
+            if (!GetValidDataAtSelect())
+                return;
+            //顧客情報抽出
+            GenereteDataAdSelect();
+            //顧客情報抽出結果
+            SetSelectData();
+        }
+
+        private bool GetValidDataAtSelect()
+        {
+            if (!String.IsNullOrEmpty(txbClID.Text.Trim()))
+            {
+                //数値かどうか確認
+                if (!dataInputFormCheck.CheckNumeric(txbClID.Text.Trim()))
+                {
+                    messageDsp.DspMsg("");
+                    txbClID.Focus();
+                    return false;
+                }
+                //6文字以内か確認
+                if (txbClID.TextLength >= 6)
+                {
+                    messageDsp.DspMsg("");
+                    txbClID.Focus();
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        private void GenereteDataAdSelect()
+        {
+            M_Client selectCondition = new M_Client()
+            {
+                ClID = int.Parse(txbClID.Text.Trim()),
+            };
+            //顧客データの抽出
+            Client = clientDataAccess.GetClientData(selectCondition);
+        }
+
+        private void SetSelectData()
+        {
+            txbPageNo.Text = "1";
+            int pageSize = int.Parse(txbPageSize.Text.Trim());
+            dataGridViewDsp.DataSource = Client;
+
+            lblPage.Text = "/" + ((int)Math.Ceiling(Client.Count / (double)pageSize)) + "ページ";
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+          
+        }
+
+    
+
+        private void btnDisplay_Click(object sender, EventArgs e)
         {
 
         }

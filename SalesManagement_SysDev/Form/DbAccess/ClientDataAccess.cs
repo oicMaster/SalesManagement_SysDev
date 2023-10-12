@@ -34,7 +34,7 @@ namespace SalesManagement_SysDev
 
 
 
-        public bool AddClientDaata(M_Client regCl)
+        public bool AddClientData(M_Client regCl)
         {
             try
             {
@@ -86,7 +86,7 @@ namespace SalesManagement_SysDev
             try
             {
                 var context = new SalesManagement_DevContext();
-                client = context.M_Clients.ToList();
+                client = context.M_Clients.Where(x => x.ClFlag == 0).ToList();
                 context.Dispose();
             }
             catch (Exception ex)

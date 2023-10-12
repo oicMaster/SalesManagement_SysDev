@@ -75,6 +75,5 @@ namespace SalesManagement_SysDev.Common
             else flg = true;
             return flg;
         }
-
     }
 }

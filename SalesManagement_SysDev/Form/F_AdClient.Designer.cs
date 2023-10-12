@@ -112,6 +112,7 @@
             this.btnSearch.TabIndex = 4;
             this.btnSearch.Text = "検索";
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // btnRegist
             // 
@@ -130,6 +131,7 @@
             this.btnUpdate.TabIndex = 6;
             this.btnUpdate.Text = "更新";
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnHidden
             // 
@@ -370,6 +372,7 @@
             this.btnDisplay.TabIndex = 38;
             this.btnDisplay.Text = "一覧表示";
             this.btnDisplay.UseVisualStyleBackColor = true;
+            this.btnDisplay.Click += new System.EventHandler(this.btnDisplay_Click);
             // 
             // dataGridViewDsp
             // 
@@ -380,9 +383,8 @@
             this.dataGridViewDsp.RowTemplate.Height = 24;
             this.dataGridViewDsp.Size = new System.Drawing.Size(1092, 356);
             this.dataGridViewDsp.TabIndex = 39;
-            this.dataGridViewDsp.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewDsp_CellContentClick);
             // 
-            // F_Client
+            // F_AdClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -424,7 +426,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "F_Client";
+            this.Name = "F_AdClient";
             this.Text = "顧客管理";
             this.Load += new System.EventHandler(this.F_Client_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDsp)).EndInit();
