@@ -45,14 +45,14 @@ namespace SalesManagement_SysDev
             }
         }
 
-        public bool UpadateEmployeeDate(M_Employee updEm)
+        public bool UpadateEmployeeData(M_Employee updEm)
         {
             try
             {
                 var context = new SalesManagement_DevContext();
                 var employee = context.M_Employees.Single(x => x.EmID == updEm.EmID);
 
-                employee.SoID = updEm.EmID;
+                employee.EmID = updEm.EmID;
                 employee.EmName = updEm.EmName;
                 employee.SoID = updEm.SoID;
                 employee.PoID = updEm.PoID;
@@ -74,13 +74,13 @@ namespace SalesManagement_SysDev
 
         }
 
-        public List<M_Employee> GetEmployee()
+        public List<M_Employee> GetEmployeeData()
         {
             List<M_Employee> employees = new List<M_Employee>();
             try
             {
                 var context = new SalesManagement_DevContext();
-                employees = context.M_Employees.ToList();
+                employees = context.M_Employees.Where(x => x.EmFlag == 0).ToList();
                 context.Dispose();
             }
             catch (Exception ex)
@@ -91,7 +91,7 @@ namespace SalesManagement_SysDev
             return employees;
         }
 
-        public List<M_Employee> GetEmployeeDate(M_Employee selectCondition)
+        public List<M_Employee> GetEmployeeData(M_Employee selectCondition)
         {
             List<M_Employee> employees = new List<M_Employee>();
             try
@@ -109,7 +109,7 @@ namespace SalesManagement_SysDev
             return employees;
         }
 
-        public List<M_Employee> GetEmployeeDspDate()
+        public List<M_Employee> GetEmployeeDspData()
         {
             List<M_Employee> employee = new List<M_Employee>();
             try
