@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 
 namespace SalesManagement_SysDev
 {
@@ -82,50 +84,51 @@ namespace SalesManagement_SysDev
         //データの取得
         public List<M_Product> GetproductData()
         {
-            List<M_Product> products = new List<M_Product>();
+            List<M_Product> product= new List<M_Product>();
             try
             {
                 var context = new SalesManagement_DevContext();
-                products = context.M_Products.ToList();
+                product = context.M_Products.Where(x=> x.PrFlag ==0).ToList();
                 context.Dispose();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            return products;
+            return product;
         }
-        //条件一致したデータの取得
-        public List<M_Product> GetProductsData(M_Product selectCondition)
+
+        //オーバーロード
+        public List<M_Product> GetProductData(M_Product selectCondition)
         {
-            List<M_Product> products = new List<M_Product>();
+            List<M_Product> product = new List<M_Product>();
             try
             {
                 var context = new SalesManagement_DevContext();
-                products = context.M_Products.Where(x => x.PrID == selectCondition.PrID).ToList();
-                context.Dispose();
-            }
-            catch(Exception ex) 
-            {
-                MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            return products;
-        }
-        //非表示を除いたデータの取得
-        public List<M_Product> GetProductsDspData()
-        {
-            List<M_Product> products = new List<M_Product>();
-            try
-            {
-                var context = new SalesManagement_DevContext();
-                products = context.M_Products.Where(x => x.PrFlag == 2).ToList();
+                product = context.M_Products.Where(x => x.PrID == selectCondition.PrID).ToList();
                 context.Dispose();
             }
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            return products;
+            return product;
+        }
+        //非表示を除いたデータの取得
+        public List<M_Product> GetProductDspData()
+        {
+            List<M_Product> product = new List<M_Product>();
+            try
+            {
+                var context = new SalesManagement_DevContext();
+                product = context.M_Products.Where(x => x.PrFlag == 2).ToList();
+                context.Dispose();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return product;
         }
     }
 }
