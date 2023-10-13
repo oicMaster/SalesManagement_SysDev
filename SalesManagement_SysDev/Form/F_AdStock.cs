@@ -20,7 +20,7 @@ namespace SalesManagement_SysDev
         //データベーステーブル用のインスタンス化
         DataInputFormCheck dataInputFormCheck = new DataInputFormCheck();
         //dataグリッドビュー用のテーブルデータインスタンス化
-        private static List<StockDataAccess> Stock;
+        private static List<T_Stock> Stock;
         
         
         public F_AdStock()
@@ -48,7 +48,7 @@ namespace SalesManagement_SysDev
         }
         private void GetDataGridView()
         {
-           // Stock = stockDataAccess.GetStockData();
+            Stock = stockDataAccess.GetStockData();
 
             SetDataGridView();
         }
