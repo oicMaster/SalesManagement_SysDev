@@ -30,9 +30,78 @@ namespace SalesManagement_SysDev
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            
+            if (!GetValidDataAtUpdate())
+                return;
+
+            var updStock = GenerateDataAtUpdate();
+
+            UpdateStock(updStock);
         }
 
+        private bool GetValidDataAtUpdate()
+        {
+            if (!String.IsNullOrEmpty(txbStID.Text.Trim()))
+            {
+                if (!dataInputFormCheck.CheckHalfAlphabetNumeric(txbStID.Text.Trim()))
+                {
+                    messageDsp.DspMsg("");
+                    txbStID.Focus();
+                    return false;
+                }
+                if(txbStID.TextLength !=6)
+                {
+                    messageDsp.DspMsg("");
+                    txbStID.Focus();
+                    return false;
+                }
+                if(!stockDataAccess.CheckStIDExistence(int.Parse(txbStID.Text.Trim())))//要確認
+                {
+                    messageDsp.DspMsg("");
+                    txbStID.Focus();
+                    return false;
+                }
+            }
+            else
+            {
+                messageDsp.DspMsg("");
+                txbStID.Focus();
+                return false;
+            }
+            return false;
+        }
+        private T_Stock GenerateDataAtUpdate()
+        {
+            return new T_Stock
+            {
+                StID = int.Parse(txbStID.Text.Trim()),
+                PrID = int.Parse(txbPrID.Text.Trim()),
+                StQuantity = int.Parse(txbStQuantity.Text),
+                StFlag = int.Parse(txbStFlag.Text.Trim())//要確認
+            };
+        }
+
+        private void UpdateStock(T_Stock updStock)
+        {
+            DialogResult result = messageDsp.DspMsg("M1014");
+
+            if (result == DialogResult.Cancel)
+                return;
+
+            //更新
+            bool flg = stockDataAccess.UpdateStockData(updStock);
+            if (flg == true)
+                messageDsp.DspMsg("");
+            else
+                messageDsp.DspMsg("");
+
+            txbPrID.Focus();
+
+            // 入力のクリア
+                            //要確認
+
+            // データグリッドビューの表示
+            GetDataGridView();
+        }
         private void btnDisplay_Click(object sender, EventArgs e)
         {
             SetFormDataGridView();
