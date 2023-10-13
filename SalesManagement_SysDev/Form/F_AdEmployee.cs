@@ -3,7 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
@@ -32,9 +34,103 @@ namespace SalesManagement_SysDev
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+            if (!GetValidDataAtUpdata())
+                return;
+            var updEmployee = GenerateDataUpdata();
 
+            UpdataEmployee(updEmployee);
             
         }
+
+
+        private bool GetValidDataAtUpdata()
+        {
+
+            if (!String.IsNullOrEmpty(txbEmID.Text.Trim()))
+            {
+                //社員IDの適否
+                if (!dataInputFormCheck.CheckHalfAlphabetNumeric(txbEmID.Text.Trim()))
+                {
+                    //社員IDの半角英数字チェック
+                    messageDsp.DspMsg("");
+                    txbEmID.Focus();
+                    return false;
+                }
+                //社員ID文字数チェック
+                if (txbEmID.TextLength != 6)
+                {
+                    messageDsp.DspMsg("");
+                    txbEmID.Focus();
+                    return false;
+                }
+                if (!employeeDateAccess.CheckEmployeeCDXxistence(int.Parse(txbEmID.Text.Trim())))
+                {
+                    //社員IDの存在チェック
+                    messageDsp.DspMsg("");
+                    txbEmID.Focus();
+                    return false;
+                }
+            }
+            else
+            {
+                messageDsp.DspMsg("");
+                txbEmID.Focus();
+                return false;
+            }
+            return true;
+
+            
+
+
+        }
+
+        private M_Employee GenerateDataUpdata()
+        {
+            return new M_Employee
+            {
+                EmID = int.Parse(txbEmID.Text.Trim()),
+
+            };
+        }
+
+
+        private void UpdataEmployee(M_Employee updEmployee)
+        {
+            DialogResult result = messageDsp.DspMsg("");
+
+            if (result == DialogResult.Cancel)
+                return;
+
+            bool flg = employeeDateAccess.UpadateEmployeeData(updEmployee);
+            if (flg == true)
+
+                messageDsp.DspMsg("");
+            else
+                messageDsp.DspMsg("");
+
+            txbEmID.Focus();
+
+
+            GetDataGridView();
+        }
+
+        
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
@@ -142,5 +238,18 @@ namespace SalesManagement_SysDev
         {
             SetDataGridView();
         }
+
+        private void btnHidden_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDisplay_Click(object sender, EventArgs e)
+        {
+            SetFromDataGridView();
+        }
+
+       
+
     }
 }
