@@ -15,6 +15,7 @@ C:\Users\retro\Desktop\シス開資料\配布プロジェクト\SalesManagement_
 C:\Users\retro\Desktop\シス開資料\配布プロジェクト\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.csproj.CopyComplete
 C:\Users\retro\Desktop\シス開資料\配布プロジェクト\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.exe
 C:\Users\retro\Desktop\シス開資料\配布プロジェクト\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.pdb
+<<<<<<< HEAD
 C:\Users\kazuk\Desktop\システム開発1\SalesManagement_SysDev\SalesManagement_SysDev\bin\Debug\SalesManagement_SysDev.exe.config
 C:\Users\kazuk\Desktop\システム開発1\SalesManagement_SysDev\SalesManagement_SysDev\bin\Debug\SalesManagement_SysDev.exe
 C:\Users\kazuk\Desktop\システム開発1\SalesManagement_SysDev\SalesManagement_SysDev\bin\Debug\SalesManagement_SysDev.pdb
@@ -44,3 +45,34 @@ C:\Users\kazuk\Desktop\システム開発1\SalesManagement_SysDev\SalesManagemen
 C:\Users\kazuk\Desktop\システム開発1\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.csproj.CopyComplete
 C:\Users\kazuk\Desktop\システム開発1\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.exe
 C:\Users\kazuk\Desktop\システム開発1\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.pdb
+=======
+C:\Users\hidey\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.csproj.AssemblyReference.cache
+C:\Users\hidey\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.csproj.SuggestedBindingRedirects.cache
+C:\Users\hidey\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.F_AdShipment.resources
+C:\Users\hidey\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.F_AdWarehous.resources
+C:\Users\hidey\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.F_AdLogManagement.resources
+C:\Users\hidey\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.F_AdArrival.resources
+C:\Users\hidey\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.F_AdSyukko.resources
+C:\Users\hidey\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.F_AdClient.resources
+C:\Users\hidey\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.F_Login.resources
+C:\Users\hidey\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.F_AdChumon.resources
+C:\Users\hidey\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.F_AdEmployee.resources
+C:\Users\hidey\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.F_AdHattyu.resources
+C:\Users\hidey\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.F_AdOrder.resources
+C:\Users\hidey\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.F_AdProduct.resources
+C:\Users\hidey\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.F_AdSale.resources
+C:\Users\hidey\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.F_AdStock.resources
+C:\Users\hidey\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.Properties.Resources.resources
+C:\Users\hidey\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.csproj.GenerateResource.cache
+C:\Users\hidey\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.csproj.CoreCompileInputs.cache
+C:\Users\hidey\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.exe
+C:\Users\hidey\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.pdb
+C:\Users\hidey\SalesManagement_SysDev\SalesManagement_SysDev\bin\Debug\SalesManagement_SysDev.exe.config
+C:\Users\hidey\SalesManagement_SysDev\SalesManagement_SysDev\bin\Debug\SalesManagement_SysDev.exe
+C:\Users\hidey\SalesManagement_SysDev\SalesManagement_SysDev\bin\Debug\SalesManagement_SysDev.pdb
+C:\Users\hidey\SalesManagement_SysDev\SalesManagement_SysDev\bin\Debug\EntityFramework.dll
+C:\Users\hidey\SalesManagement_SysDev\SalesManagement_SysDev\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\hidey\SalesManagement_SysDev\SalesManagement_SysDev\bin\Debug\EntityFramework.xml
+C:\Users\hidey\SalesManagement_SysDev\SalesManagement_SysDev\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\hidey\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.csproj.CopyComplete
+>>>>>>> main
