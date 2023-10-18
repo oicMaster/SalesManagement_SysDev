@@ -1,6 +1,6 @@
 ﻿namespace SalesManagement_SysDev
 {
-    partial class F_AdLogManagement
+    partial class F_AdOperationHistory
     {
         /// <summary>
         /// Required designer variable.

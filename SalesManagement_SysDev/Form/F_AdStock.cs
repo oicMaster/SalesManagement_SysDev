@@ -33,9 +33,9 @@ namespace SalesManagement_SysDev
             if (!GetValidDataAtUpdate())
                 return;
 
-            var updStock = GenerateDataAtUpdate();
+            var updSt = GenerateDataAtUpdate();
 
-            UpdateStock(updStock);
+            UpdateStock(updSt);
         }
 
         private bool GetValidDataAtUpdate()
@@ -44,26 +44,26 @@ namespace SalesManagement_SysDev
             {
                 if (!dataInputFormCheck.CheckHalfAlphabetNumeric(txbStID.Text.Trim()))
                 {
-                    messageDsp.DspMsg("");
+                    messageDsp.MsgDsp("");
                     txbStID.Focus();
                     return false;
                 }
-                if(txbStID.TextLength !=6)
+                if(txbStID.TextLength >6)
                 {
-                    messageDsp.DspMsg("");
+                    messageDsp.MsgDsp("");
                     txbStID.Focus();
                     return false;
                 }
                 if(!stockDataAccess.CheckStIDExistence(int.Parse(txbStID.Text.Trim())))//要確認
                 {
-                    messageDsp.DspMsg("");
+                    messageDsp.MsgDsp("");
                     txbStID.Focus();
                     return false;
                 }
             }
             else
             {
-                messageDsp.DspMsg("");
+                messageDsp.MsgDsp("");
                 txbStID.Focus();
                 return false;
             }
@@ -80,19 +80,19 @@ namespace SalesManagement_SysDev
             };
         }
 
-        private void UpdateStock(T_Stock updStock)
+        private void UpdateStock(T_Stock updSt)
         {
-            DialogResult result = messageDsp.DspMsg("M1014");
+            DialogResult result = messageDsp.MsgDsp("");
 
             if (result == DialogResult.Cancel)
                 return;
 
             //更新
-            bool flg = stockDataAccess.UpdateStockData(updStock);
+            bool flg = stockDataAccess.UpdateStockData(updSt);
             if (flg == true)
-                messageDsp.DspMsg("");
+                messageDsp.MsgDsp("");
             else
-                messageDsp.DspMsg("");
+                messageDsp.MsgDsp("");
 
             txbPrID.Focus();
 
@@ -127,7 +127,13 @@ namespace SalesManagement_SysDev
         {
             int pageSize = int.Parse(txbPageSize.Text);
             int pazeNo=int.Parse(txbPageNo.Text)-1;
-            dataGridViewDsp.DataSource = Stock.Skip(pageSize *pazeNo).Take(pageSize).ToList();
+            dataGridViewDsp.DataSource = Stock.Skip(pageSize * pazeNo).Take(pageSize).ToList();
+
+            dataGridViewDsp.Columns[0].Width = 100;
+            dataGridViewDsp.Columns[1].Width = 100;
+            dataGridViewDsp.Columns[2].Width = 100;
+            dataGridViewDsp.Columns[3].Width = 100;
+
             dataGridViewDsp.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewDsp.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewDsp.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -153,13 +159,13 @@ namespace SalesManagement_SysDev
             {
                 if(!dataInputFormCheck.CheckHalfAlphabetNumeric(txbStID.Text.Trim()))
                 {
-                    messageDsp.DspMsg("");//半角チェック
+                    messageDsp.MsgDsp("");//半角チェック
                     txbStID.Focus();
                     return false;
                 }
                 if (txbStID.TextLength > 6)//文字数7文字以上
                 {
-                    messageDsp.DspMsg("");
+                    messageDsp.MsgDsp("");
                     txbStID.Focus();
                     return false;
                 }

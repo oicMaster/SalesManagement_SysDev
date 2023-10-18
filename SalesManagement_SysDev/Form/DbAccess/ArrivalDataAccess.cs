@@ -1,42 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
 
 namespace SalesManagement_SysDev
 {
-    internal class ProductDataAccess
+    internal class ArrivalDataAccess
     {
-        public bool CheckPrIDExistence(int prID)
+        public bool CheckArIDExistence(int ArID)
         {
             bool flg = false;
             try
             {
                 var context = new SalesManagement_DevContext();
-                //商品IDと一致するデータがあるかどうか
-                flg = context.M_Products.Any(x => x.PrID == prID);
+                //顧客IDと一致するデータがあるかどうか
+                flg = context.T_Arrivals.Any(x => x.ArID == ArID);
                 //DB更新
                 context.Dispose();
             }
             catch (Exception ex)
             {
-                //エラーメッセージ
+                //エラーメッセージ(基本形)
                 MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return flg;
         }
 
-
-        public bool AddProductData(M_Product regPr)
+        public bool AddArrivalData(T_Arrival regAr)
         {
             try
             {
                 var context = new SalesManagement_DevContext();
-                context.M_Products.Add(regPr);
+                context.T_Arrivals.Add(regAr);
                 context.SaveChanges();
                 context.Dispose();
 
@@ -49,29 +46,24 @@ namespace SalesManagement_SysDev
             }
         }
 
-
-        public bool UpdateProductData(M_Product updPr)
+        public bool UpdateArrivalData(T_Arrival updAr)
         {
             try
             {
                 var context = new SalesManagement_DevContext();
-                var product = context.M_Products.Single(x => x.PrID == updPr.PrID);
+                var arrival = context.T_Arrivals.Single(x => x.ArID == updAr.ArID);
 
-                product.MaID = updPr.MaID;
-                product.PrName = updPr.PrName;
-                product.Price = updPr.Price;
-                product.PrJCode = updPr.PrJCode;
-                product.PrSafetyStock = updPr.PrSafetyStock;
-                product.ScID = updPr.ScID;
-                product.PrModelNumber = updPr.PrModelNumber;
-                product.PrColor = updPr.PrColor;
-                product.PrReleaseDate = updPr.PrReleaseDate;
-                product.PrFlag = updPr.PrFlag;
-                product.PrHidden = updPr.PrHidden;
+                arrival.SoID = updAr.SoID;
+                arrival.EmID = updAr.EmID;
+                arrival.ClID = updAr.ClID;
+                arrival.OrID = updAr.OrID;
+                arrival.ArDate = updAr.ArDate;
+                arrival.ArStateFlag = updAr.ArStateFlag;
+                arrival.ArFlag = updAr.ArFlag;
+                arrival.ArHidden = updAr.ArHidden;
 
                 context.SaveChanges();
                 context.Dispose();
-
                 return true;
             }
             catch (Exception ex)
@@ -79,58 +71,59 @@ namespace SalesManagement_SysDev
                 MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-
         }
+
         //データの取得
-        public List<M_Product> GetProductData()
+        public List<T_Arrival> GetArrivalData()
         {
-            List<M_Product> product= new List<M_Product>();
+            List<T_Arrival> arrival = new List<T_Arrival>();
             try
             {
                 var context = new SalesManagement_DevContext();
-                product = context.M_Products.Where(x=> x.PrFlag ==0).ToList();
+                arrival = context.T_Arrivals.ToList();
                 context.Dispose();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            return product;
+            return arrival;
         }
 
-        //オーバーロード
-        public List<M_Product> GetProductData(M_Product selectCondition)
+        //条件一致したデータの取得　オーバーロード
+        public List<T_Arrival> GetArrivalData(T_Arrival selectCondition)
         {
-            List<M_Product> product = new List<M_Product>();
+            List<T_Arrival> arrival = new List<T_Arrival>();
             try
             {
                 var context = new SalesManagement_DevContext();
-                product = context.M_Products.Where(x => x.PrID == selectCondition.PrID).ToList();
+                arrival = context.T_Arrivals.Where(x => x.ArID == selectCondition.ArID).ToList();
                 context.Dispose();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            return product;
+            return arrival;
         }
+
+
+
         //非表示を除いたデータの取得
-        public List<M_Product> GetProductDspData()
+        public List<T_Arrival> GetArrivalDspData()
         {
-            List<M_Product> product = new List<M_Product>();
+            List<T_Arrival> arrival = new List<T_Arrival>();
             try
             {
                 var context = new SalesManagement_DevContext();
-                product = context.M_Products.Where(x => x.PrFlag == 2).ToList();
+                arrival = context.T_Arrivals.Where(x => x.ArFlag == 2).ToList();
                 context.Dispose();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            return product;
+            return arrival;
         }
     }
 }
-    
-

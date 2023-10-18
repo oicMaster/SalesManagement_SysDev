@@ -1,42 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
 
 namespace SalesManagement_SysDev
 {
-    internal class ProductDataAccess
+    internal class ShipmentDataAccess
     {
-        public bool CheckPrIDExistence(int prID)
+        public bool CheckShIDExistence(int ShID)
         {
             bool flg = false;
             try
             {
                 var context = new SalesManagement_DevContext();
-                //商品IDと一致するデータがあるかどうか
-                flg = context.M_Products.Any(x => x.PrID == prID);
+                //顧客IDと一致するデータがあるかどうか
+                flg = context.T_Shipments.Any(x => x.ShID == ShID);
                 //DB更新
                 context.Dispose();
             }
             catch (Exception ex)
             {
-                //エラーメッセージ
+                //エラーメッセージ(基本形)
                 MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return flg;
         }
 
-
-        public bool AddProductData(M_Product regPr)
+        public bool AddShipmentData(T_Shipment regSh)
         {
             try
             {
                 var context = new SalesManagement_DevContext();
-                context.M_Products.Add(regPr);
+                context.T_Shipments.Add(regSh);
                 context.SaveChanges();
                 context.Dispose();
 
@@ -49,29 +46,24 @@ namespace SalesManagement_SysDev
             }
         }
 
-
-        public bool UpdateProductData(M_Product updPr)
+        public bool UpdateShipmentData(T_Shipment updSh)
         {
             try
             {
                 var context = new SalesManagement_DevContext();
-                var product = context.M_Products.Single(x => x.PrID == updPr.PrID);
+                var shipment= context.T_Shipments.Single(x => x.ShID == updSh.ShID);
 
-                product.MaID = updPr.MaID;
-                product.PrName = updPr.PrName;
-                product.Price = updPr.Price;
-                product.PrJCode = updPr.PrJCode;
-                product.PrSafetyStock = updPr.PrSafetyStock;
-                product.ScID = updPr.ScID;
-                product.PrModelNumber = updPr.PrModelNumber;
-                product.PrColor = updPr.PrColor;
-                product.PrReleaseDate = updPr.PrReleaseDate;
-                product.PrFlag = updPr.PrFlag;
-                product.PrHidden = updPr.PrHidden;
+                shipment.ClID = updSh.ClID;
+                shipment.EmID = updSh.EmID;
+                shipment.SoID = updSh.SoID;
+                shipment.OrID = updSh.OrID;
+                shipment.ShStateFlag = updSh.ShStateFlag;
+                shipment.ShFinishDate = updSh.ShFinishDate;
+                shipment.ShFlag = updSh.ShFlag;
+                shipment.ShHidden = updSh.ShHidden;
 
                 context.SaveChanges();
                 context.Dispose();
-
                 return true;
             }
             catch (Exception ex)
@@ -79,58 +71,57 @@ namespace SalesManagement_SysDev
                 MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-
         }
+
         //データの取得
-        public List<M_Product> GetProductData()
+        public List<T_Shipment> GetShipmentData()
         {
-            List<M_Product> product= new List<M_Product>();
+            List<T_Shipment> shipment = new List<T_Shipment>();
             try
             {
                 var context = new SalesManagement_DevContext();
-                product = context.M_Products.Where(x=> x.PrFlag ==0).ToList();
+                shipment = context.T_Shipments.ToList();
                 context.Dispose();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            return product;
+            return shipment;
         }
 
-        //オーバーロード
-        public List<M_Product> GetProductData(M_Product selectCondition)
+        //条件一致したデータの取得　オーバーロード
+        public List<T_Shipment> GetShipmentData(T_Shipment selectCondition)
         {
-            List<M_Product> product = new List<M_Product>();
+            List<T_Shipment> shipment = new List<T_Shipment>();
             try
             {
                 var context = new SalesManagement_DevContext();
-                product = context.M_Products.Where(x => x.PrID == selectCondition.PrID).ToList();
+                shipment = context.T_Shipments.Where(x => x.ShID == selectCondition.ShID).ToList();
                 context.Dispose();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            return product;
+            return shipment;
         }
+
         //非表示を除いたデータの取得
-        public List<M_Product> GetProductDspData()
+        public List<T_Shipment> GetShipmentDspData()
         {
-            List<M_Product> product = new List<M_Product>();
+            List<T_Shipment> shipment = new List<T_Shipment>();
             try
             {
                 var context = new SalesManagement_DevContext();
-                product = context.M_Products.Where(x => x.PrFlag == 2).ToList();
+                shipment = context.T_Shipments.Where(x => x.ShFlag == 2).ToList();
                 context.Dispose();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            return product;
+            return shipment;
         }
     }
 }
-    
-

@@ -40,7 +40,7 @@ namespace SalesManagement_SysDev
         }
         private void GetDataGridView()
         {
-            Product = productDataAccess.GetproductData();
+            Product = productDataAccess.GetProductData();
             SetDataGridView();
         }
 
@@ -91,7 +91,7 @@ namespace SalesManagement_SysDev
             {
                 if (!dataInputFormCheck.CheckNumeric(txbPrID.Text.Trim()))
                 {
-                    messageDsp.DspMsg("");
+                    messageDsp.MsgDsp("");
                     txbPrID.Focus();
                     return false;
                 }
@@ -99,7 +99,7 @@ namespace SalesManagement_SysDev
                 if (txbPrID.TextLength >= 6)
                 {
                     //MessageBox.Show("商品IDは６文字までです");
-                    messageDsp.DspMsg("");
+                    messageDsp.MsgDsp("");
                     txbPrID.Focus();
                     return false;
                 }
@@ -143,6 +143,11 @@ namespace SalesManagement_SysDev
         private void F_AdProduct_Load(object sender, EventArgs e)
         {
             SetFormDataGridView();
+        }
+
+        private void btnRegist_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
