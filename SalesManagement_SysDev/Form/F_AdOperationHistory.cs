@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace SalesManagement_SysDev
 {
-    public partial class F_AdLogManagement : Form
+    public partial class F_AdOperationHistory : Form
     {
-        public F_AdLogManagement()
+        public F_AdOperationHistory()
         {
             InitializeComponent();
         }

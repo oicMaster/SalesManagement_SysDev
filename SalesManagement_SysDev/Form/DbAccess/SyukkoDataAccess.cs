@@ -7,16 +7,16 @@ using System.Windows.Forms;
 
 namespace SalesManagement_SysDev
 {
-    internal class StockDataAccess
+    internal class SyukkoDataAccess
     {
-        public bool CheckStIDExistence(int stID)//コード有無の確認
+        public bool CheckSyIDExistence(int SyID)
         {
             bool flg = false;
             try
             {
                 var context = new SalesManagement_DevContext();
-                //在庫IDと一致するデータがあるかどうか
-                flg = context.T_Stocks.Any(x => x.StID == stID);
+                //顧客IDと一致するデータがあるかどうか
+                flg = context.T_Syukkos.Any(x => x.SyID == SyID);
                 //DB更新
                 context.Dispose();
             }
@@ -28,16 +28,39 @@ namespace SalesManagement_SysDev
             return flg;
         }
 
-        public bool UpdateStockData(T_Stock updSt)//更新
+        public bool AddSyukkoData(T_Syukko regSy)
         {
             try
             {
                 var context = new SalesManagement_DevContext();
-                var stock = context.T_Stocks.Single(x => x.StID == updSt.StID);
+                context.T_Syukkos.Add(regSy);
+                context.SaveChanges();
+                context.Dispose();
 
-                stock.PrID = updSt.PrID;//更新するデータ's
-                stock.StQuantity = updSt.StQuantity;
-                stock.StFlag = updSt.StFlag;
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+
+        public bool UpdateSyukkoData(T_Syukko updSy)
+        {
+            try
+            {
+                var context = new SalesManagement_DevContext();
+                var syukko = context.T_Syukkos.Single(x => x.SyID == updSy.SyID);
+
+                syukko.EmID = updSy.EmID;
+                syukko.ClID = updSy.ClID;
+                syukko.SoID = updSy.SoID;
+                syukko.OrID = updSy.OrID;
+                syukko.SyDate = updSy.SyDate;
+                syukko.SyStateFlag = updSy.SyStateFlag;
+                syukko.SyFlag = updSy.SyFlag;
+                syukko.SyHidden = updSy.SyHidden;
 
                 context.SaveChanges();
                 context.Dispose();
@@ -50,54 +73,57 @@ namespace SalesManagement_SysDev
             }
         }
 
-        public List<T_Stock> GetStockData()//データ取得
+        //データの取得
+        public List<T_Syukko> GetSyukkoData()
         {
-            List<T_Stock> stock = new List<T_Stock>();
+            List<T_Syukko> syukko = new List<T_Syukko>();
             try
             {
                 var context = new SalesManagement_DevContext();
-                stock = context.T_Stocks.Where(x => x.StFlag == 0).ToList();
+                syukko = context.T_Syukkos.ToList();
                 context.Dispose();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            return stock;
+            return syukko;
         }
 
-        public List<T_Stock> GetStockData(T_Stock SelectCondition)//検索
+        //条件一致したデータの取得　オーバーロード
+        public List<T_Syukko> GetSyukkoData(T_Syukko selectCondition)
         {
-            List<T_Stock> stock = new List<T_Stock>();
+            List<T_Syukko> syukko = new List<T_Syukko>();
             try
             {
                 var context = new SalesManagement_DevContext();
-                stock = context.T_Stocks.Where(x => x.StID == SelectCondition.StID).ToList();
+                syukko = context.T_Syukkos.Where(x => x.SyID == selectCondition.SyID).ToList();
                 context.Dispose();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            return stock;
+            return syukko;
         }
 
-        public List<T_Stock> GetStockDspData()//非表示を除いた検索
+
+
+        //非表示を除いたデータの取得
+        public List<T_Syukko> GetSyukkoDspData()
         {
-            List<T_Stock> stock = new List<T_Stock>();
+            List<T_Syukko> syukko = new List<T_Syukko>();
             try
             {
                 var context = new SalesManagement_DevContext();
-                stock = context.T_Stocks.Where(x => x.StFlag == 2).ToList();
+                syukko = context.T_Syukkos.Where(x => x.SyFlag == 2).ToList();
                 context.Dispose();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            return stock;
+            return syukko;
         }
     }
 }
-
-    

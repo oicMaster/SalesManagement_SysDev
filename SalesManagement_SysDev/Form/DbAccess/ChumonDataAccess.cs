@@ -1,42 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
 
 namespace SalesManagement_SysDev
 {
-    internal class ProductDataAccess
+    internal class ChumonDataAccess
     {
-        public bool CheckPrIDExistence(int prID)
+        public bool CheckChIDExistence(int ChID)
         {
             bool flg = false;
             try
             {
                 var context = new SalesManagement_DevContext();
-                //商品IDと一致するデータがあるかどうか
-                flg = context.M_Products.Any(x => x.PrID == prID);
+                //顧客IDと一致するデータがあるかどうか
+                flg = context.T_Chumons.Any(x => x.ChID == ChID);
                 //DB更新
                 context.Dispose();
             }
             catch (Exception ex)
             {
-                //エラーメッセージ
+                //エラーメッセージ(基本形)
                 MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return flg;
         }
 
-
-        public bool AddProductData(M_Product regPr)
+        public bool AddChumonData(T_Chumon regCh)
         {
             try
             {
                 var context = new SalesManagement_DevContext();
-                context.M_Products.Add(regPr);
+                context.T_Chumons.Add(regCh);
                 context.SaveChanges();
                 context.Dispose();
 
@@ -49,29 +46,24 @@ namespace SalesManagement_SysDev
             }
         }
 
-
-        public bool UpdateProductData(M_Product updPr)
+        public bool UpdateChumonData(T_Chumon updCh)
         {
             try
             {
                 var context = new SalesManagement_DevContext();
-                var product = context.M_Products.Single(x => x.PrID == updPr.PrID);
+                var chumon = context.T_Chumons.Single(x => x.ChID == updCh.ChID);
 
-                product.MaID = updPr.MaID;
-                product.PrName = updPr.PrName;
-                product.Price = updPr.Price;
-                product.PrJCode = updPr.PrJCode;
-                product.PrSafetyStock = updPr.PrSafetyStock;
-                product.ScID = updPr.ScID;
-                product.PrModelNumber = updPr.PrModelNumber;
-                product.PrColor = updPr.PrColor;
-                product.PrReleaseDate = updPr.PrReleaseDate;
-                product.PrFlag = updPr.PrFlag;
-                product.PrHidden = updPr.PrHidden;
+                chumon.SoID = updCh.SoID;
+                chumon.EmID = updCh.EmID;
+                chumon.ClID = updCh.ClID;
+                chumon.OrID = updCh.OrID;
+                chumon.ChDate = updCh.ChDate;
+                chumon.ChStateFlag = updCh.ChStateFlag;
+                chumon.ChFlag = updCh.ChFlag;
+                chumon.ChHidden = updCh.ChHidden;
 
                 context.SaveChanges();
                 context.Dispose();
-
                 return true;
             }
             catch (Exception ex)
@@ -79,58 +71,59 @@ namespace SalesManagement_SysDev
                 MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-
         }
+
         //データの取得
-        public List<M_Product> GetProductData()
+        public List<T_Chumon> GetChumonData()
         {
-            List<M_Product> product= new List<M_Product>();
+            List<T_Chumon> chumon = new List<T_Chumon>();
             try
             {
                 var context = new SalesManagement_DevContext();
-                product = context.M_Products.Where(x=> x.PrFlag ==0).ToList();
+                chumon = context.T_Chumons.ToList();
                 context.Dispose();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            return product;
+            return chumon;
         }
 
-        //オーバーロード
-        public List<M_Product> GetProductData(M_Product selectCondition)
+        //条件一致したデータの取得　オーバーロード
+        public List<T_Chumon> GetChumonData(T_Chumon selectCondition)
         {
-            List<M_Product> product = new List<M_Product>();
+            List<T_Chumon> chumon = new List<T_Chumon>();
             try
             {
                 var context = new SalesManagement_DevContext();
-                product = context.M_Products.Where(x => x.PrID == selectCondition.PrID).ToList();
+                chumon = context.T_Chumons.Where(x => x.ChID == selectCondition.ChID).ToList();
                 context.Dispose();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            return product;
+            return chumon;
         }
+
+
+
         //非表示を除いたデータの取得
-        public List<M_Product> GetProductDspData()
+        public List<T_Chumon> GetChumonDspData()
         {
-            List<M_Product> product = new List<M_Product>();
+            List<T_Chumon> chumon= new List<T_Chumon>();
             try
             {
                 var context = new SalesManagement_DevContext();
-                product = context.M_Products.Where(x => x.PrFlag == 2).ToList();
+                chumon = context.T_Chumons.Where(x => x.ChFlag == 2).ToList();
                 context.Dispose();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            return product;
+            return chumon;
         }
     }
 }
-    
-

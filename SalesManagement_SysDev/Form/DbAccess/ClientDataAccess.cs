@@ -34,7 +34,7 @@ namespace SalesManagement_SysDev
 
 
 
-        public bool AddClientDaata(M_Client regCl)
+        public bool AddClientData(M_Client regCl)
         {
             try
             {

@@ -1,46 +1,42 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
 
 namespace SalesManagement_SysDev
 {
-    internal class ProductDataAccess
+    internal class EmployeeDateAccess
     {
-        public bool CheckPrIDExistence(int prID)
+        public bool CheckEmployeeCDXxistence(int emID)
         {
             bool flg = false;
             try
             {
                 var context = new SalesManagement_DevContext();
-                //商品IDと一致するデータがあるかどうか
-                flg = context.M_Products.Any(x => x.PrID == prID);
-                //DB更新
+                flg = context.M_Employees.Any(x => x.EmID == emID);
                 context.Dispose();
+
             }
             catch (Exception ex)
             {
-                //エラーメッセージ
                 MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return flg;
         }
-
-
-        public bool AddProductData(M_Product regPr)
+        public bool AddEmployeeData(M_Employee regEm)
         {
             try
             {
                 var context = new SalesManagement_DevContext();
-                context.M_Products.Add(regPr);
-                context.SaveChanges();
+                context.M_Employees.Add(regEm);
                 context.Dispose();
 
                 return true;
+
             }
             catch (Exception ex)
             {
@@ -49,29 +45,24 @@ namespace SalesManagement_SysDev
             }
         }
 
-
-        public bool UpdateProductData(M_Product updPr)
+        public bool UpadateEmployeeData(M_Employee updEm)
         {
             try
             {
                 var context = new SalesManagement_DevContext();
-                var product = context.M_Products.Single(x => x.PrID == updPr.PrID);
+                var employee = context.M_Employees.Single(x => x.EmID == updEm.EmID);
 
-                product.MaID = updPr.MaID;
-                product.PrName = updPr.PrName;
-                product.Price = updPr.Price;
-                product.PrJCode = updPr.PrJCode;
-                product.PrSafetyStock = updPr.PrSafetyStock;
-                product.ScID = updPr.ScID;
-                product.PrModelNumber = updPr.PrModelNumber;
-                product.PrColor = updPr.PrColor;
-                product.PrReleaseDate = updPr.PrReleaseDate;
-                product.PrFlag = updPr.PrFlag;
-                product.PrHidden = updPr.PrHidden;
+                employee.EmName = updEm.EmName;
+                employee.SoID = updEm.SoID;
+                employee.PoID = updEm.PoID;
+                employee.EmHiredate = updEm.EmHiredate;
+                employee.EmPassword = updEm.EmPassword;
+                employee.EmPhone = updEm.EmPhone;
+                employee.EmFlag = updEm.EmFlag;
+                employee.EmHidden = updEm.EmHidden;
 
                 context.SaveChanges();
                 context.Dispose();
-
                 return true;
             }
             catch (Exception ex)
@@ -81,56 +72,65 @@ namespace SalesManagement_SysDev
             }
 
         }
-        //データの取得
-        public List<M_Product> GetProductData()
+
+        public List<M_Employee> GetEmployeeData()
         {
-            List<M_Product> product= new List<M_Product>();
+            List<M_Employee> employee = new List<M_Employee>();
             try
             {
                 var context = new SalesManagement_DevContext();
-                product = context.M_Products.Where(x=> x.PrFlag ==0).ToList();
+                employee = context.M_Employees.Where(x => x.EmFlag == 0).ToList();
                 context.Dispose();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
-            return product;
+            return employee;
         }
 
-        //オーバーロード
-        public List<M_Product> GetProductData(M_Product selectCondition)
+        public List<M_Employee> GetEmployeeData(M_Employee selectCondition)
         {
-            List<M_Product> product = new List<M_Product>();
+            List<M_Employee> employee = new List<M_Employee>();
             try
             {
                 var context = new SalesManagement_DevContext();
-                product = context.M_Products.Where(x => x.PrID == selectCondition.PrID).ToList();
+                employee = context.M_Employees.Where(x => x.EmID == selectCondition.EmID).ToList();
                 context.Dispose();
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
-            return product;
+            return employee;
         }
-        //非表示を除いたデータの取得
-        public List<M_Product> GetProductDspData()
+
+        public List<M_Employee> GetEmployeeDspData()
         {
-            List<M_Product> product = new List<M_Product>();
+            List<M_Employee> employee = new List<M_Employee>();
             try
             {
                 var context = new SalesManagement_DevContext();
-                product = context.M_Products.Where(x => x.PrFlag == 2).ToList();
+                employee = context.M_Employees.Where(x => x.EmFlag == 2).ToList();
                 context.Dispose();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
-            return product;
+            return employee;
         }
     }
 }
-    
+
+
+
+
+
+
+
 
