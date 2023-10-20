@@ -55,7 +55,7 @@
             this.txbOrDate = new System.Windows.Forms.TextBox();
             this.txbEmID = new System.Windows.Forms.TextBox();
             this.txbSoID = new System.Windows.Forms.TextBox();
-            this.txClCharge = new System.Windows.Forms.TextBox();
+            this.txbClCharge = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -76,77 +76,87 @@
             // 
             // txbClID
             // 
-            this.txbClID.Location = new System.Drawing.Point(483, 176);
+            this.txbClID.Location = new System.Drawing.Point(604, 211);
+            this.txbClID.Margin = new System.Windows.Forms.Padding(4);
             this.txbClID.Name = "txbClID";
-            this.txbClID.Size = new System.Drawing.Size(100, 22);
+            this.txbClID.Size = new System.Drawing.Size(124, 25);
             this.txbClID.TabIndex = 131;
             // 
             // txbOrID
             // 
-            this.txbOrID.Location = new System.Drawing.Point(112, 176);
+            this.txbOrID.Location = new System.Drawing.Point(140, 211);
+            this.txbOrID.Margin = new System.Windows.Forms.Padding(4);
             this.txbOrID.Name = "txbOrID";
-            this.txbOrID.Size = new System.Drawing.Size(100, 22);
+            this.txbOrID.Size = new System.Drawing.Size(124, 25);
             this.txbOrID.TabIndex = 130;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(488, 136);
+            this.label10.Location = new System.Drawing.Point(610, 163);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(51, 15);
+            this.label10.Size = new System.Drawing.Size(60, 18);
             this.label10.TabIndex = 129;
             this.label10.Text = "顧客ID";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(231, 136);
+            this.label9.Location = new System.Drawing.Point(289, 163);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(66, 15);
+            this.label9.Size = new System.Drawing.Size(78, 18);
             this.label9.TabIndex = 128;
             this.label9.Text = "営業所ID";
             // 
             // btnConfirm
             // 
-            this.btnConfirm.Location = new System.Drawing.Point(695, 42);
+            this.btnConfirm.Location = new System.Drawing.Point(869, 50);
+            this.btnConfirm.Margin = new System.Windows.Forms.Padding(4);
             this.btnConfirm.Name = "btnConfirm";
-            this.btnConfirm.Size = new System.Drawing.Size(75, 23);
+            this.btnConfirm.Size = new System.Drawing.Size(94, 28);
             this.btnConfirm.TabIndex = 127;
             this.btnConfirm.Text = "受注確定";
             this.btnConfirm.UseVisualStyleBackColor = true;
             // 
             // btnDisplay
             // 
-            this.btnDisplay.Location = new System.Drawing.Point(584, 42);
+            this.btnDisplay.Location = new System.Drawing.Point(730, 50);
+            this.btnDisplay.Margin = new System.Windows.Forms.Padding(4);
             this.btnDisplay.Name = "btnDisplay";
-            this.btnDisplay.Size = new System.Drawing.Size(75, 23);
+            this.btnDisplay.Size = new System.Drawing.Size(94, 28);
             this.btnDisplay.TabIndex = 126;
             this.btnDisplay.Text = "一覧表示";
             this.btnDisplay.UseVisualStyleBackColor = true;
             // 
             // btnHidden
             // 
-            this.btnHidden.Location = new System.Drawing.Point(464, 41);
+            this.btnHidden.Location = new System.Drawing.Point(580, 49);
+            this.btnHidden.Margin = new System.Windows.Forms.Padding(4);
             this.btnHidden.Name = "btnHidden";
-            this.btnHidden.Size = new System.Drawing.Size(75, 23);
+            this.btnHidden.Size = new System.Drawing.Size(94, 28);
             this.btnHidden.TabIndex = 125;
             this.btnHidden.Text = "非表示";
             this.btnHidden.UseVisualStyleBackColor = true;
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(353, 42);
+            this.btnSearch.Location = new System.Drawing.Point(441, 50);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(4);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.Size = new System.Drawing.Size(94, 28);
             this.btnSearch.TabIndex = 124;
             this.btnSearch.Text = "検索";
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(1140, 61);
+            this.btnClose.Location = new System.Drawing.Point(1425, 73);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(4);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(75, 23);
+            this.btnClose.Size = new System.Drawing.Size(94, 28);
             this.btnClose.TabIndex = 123;
             this.btnClose.Text = "閉じる";
             this.btnClose.UseVisualStyleBackColor = true;
@@ -154,26 +164,29 @@
             // lblLoginName
             // 
             this.lblLoginName.AutoSize = true;
-            this.lblLoginName.Location = new System.Drawing.Point(1056, 108);
+            this.lblLoginName.Location = new System.Drawing.Point(1320, 130);
+            this.lblLoginName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblLoginName.Name = "lblLoginName";
-            this.lblLoginName.Size = new System.Drawing.Size(67, 15);
+            this.lblLoginName.Size = new System.Drawing.Size(80, 18);
             this.lblLoginName.TabIndex = 122;
             this.lblLoginName.Text = "千田真隆";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(957, 108);
+            this.label8.Location = new System.Drawing.Point(1196, 130);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(82, 15);
+            this.label8.Size = new System.Drawing.Size(97, 18);
             this.label8.TabIndex = 121;
             this.label8.Text = "ログイン情報";
             // 
             // btnPageSizeChange
             // 
-            this.btnPageSizeChange.Location = new System.Drawing.Point(287, 696);
+            this.btnPageSizeChange.Location = new System.Drawing.Point(359, 835);
+            this.btnPageSizeChange.Margin = new System.Windows.Forms.Padding(4);
             this.btnPageSizeChange.Name = "btnPageSizeChange";
-            this.btnPageSizeChange.Size = new System.Drawing.Size(75, 23);
+            this.btnPageSizeChange.Size = new System.Drawing.Size(94, 28);
             this.btnPageSizeChange.TabIndex = 120;
             this.btnPageSizeChange.Text = "行数変更";
             this.btnPageSizeChange.UseVisualStyleBackColor = true;
@@ -181,258 +194,289 @@
             // lblPage
             // 
             this.lblPage.AutoSize = true;
-            this.lblPage.Location = new System.Drawing.Point(834, 708);
+            this.lblPage.Location = new System.Drawing.Point(1042, 850);
+            this.lblPage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPage.Name = "lblPage";
-            this.lblPage.Size = new System.Drawing.Size(43, 15);
+            this.lblPage.Size = new System.Drawing.Size(53, 18);
             this.lblPage.TabIndex = 119;
             this.lblPage.Text = "ページ";
             // 
             // txbPageNo
             // 
-            this.txbPageNo.Location = new System.Drawing.Point(712, 706);
+            this.txbPageNo.Location = new System.Drawing.Point(890, 847);
+            this.txbPageNo.Margin = new System.Windows.Forms.Padding(4);
             this.txbPageNo.Name = "txbPageNo";
-            this.txbPageNo.Size = new System.Drawing.Size(100, 22);
+            this.txbPageNo.Size = new System.Drawing.Size(124, 25);
             this.txbPageNo.TabIndex = 118;
             // 
             // btnLastPage
             // 
-            this.btnLastPage.Location = new System.Drawing.Point(1169, 700);
+            this.btnLastPage.Location = new System.Drawing.Point(1461, 840);
+            this.btnLastPage.Margin = new System.Windows.Forms.Padding(4);
             this.btnLastPage.Name = "btnLastPage";
-            this.btnLastPage.Size = new System.Drawing.Size(75, 23);
+            this.btnLastPage.Size = new System.Drawing.Size(94, 28);
             this.btnLastPage.TabIndex = 117;
             this.btnLastPage.Text = "▶|";
             this.btnLastPage.UseVisualStyleBackColor = true;
             // 
             // btnNextPage
             // 
-            this.btnNextPage.Location = new System.Drawing.Point(1088, 700);
+            this.btnNextPage.Location = new System.Drawing.Point(1360, 840);
+            this.btnNextPage.Margin = new System.Windows.Forms.Padding(4);
             this.btnNextPage.Name = "btnNextPage";
-            this.btnNextPage.Size = new System.Drawing.Size(75, 23);
+            this.btnNextPage.Size = new System.Drawing.Size(94, 28);
             this.btnNextPage.TabIndex = 116;
             this.btnNextPage.Text = "▶";
             this.btnNextPage.UseVisualStyleBackColor = true;
             // 
             // btnPreviousPage
             // 
-            this.btnPreviousPage.Location = new System.Drawing.Point(1007, 700);
+            this.btnPreviousPage.Location = new System.Drawing.Point(1259, 840);
+            this.btnPreviousPage.Margin = new System.Windows.Forms.Padding(4);
             this.btnPreviousPage.Name = "btnPreviousPage";
-            this.btnPreviousPage.Size = new System.Drawing.Size(75, 23);
+            this.btnPreviousPage.Size = new System.Drawing.Size(94, 28);
             this.btnPreviousPage.TabIndex = 115;
             this.btnPreviousPage.Text = "◀";
             this.btnPreviousPage.UseVisualStyleBackColor = true;
             // 
             // btnFirstPage
             // 
-            this.btnFirstPage.Location = new System.Drawing.Point(926, 700);
+            this.btnFirstPage.Location = new System.Drawing.Point(1158, 840);
+            this.btnFirstPage.Margin = new System.Windows.Forms.Padding(4);
             this.btnFirstPage.Name = "btnFirstPage";
-            this.btnFirstPage.Size = new System.Drawing.Size(75, 23);
+            this.btnFirstPage.Size = new System.Drawing.Size(94, 28);
             this.btnFirstPage.TabIndex = 114;
             this.btnFirstPage.Text = "|◀";
             this.btnFirstPage.UseVisualStyleBackColor = true;
             // 
             // txbPageSize
             // 
-            this.txbPageSize.Location = new System.Drawing.Point(181, 697);
+            this.txbPageSize.Location = new System.Drawing.Point(226, 836);
+            this.txbPageSize.Margin = new System.Windows.Forms.Padding(4);
             this.txbPageSize.Name = "txbPageSize";
-            this.txbPageSize.Size = new System.Drawing.Size(100, 22);
+            this.txbPageSize.Size = new System.Drawing.Size(124, 25);
             this.txbPageSize.TabIndex = 113;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(94, 700);
+            this.label11.Location = new System.Drawing.Point(118, 840);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(81, 15);
+            this.label11.Size = new System.Drawing.Size(98, 18);
             this.label11.TabIndex = 112;
             this.label11.Text = "1ページ行数";
             // 
             // dataGridViewDsp
             // 
             this.dataGridViewDsp.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewDsp.Location = new System.Drawing.Point(97, 307);
+            this.dataGridViewDsp.Location = new System.Drawing.Point(121, 368);
+            this.dataGridViewDsp.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridViewDsp.Name = "dataGridViewDsp";
             this.dataGridViewDsp.RowHeadersWidth = 51;
             this.dataGridViewDsp.RowTemplate.Height = 24;
-            this.dataGridViewDsp.Size = new System.Drawing.Size(780, 316);
+            this.dataGridViewDsp.Size = new System.Drawing.Size(975, 379);
             this.dataGridViewDsp.TabIndex = 111;
             // 
             // txbOrFlag
             // 
-            this.txbOrFlag.Location = new System.Drawing.Point(108, 270);
+            this.txbOrFlag.Location = new System.Drawing.Point(135, 324);
+            this.txbOrFlag.Margin = new System.Windows.Forms.Padding(4);
             this.txbOrFlag.Name = "txbOrFlag";
-            this.txbOrFlag.Size = new System.Drawing.Size(100, 22);
+            this.txbOrFlag.Size = new System.Drawing.Size(124, 25);
             this.txbOrFlag.TabIndex = 110;
             // 
             // txbOrHiddin
             // 
-            this.txbOrHiddin.Location = new System.Drawing.Point(234, 270);
+            this.txbOrHiddin.Location = new System.Drawing.Point(292, 324);
+            this.txbOrHiddin.Margin = new System.Windows.Forms.Padding(4);
             this.txbOrHiddin.Name = "txbOrHiddin";
-            this.txbOrHiddin.Size = new System.Drawing.Size(100, 22);
+            this.txbOrHiddin.Size = new System.Drawing.Size(124, 25);
             this.txbOrHiddin.TabIndex = 109;
             // 
             // txbOrStateFlag
             // 
-            this.txbOrStateFlag.Location = new System.Drawing.Point(856, 176);
+            this.txbOrStateFlag.Location = new System.Drawing.Point(1070, 211);
+            this.txbOrStateFlag.Margin = new System.Windows.Forms.Padding(4);
             this.txbOrStateFlag.Name = "txbOrStateFlag";
-            this.txbOrStateFlag.Size = new System.Drawing.Size(100, 22);
+            this.txbOrStateFlag.Size = new System.Drawing.Size(124, 25);
             this.txbOrStateFlag.TabIndex = 108;
             // 
             // txbOrDate
             // 
-            this.txbOrDate.Location = new System.Drawing.Point(737, 176);
+            this.txbOrDate.Location = new System.Drawing.Point(921, 211);
+            this.txbOrDate.Margin = new System.Windows.Forms.Padding(4);
             this.txbOrDate.Name = "txbOrDate";
-            this.txbOrDate.Size = new System.Drawing.Size(100, 22);
+            this.txbOrDate.Size = new System.Drawing.Size(124, 25);
             this.txbOrDate.TabIndex = 107;
             // 
             // txbEmID
             // 
-            this.txbEmID.Location = new System.Drawing.Point(353, 176);
+            this.txbEmID.Location = new System.Drawing.Point(441, 211);
+            this.txbEmID.Margin = new System.Windows.Forms.Padding(4);
             this.txbEmID.Name = "txbEmID";
-            this.txbEmID.Size = new System.Drawing.Size(100, 22);
+            this.txbEmID.Size = new System.Drawing.Size(124, 25);
             this.txbEmID.TabIndex = 106;
             // 
             // txbSoID
             // 
-            this.txbSoID.Location = new System.Drawing.Point(234, 176);
+            this.txbSoID.Location = new System.Drawing.Point(292, 211);
+            this.txbSoID.Margin = new System.Windows.Forms.Padding(4);
             this.txbSoID.Name = "txbSoID";
-            this.txbSoID.Size = new System.Drawing.Size(100, 22);
+            this.txbSoID.Size = new System.Drawing.Size(124, 25);
             this.txbSoID.TabIndex = 105;
             // 
-            // txClCharge
+            // txbClCharge
             // 
-            this.txClCharge.Location = new System.Drawing.Point(608, 176);
-            this.txClCharge.Name = "txClCharge";
-            this.txClCharge.Size = new System.Drawing.Size(100, 22);
-            this.txClCharge.TabIndex = 104;
+            this.txbClCharge.Location = new System.Drawing.Point(760, 211);
+            this.txbClCharge.Margin = new System.Windows.Forms.Padding(4);
+            this.txbClCharge.Name = "txbClCharge";
+            this.txbClCharge.Size = new System.Drawing.Size(124, 25);
+            this.txbClCharge.TabIndex = 104;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(109, 228);
+            this.label7.Location = new System.Drawing.Point(136, 274);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(99, 15);
+            this.label7.Size = new System.Drawing.Size(118, 18);
             this.label7.TabIndex = 103;
             this.label7.Text = "受注管理フラグ";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(240, 228);
+            this.label6.Location = new System.Drawing.Point(300, 274);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(82, 15);
+            this.label6.Size = new System.Drawing.Size(98, 18);
             this.label6.TabIndex = 102;
             this.label6.Text = "非表示理由";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(853, 146);
+            this.label5.Location = new System.Drawing.Point(1066, 175);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(99, 15);
+            this.label5.Size = new System.Drawing.Size(118, 18);
             this.label5.TabIndex = 101;
             this.label5.Text = "受注状態フラグ";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(734, 146);
+            this.label4.Location = new System.Drawing.Point(918, 175);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(82, 15);
+            this.label4.Size = new System.Drawing.Size(98, 18);
             this.label4.TabIndex = 100;
             this.label4.Text = "受注年月日";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(350, 136);
+            this.label3.Location = new System.Drawing.Point(438, 163);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(51, 15);
+            this.label3.Size = new System.Drawing.Size(60, 18);
             this.label3.TabIndex = 99;
             this.label3.Text = "社員ID";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(109, 136);
+            this.label2.Location = new System.Drawing.Point(136, 163);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(51, 15);
+            this.label2.Size = new System.Drawing.Size(60, 18);
             this.label2.TabIndex = 98;
             this.label2.Text = "受注ID";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(626, 136);
+            this.label1.Location = new System.Drawing.Point(782, 163);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(82, 15);
+            this.label1.Size = new System.Drawing.Size(98, 18);
             this.label1.TabIndex = 97;
             this.label1.Text = "顧客担当名";
             // 
             // btnRegist
             // 
-            this.btnRegist.Location = new System.Drawing.Point(243, 42);
+            this.btnRegist.Location = new System.Drawing.Point(304, 50);
+            this.btnRegist.Margin = new System.Windows.Forms.Padding(4);
             this.btnRegist.Name = "btnRegist";
-            this.btnRegist.Size = new System.Drawing.Size(75, 23);
+            this.btnRegist.Size = new System.Drawing.Size(94, 28);
             this.btnRegist.TabIndex = 132;
             this.btnRegist.Text = "登録";
             this.btnRegist.UseVisualStyleBackColor = true;
+            this.btnRegist.Click += new System.EventHandler(this.btnRegist_Click);
             // 
             // txbPrID
             // 
-            this.txbPrID.Location = new System.Drawing.Point(1067, 320);
+            this.txbPrID.Location = new System.Drawing.Point(1334, 384);
+            this.txbPrID.Margin = new System.Windows.Forms.Padding(4);
             this.txbPrID.Name = "txbPrID";
-            this.txbPrID.Size = new System.Drawing.Size(100, 22);
+            this.txbPrID.Size = new System.Drawing.Size(124, 25);
             this.txbPrID.TabIndex = 138;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(1064, 293);
+            this.label12.Location = new System.Drawing.Point(1330, 352);
+            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(51, 15);
+            this.label12.Size = new System.Drawing.Size(60, 18);
             this.label12.TabIndex = 137;
             this.label12.Text = "商品ID";
             // 
             // btnDetailSearch
             // 
-            this.btnDetailSearch.Location = new System.Drawing.Point(1218, 320);
+            this.btnDetailSearch.Location = new System.Drawing.Point(1522, 384);
+            this.btnDetailSearch.Margin = new System.Windows.Forms.Padding(4);
             this.btnDetailSearch.Name = "btnDetailSearch";
-            this.btnDetailSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnDetailSearch.Size = new System.Drawing.Size(94, 28);
             this.btnDetailSearch.TabIndex = 136;
             this.btnDetailSearch.Text = "詳細検索";
             this.btnDetailSearch.UseVisualStyleBackColor = true;
             // 
             // txbOrDetailID
             // 
-            this.txbOrDetailID.Location = new System.Drawing.Point(958, 321);
+            this.txbOrDetailID.Location = new System.Drawing.Point(1198, 385);
+            this.txbOrDetailID.Margin = new System.Windows.Forms.Padding(4);
             this.txbOrDetailID.Name = "txbOrDetailID";
-            this.txbOrDetailID.Size = new System.Drawing.Size(100, 22);
+            this.txbOrDetailID.Size = new System.Drawing.Size(124, 25);
             this.txbOrDetailID.TabIndex = 135;
             // 
             // labal1
             // 
             this.labal1.AutoSize = true;
-            this.labal1.Location = new System.Drawing.Point(955, 294);
+            this.labal1.Location = new System.Drawing.Point(1194, 353);
+            this.labal1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labal1.Name = "labal1";
-            this.labal1.Size = new System.Drawing.Size(81, 15);
+            this.labal1.Size = new System.Drawing.Size(96, 18);
             this.labal1.TabIndex = 134;
             this.labal1.Text = "受注詳細ID";
             // 
             // dataGridViewMiniDsp
             // 
             this.dataGridViewMiniDsp.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewMiniDsp.Location = new System.Drawing.Point(950, 374);
+            this.dataGridViewMiniDsp.Location = new System.Drawing.Point(1188, 449);
+            this.dataGridViewMiniDsp.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridViewMiniDsp.Name = "dataGridViewMiniDsp";
             this.dataGridViewMiniDsp.RowHeadersWidth = 51;
             this.dataGridViewMiniDsp.RowTemplate.Height = 24;
-            this.dataGridViewMiniDsp.Size = new System.Drawing.Size(377, 249);
+            this.dataGridViewMiniDsp.Size = new System.Drawing.Size(471, 299);
             this.dataGridViewMiniDsp.TabIndex = 133;
             // 
             // F_AdOrder
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1339, 769);
+            this.ClientSize = new System.Drawing.Size(1674, 923);
             this.Controls.Add(this.txbPrID);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.btnDetailSearch);
@@ -467,7 +511,7 @@
             this.Controls.Add(this.txbOrDate);
             this.Controls.Add(this.txbEmID);
             this.Controls.Add(this.txbSoID);
-            this.Controls.Add(this.txClCharge);
+            this.Controls.Add(this.txbClCharge);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -475,6 +519,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "F_AdOrder";
             this.Text = "受注管理";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDsp)).EndInit();
@@ -513,7 +558,7 @@
         private System.Windows.Forms.TextBox txbOrDate;
         private System.Windows.Forms.TextBox txbEmID;
         private System.Windows.Forms.TextBox txbSoID;
-        private System.Windows.Forms.TextBox txClCharge;
+        private System.Windows.Forms.TextBox txbClCharge;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;

@@ -70,7 +70,7 @@ namespace SalesManagement_SysDev
             dataGridViewDsp.Columns[6].Width = 100;
             dataGridViewDsp.Columns[7].Width = 100;
             dataGridViewDsp.Columns[8].Width = 100;
-            dataGridViewDsp.Columns[9].Width = 100;
+            
 
             dataGridViewDsp.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewDsp.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -81,12 +81,15 @@ namespace SalesManagement_SysDev
             dataGridViewDsp.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewDsp.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewDsp.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewDsp.Columns[9].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+           
+           
 
             lblPage.Text = "/" + ((int)Math.Ceiling(Client.Count / (double)pageSize)) + "ページ";
 
             dataGridViewDsp.Refresh();
         }
+
+
 
         private void dataGridViewData_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -372,6 +375,11 @@ namespace SalesManagement_SysDev
         }
 
         private void btnLastPage_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnRegist_Click(object sender, EventArgs e)
         {
 
         }

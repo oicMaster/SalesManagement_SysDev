@@ -26,7 +26,14 @@ namespace SalesManagement_SysDev
             InitializeComponent();
         }
 
-       
+        private void F_Product_Load(object sender, EventArgs e)
+        {
+            //labelLoginName.Text = FormMenu.LoginName;
+            //SetFormComboBox();
+            SetFormDataGridView();
+            fncButtonEnable(0);
+        }
+
 
         private void SetFormDataGridView()
         {
@@ -62,7 +69,7 @@ namespace SalesManagement_SysDev
             dataGridViewDsp.Columns[9].Width = 100;
             dataGridViewDsp.Columns[10].Width = 100;
             dataGridViewDsp.Columns[11].Width = 100;
-            dataGridViewDsp.Columns[12].Width = 100;
+            
 
             dataGridViewDsp.Columns[0].DefaultCellStyle.Alignment =DataGridViewContentAlignment.MiddleLeft;
             dataGridViewDsp.Columns[1].DefaultCellStyle.Alignment =DataGridViewContentAlignment.MiddleLeft;
@@ -76,12 +83,49 @@ namespace SalesManagement_SysDev
             dataGridViewDsp.Columns[9].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewDsp.Columns[10].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewDsp.Columns[11].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewDsp.Columns[12].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            
 
             lblPage.Text ="/"+((int)Math.Ceiling(Product.Count/(double)pageSize))+"ページ";
 
             dataGridViewDsp.Refresh();
 
+        }
+        private void dataGridViewData_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            txbPrID.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[0].Value.ToString();
+            txbMaID.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[1].Value.ToString();
+            txbPrName.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[2].Value.ToString();
+            txbPrice.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[3].Value.ToString();
+            txbPrJCode.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[4].Value.ToString();
+            txbPrSafetyStock.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[5].Value.ToString();
+            txbScID.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[6].Value.ToString();
+            txbPrModeNumber.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[7].Value.ToString();
+            txbPrColor.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[8].Value.ToString();
+            txbPrReleaseDate.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[9].Value.ToString();
+            txbPrFlag.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[10].Value.ToString();
+            if (dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[11].Value != null)
+                txbPrHiddin.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[11].Value.ToString();
+            else
+                txbPrHiddin.Text = String.Empty;
+        }
+        private void fncButtonEnable(int chk)
+        {
+            switch (chk)
+            {
+                //商品IDが空であれば0、でなければ1
+                case 0:
+                    btnRegist.Enabled = true;
+                    btnSearch.Enabled = true;
+                    btnUpdate.Enabled = false;
+                    btnHidden.Enabled = false;
+                    break;
+                case 1:
+                    btnRegist.Enabled = true;
+                    btnSearch.Enabled = true;
+                    btnUpdate.Enabled = true;
+                    btnHidden.Enabled = true;
+                    break;
+            }
         }
 
         private bool GetValidDataAtSelect()
