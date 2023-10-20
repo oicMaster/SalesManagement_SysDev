@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SalesManagement_SysDev.Common;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,12 +13,18 @@ namespace SalesManagement_SysDev
 {
     public partial class F_AdWarehous : Form
     {
+        
         public F_AdWarehous()
         {
             InitializeComponent();
         }
 
         private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
         {
 
         }

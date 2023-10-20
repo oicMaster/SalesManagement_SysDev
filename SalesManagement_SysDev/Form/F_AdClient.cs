@@ -658,5 +658,10 @@ namespace SalesManagement_SysDev
                 e.Handled = true;
             }
         }
+
+        private void btnUpdate_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }
