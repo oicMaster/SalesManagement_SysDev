@@ -31,6 +31,24 @@ namespace SalesManagement_SysDev
             return flg;
         }
 
+        public bool CheckSoIDExistence(int soID)
+        {
+            bool flg = false;
+            try
+            {
+                var context = new SalesManagement_DevContext();
+                //営業所IDと一致するデータがあるかどうか
+                flg = context.M_Clients.Any(x => x.SoID == soID);
+                //DB更新
+                context.Dispose();
+            }
+            catch (Exception ex)
+            {
+                //エラーメッセージ(基本形)
+                MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return flg;
+        }
 
 
 
