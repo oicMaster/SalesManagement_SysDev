@@ -35,7 +35,6 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnRegist = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
-            this.btnHidden = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -80,7 +79,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(210, 129);
+            this.label2.Location = new System.Drawing.Point(211, 129);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(66, 15);
             this.label2.TabIndex = 1;
@@ -98,7 +97,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(210, 162);
+            this.label4.Location = new System.Drawing.Point(211, 162);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(37, 15);
             this.label4.TabIndex = 3;
@@ -106,9 +105,10 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(268, 13);
+            this.btnSearch.Location = new System.Drawing.Point(268, 12);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.Size = new System.Drawing.Size(75, 22);
             this.btnSearch.TabIndex = 4;
             this.btnSearch.Text = "検索";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -116,9 +116,10 @@
             // 
             // btnRegist
             // 
-            this.btnRegist.Location = new System.Drawing.Point(350, 12);
+            this.btnRegist.Location = new System.Drawing.Point(349, 12);
+            this.btnRegist.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRegist.Name = "btnRegist";
-            this.btnRegist.Size = new System.Drawing.Size(75, 23);
+            this.btnRegist.Size = new System.Drawing.Size(75, 22);
             this.btnRegist.TabIndex = 5;
             this.btnRegist.Text = "登録";
             this.btnRegist.UseVisualStyleBackColor = true;
@@ -126,20 +127,13 @@
             // btnUpdate
             // 
             this.btnUpdate.Location = new System.Drawing.Point(432, 12);
+            this.btnUpdate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(75, 23);
+            this.btnUpdate.Size = new System.Drawing.Size(75, 22);
             this.btnUpdate.TabIndex = 6;
             this.btnUpdate.Text = "更新";
             this.btnUpdate.UseVisualStyleBackColor = true;
-            // 
-            // btnHidden
-            // 
-            this.btnHidden.Location = new System.Drawing.Point(514, 13);
-            this.btnHidden.Name = "btnHidden";
-            this.btnHidden.Size = new System.Drawing.Size(75, 23);
-            this.btnHidden.TabIndex = 7;
-            this.btnHidden.Text = "非表示";
-            this.btnHidden.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // label5
             // 
@@ -153,7 +147,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(218, 205);
+            this.label6.Location = new System.Drawing.Point(219, 205);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(67, 15);
             this.label6.TabIndex = 9;
@@ -180,7 +174,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(27, 277);
+            this.label9.Location = new System.Drawing.Point(27, 278);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(82, 15);
             this.label9.TabIndex = 12;
@@ -188,7 +182,8 @@
             // 
             // txbClID
             // 
-            this.txbClID.Location = new System.Drawing.Point(90, 125);
+            this.txbClID.Location = new System.Drawing.Point(91, 125);
+            this.txbClID.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txbClID.Name = "txbClID";
             this.txbClID.Size = new System.Drawing.Size(100, 22);
             this.txbClID.TabIndex = 13;
@@ -196,14 +191,16 @@
             // 
             // txbSoID
             // 
-            this.txbSoID.Location = new System.Drawing.Point(282, 125);
+            this.txbSoID.Location = new System.Drawing.Point(283, 125);
+            this.txbSoID.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txbSoID.Name = "txbSoID";
             this.txbSoID.Size = new System.Drawing.Size(100, 22);
             this.txbSoID.TabIndex = 14;
             // 
             // txbClName
             // 
-            this.txbClName.Location = new System.Drawing.Point(82, 155);
+            this.txbClName.Location = new System.Drawing.Point(83, 155);
+            this.txbClName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txbClName.Name = "txbClName";
             this.txbClName.Size = new System.Drawing.Size(100, 22);
             this.txbClName.TabIndex = 15;
@@ -211,6 +208,7 @@
             // txbClAddress
             // 
             this.txbClAddress.Location = new System.Drawing.Point(259, 159);
+            this.txbClAddress.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txbClAddress.Name = "txbClAddress";
             this.txbClAddress.Size = new System.Drawing.Size(100, 22);
             this.txbClAddress.TabIndex = 16;
@@ -218,39 +216,46 @@
             // txbClPhone
             // 
             this.txbClPhone.Location = new System.Drawing.Point(97, 198);
+            this.txbClPhone.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txbClPhone.Name = "txbClPhone";
             this.txbClPhone.Size = new System.Drawing.Size(100, 22);
             this.txbClPhone.TabIndex = 17;
             // 
             // txbClPostal
             // 
-            this.txbClPostal.Location = new System.Drawing.Point(282, 201);
+            this.txbClPostal.Location = new System.Drawing.Point(283, 201);
+            this.txbClPostal.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txbClPostal.Name = "txbClPostal";
             this.txbClPostal.Size = new System.Drawing.Size(100, 22);
             this.txbClPostal.TabIndex = 18;
             // 
             // txbClFAX
             // 
-            this.txbClFAX.Location = new System.Drawing.Point(466, 201);
+            this.txbClFAX.Location = new System.Drawing.Point(467, 201);
+            this.txbClFAX.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txbClFAX.Name = "txbClFAX";
             this.txbClFAX.Size = new System.Drawing.Size(100, 22);
             this.txbClFAX.TabIndex = 19;
             // 
             // txbClHidden
             // 
-            this.txbClHidden.Location = new System.Drawing.Point(115, 277);
+            this.txbClHidden.Location = new System.Drawing.Point(115, 278);
+            this.txbClHidden.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txbClHidden.Name = "txbClHidden";
             this.txbClHidden.Size = new System.Drawing.Size(100, 22);
             this.txbClHidden.TabIndex = 21;
+            this.txbClHidden.TextChanged += new System.EventHandler(this.txbClHidden_TextChanged);
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(758, 12);
+            this.btnClear.Location = new System.Drawing.Point(757, 12);
+            this.btnClear.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(75, 23);
+            this.btnClear.Size = new System.Drawing.Size(75, 22);
             this.btnClear.TabIndex = 24;
             this.btnClear.Text = "入力クリア";
             this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // label11
             // 
@@ -264,18 +269,23 @@
             // txbPageSize
             // 
             this.txbPageSize.Location = new System.Drawing.Point(115, 698);
+            this.txbPageSize.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txbPageSize.Name = "txbPageSize";
             this.txbPageSize.Size = new System.Drawing.Size(100, 22);
             this.txbPageSize.TabIndex = 26;
+            this.txbPageSize.TextChanged += new System.EventHandler(this.txbPageSize_TextChanged);
+            this.txbPageSize.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbPageSize_KeyPress);
             // 
             // btnClose
             // 
             this.btnClose.Location = new System.Drawing.Point(916, 12);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(75, 23);
+            this.btnClose.Size = new System.Drawing.Size(75, 22);
             this.btnClose.TabIndex = 27;
             this.btnClose.Text = "閉じる";
             this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // lblLoginName
             // 
@@ -289,9 +299,10 @@
             // 
             // btnFirstPage
             // 
-            this.btnFirstPage.Location = new System.Drawing.Point(882, 701);
+            this.btnFirstPage.Location = new System.Drawing.Point(883, 701);
+            this.btnFirstPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnFirstPage.Name = "btnFirstPage";
-            this.btnFirstPage.Size = new System.Drawing.Size(75, 23);
+            this.btnFirstPage.Size = new System.Drawing.Size(75, 22);
             this.btnFirstPage.TabIndex = 30;
             this.btnFirstPage.Text = "|◀";
             this.btnFirstPage.UseVisualStyleBackColor = true;
@@ -300,8 +311,9 @@
             // btnPreviousPage
             // 
             this.btnPreviousPage.Location = new System.Drawing.Point(963, 701);
+            this.btnPreviousPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnPreviousPage.Name = "btnPreviousPage";
-            this.btnPreviousPage.Size = new System.Drawing.Size(75, 23);
+            this.btnPreviousPage.Size = new System.Drawing.Size(75, 22);
             this.btnPreviousPage.TabIndex = 31;
             this.btnPreviousPage.Text = "◀";
             this.btnPreviousPage.UseVisualStyleBackColor = true;
@@ -310,8 +322,9 @@
             // btnNextPage
             // 
             this.btnNextPage.Location = new System.Drawing.Point(1044, 701);
+            this.btnNextPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnNextPage.Name = "btnNextPage";
-            this.btnNextPage.Size = new System.Drawing.Size(75, 23);
+            this.btnNextPage.Size = new System.Drawing.Size(75, 22);
             this.btnNextPage.TabIndex = 32;
             this.btnNextPage.Text = "▶";
             this.btnNextPage.UseVisualStyleBackColor = true;
@@ -320,8 +333,9 @@
             // btnLastPage
             // 
             this.btnLastPage.Location = new System.Drawing.Point(1125, 701);
+            this.btnLastPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnLastPage.Name = "btnLastPage";
-            this.btnLastPage.Size = new System.Drawing.Size(75, 23);
+            this.btnLastPage.Size = new System.Drawing.Size(75, 22);
             this.btnLastPage.TabIndex = 33;
             this.btnLastPage.Text = "▶|";
             this.btnLastPage.UseVisualStyleBackColor = true;
@@ -329,7 +343,8 @@
             // 
             // txbPageNo
             // 
-            this.txbPageNo.Location = new System.Drawing.Point(668, 707);
+            this.txbPageNo.Location = new System.Drawing.Point(668, 708);
+            this.txbPageNo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txbPageNo.Name = "txbPageNo";
             this.txbPageNo.Size = new System.Drawing.Size(100, 22);
             this.txbPageNo.TabIndex = 34;
@@ -337,7 +352,7 @@
             // lblPage
             // 
             this.lblPage.AutoSize = true;
-            this.lblPage.Location = new System.Drawing.Point(790, 709);
+            this.lblPage.Location = new System.Drawing.Point(789, 709);
             this.lblPage.Name = "lblPage";
             this.lblPage.Size = new System.Drawing.Size(43, 15);
             this.lblPage.TabIndex = 35;
@@ -345,7 +360,8 @@
             // 
             // txbClFlag
             // 
-            this.txbClFlag.Location = new System.Drawing.Point(134, 237);
+            this.txbClFlag.Location = new System.Drawing.Point(133, 238);
+            this.txbClFlag.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txbClFlag.Name = "txbClFlag";
             this.txbClFlag.Size = new System.Drawing.Size(100, 22);
             this.txbClFlag.TabIndex = 20;
@@ -362,8 +378,9 @@
             // btnPageSizeChange
             // 
             this.btnPageSizeChange.Location = new System.Drawing.Point(221, 698);
+            this.btnPageSizeChange.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnPageSizeChange.Name = "btnPageSizeChange";
-            this.btnPageSizeChange.Size = new System.Drawing.Size(75, 23);
+            this.btnPageSizeChange.Size = new System.Drawing.Size(75, 22);
             this.btnPageSizeChange.TabIndex = 37;
             this.btnPageSizeChange.Text = "行数変更";
             this.btnPageSizeChange.UseVisualStyleBackColor = true;
@@ -372,8 +389,9 @@
             // btnDisplay
             // 
             this.btnDisplay.Location = new System.Drawing.Point(677, 12);
+            this.btnDisplay.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDisplay.Name = "btnDisplay";
-            this.btnDisplay.Size = new System.Drawing.Size(75, 23);
+            this.btnDisplay.Size = new System.Drawing.Size(75, 22);
             this.btnDisplay.TabIndex = 38;
             this.btnDisplay.Text = "一覧表示";
             this.btnDisplay.UseVisualStyleBackColor = true;
@@ -383,6 +401,7 @@
             // 
             this.dataGridViewDsp.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewDsp.Location = new System.Drawing.Point(36, 324);
+            this.dataGridViewDsp.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridViewDsp.Name = "dataGridViewDsp";
             this.dataGridViewDsp.RowHeadersWidth = 51;
             this.dataGridViewDsp.RowTemplate.Height = 24;
@@ -394,7 +413,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1539, 753);
+            this.ClientSize = new System.Drawing.Size(1539, 752);
             this.Controls.Add(this.dataGridViewDsp);
             this.Controls.Add(this.btnDisplay);
             this.Controls.Add(this.btnPageSizeChange);
@@ -424,7 +443,6 @@
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.btnHidden);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnRegist);
             this.Controls.Add(this.btnSearch);
@@ -432,6 +450,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "F_AdClient";
             this.Text = "顧客管理";
             this.Load += new System.EventHandler(this.F_Client_Load);
@@ -450,7 +469,6 @@
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Button btnRegist;
         private System.Windows.Forms.Button btnUpdate;
-        private System.Windows.Forms.Button btnHidden;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
