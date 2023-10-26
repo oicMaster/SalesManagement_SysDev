@@ -33,12 +33,10 @@
             this.label9 = new System.Windows.Forms.Label();
             this.btnRegist = new System.Windows.Forms.Button();
             this.btnDisplay = new System.Windows.Forms.Button();
-            this.btnHidden = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.lblLoginName = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.btnPageSizeChange = new System.Windows.Forms.Button();
             this.lblPage = new System.Windows.Forms.Label();
             this.txbPageNo = new System.Windows.Forms.TextBox();
             this.btnLastPage = new System.Windows.Forms.Button();
@@ -110,15 +108,6 @@
             this.btnDisplay.Text = "一覧表示";
             this.btnDisplay.UseVisualStyleBackColor = true;
             // 
-            // btnHidden
-            // 
-            this.btnHidden.Location = new System.Drawing.Point(685, 68);
-            this.btnHidden.Name = "btnHidden";
-            this.btnHidden.Size = new System.Drawing.Size(75, 23);
-            this.btnHidden.TabIndex = 125;
-            this.btnHidden.Text = "非表示";
-            this.btnHidden.UseVisualStyleBackColor = true;
-            // 
             // btnSearch
             // 
             this.btnSearch.Location = new System.Drawing.Point(357, 68);
@@ -154,15 +143,6 @@
             this.label8.Size = new System.Drawing.Size(82, 15);
             this.label8.TabIndex = 121;
             this.label8.Text = "ログイン情報";
-            // 
-            // btnPageSizeChange
-            // 
-            this.btnPageSizeChange.Location = new System.Drawing.Point(291, 722);
-            this.btnPageSizeChange.Name = "btnPageSizeChange";
-            this.btnPageSizeChange.Size = new System.Drawing.Size(75, 23);
-            this.btnPageSizeChange.TabIndex = 120;
-            this.btnPageSizeChange.Text = "行数変更";
-            this.btnPageSizeChange.UseVisualStyleBackColor = true;
             // 
             // lblPage
             // 
@@ -383,12 +363,10 @@
             this.Controls.Add(this.label9);
             this.Controls.Add(this.btnRegist);
             this.Controls.Add(this.btnDisplay);
-            this.Controls.Add(this.btnHidden);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.lblLoginName);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.btnPageSizeChange);
             this.Controls.Add(this.lblPage);
             this.Controls.Add(this.txbPageNo);
             this.Controls.Add(this.btnLastPage);
@@ -426,12 +404,10 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button btnRegist;
         private System.Windows.Forms.Button btnDisplay;
-        private System.Windows.Forms.Button btnHidden;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Label lblLoginName;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Button btnPageSizeChange;
         private System.Windows.Forms.Label lblPage;
         private System.Windows.Forms.TextBox txbPageNo;
         private System.Windows.Forms.Button btnLastPage;
