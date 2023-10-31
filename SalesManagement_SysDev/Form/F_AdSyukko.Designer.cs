@@ -149,7 +149,6 @@
             this.dataGridViewDsp.RowTemplate.Height = 24;
             this.dataGridViewDsp.Size = new System.Drawing.Size(861, 360);
             this.dataGridViewDsp.TabIndex = 65;
-            this.dataGridViewDsp.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellContentClick);
             // 
             // btnConfirm
             // 
@@ -305,7 +304,6 @@
             this.label6.Size = new System.Drawing.Size(99, 15);
             this.label6.TabIndex = 45;
             this.label6.Text = "出庫状態フラグ";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // label5
             // 

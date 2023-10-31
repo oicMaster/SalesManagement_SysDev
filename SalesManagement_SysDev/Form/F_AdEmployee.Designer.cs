@@ -116,6 +116,7 @@
             this.btnSearch.TabIndex = 124;
             this.btnSearch.Text = "検索";
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // btnClose
             // 

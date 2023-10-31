@@ -81,7 +81,6 @@
             this.txbChID.Name = "txbChID";
             this.txbChID.Size = new System.Drawing.Size(100, 22);
             this.txbChID.TabIndex = 130;
-            this.txbChID.TextChanged += new System.EventHandler(this.txbOrID_TextChanged);
             // 
             // label10
             // 

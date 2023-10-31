@@ -91,12 +91,44 @@ namespace SalesManagement_SysDev
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-
+            //妥当なSaデータを取得
+            if (!GetValidDataAtSelect())
+                return;
+            //Sa情報抽出
+            GenereteDataAdSelect();
+            //Sa情報抽出結果
+            SetSelectData();
         }
 
-        private void txbOrID_TextChanged(object sender, EventArgs e)
+        private bool GetValidDataAtSelect()
         {
+            //空白でないか確認
+            if (String.IsNullOrEmpty(txbSaID.Text.Trim()))
+            {
+                messageDsp.MsgDsp("");
+                txbSaID.Focus();
+                return false;
+            }
+            return true;
+        }
 
+        private void GenereteDataAdSelect()
+        {
+            T_Sale selectCondition = new T_Sale()
+            {//検索に使用するデータ
+                SaID = int.Parse(txbSaID.Text.Trim()),
+            };
+            //顧客データの抽出
+            Sale = saleDataAccess.GetSaleData(selectCondition);
+        }
+
+        private void SetSelectData()
+        {//ページ数の表示
+            txbPageNo.Text = "1";
+            int pageSize = int.Parse(txbPageSize.Text.Trim());
+            dataGridViewDsp.DataSource = Sale;
+
+            lblPage.Text = "/" + ((int)Math.Ceiling(Sale.Count / (double)pageSize)) + "ページ";
         }
     }
 }

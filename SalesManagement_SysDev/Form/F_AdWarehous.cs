@@ -19,10 +19,6 @@ namespace SalesManagement_SysDev
             InitializeComponent();
         }
 
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {

@@ -13,7 +13,7 @@ namespace SalesManagement_SysDev
 {
     public partial class F_AdShipment : Form
     {
-        MessageDsp messageDsp=new MessageDsp();
+        MessageDsp messageDsp = new MessageDsp();
         ShipmentDataAccess shipmentDataAccess = new ShipmentDataAccess();
         DataInputFormCheck dataInputFormCheck = new DataInputFormCheck();
 
@@ -103,32 +103,6 @@ namespace SalesManagement_SysDev
 
 
 
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label11_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label13_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void buttonPreviousPage_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void buttonDisplay_Click(object sender, EventArgs e)
         {
             SetFormDataGridView();
@@ -143,7 +117,7 @@ namespace SalesManagement_SysDev
         }
         private bool GetValidDataAtSelect()
         {
-            if (!string.IsNullOrEmpty(txbShID.Text.Trim())) 
+            if (!string.IsNullOrEmpty(txbShID.Text.Trim()))
             {
                 if (dataInputFormCheck.CheckNumeric(txbShID.Text.Trim()))
                 {
@@ -165,7 +139,7 @@ namespace SalesManagement_SysDev
                 txbShID.Focus();
                 return false;
             }
-            return true;            
+            return true;
         }
         private void GenereteDataAdSelect()
         {

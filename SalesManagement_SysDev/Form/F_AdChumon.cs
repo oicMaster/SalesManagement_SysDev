@@ -311,24 +311,7 @@ namespace SalesManagement_SysDev
         private bool GetValidDataAtSelect()
         {
             //空白でないか確認
-            if (!String.IsNullOrEmpty(txbChID.Text.Trim()))
-            {
-                //数値かどうか確認
-                if (!dataInputFormCheck.CheckNumeric(txbChID.Text.Trim()))
-                {
-                    messageDsp.MsgDsp("");
-                    txbChID.Focus();
-                    return false;
-                }
-                //6文字以内か確認
-                if (txbChID.TextLength > 6)
-                {
-                    messageDsp.MsgDsp("");
-                    txbChID.Focus();
-                    return false;
-                }
-            }
-            else
+            if (String.IsNullOrEmpty(txbChID.Text.Trim()))
             {
                 messageDsp.MsgDsp("");
                 txbChID.Focus();
