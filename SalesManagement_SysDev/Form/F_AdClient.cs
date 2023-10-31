@@ -253,7 +253,7 @@ namespace SalesManagement_SysDev
                     messageDsp.MsgDsp("");
                     txbPageNo.Text = "1";
                 }
-            }
+            }   
         }
         private void txbPageSize_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -366,6 +366,8 @@ namespace SalesManagement_SysDev
                 return;
             //顧客情報作成
             var updCl = GenerateDataAtUpdate();
+            //エラー文を書かなきゃダメ
+
             //顧客情報更新
             UpdateClient(updCl);
         }

@@ -194,7 +194,7 @@
             // 
             // txbClName
             // 
-            this.txbClName.Location = new System.Drawing.Point(82, 155);
+            this.txbClName.Location = new System.Drawing.Point(97, 159);
             this.txbClName.Name = "txbClName";
             this.txbClName.Size = new System.Drawing.Size(100, 22);
             this.txbClName.TabIndex = 15;
