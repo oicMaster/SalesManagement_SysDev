@@ -9,6 +9,7 @@ using System.Security.Authentication.ExtendedProtection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
 
 namespace SalesManagement_SysDev
 {
@@ -123,10 +124,7 @@ namespace SalesManagement_SysDev
             dataGridViewDsp.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewDsp.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            //dataGridViewDsp.Columns[0].HeaderText = "";
-            //dataGridViewDsp.Columns[0].Visible = false;
-            //dataGridViewDsp.Columns[0].DisplayIndex = ;
-            //dataGridViewDsp.Columns[0].DefaultCellStyle.Format = "";
+ 
 
             //データグリッドビューの総ページ数
             lblPage.Text = "/" + ((int)Math.Ceiling(Client.Count / (double)pageSize)) + "ページ";
@@ -376,18 +374,6 @@ namespace SalesManagement_SysDev
         {
             if (!String.IsNullOrEmpty(txbClID.Text.Trim()))
             {
-                if (!dataInputFormCheck.CheckNumeric(txbClID.Text.Trim()))
-                {
-                    messageDsp.MsgDsp("");
-                    txbClID.Focus();
-                    return false;
-                }
-                if (txbClID.TextLength > 6)
-                {
-                    messageDsp.MsgDsp("");
-                    txbClID.Focus();
-                    return false;
-                }
                 if (!clientDataAccess.CheckClIDExistence(int.Parse(txbClID.Text.Trim())))
                 {
                     messageDsp.MsgDsp("");
@@ -403,24 +389,7 @@ namespace SalesManagement_SysDev
             }
             if (!String.IsNullOrEmpty(txbSoID.Text.Trim()))
             {
-                if (!dataInputFormCheck.CheckNumeric(txbSoID.Text.Trim()))
-                {
-                    messageDsp.MsgDsp("");
-                    txbSoID.Focus();
-                    return false;
-                }
-                if (txbSoID.TextLength > 2)
-                {
-                    messageDsp.MsgDsp("");
-                    txbSoID.Focus();
-                    return false;
-                }
-                if (!clientDataAccess.CheckSoIDExistence(int.Parse(txbSoID.Text.Trim())))
-                {
-                    messageDsp.MsgDsp("");
-                    txbSoID.Focus();
-                    return false;
-                }
+                //▼外部キー認証
             }
             else
             {
@@ -428,113 +397,44 @@ namespace SalesManagement_SysDev
                 txbSoID.Focus();
                 return false;
             }
-            if (!String.IsNullOrEmpty(txbClName.Text.Trim()))
-            {
-                if (txbClName.TextLength > 50)
-                {
-                    messageDsp.MsgDsp("");
-                    txbClName.Focus();
-                    return false;
-                }
-            }
-            else
+            if (String.IsNullOrEmpty(txbClName.Text.Trim()))
             {
                 messageDsp.MsgDsp("");
                 txbClName.Focus();
                 return false;
             }
-            if (!String.IsNullOrEmpty(txbClAddress.Text.Trim()))
-            {
-                if (txbClAddress.TextLength > 50)
-                {
-                    messageDsp.MsgDsp("");
-                    txbClAddress.Focus();
-                    return false;
-                }
-            }
-            else
+            if (String.IsNullOrEmpty(txbClAddress.Text.Trim()))
             {
                 messageDsp.MsgDsp("");
                 txbClAddress.Focus();
                 return false;
             }
-            if (!String.IsNullOrEmpty(txbClPhone.Text.Trim()))
-            {
-                if (txbClPhone.TextLength > 13)
-                {
-                    messageDsp.MsgDsp("");
-                    txbClPhone.Focus();
-                    return false;
-                }
-            }
-            else
+            if (String.IsNullOrEmpty(txbClPhone.Text.Trim()))
             {
                 messageDsp.MsgDsp("");
                 txbClPhone.Focus();
                 return false;
             }
-            if (!String.IsNullOrEmpty(txbClPostal.Text.Trim()))
-            {
-                if (txbClPostal.TextLength > 7)
-                {
-                    messageDsp.MsgDsp("");
-                    txbClPostal.Focus();
-                    return false;
-                }
-            }
-            else
+            if (String.IsNullOrEmpty(txbClPostal.Text.Trim()))
             {
                 messageDsp.MsgDsp("");
                 txbClPostal.Focus();
                 return false;
             }
-            if (!String.IsNullOrEmpty(txbClFAX.Text.Trim()))
-            {
-                if (txbClFAX.TextLength > 13)
-                {
-                    messageDsp.MsgDsp("");
-                    txbClFAX.Focus();
-                    return false;
-                }
-            }
-            else
+            if (String.IsNullOrEmpty(txbClFAX.Text.Trim()))
             {
                 messageDsp.MsgDsp("");
                 txbClFAX.Focus();
                 return false;
             }
-            if (!String.IsNullOrEmpty(txbClFlag.Text.Trim()))
-            {
-                if (!dataInputFormCheck.CheckNumeric(txbSoID.Text.Trim()))
-                {
-                    messageDsp.MsgDsp("");
-                    txbClFlag.Focus();
-                    return false;
-                }
-                //顧客管理フラグが1文字で入力されているかどうか
-                if (txbClFlag.TextLength > 1)
-                {
-                    messageDsp.MsgDsp("");
-                    txbClFlag.Focus();
-                    return false;
-                }
-                //顧客管理フラグが表示or非表示になっているかどうか
-                if (int.Parse(txbClFlag.Text) == 0 || int.Parse(txbClFlag.Text) == 2)
-                {
-                    messageDsp.MsgDsp("");
-                    txbClFlag.Focus();
-                    return false;
-                }
-
-            }
-            else
-            {
+            if (!String.IsNullOrEmpty(txbClHidden.Text.Trim()))
+            {//登録の時は非表示理由を必ず空白にしたい
                 messageDsp.MsgDsp("");
-                txbClFlag.Focus();
+                txbClHidden.Focus();
                 return false;
             }
+            return true;
 
-            return false;
         }
 
         private M_Client GenerateDataAtUpdate()
@@ -581,28 +481,16 @@ namespace SalesManagement_SysDev
             if (!GetValidDataAtRegistration())
                 return;
             //顧客情報作成
-            //var regClient = GenereteDataAdRegistration();
+            var regClient = GenereteDataAdRegistration();
 
             //顧客情報登録
-            //RegistrationClient();
+            RegistrationClient(regClient);
         }
 
         private bool GetValidDataAtRegistration()
         {
             if (!String.IsNullOrEmpty(txbClID.Text.Trim()))
             {
-                if (!dataInputFormCheck.CheckNumeric(txbClID.Text.Trim()))
-                {
-                    messageDsp.MsgDsp("");
-                    txbClID.Focus();
-                    return false;
-                }
-                if (txbClID.TextLength > 6)
-                {
-                    messageDsp.MsgDsp("");
-                    txbClID.Focus();
-                    return false;
-                }
                 if (!clientDataAccess.CheckClIDExistence(int.Parse(txbClID.Text.Trim())))
                 {
                     messageDsp.MsgDsp("");
@@ -618,24 +506,7 @@ namespace SalesManagement_SysDev
             }
             if (!String.IsNullOrEmpty(txbSoID.Text.Trim()))
             {
-                if (!dataInputFormCheck.CheckNumeric(txbSoID.Text.Trim()))
-                {
-                    messageDsp.MsgDsp("");
-                    txbSoID.Focus();
-                    return false;
-                }
-                if (txbSoID.TextLength > 2)
-                {
-                    messageDsp.MsgDsp("");
-                    txbSoID.Focus();
-                    return false;
-                }
-                if (!clientDataAccess.CheckSoIDExistence(int.Parse(txbSoID.Text.Trim())))
-                {
-                    messageDsp.MsgDsp("");
-                    txbSoID.Focus();
-                    return false;
-                }
+                //▼外部キー認証
             }
             else
             {
@@ -643,85 +514,74 @@ namespace SalesManagement_SysDev
                 txbSoID.Focus();
                 return false;
             }
-            if (!String.IsNullOrEmpty(txbClName.Text.Trim()))
-            {
-                if (txbClName.TextLength > 50)
-                {
-                    messageDsp.MsgDsp("");
-                    txbClName.Focus();
-                    return false;
-                }
-            }
-            else
+            if (String.IsNullOrEmpty(txbClName.Text.Trim()))
             {
                 messageDsp.MsgDsp("");
                 txbClName.Focus();
                 return false;
             }
-            if (!String.IsNullOrEmpty(txbClAddress.Text.Trim()))
-            {
-                if (txbClAddress.TextLength > 50)
-                {
-                    messageDsp.MsgDsp("");
-                    txbClAddress.Focus();
-                    return false;
-                }
-            }
-            else
+            if (String.IsNullOrEmpty(txbClAddress.Text.Trim()))
             {
                 messageDsp.MsgDsp("");
                 txbClAddress.Focus();
                 return false;
             }
-            if (!String.IsNullOrEmpty(txbClPhone.Text.Trim()))
-            {
-                if (txbClPhone.TextLength > 13)
-                {
-                    messageDsp.MsgDsp("");
-                    txbClPhone.Focus();
-                    return false;
-                }
-            }
-            else
+            if (String.IsNullOrEmpty(txbClPhone.Text.Trim()))
             {
                 messageDsp.MsgDsp("");
                 txbClPhone.Focus();
                 return false;
             }
-            if (!String.IsNullOrEmpty(txbClPostal.Text.Trim()))
-            {
-                if (txbClPostal.TextLength > 7)
-                {
-                    messageDsp.MsgDsp("");
-                    txbClPostal.Focus();
-                    return false;
-                }
-            }
-            else
+            if (String.IsNullOrEmpty(txbClPostal.Text.Trim()))
             {
                 messageDsp.MsgDsp("");
                 txbClPostal.Focus();
                 return false;
             }
-            if (!String.IsNullOrEmpty(txbClFAX.Text.Trim()))
+            if (String.IsNullOrEmpty(txbClFAX.Text.Trim()))
             {
-                if (txbClFAX.TextLength > 13)
-                {
-                    messageDsp.MsgDsp("");
-                    txbClFAX.Focus();
-                    return false;
-                }
+                messageDsp.MsgDsp("");
+                txbClFAX.Focus();
+                return false;
             }
-            else
-            {
+            if (!String.IsNullOrEmpty(txbClFAX.Text.Trim()))
+            {//登録の時は非表示理由を必ず空白にしたい
                 messageDsp.MsgDsp("");
                 txbClFAX.Focus();
                 return false;
             }
             return true;
         }
+        private M_Client GenereteDataAdRegistration()
+        {
+            return new M_Client
+            {
+                //▼全部
+            };
+        }
 
+        private void RegistrationClient(M_Client regClient)
+        {
+            // 登録確認メッセージ
+            DialogResult result = messageDsp.MsgDsp("");
 
- 
+            if (result == DialogResult.Cancel)
+                return;
+
+            // 部署情報の登録
+            bool flg = clientDataAccess.AddClientData(regClient);
+            if (flg == true)
+                messageDsp.MsgDsp("");
+            else
+                messageDsp.MsgDsp("");
+
+            txbClID.Focus();
+
+            // 入力エリアのクリア
+            ClearInput();
+
+            // データグリッドビューの表示
+            GetDataGridView();
+        }
     }
 }

@@ -9,7 +9,7 @@ namespace SalesManagement_SysDev
 {
     internal class HattyuDataAccess
     {
-        public bool CheckArIDExistence(int HaID)
+        public bool CheckHaIDExistence(int HaID)
         {
             bool flg = false;
             try

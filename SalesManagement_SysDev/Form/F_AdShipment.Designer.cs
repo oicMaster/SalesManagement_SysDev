@@ -79,7 +79,6 @@
             this.label1.Size = new System.Drawing.Size(51, 15);
             this.label1.TabIndex = 0;
             this.label1.Text = "出荷ID";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
@@ -262,7 +261,6 @@
             this.lblLoginName.Size = new System.Drawing.Size(38, 15);
             this.lblLoginName.TabIndex = 26;
             this.lblLoginName.Text = "rogin";
-            this.lblLoginName.Click += new System.EventHandler(this.label11_Click);
             // 
             // btnConfirm
             // 
@@ -314,7 +312,6 @@
             this.label13.Size = new System.Drawing.Size(83, 15);
             this.label13.TabIndex = 34;
             this.label13.Text = "１ページ行数";
-            this.label13.Click += new System.EventHandler(this.label13_Click);
             // 
             // btnNextPage
             // 
@@ -333,7 +330,6 @@
             this.btnPreviousPage.TabIndex = 36;
             this.btnPreviousPage.Text = "◀";
             this.btnPreviousPage.UseVisualStyleBackColor = true;
-            this.btnPreviousPage.Click += new System.EventHandler(this.buttonPreviousPage_Click);
             // 
             // btnLastPage
             // 

@@ -100,13 +100,6 @@ namespace SalesManagement_SysDev
                 txbSyHidden.Text = String.Empty;
         }
 
-
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnSearch_Click(object sender, EventArgs e)
         {
             //妥当な顧客データを取得
@@ -163,11 +156,6 @@ namespace SalesManagement_SysDev
         private void btnDisplay_Click(object sender, EventArgs e)
         {
             SetFormDataGridView();
-        }
-
-        private void dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
     }
 }

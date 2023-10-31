@@ -312,23 +312,7 @@ namespace SalesManagement_SysDev
         private bool GetValidDataAtSelect()
         {
             //空白がないか
-            if (!String.IsNullOrEmpty(txbArID.Text.Trim()))
-            {　　//数値か
-                if (!!dataInputFromCheck.CheckNumeric(txbArID.Text.Trim()))
-                {
-                    messageDsp.MsgDsp("");
-                    txbArID.Focus();
-                    return false;
-                }
-                //6文字以内か
-                if (txbArID.TextLength > 6)
-                {
-                    messageDsp.MsgDsp("");
-                    txbArID.Focus();
-                    return false;
-                }
-            }
-            else
+            if (String.IsNullOrEmpty(txbArID.Text.Trim()))
             {
                 messageDsp.MsgDsp("");
                 txbArID.Focus();

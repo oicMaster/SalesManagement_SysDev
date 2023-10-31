@@ -335,7 +335,75 @@ namespace SalesManagement_SysDev
 
         private void btnRegist_Click(object sender, EventArgs e)
         {
+            //妥当な顧客情報取得
+            if (!GetValidDataAtRegistration())
+                return;
+            //顧客情報作成
+            var regHattyu = GenereteDataAdRegistration();
 
+            //顧客情報登録
+            RegistrationHattyu(regHattyu);
+        }
+
+        private bool GetValidDataAtRegistration()
+        {
+            if (!String.IsNullOrEmpty(txbHaID.Text.Trim()))
+            {
+                if (!hattyuDataAccess.CheckHaIDExistence(int.Parse(txbHaID.Text.Trim())))
+                {
+                    messageDsp.MsgDsp("");
+                    txbHaID.Focus();
+                    return false;
+                }
+            }
+            else
+            {
+                messageDsp.MsgDsp("");
+                txbHaID.Focus();
+                return false;
+            }
+
+            //ここ
+
+
+            if (!String.IsNullOrEmpty(txbHaHidden.Text.Trim()))
+            {//登録の時は非表示理由を必ず空白にしたい
+                messageDsp.MsgDsp("");
+                txbHaHidden.Focus();
+                return false;
+            }
+            return true;
+        }
+        private T_Hattyu GenereteDataAdRegistration()
+        {
+            return new　T_Hattyu
+            {
+                //▼全部
+            };
+        }
+
+        private void RegistrationHattyu(T_Hattyu regHattyu)
+        {
+            // 登録確認メッセージ
+            DialogResult result = messageDsp.MsgDsp("");
+
+            if (result == DialogResult.Cancel)
+                return;
+
+            // 部署情報の登録
+            bool flg = hattyuDataAccess.AddHattyuData(regHattyu);
+            if (flg == true)
+                messageDsp.MsgDsp("");
+            else
+                messageDsp.MsgDsp("");
+
+            txbHaID.Focus();
+
+            // 入力エリアのクリア
+            ClearInput();
+
+            // データグリッドビューの表示
+            GetDataGridView();
         }
 
         private void btnConfirm_Click(object sender, EventArgs e)
