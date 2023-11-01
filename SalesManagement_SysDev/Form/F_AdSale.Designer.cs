@@ -237,6 +237,7 @@
             this.txbSaHiddin.Name = "txbSaHiddin";
             this.txbSaHiddin.Size = new System.Drawing.Size(100, 22);
             this.txbSaHiddin.TabIndex = 109;
+            this.txbSaHiddin.TextChanged += new System.EventHandler(this.txbSaHidden_TextChanged);
             // 
             // txbSaDate
             // 
@@ -251,10 +252,11 @@
             this.txbEmID.Name = "txbEmID";
             this.txbEmID.Size = new System.Drawing.Size(100, 22);
             this.txbEmID.TabIndex = 106;
+           // this.txbEmID.TextChanged += new System.EventHandler(this.txbEmID_TextChanged);
             // 
             // txbSoID
             // 
-            this.txbSoID.Location = new System.Drawing.Point(341, 161);
+            this.txbSoID.Location = new System.Drawing.Point(334, 161);
             this.txbSoID.Name = "txbSoID";
             this.txbSoID.Size = new System.Drawing.Size(100, 22);
             this.txbSoID.TabIndex = 105;
@@ -265,6 +267,7 @@
             this.txbSaID.Name = "txbSaID";
             this.txbSaID.Size = new System.Drawing.Size(100, 22);
             this.txbSaID.TabIndex = 104;
+            this.txbSaID.TextChanged += new System.EventHandler(this.txbSaID_TextChanged);
             // 
             // label7
             // 
