@@ -64,6 +64,9 @@
             this.txbHaDetailID = new System.Windows.Forms.TextBox();
             this.labal1 = new System.Windows.Forms.Label();
             this.dataGridViewMiniDsp = new System.Windows.Forms.DataGridView();
+            this.btnDetailRegist = new System.Windows.Forms.Button();
+            this.txbHaQuantity = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDsp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMiniDsp)).BeginInit();
             this.SuspendLayout();
@@ -386,11 +389,39 @@
             this.dataGridViewMiniDsp.Size = new System.Drawing.Size(377, 249);
             this.dataGridViewMiniDsp.TabIndex = 133;
             // 
+            // btnDetailRegist
+            // 
+            this.btnDetailRegist.Location = new System.Drawing.Point(1093, 311);
+            this.btnDetailRegist.Name = "btnDetailRegist";
+            this.btnDetailRegist.Size = new System.Drawing.Size(75, 23);
+            this.btnDetailRegist.TabIndex = 142;
+            this.btnDetailRegist.Text = "詳細登録";
+            this.btnDetailRegist.UseVisualStyleBackColor = true;
+            // 
+            // txbHaQuantity
+            // 
+            this.txbHaQuantity.Location = new System.Drawing.Point(931, 268);
+            this.txbHaQuantity.Name = "txbHaQuantity";
+            this.txbHaQuantity.Size = new System.Drawing.Size(100, 22);
+            this.txbHaQuantity.TabIndex = 144;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(938, 240);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(37, 15);
+            this.label2.TabIndex = 143;
+            this.label2.Text = "数量";
+            // 
             // F_AdHattyu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1349, 821);
+            this.Controls.Add(this.txbHaQuantity);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.btnDetailRegist);
             this.Controls.Add(this.txbPrID);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.btnDetailSearch);
@@ -474,5 +505,8 @@
         private System.Windows.Forms.TextBox txbHaDetailID;
         private System.Windows.Forms.Label labal1;
         private System.Windows.Forms.DataGridView dataGridViewMiniDsp;
+        private System.Windows.Forms.Button btnDetailRegist;
+        private System.Windows.Forms.TextBox txbHaQuantity;
+        private System.Windows.Forms.Label label2;
     }
 }
