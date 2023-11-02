@@ -64,6 +64,9 @@
             this.txbSaDetailID = new System.Windows.Forms.TextBox();
             this.labal1 = new System.Windows.Forms.Label();
             this.dataGridViewMiniDsp = new System.Windows.Forms.DataGridView();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.txbSaQuantity = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDsp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMiniDsp)).BeginInit();
             this.SuspendLayout();
@@ -252,7 +255,6 @@
             this.txbEmID.Name = "txbEmID";
             this.txbEmID.Size = new System.Drawing.Size(100, 22);
             this.txbEmID.TabIndex = 106;
-           // this.txbEmID.TextChanged += new System.EventHandler(this.txbEmID_TextChanged);
             // 
             // txbSoID
             // 
@@ -312,7 +314,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(51, 15);
             this.label2.TabIndex = 98;
-            this.label2.Text = "受注ID";
+            this.label2.Text = "注文ID";
             // 
             // label1
             // 
@@ -374,11 +376,39 @@
             this.dataGridViewMiniDsp.Size = new System.Drawing.Size(377, 249);
             this.dataGridViewMiniDsp.TabIndex = 132;
             // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Location = new System.Drawing.Point(444, 27);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(92, 23);
+            this.btnUpdate.TabIndex = 138;
+            this.btnUpdate.Text = "非表示更新";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            // 
+            // txbSaQuantity
+            // 
+            this.txbSaQuantity.Location = new System.Drawing.Point(965, 231);
+            this.txbSaQuantity.Name = "txbSaQuantity";
+            this.txbSaQuantity.Size = new System.Drawing.Size(100, 22);
+            this.txbSaQuantity.TabIndex = 140;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(962, 213);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(37, 15);
+            this.label5.TabIndex = 139;
+            this.label5.Text = "個数";
+            // 
             // F_AdSale
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1300, 738);
+            this.Controls.Add(this.txbSaQuantity);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.txbPrID);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.btnDetailSearch);
@@ -462,5 +492,8 @@
         private System.Windows.Forms.TextBox txbSaDetailID;
         private System.Windows.Forms.Label labal1;
         private System.Windows.Forms.DataGridView dataGridViewMiniDsp;
+        private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.TextBox txbSaQuantity;
+        private System.Windows.Forms.Label label5;
     }
 }

@@ -69,6 +69,10 @@
             this.labal1 = new System.Windows.Forms.Label();
             this.dataGridViewMiniDsp = new System.Windows.Forms.DataGridView();
             this.btnClear = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.btnDetailRegist = new System.Windows.Forms.Button();
+            this.txbOrQuantity = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDsp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMiniDsp)).BeginInit();
             this.SuspendLayout();
@@ -431,11 +435,49 @@
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Location = new System.Drawing.Point(466, 42);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(92, 23);
+            this.btnUpdate.TabIndex = 140;
+            this.btnUpdate.Text = "非表示更新";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            // 
+            // btnDetailRegist
+            // 
+            this.btnDetailRegist.Location = new System.Drawing.Point(1218, 285);
+            this.btnDetailRegist.Name = "btnDetailRegist";
+            this.btnDetailRegist.Size = new System.Drawing.Size(75, 23);
+            this.btnDetailRegist.TabIndex = 141;
+            this.btnDetailRegist.Text = "詳細登録";
+            this.btnDetailRegist.UseVisualStyleBackColor = true;
+            // 
+            // txbOrQuantity
+            // 
+            this.txbOrQuantity.Location = new System.Drawing.Point(1063, 270);
+            this.txbOrQuantity.Name = "txbOrQuantity";
+            this.txbOrQuantity.Size = new System.Drawing.Size(100, 22);
+            this.txbOrQuantity.TabIndex = 143;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(1064, 246);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(37, 15);
+            this.label13.TabIndex = 142;
+            this.label13.Text = "数量";
+            // 
             // F_AdOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1339, 769);
+            this.Controls.Add(this.txbOrQuantity);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.btnDetailRegist);
+            this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.txbPrID);
             this.Controls.Add(this.label12);
@@ -530,5 +572,9 @@
         private System.Windows.Forms.Label labal1;
         private System.Windows.Forms.DataGridView dataGridViewMiniDsp;
         private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.Button btnDetailRegist;
+        private System.Windows.Forms.TextBox txbOrQuantity;
+        private System.Windows.Forms.Label label13;
     }
 }

@@ -68,6 +68,9 @@
             this.txbPrID = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.btnClear = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.txbArQuantity = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDsp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMiniDsp)).BeginInit();
             this.SuspendLayout();
@@ -424,11 +427,39 @@
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Location = new System.Drawing.Point(380, 21);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(92, 23);
+            this.btnUpdate.TabIndex = 104;
+            this.btnUpdate.Text = "非表示更新";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            // 
+            // txbArQuantity
+            // 
+            this.txbArQuantity.Location = new System.Drawing.Point(1029, 196);
+            this.txbArQuantity.Name = "txbArQuantity";
+            this.txbArQuantity.Size = new System.Drawing.Size(100, 22);
+            this.txbArQuantity.TabIndex = 109;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(1026, 178);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(37, 15);
+            this.label13.TabIndex = 108;
+            this.label13.Text = "数量";
+            // 
             // F_AdArrival
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1347, 727);
+            this.Controls.Add(this.txbArQuantity);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.txbPrID);
             this.Controls.Add(this.label12);
@@ -522,5 +553,8 @@
         private System.Windows.Forms.TextBox txbPrID;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.TextBox txbArQuantity;
+        private System.Windows.Forms.Label label13;
     }
 }

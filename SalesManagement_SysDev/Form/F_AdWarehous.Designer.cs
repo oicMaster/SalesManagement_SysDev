@@ -63,6 +63,9 @@
             this.btnDetailSearch = new System.Windows.Forms.Button();
             this.txbPrID = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.txbWaQuantity = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDsp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMiniDsp)).BeginInit();
             this.SuspendLayout();
@@ -363,11 +366,39 @@
             this.label12.TabIndex = 103;
             this.label12.Text = "商品ID";
             // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Location = new System.Drawing.Point(390, 38);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(92, 23);
+            this.btnUpdate.TabIndex = 105;
+            this.btnUpdate.Text = "非表示更新";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            // 
+            // txbWaQuantity
+            // 
+            this.txbWaQuantity.Location = new System.Drawing.Point(947, 233);
+            this.txbWaQuantity.Name = "txbWaQuantity";
+            this.txbWaQuantity.Size = new System.Drawing.Size(100, 22);
+            this.txbWaQuantity.TabIndex = 107;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(944, 213);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(37, 15);
+            this.label9.TabIndex = 106;
+            this.label9.Text = "数量";
+            // 
             // F_AdWarehous
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1326, 748);
+            this.Controls.Add(this.txbWaQuantity);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.txbPrID);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.btnDetailSearch);
@@ -449,5 +480,8 @@
         private System.Windows.Forms.Button btnDetailSearch;
         private System.Windows.Forms.TextBox txbPrID;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.TextBox txbWaQuantity;
+        private System.Windows.Forms.Label label9;
     }
 }

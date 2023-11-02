@@ -68,6 +68,9 @@
             this.labal1 = new System.Windows.Forms.Label();
             this.dataGridViewMiniDsp = new System.Windows.Forms.DataGridView();
             this.btnClear = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.txbChQuantity = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDsp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMiniDsp)).BeginInit();
             this.SuspendLayout();
@@ -424,11 +427,39 @@
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Location = new System.Drawing.Point(476, 39);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(92, 23);
+            this.btnUpdate.TabIndex = 139;
+            this.btnUpdate.Text = "非表示更新";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            // 
+            // txbChQuantity
+            // 
+            this.txbChQuantity.Location = new System.Drawing.Point(998, 265);
+            this.txbChQuantity.Name = "txbChQuantity";
+            this.txbChQuantity.Size = new System.Drawing.Size(100, 22);
+            this.txbChQuantity.TabIndex = 141;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(995, 231);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(37, 15);
+            this.label13.TabIndex = 140;
+            this.label13.Text = "数量";
+            // 
             // F_AdChumon
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1371, 763);
+            this.Controls.Add(this.txbChQuantity);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.txbPrID);
             this.Controls.Add(this.label12);
@@ -521,5 +552,8 @@
         private System.Windows.Forms.Label labal1;
         private System.Windows.Forms.DataGridView dataGridViewMiniDsp;
         private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.TextBox txbChQuantity;
+        private System.Windows.Forms.Label label13;
     }
 }

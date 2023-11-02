@@ -67,6 +67,9 @@
             this.dataGridViewMiniDsp = new System.Windows.Forms.DataGridView();
             this.txbPrID = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.txbShQuantity = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDsp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMiniDsp)).BeginInit();
             this.SuspendLayout();
@@ -401,11 +404,39 @@
             this.label12.TabIndex = 105;
             this.label12.Text = "商品ID";
             // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Location = new System.Drawing.Point(468, 12);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(92, 23);
+            this.btnUpdate.TabIndex = 107;
+            this.btnUpdate.Text = "非表示更新";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            // 
+            // txbShQuantity
+            // 
+            this.txbShQuantity.Location = new System.Drawing.Point(959, 153);
+            this.txbShQuantity.Name = "txbShQuantity";
+            this.txbShQuantity.Size = new System.Drawing.Size(100, 22);
+            this.txbShQuantity.TabIndex = 109;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(956, 128);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(37, 15);
+            this.label11.TabIndex = 108;
+            this.label11.Text = "数量";
+            // 
             // F_AdShipment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1287, 695);
+            this.Controls.Add(this.txbShQuantity);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.txbPrID);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.btnDetailSearch);
@@ -495,5 +526,8 @@
         private System.Windows.Forms.DataGridView dataGridViewMiniDsp;
         private System.Windows.Forms.TextBox txbPrID;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.TextBox txbShQuantity;
+        private System.Windows.Forms.Label label11;
     }
 }
