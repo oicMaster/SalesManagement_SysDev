@@ -343,6 +343,12 @@
     <EmbeddedResource Include="Form\F_AdStock.resx">
       <DependentUpon>F_AdStock.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="F_AdMaker.resx">
+      <DependentUpon>F_AdMaker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_AdSalesOffice.resx">
+      <DependentUpon>F_AdSalesOffice.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

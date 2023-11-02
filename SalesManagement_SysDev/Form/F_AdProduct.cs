@@ -127,7 +127,21 @@ namespace SalesManagement_SysDev
             dataGridViewDsp.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewDsp.Columns[9].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewDsp.Columns[10].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            
+            dataGridViewDsp.Columns[11].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+
+            dataGridViewDsp.Columns[0].HeaderText = "商品ID";
+            dataGridViewDsp.Columns[1].HeaderText = "メーカID";
+            dataGridViewDsp.Columns[2].HeaderText = "商品名";
+            dataGridViewDsp.Columns[3].HeaderText = "価格";
+            dataGridViewDsp.Columns[4].HeaderText = "JANコード";
+            dataGridViewDsp.Columns[5].HeaderText = "安全在庫数";
+            dataGridViewDsp.Columns[6].HeaderText = "小分類ID";
+            dataGridViewDsp.Columns[7].HeaderText = "型番";
+            dataGridViewDsp.Columns[8].HeaderText = "色";
+            dataGridViewDsp.Columns[9].HeaderText = "発売日";
+            dataGridViewDsp.Columns[10].HeaderText = "商品管理フラグ";
+            dataGridViewDsp.Columns[11].HeaderText = "非表示理由";
+
 
             lblPage.Text ="/"+((int)Math.Ceiling(Product.Count/(double)pageSize))+"ページ";
 
@@ -361,113 +375,6 @@ namespace SalesManagement_SysDev
             lblPage.Text = "/" + ((int)Math.Ceiling(Product.Count / (double)pageSize)) + "ページ";
         }
 
-        private void btnUpdate_Click(object sender, EventArgs e)
-        {
-            //妥当な顧客データを取得
-            if (!GetValidDataAtUpdate())
-                return;
-            //顧客情報作成
-            var updPr = GenerateDataAtUpdate();
-            //顧客情報更新
-            UpdateProduct(updPr);
-        }
-
-        private bool GetValidDataAtUpdate()
-        {
-            if (!String.IsNullOrEmpty(txbPrID.Text.Trim()))
-            {
-                if (!productDataAccess.CheckPrIDExistence(int.Parse(txbPrID.Text.Trim())))
-                {
-                    messageDsp.MsgDsp("");
-                    txbPrID.Focus();
-                    return false;
-                }
-            }
-            else
-            {
-                messageDsp.MsgDsp("");
-                txbPrID.Focus();
-                return false;
-            }
-            if (!String.IsNullOrEmpty(txbMaID.Text.Trim()))
-            {
-                //▼外部キー認証
-            }
-            else
-            {
-                messageDsp.MsgDsp("");
-                txbMaID.Focus();
-                return false;
-            }
-            if (String.IsNullOrEmpty(txbPrName.Text.Trim()))
-            {
-                messageDsp.MsgDsp("");
-                txbPrName.Focus();
-                return false;
-            }
-            if (String.IsNullOrEmpty(txbPrice.Text.Trim()))
-            {
-                messageDsp.MsgDsp("");
-                txbPrice.Focus();
-                return false;
-            }
-            if (String.IsNullOrEmpty(txbPrSafetyStock.Text.Trim()))
-            {
-                messageDsp.MsgDsp("");
-                txbPrSafetyStock.Focus();
-                return false;
-            }
-            if (String.IsNullOrEmpty(txbScID.Text.Trim()))
-            {
-                //外部キー認証
-            }
-            if (String.IsNullOrEmpty(txbPrModelNumber.Text.Trim()))
-            {
-                messageDsp.MsgDsp("");
-                txbPrModelNumber.Focus();
-                return false;
-            }
-            if (String.IsNullOrEmpty(txbPrColor.Text.Trim()))
-            {
-                messageDsp.MsgDsp("");
-                txbPrColor.Focus();
-                return false;
-            }
-            if (String.IsNullOrEmpty(txbPrReleaseDate.Text.Trim()))
-            {
-                messageDsp.MsgDsp("");
-                txbPrReleaseDate.Focus();
-                return false;
-            }
-            return true;
-        }
-        private M_Product GenerateDataAtUpdate()
-        {
-            return new M_Product
-            {
-             //全部
-            };
-        }
-        private void UpdateProduct(M_Product updPr)
-        {
-            DialogResult result = messageDsp.MsgDsp("");
-            if (result == DialogResult.Cancel)
-                return;
-
-            bool flg = productDataAccess.UpdateProductData(updPr);
-            if (flg == true)
-                messageDsp.MsgDsp("");
-            else
-                messageDsp.MsgDsp("");
-
-            ClearInput();
-            txbPrID.Focus();
-
-            GetDataGridView();
-        }
-
-
-
         private void btnRegist_Click(object sender, EventArgs e)
         {
             //妥当な顧客情報取得
@@ -586,5 +493,111 @@ namespace SalesManagement_SysDev
             // データグリッドビューの表示
             GetDataGridView();
         }
+
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            //妥当な顧客データを取得
+            if (!GetValidDataAtUpdate())
+                return;
+            //顧客情報作成
+            var updPr = GenerateDataAtUpdate();
+            //顧客情報更新
+            UpdateProduct(updPr);
+        }
+
+        private bool GetValidDataAtUpdate()
+        {
+            if (!String.IsNullOrEmpty(txbPrID.Text.Trim()))
+            {
+                if (!productDataAccess.CheckPrIDExistence(int.Parse(txbPrID.Text.Trim())))
+                {
+                    messageDsp.MsgDsp("");
+                    txbPrID.Focus();
+                    return false;
+                }
+            }
+            else
+            {
+                messageDsp.MsgDsp("");
+                txbPrID.Focus();
+                return false;
+            }
+            if (!String.IsNullOrEmpty(txbMaID.Text.Trim()))
+            {
+                //▼外部キー認証
+            }
+            else
+            {
+                messageDsp.MsgDsp("");
+                txbMaID.Focus();
+                return false;
+            }
+            if (String.IsNullOrEmpty(txbPrName.Text.Trim()))
+            {
+                messageDsp.MsgDsp("");
+                txbPrName.Focus();
+                return false;
+            }
+            if (String.IsNullOrEmpty(txbPrice.Text.Trim()))
+            {
+                messageDsp.MsgDsp("");
+                txbPrice.Focus();
+                return false;
+            }
+            if (String.IsNullOrEmpty(txbPrSafetyStock.Text.Trim()))
+            {
+                messageDsp.MsgDsp("");
+                txbPrSafetyStock.Focus();
+                return false;
+            }
+            if (String.IsNullOrEmpty(txbScID.Text.Trim()))
+            {
+                //外部キー認証
+            }
+            if (String.IsNullOrEmpty(txbPrModelNumber.Text.Trim()))
+            {
+                messageDsp.MsgDsp("");
+                txbPrModelNumber.Focus();
+                return false;
+            }
+            if (String.IsNullOrEmpty(txbPrColor.Text.Trim()))
+            {
+                messageDsp.MsgDsp("");
+                txbPrColor.Focus();
+                return false;
+            }
+            if (String.IsNullOrEmpty(txbPrReleaseDate.Text.Trim()))
+            {
+                messageDsp.MsgDsp("");
+                txbPrReleaseDate.Focus();
+                return false;
+            }
+            return true;
+        }
+        private M_Product GenerateDataAtUpdate()
+        {
+            return new M_Product
+            {
+             //全部
+            };
+        }
+        private void UpdateProduct(M_Product updPr)
+        {
+            DialogResult result = messageDsp.MsgDsp("");
+            if (result == DialogResult.Cancel)
+                return;
+
+            bool flg = productDataAccess.UpdateProductData(updPr);
+            if (flg == true)
+                messageDsp.MsgDsp("");
+            else
+                messageDsp.MsgDsp("");
+
+            ClearInput();
+            txbPrID.Focus();
+
+            GetDataGridView();
+        }        
     }
 }
