@@ -108,6 +108,15 @@ namespace SalesManagement_SysDev
             dataGridViewDsp.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewDsp.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
+            dataGridViewDsp.Columns[0].HeaderText = "売上ID";
+            dataGridViewDsp.Columns[1].HeaderText = "顧客ID";
+            dataGridViewDsp.Columns[2].HeaderText = "営業所ID";
+            dataGridViewDsp.Columns[3].HeaderText = "社員ID";
+            dataGridViewDsp.Columns[4].HeaderText = "受注ID";
+            dataGridViewDsp.Columns[5].HeaderText = "売上日時";
+            dataGridViewDsp.Columns[6].HeaderText = "非表示理由";
+            dataGridViewDsp.Columns[7].HeaderText = "売上管理フラグ";
+
 
 
 

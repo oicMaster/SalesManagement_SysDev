@@ -111,6 +111,15 @@ namespace SalesManagement_SysDev
             dataGridViewDsp.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewDsp.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
+            dataGridViewDsp.Columns[0].HeaderText = "注文ID";
+            dataGridViewDsp.Columns[1].HeaderText = "営業所ID";
+            dataGridViewDsp.Columns[2].HeaderText = "社員ID";
+            dataGridViewDsp.Columns[3].HeaderText = "顧客ID";
+            dataGridViewDsp.Columns[4].HeaderText = "受付ID";
+            dataGridViewDsp.Columns[5].HeaderText = "注文年月日";
+            dataGridViewDsp.Columns[6].HeaderText = "注文状態フラグ";
+            dataGridViewDsp.Columns[7].HeaderText = "注文管理グラフ";
+            dataGridViewDsp.Columns[8].HeaderText = "非表示理由";
 
             lblPage.Text = "/" + ((int)Math.Ceiling(Chumon.Count / (double)pageSize)) + "ページ";
 

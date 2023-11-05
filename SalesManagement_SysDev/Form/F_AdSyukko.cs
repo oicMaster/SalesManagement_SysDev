@@ -77,7 +77,17 @@ namespace SalesManagement_SysDev
             dataGridViewDsp.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewDsp.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewDsp.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-           
+
+            dataGridViewDsp.Columns[0].HeaderText = "商品ID";
+            dataGridViewDsp.Columns[1].HeaderText = "メーカID";
+            dataGridViewDsp.Columns[2].HeaderText = "商品名";
+            dataGridViewDsp.Columns[3].HeaderText = "価格";
+            dataGridViewDsp.Columns[4].HeaderText = "JANコード";
+            dataGridViewDsp.Columns[5].HeaderText = "安全在庫数";
+            dataGridViewDsp.Columns[6].HeaderText = "小分類ID";
+            dataGridViewDsp.Columns[7].HeaderText = "型番";
+            dataGridViewDsp.Columns[8].HeaderText = "色";
+
             //データグリッドビューの総ページ数
             lblPage.Text = "/" + ((int)Math.Ceiling(Syukko.Count / (double)pageSize)) + "ページ";
 

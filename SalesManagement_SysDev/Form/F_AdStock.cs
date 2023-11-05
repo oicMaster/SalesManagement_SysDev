@@ -139,6 +139,12 @@ namespace SalesManagement_SysDev
             dataGridViewDsp.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewDsp.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
 
+            dataGridViewDsp.Columns[0].HeaderText = "在庫ID";
+            dataGridViewDsp.Columns[1].HeaderText = "商品ID";
+            dataGridViewDsp.Columns[2].HeaderText = "在庫数";
+            dataGridViewDsp.Columns[3].HeaderText = "在庫管理フラグ";
+            
+
             lblPage.Text = "/" + ((int)Math.Ceiling(Stock.Count / (double)pageSize)) + "ページ";
             dataGridViewDsp.Refresh();
         }
