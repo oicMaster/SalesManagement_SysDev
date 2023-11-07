@@ -32,7 +32,6 @@ namespace SalesManagement_SysDev
             //labelLoginName.Text = FormMenu.LoginName;
             SetFormDataGridView();
             fncButtonEnable(0);
-            fncTextBoxReadOnly(0);
             txbClFlag.ReadOnly = true;
         }
         private void fncButtonEnable(int chk)
@@ -45,34 +44,9 @@ namespace SalesManagement_SysDev
                     btnUpdate.Enabled = false;
                     break;
                 case 1:
-                    btnRegist.Enabled = true;
+                    btnRegist.Enabled = false;
                     btnSearch.Enabled = true;
                     btnUpdate.Enabled = true;
-                    break;
-            }
-        }
-        private void fncTextBoxReadOnly(int chk)
-        {
-            switch (chk)
-            { //顧客IDが空であれば0、でなければ1として、テキストボックスの入力を制限する
-                case 0:
-                    txbSoID.ReadOnly = true;
-                    txbClName.ReadOnly = true;
-                    txbClAddress.ReadOnly = true;
-                    txbClPhone.ReadOnly = true;
-                    txbClPostal.ReadOnly = true;
-                    txbClFAX.ReadOnly = true;
-                    txbClFlag.ReadOnly = true;
-                    txbClHidden.ReadOnly = true;
-                    break;
-                case 1:
-                    txbSoID.ReadOnly = false;
-                    txbClName.ReadOnly = false;
-                    txbClAddress.ReadOnly = false;
-                    txbClPhone.ReadOnly = false;
-                    txbClPostal.ReadOnly = false;
-                    txbClFAX.ReadOnly = false;
-                    txbClHidden.ReadOnly = false;
                     break;
             }
         }
@@ -217,13 +191,11 @@ namespace SalesManagement_SysDev
             if (txbClID.Text == "" || txbClID.Text == null)
             {
                 fncButtonEnable(0);
-                fncTextBoxReadOnly(0);
                 ClearInput();
             }
             else
             {
                 fncButtonEnable(1);
-                fncTextBoxReadOnly(1);
                 txbClFlag.Text = "0";
             }
 
@@ -239,20 +211,11 @@ namespace SalesManagement_SysDev
         {
             if (!String.IsNullOrEmpty(txbPageSize.Text.Trim()))
             {
-                if (int.Parse(txbPageSize.Text) > 10)
-                {
-                    messageDsp.MsgDsp("");
-                    txbPageSize.Text = "10";
-                    return;
-                }
                 if (int.Parse(txbPageSize.Text) == 0)
-                {
-                    messageDsp.MsgDsp("");
                     txbPageSize.Text = "1";
-                    return;
-                }
+                if (int.Parse(txbPageSize.Text) > 10)
+                    txbPageSize.Text = "10";
             }
-
         }
         private void txbPageNo_TextChanged(object sender, EventArgs e)
         {
@@ -501,24 +464,10 @@ namespace SalesManagement_SysDev
 
         private bool GetValidDataAtRegistration()
         {
-            if (!String.IsNullOrEmpty(txbClID.Text.Trim()))
-            {
-                if (!clientDataAccess.CheckClIDExistence(int.Parse(txbClID.Text.Trim())))
-                {
-                    messageDsp.MsgDsp("");
-                    txbClID.Focus();
-                    return false;
-                }
-            }
-            else
-            {
-                messageDsp.MsgDsp("");
-                txbClID.Focus();
-                return false;
-            }
             if (!String.IsNullOrEmpty(txbSoID.Text.Trim()))
             {
                 //▼外部キー認証
+               //DBACCESSを一番上に追加して、主キーの存在有無を確認する
             }
             else
             {

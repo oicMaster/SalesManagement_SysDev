@@ -71,6 +71,8 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.txbChQuantity = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
+            this.txbChIDsub = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDsp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMiniDsp)).BeginInit();
             this.SuspendLayout();
@@ -452,11 +454,29 @@
             this.label13.TabIndex = 140;
             this.label13.Text = "数量";
             // 
+            // txbChIDsub
+            // 
+            this.txbChIDsub.Location = new System.Drawing.Point(891, 265);
+            this.txbChIDsub.Name = "txbChIDsub";
+            this.txbChIDsub.Size = new System.Drawing.Size(100, 22);
+            this.txbChIDsub.TabIndex = 143;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(921, 231);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(51, 15);
+            this.label14.TabIndex = 142;
+            this.label14.Text = "注文ID";
+            // 
             // F_AdChumon
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1371, 763);
+            this.Controls.Add(this.txbChIDsub);
+            this.Controls.Add(this.label14);
             this.Controls.Add(this.txbChQuantity);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.btnUpdate);
@@ -555,5 +575,7 @@
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.TextBox txbChQuantity;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox txbChIDsub;
+        private System.Windows.Forms.Label label14;
     }
 }

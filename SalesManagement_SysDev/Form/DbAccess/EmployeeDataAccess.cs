@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace SalesManagement_SysDev
 {
-    internal class EmployeeDateAccess
+    internal class EmployeeDataAccess
     {
         public bool CheckEmployeeCDXxistence(int emID)
         {
