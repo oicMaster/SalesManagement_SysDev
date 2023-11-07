@@ -15,7 +15,12 @@ namespace SalesManagement_SysDev
     {
         MessageDsp messageDsp = new MessageDsp();
         ArrivalDataAccess arrivalDataAccess = new ArrivalDataAccess();
-        DataInputFormCheck dataInputFromCheck = new DataInputFormCheck();
+        SalesOfficeDataAccess salesOfficeIDataAccess = new SalesOfficeDataAccess();
+        EmployeeDataAccess employeelDataAccess = new EmployeeDataAccess();
+        OrderDataAccess orderDataAccess = new OrderDataAccess();
+
+
+
 
         private static List<T_Arrival> Arrival;
 
@@ -29,9 +34,39 @@ namespace SalesManagement_SysDev
             //labelLoginName.Text = FormMenu.LoginName;
             SetFormDataGridView();
             fncButtonEnable(0);
-            fncTextBoxReadOnly(0);
             txbArFlag.ReadOnly = true;
             txbArStateFlag.ReadOnly = true;
+
+            //コード追加部分
+            txbArID.TabIndex = 0;
+            txbSoID.TabIndex = 1;
+            txbEmID.TabIndex = 2;
+            txbClID.TabIndex = 3;
+            txbOrID.TabIndex = 4;
+            txbArDate.TabIndex = 5;
+            txbArHidden.TabIndex = 6;
+            btnSearch.TabIndex = 7;
+            btnUpdate.TabIndex = 8;
+            btnDisplay.TabIndex = 9;
+            btnConfirm.TabIndex = 10;
+            btnClear.TabIndex = 11;
+            txbArDetailID.TabIndex = 12;
+            txbArIDsub.TabIndex = 13;
+            txbPrID.TabIndex = 14;
+            txbArQuantity.TabIndex = 15;
+            btnDetailSearch.TabIndex = 16;
+            txbPageSize.TabIndex = 17;
+            txbPageNo.TabIndex = 18;
+            btnFirstPage.TabIndex = 19;
+            btnPreviousPage.TabIndex = 20;
+            btnNextPage.TabIndex = 21;
+            btnLastPage.TabIndex = 22;
+            btnClose.TabIndex = 23;
+            txbArFlag.TabStop = false;
+            txbArStateFlag.TabStop = false;
+            dataGridViewDsp.TabStop = false;
+            dataGridViewMiniDsp.TabStop = false;
+
         }
 
         private void fncButtonEnable(int chk)
@@ -45,29 +80,6 @@ namespace SalesManagement_SysDev
                 case 1:
                     btnSearch.Enabled = true;
                     btnConfirm.Enabled = true;
-                    break;
-            }
-        }
-
-        private void fncTextBoxReadOnly(int chk)
-        {
-            switch (chk)
-            { //IDが空であれば0、でなければ1として、テキストボックスの入力を制限する
-                case 0:
-                    txbSoID.ReadOnly = true;
-                    txbEmID.ReadOnly = true;
-                    txbClID.ReadOnly = true;
-                    txbOrID.ReadOnly = true;
-                    txbArDate.ReadOnly = true;
-                    txbArHidden.ReadOnly = true;
-                    break;
-                case 1:
-                    txbSoID.ReadOnly = false;
-                    txbEmID.ReadOnly = false;
-                    txbClID.ReadOnly = false;
-                    txbOrID.ReadOnly = false;
-                    txbArDate.ReadOnly = false;
-                    txbArHidden.ReadOnly = false;
                     break;
             }
         }
@@ -136,10 +148,16 @@ namespace SalesManagement_SysDev
         {
             txbArID.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[0].Value.ToString();
             txbSoID.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[1].Value.ToString();
-            txbEmID.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[2].Value.ToString();
+            if (dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[3].Value != null)
+                txbArHidden.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[3].Value.ToString();
+            else
+                txbEmID.Text = String.Empty;
             txbClID.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[3].Value.ToString();
             txbOrID.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[4].Value.ToString();
-            txbArDate.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[5].Value.ToString();
+            if (dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[5].Value != null)
+                txbArHidden.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[5].Value.ToString();
+            else
+                txbArDate.Text = String.Empty;
             txbArStateFlag.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[6].Value.ToString();
             txbArFlag.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[7].Value.ToString();
             if (dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[8].Value != null)
@@ -155,13 +173,11 @@ namespace SalesManagement_SysDev
             {
                 if (int.Parse(txbPageSize.Text) > 10)
                 {
-                    messageDsp.MsgDsp("");
                     txbPageSize.Text = "10";
                     return;
                 }
                 if (int.Parse(txbPageSize.Text) == 0)
                 {
-                    messageDsp.MsgDsp("");
                     txbPageSize.Text = "1";
                     return;
                 }
@@ -174,7 +190,6 @@ namespace SalesManagement_SysDev
             {
                 if (int.Parse(txbPageNo.Text) == 0)
                 {
-                    messageDsp.MsgDsp("");
                     txbPageNo.Text = "1";
                 }
             }
@@ -182,39 +197,64 @@ namespace SalesManagement_SysDev
 
         private void txbArID_TextChanged(object sender, EventArgs e)
         {//IDが入力されているかどうか
-            if (txbArID.Text == "" || txbArID.Text == null)
+            if (String.IsNullOrEmpty(txbArID.Text.Trim()))
             {
                 fncButtonEnable(0);
-                fncTextBoxReadOnly(0);
                 ClearInput();
             }
             else
             {
                 fncButtonEnable(1);
-                fncTextBoxReadOnly(1);
                 txbArFlag.Text = "0";
+                txbArStateFlag.Text = "0";
             }
-
+            txbArIDsub.Text = txbArID.Text;
         }
-        private void txbArHidden_TextChanged(object sender, EventArgs e)
+        private void txbHidden_TextChanged(object sender, EventArgs e)
         {
-            if (txbArHidden.Text == "" || txbArHidden.Text == null)
-                txbArFlag.Text = "0";
+            if (!String.IsNullOrEmpty((sender as TextBox).Text.Trim()))
+                (sender as TextBox).Text = "0";
             else
-                txbArFlag.Text = "2";
+                (sender as TextBox).Text = "2";
         }
-        private void txbPageSize_KeyPress(object sender, KeyPressEventArgs e)
+        private void txbArIDsub_TextChanged(object sender, EventArgs e)
+        {
+            txbArID.Text = txbArIDsub.Text;
+        }
+
+
+        //コード変更部分
+        private void txbPage_KeyPress(object sender, KeyPressEventArgs e)
         {
             if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')
             {
                 e.Handled = true;
             }
         }
-        private void txbPageNo_KeyPress(object sender, KeyPressEventArgs e)
+        private void txbID_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')
+            if((sender as TextBox).Text.Length < 6)
             {
-                e.Handled = true;
+                if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')
+                    e.Handled = true;
+            }
+            else if ((sender as TextBox).Text.Length == 6)
+            {
+                if (e.KeyChar != '\b')
+                    e.Handled = true;
+            }
+        }
+        private void txbQuantity_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (txbArQuantity.Text.Length < 4)
+            {
+                if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')
+                    e.Handled = true;
+            }
+            else if (txbArQuantity.Text.Length == 4)
+            {
+                if (e.KeyChar != '\b')
+                    e.Handled = true;
             }
         }
 
@@ -290,8 +330,8 @@ namespace SalesManagement_SysDev
             txbClID.Text = String.Empty;
             txbOrID.Text = String.Empty;
             txbArDate.Text = String.Empty;
-            txbArFlag.Text = String.Empty;
             txbArStateFlag.Text = String.Empty;
+            txbArFlag.Text = String.Empty;
             txbArHidden.Text = String.Empty;
         }
         private void btnDisplay_Click(object sender, EventArgs e)
@@ -332,12 +372,27 @@ namespace SalesManagement_SysDev
         }
         private void GenereteDataAdSelect()
         {
-
+            if (int.TryParse(txbArID.Text, out var arID))
+                arID = int.Parse(txbSoID.Text);
+            else
+                arID = "";
+            int soID = int.Parse(txbSoID.Text);
+            int emID = int.Parse(txbEmID.Text);
+            int clID = int.Parse(txbClID.Text);
+            int orID = int.Parse(txbOrID.Text);
+            DateTime arDate = DateTime.Parse(txbArDate.Text.Trim());
+            string arHidden = txbArHidden.Text;
             //検索に使用するデータ
             T_Arrival selectCondition = new T_Arrival()
             {//検索に使用するデータ
-                ArID = int.Parse(txbArID.Text.Trim()),
-            };
+                ArID = arID,
+                SoID = soID,
+                EmID = emID,
+                ClID = clID,
+                OrID = orID,
+                ArDate = arDate,
+                ArHidden = arHidden
+        };
             //arデータの抽出
             Arrival = arrivalDataAccess.GetArrivalData(selectCondition);
 

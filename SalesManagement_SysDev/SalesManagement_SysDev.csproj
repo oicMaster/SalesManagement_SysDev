@@ -66,41 +66,41 @@
     <Compile Include="Entity\M_MajorClassification.cs" />
     <Compile Include="Entity\M_Message.cs" />
     <Compile Include="Entity\M_Product.cs" />
-    <Compile Include="Form\F_AdShipment.cs">
+    <Compile Include="Form\Administrator\F_AdShipment.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\F_AdShipment.Designer.cs">
+    <Compile Include="Form\Administrator\F_AdShipment.Designer.cs">
       <DependentUpon>F_AdShipment.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\F_AdWarehous.cs">
+    <Compile Include="Form\Administrator\F_AdWarehous.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\F_AdWarehous.Designer.cs">
+    <Compile Include="Form\Administrator\F_AdWarehous.Designer.cs">
       <DependentUpon>F_AdWarehous.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\F_AdOperationHistory.cs">
+    <Compile Include="Form\Administrator\F_AdOperationHistory.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\F_AdOperationHistory.Designer.cs">
+    <Compile Include="Form\Administrator\F_AdOperationHistory.Designer.cs">
       <DependentUpon>F_AdOperationHistory.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\F_AdArrival.cs">
+    <Compile Include="Form\Administrator\F_AdArrival.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\F_AdArrival.Designer.cs">
+    <Compile Include="Form\Administrator\F_AdArrival.Designer.cs">
       <DependentUpon>F_AdArrival.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\F_AdSyukko.cs">
+    <Compile Include="Form\Administrator\F_AdSyukko.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\F_AdSyukko.Designer.cs">
+    <Compile Include="Form\Administrator\F_AdSyukko.Designer.cs">
       <DependentUpon>F_AdSyukko.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\DbAccess\ClientDataAccess.cs" />
-    <Compile Include="Form\F_AdClient.cs">
+    <Compile Include="Form\Administrator\F_AdClient.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\F_AdClient.Designer.cs">
+    <Compile Include="Form\Administrator\F_AdClient.Designer.cs">
       <DependentUpon>F_AdClient.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\Store\F_login.cs">
@@ -115,131 +115,131 @@
     <Compile Include="Entity\M_Position.cs" />
     <Compile Include="Entity\M_SalesOffice.cs" />
     <Compile Include="Entity\M_SmallClassification.cs" />
-    <Compile Include="Form\F_AdChumon.cs">
+    <Compile Include="Form\Administrator\F_AdChumon.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\F_AdChumon.Designer.cs">
+    <Compile Include="Form\Administrator\F_AdChumon.Designer.cs">
       <DependentUpon>F_AdChumon.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\F_AdEmployee.cs">
+    <Compile Include="Form\Administrator\F_AdEmployee.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\F_AdEmployee.Designer.cs">
+    <Compile Include="Form\Administrator\F_AdEmployee.Designer.cs">
       <DependentUpon>F_AdEmployee.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\Store\F_AdMenu.cs">
+    <Compile Include="Form\Administrator\F_AdMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Store\F_AdMenu.Designer.cs">
+    <Compile Include="Form\Administrator\F_AdMenu.Designer.cs">
       <DependentUpon>F_AdMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\F_AdHattyu.cs">
+    <Compile Include="Form\Administrator\F_AdHattyu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\F_AdHattyu.Designer.cs">
+    <Compile Include="Form\Administrator\F_AdHattyu.Designer.cs">
       <DependentUpon>F_AdHattyu.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\F_AdOrder.cs">
+    <Compile Include="Form\Administrator\F_AdOrder.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\F_AdOrder.Designer.cs">
+    <Compile Include="Form\Administrator\F_AdOrder.Designer.cs">
       <DependentUpon>F_AdOrder.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\F_AdProduct.cs">
+    <Compile Include="Form\Administrator\F_AdProduct.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\F_AdProduct.Designer.cs">
+    <Compile Include="Form\Administrator\F_AdProduct.Designer.cs">
       <DependentUpon>F_AdProduct.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\F_AdSale.cs">
+    <Compile Include="Form\Administrator\F_AdSale.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\F_AdSale.Designer.cs">
+    <Compile Include="Form\Administrator\F_AdSale.Designer.cs">
       <DependentUpon>F_AdSale.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\F_AdStock.cs">
+    <Compile Include="Form\Administrator\F_AdStock.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\F_AdStock.Designer.cs">
+    <Compile Include="Form\Administrator\F_AdStock.Designer.cs">
       <DependentUpon>F_AdStock.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\Store\F_LoMenu.cs">
+    <Compile Include="Form\Logistics\F_LoMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Store\F_LoMenu.Designer.cs">
+    <Compile Include="Form\Logistics\F_LoMenu.Designer.cs">
       <DependentUpon>F_LoMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\Store\F_SaMenu.cs">
+    <Compile Include="Form\Sales\F_SaMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Store\F_SaMenu.Designer.cs">
+    <Compile Include="Form\Sales\F_SaMenu.Designer.cs">
       <DependentUpon>F_SaMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\F_LoHattyu.cs">
+    <Compile Include="Form\Logistics\F_LoHattyu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\F_LoHattyu.Designer.cs">
+    <Compile Include="Form\Logistics\F_LoHattyu.Designer.cs">
       <DependentUpon>F_LoHattyu.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\F_LoProduct.cs">
+    <Compile Include="Form\Logistics\F_LoProduct.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\F_LoProduct.Designer.cs">
+    <Compile Include="Form\Logistics\F_LoProduct.Designer.cs">
       <DependentUpon>F_LoProduct.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\F_LoStock.cs">
+    <Compile Include="Form\Logistics\F_LoStock.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\F_LoStock.Designer.cs">
+    <Compile Include="Form\Logistics\F_LoStock.Designer.cs">
       <DependentUpon>F_LoStock.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\F_LoSyukko.cs">
+    <Compile Include="Form\Logistics\F_LoSyukko.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\F_LoSyukko.Designer.cs">
+    <Compile Include="Form\Logistics\F_LoSyukko.Designer.cs">
       <DependentUpon>F_LoSyukko.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\F_SaArrival.cs">
+    <Compile Include="Form\Sales\F_SaArrival.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\F_SaArrival.Designer.cs">
+    <Compile Include="Form\Sales\F_SaArrival.Designer.cs">
       <DependentUpon>F_SaArrival.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\F_SaChumon.cs">
+    <Compile Include="Form\Sales\F_SaChumon.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\F_SaChumon.Designer.cs">
+    <Compile Include="Form\Sales\F_SaChumon.Designer.cs">
       <DependentUpon>F_SaChumon.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\F_SaClient.cs">
+    <Compile Include="Form\Sales\F_SaClient.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\F_SaClient.Designer.cs">
+    <Compile Include="Form\Sales\F_SaClient.Designer.cs">
       <DependentUpon>F_SaClient.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\F_SaOrder.cs">
+    <Compile Include="Form\Sales\F_SaOrder.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\F_SaOrder.Designer.cs">
+    <Compile Include="Form\Sales\F_SaOrder.Designer.cs">
       <DependentUpon>F_SaOrder.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\F_SaSale.cs">
+    <Compile Include="Form\Sales\F_SaSale.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\F_SaSale.Designer.cs">
+    <Compile Include="Form\Sales\F_SaSale.Designer.cs">
       <DependentUpon>F_SaSale.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\F_SaShipmant.cs">
+    <Compile Include="Form\Sales\F_SaShipmant.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\F_SaShipmant.Designer.cs">
+    <Compile Include="Form\Sales\F_SaShipmant.Designer.cs">
       <DependentUpon>F_SaShipmant.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\F_WereHous.cs">
+    <Compile Include="Form\Logistics\F_LoWereHous.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\F_WereHous.Designer.cs">
-      <DependentUpon>F_WereHous.cs</DependentUpon>
+    <Compile Include="Form\Logistics\F_LoWereHous.Designer.cs">
+      <DependentUpon>F_LoWereHous.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\Store\F_OperationManegement.cs">
       <SubType>Form</SubType>
@@ -251,30 +251,32 @@
     <Compile Include="Form\DbAccess\HattyuDataAccess.cs" />
     <Compile Include="Form\DbAccess\OperationDataAccess.cs" />
     <Compile Include="Form\DbAccess\OrderDataAccess.cs" />
-    <Compile Include="F_AdMaker.cs">
+    <Compile Include="Form\Administrator\F_AdMaker.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="F_AdMaker.Designer.cs">
+    <Compile Include="Form\Administrator\F_AdMaker.Designer.cs">
       <DependentUpon>F_AdMaker.cs</DependentUpon>
     </Compile>
-    <Compile Include="F_AdSalesOffice.cs">
+    <Compile Include="Form\Administrator\F_AdSalesOffice.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="F_AdSalesOffice.Designer.cs">
+    <Compile Include="Form\Administrator\F_AdSalesOffice.Designer.cs">
       <DependentUpon>F_AdSalesOffice.cs</DependentUpon>
     </Compile>
-    <Compile Include="F_LoOperationHistory.cs">
+    <Compile Include="Form\Logistics\F_LoOperationHistory.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="F_LoOperationHistory.Designer.cs">
+    <Compile Include="Form\Logistics\F_LoOperationHistory.Designer.cs">
       <DependentUpon>F_LoOperationHistory.cs</DependentUpon>
     </Compile>
-    <Compile Include="F_SaOperationHistory.cs">
+    <Compile Include="Form\Sales\F_SaOperationHistory.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="F_SaOperationHistory.Designer.cs">
+    <Compile Include="Form\Sales\F_SaOperationHistory.Designer.cs">
       <DependentUpon>F_SaOperationHistory.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\DbAccess\MakerDataAccess.cs" />
+    <Compile Include="Form\DbAccess\PositionDataAccess.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Entity\T_Arrival.cs" />
@@ -301,52 +303,53 @@
     <Compile Include="Form\DbAccess\ShipmentDataAccess.cs" />
     <Compile Include="Form\DbAccess\StockDataAccess.cs" />
     <Compile Include="Form\DbAccess\SyukkoDataAccess.cs" />
-    <EmbeddedResource Include="Form\F_AdShipment.resx">
+    <Compile Include="Form\DbAccess\SalesOfficeDataAccess.cs" />
+    <EmbeddedResource Include="Form\Administrator\F_AdShipment.resx">
       <DependentUpon>F_AdShipment.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\F_AdWarehous.resx">
+    <EmbeddedResource Include="Form\Administrator\F_AdWarehous.resx">
       <DependentUpon>F_AdWarehous.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\F_AdOperationHistory.resx">
+    <EmbeddedResource Include="Form\Administrator\F_AdOperationHistory.resx">
       <DependentUpon>F_AdOperationHistory.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\F_AdArrival.resx">
+    <EmbeddedResource Include="Form\Administrator\F_AdArrival.resx">
       <DependentUpon>F_AdArrival.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\F_AdSyukko.resx">
+    <EmbeddedResource Include="Form\Administrator\F_AdSyukko.resx">
       <DependentUpon>F_AdSyukko.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\F_AdClient.resx">
+    <EmbeddedResource Include="Form\Administrator\F_AdClient.resx">
       <DependentUpon>F_AdClient.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Store\F_login.resx">
       <DependentUpon>F_login.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\F_AdChumon.resx">
+    <EmbeddedResource Include="Form\Administrator\F_AdChumon.resx">
       <DependentUpon>F_AdChumon.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\F_AdEmployee.resx">
+    <EmbeddedResource Include="Form\Administrator\F_AdEmployee.resx">
       <DependentUpon>F_AdEmployee.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\F_AdHattyu.resx">
+    <EmbeddedResource Include="Form\Administrator\F_AdHattyu.resx">
       <DependentUpon>F_AdHattyu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\F_AdOrder.resx">
+    <EmbeddedResource Include="Form\Administrator\F_AdOrder.resx">
       <DependentUpon>F_AdOrder.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\F_AdProduct.resx">
+    <EmbeddedResource Include="Form\Administrator\F_AdProduct.resx">
       <DependentUpon>F_AdProduct.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\F_AdSale.resx">
+    <EmbeddedResource Include="Form\Administrator\F_AdSale.resx">
       <DependentUpon>F_AdSale.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\F_AdStock.resx">
+    <EmbeddedResource Include="Form\Administrator\F_AdStock.resx">
       <DependentUpon>F_AdStock.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="F_AdMaker.resx">
+    <EmbeddedResource Include="Form\Administrator\F_AdMaker.resx">
       <DependentUpon>F_AdMaker.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="F_AdSalesOffice.resx">
+    <EmbeddedResource Include="Form\Administrator\F_AdSalesOffice.resx">
       <DependentUpon>F_AdSalesOffice.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

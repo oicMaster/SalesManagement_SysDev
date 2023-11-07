@@ -71,6 +71,8 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.txbArQuantity = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
+            this.txbArIDsub = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDsp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMiniDsp)).BeginInit();
             this.SuspendLayout();
@@ -150,7 +152,7 @@
             this.txbPageNo.Size = new System.Drawing.Size(100, 22);
             this.txbPageNo.TabIndex = 83;
             this.txbPageNo.TextChanged += new System.EventHandler(this.txbPageNo_TextChanged);
-            this.txbPageNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbPageNo_KeyPress);
+            this.txbPageNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbPage_KeyPress);
             // 
             // btnLastPage
             // 
@@ -199,7 +201,7 @@
             this.txbPageSize.Size = new System.Drawing.Size(100, 22);
             this.txbPageSize.TabIndex = 78;
             this.txbPageSize.TextChanged += new System.EventHandler(this.txbPageSize_TextChanged);
-            this.txbPageSize.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbPageSize_KeyPress);
+            this.txbPageSize.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbPage_KeyPress);
             // 
             // label11
             // 
@@ -233,7 +235,7 @@
             this.txbArHidden.Name = "txbArHidden";
             this.txbArHidden.Size = new System.Drawing.Size(100, 22);
             this.txbArHidden.TabIndex = 74;
-            this.txbArHidden.TextChanged += new System.EventHandler(this.txbArHidden_TextChanged);
+            this.txbArHidden.TextChanged += new System.EventHandler(this.txbHidden_TextChanged);
             // 
             // txbArStateFlag
             // 
@@ -255,6 +257,7 @@
             this.txbEmID.Name = "txbEmID";
             this.txbEmID.Size = new System.Drawing.Size(100, 22);
             this.txbEmID.TabIndex = 71;
+            this.txbEmID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbID_KeyPress);
             // 
             // txbSoID
             // 
@@ -262,6 +265,7 @@
             this.txbSoID.Name = "txbSoID";
             this.txbSoID.Size = new System.Drawing.Size(100, 22);
             this.txbSoID.TabIndex = 70;
+            this.txbSoID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbID_KeyPress);
             // 
             // txbArID
             // 
@@ -270,6 +274,7 @@
             this.txbArID.Size = new System.Drawing.Size(100, 22);
             this.txbArID.TabIndex = 69;
             this.txbArID.TextChanged += new System.EventHandler(this.txbArID_TextChanged);
+            this.txbArID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbID_KeyPress);
             // 
             // label7
             // 
@@ -358,6 +363,7 @@
             this.txbOrID.Name = "txbOrID";
             this.txbOrID.Size = new System.Drawing.Size(100, 22);
             this.txbOrID.TabIndex = 95;
+            this.txbOrID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbID_KeyPress);
             // 
             // txbClID
             // 
@@ -365,6 +371,7 @@
             this.txbClID.Name = "txbClID";
             this.txbClID.Size = new System.Drawing.Size(100, 22);
             this.txbClID.TabIndex = 96;
+            this.txbClID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbID_KeyPress);
             // 
             // txbArDetailID
             // 
@@ -372,6 +379,7 @@
             this.txbArDetailID.Name = "txbArDetailID";
             this.txbArDetailID.Size = new System.Drawing.Size(100, 22);
             this.txbArDetailID.TabIndex = 99;
+            this.txbArDetailID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbID_KeyPress);
             // 
             // labal1
             // 
@@ -407,6 +415,7 @@
             this.txbPrID.Name = "txbPrID";
             this.txbPrID.Size = new System.Drawing.Size(100, 22);
             this.txbPrID.TabIndex = 102;
+            this.txbPrID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbID_KeyPress);
             // 
             // label12
             // 
@@ -442,6 +451,7 @@
             this.txbArQuantity.Name = "txbArQuantity";
             this.txbArQuantity.Size = new System.Drawing.Size(100, 22);
             this.txbArQuantity.TabIndex = 109;
+            this.txbArQuantity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbQuantity_KeyPress);
             // 
             // label13
             // 
@@ -452,11 +462,31 @@
             this.label13.TabIndex = 108;
             this.label13.Text = "数量";
             // 
+            // txbArIDsub
+            // 
+            this.txbArIDsub.Location = new System.Drawing.Point(920, 196);
+            this.txbArIDsub.Name = "txbArIDsub";
+            this.txbArIDsub.Size = new System.Drawing.Size(100, 22);
+            this.txbArIDsub.TabIndex = 111;
+            this.txbArIDsub.TextChanged += new System.EventHandler(this.txbArIDsub_TextChanged);
+            this.txbArIDsub.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbID_KeyPress);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(917, 178);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(51, 15);
+            this.label14.TabIndex = 110;
+            this.label14.Text = "入荷ID";
+            // 
             // F_AdArrival
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1347, 727);
+            this.Controls.Add(this.txbArIDsub);
+            this.Controls.Add(this.label14);
             this.Controls.Add(this.txbArQuantity);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.btnUpdate);
@@ -503,7 +533,7 @@
             this.Name = "F_AdArrival";
             this.Text = "入荷管理";
             this.Load += new System.EventHandler(this.F_Arrival_Load);
-            this.TextChanged += new System.EventHandler(this.txbArHidden_TextChanged);
+            this.TextChanged += new System.EventHandler(this.txbHidden_TextChanged);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDsp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMiniDsp)).EndInit();
             this.ResumeLayout(false);
@@ -556,5 +586,7 @@
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.TextBox txbArQuantity;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox txbArIDsub;
+        private System.Windows.Forms.Label label14;
     }
 }

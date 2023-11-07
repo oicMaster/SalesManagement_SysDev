@@ -1,6 +1,6 @@
 ﻿namespace SalesManagement_SysDev
 {
-    partial class F_WereHous
+    partial class F_LoWereHous
     {
         /// <summary>
         /// Required designer variable.
