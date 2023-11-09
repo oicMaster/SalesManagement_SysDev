@@ -411,6 +411,7 @@
             this.btnDetailSearch.TabIndex = 100;
             this.btnDetailSearch.Text = "詳細検索";
             this.btnDetailSearch.UseVisualStyleBackColor = true;
+            this.btnDetailSearch.Click += new System.EventHandler(this.btnDetailSearch_Click);
             // 
             // txbPrID
             // 
