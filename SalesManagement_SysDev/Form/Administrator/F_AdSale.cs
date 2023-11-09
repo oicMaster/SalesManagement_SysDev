@@ -51,22 +51,22 @@ namespace SalesManagement_SysDev
                     txbSoID.ReadOnly = true;
                     txbSaID.ReadOnly = true;
                     txbEmID.ReadOnly = true;
-                    txbSaHiddin.ReadOnly = true;
+                    txbSaHidden.ReadOnly = true;
                     txbSaDate.ReadOnly = true;
                     txbSaDetailID.ReadOnly = true;
                     txbPrID.ReadOnly = true;
                     txbSaFlag.ReadOnly = true;
-                    txbSaHiddin.ReadOnly = true;
+                    txbSaHidden.ReadOnly = true;
                     break;
                 case 1:
                     txbSoID.ReadOnly = false;
                     txbSaID.ReadOnly = false;
                     txbEmID.ReadOnly = false;
-                    txbSaHiddin.ReadOnly = false;
+                    txbSaHidden.ReadOnly = false;
                     txbSaDate.ReadOnly = false;
                     txbSaDetailID.ReadOnly = false;
                     txbPrID.ReadOnly = false;
-                    txbSaHiddin.ReadOnly = false;
+                    txbSaHidden.ReadOnly = false;
                     break;
             }
         }
@@ -136,9 +136,9 @@ namespace SalesManagement_SysDev
             txbSaDate.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[5].Value.ToString();
             txbSaFlag.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[6].Value.ToString();
             if (dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[7].Value != null)
-                txbSaHiddin.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[7].Value.ToString();
+                txbSaHidden.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[7].Value.ToString();
             else
-                txbSaHiddin.Text = String.Empty;
+                txbSaHidden.Text = String.Empty;
         }
 
         private void SetFormDataGridViewSub()
@@ -148,9 +148,9 @@ namespace SalesManagement_SysDev
             dataGridViewSubDsp.ReadOnly = true;
             dataGridViewSubDsp.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewSubDsp.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            GetDataGridViewmini();
+            GetDataGridViewSub();
         }
-        private void GetDataGridViewmini()
+        private void GetDataGridViewSub()
         {
             //SaleDetail = saleDetailDataAccess.GetArrivalDetailData();
 
@@ -246,26 +246,15 @@ namespace SalesManagement_SysDev
 
         private void txbSaHidden_TextChanged(object sender, EventArgs e) //10/31 千田　hiddinになってる直さなきゃダメ
         {
-            if (txbSaHiddin.Text == "" || txbSaHiddin.Text == null)
+            if (txbSaHidden.Text == "" || txbSaHidden.Text == null)
                 txbSaFlag.Text = "0";
             else
                 txbSaFlag.Text = "2";
         }
 
-        private void txbPageSize_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')
-            {
-                e.Handled = true;
-            }
-        }
-        private void txbPageNo_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')
-            {
-                e.Handled = true;
-            }
-        }
+        //private void txbPage_KeyPress
+
+        //private void txbQuntity_KeyPress
 
         private void btnFirstPage_Click(object sender, EventArgs e)
         {
@@ -335,12 +324,12 @@ namespace SalesManagement_SysDev
             txbSoID.Text = string.Empty;
             txbSaID.Text = string.Empty;
             txbEmID.Text = string.Empty;
-            txbSaHiddin.Text = string.Empty;
+            txbSaHidden.Text = string.Empty;
             txbSaDate.Text = string.Empty;
             txbSaDetailID.Text = string.Empty;
             txbPrID.Text = string.Empty;
             txbSaFlag.Text = string.Empty;
-            txbSaHiddin.Text = string.Empty;
+            txbSaHidden.Text = string.Empty;
         }
 
         private void btnDisplay_Click(object sender, EventArgs e)
@@ -398,7 +387,25 @@ namespace SalesManagement_SysDev
 
             lblPage.Text = "/" + ((int)Math.Ceiling(Sale.Count / (double)pageSize)) + "ページ";
         }
+       
 
+        private void btnDetailSearch_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void GetValidDetailDataAtRegistration()
+        {
+
+        }
+        private void GenerateDetailDataAdRegistration()
+        {
+
+        }
+        private void SetSelectDetailData()
+        
+        {
+
+        }
     }
 }
 

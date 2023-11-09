@@ -30,7 +30,7 @@ namespace SalesManagement_SysDev
             //labelLoginName.Text = FormMenu.LoginName;
             SetFormDataGridView();
             fncButtonEnable(0);
-            fncTextBoxReadOnly(0);
+            
             txbOrFlag.ReadOnly = true;
             txbOrStateFlag.ReadOnly = true;
         }
@@ -50,31 +50,6 @@ namespace SalesManagement_SysDev
                     break;
             }
         }
-
-        private void fncTextBoxReadOnly(int chk)
-        {
-            switch (chk)
-            { //IDが空であれば0、でなければ1として、テキストボックスの入力を制限する
-                case 0:
-                    txbSoID.ReadOnly = true;
-                    txbEmID.ReadOnly = true;
-                    txbClID.ReadOnly = true;
-                    txbClCharge.ReadOnly = true;
-                    txbOrDate.ReadOnly = true;
-                    txbOrHidden.ReadOnly = true;
-                    break;
-                case 1:
-                    txbSoID.ReadOnly = false;
-                    txbEmID.ReadOnly = false;
-                    txbClID.ReadOnly = false;
-                    txbClCharge.ReadOnly = false;
-                    txbOrDate.ReadOnly = false;
-                    txbOrHidden.ReadOnly = false;
-                    break;
-            }
-        }
-
-
 
         private void SetFormDataGridView()
         {
@@ -157,9 +132,9 @@ namespace SalesManagement_SysDev
             dataGridViewSubDsp.ReadOnly = true;
             dataGridViewSubDsp.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewSubDsp.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            GetDataGridViewmini();
+            GetDataGridViewSub();
         }
-        private void GetDataGridViewmini()
+        private void GetDataGridViewSub()
         {
             //OrderDetail = orderDetailDataAccess.GetOrderDetailData();
 
@@ -240,14 +215,12 @@ namespace SalesManagement_SysDev
         {//IDが入力されているかどうか
             if (txbOrID.Text == "" || txbOrID.Text == null)
             {
-                fncButtonEnable(0);
-                fncTextBoxReadOnly(0);
+                fncButtonEnable(0);              
                 ClearInput();
             }
             else
             {
-                fncButtonEnable(1);
-                fncTextBoxReadOnly(1);
+                fncButtonEnable(1);              
                 txbOrFlag.Text = "0";
             }
 
@@ -259,22 +232,8 @@ namespace SalesManagement_SysDev
             else
                 txbOrFlag.Text = "2";
         }
-        private void txbPageSize_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')
-            {
-                e.Handled = true;
-            }
-        }
-        private void txbPageNo_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')
-            {
-                e.Handled = true;
-            }
-        }
-
-
+        // private void txbPage_KeyPress
+        // private void txbQuntity_KeyPress
 
         private void btnFirstPage_Click(object sender, EventArgs e)
         {
@@ -431,8 +390,58 @@ namespace SalesManagement_SysDev
         {
 
         }
+        private void GetValidDataAtRegistration()
+        {
+
+        }
+        private void GenerateDataAdRegistration()
+        {
+
+        }
+        private void RegistrationOrder()
+        {
+
+        }
+       
+
+        
 
         private void btnConfirm_Click(object sender, EventArgs e)
+        {
+
+        }
+      
+
+        private void btnDetailSearch_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void GetValidDetailDataAtSelect(object sender, EventArgs e)
+        {
+
+        }
+        private void GenerateDetailDataAdSelect(object sender, EventArgs e)
+        {
+
+        }
+        private void SetSelectDetailData(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDetailRegist_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void GetValidDataAtRegistration(object sender, EventArgs e)
+        {
+
+        }
+        private void GenerateDataAdRegistration(object sender, EventArgs e)
+        {
+
+        }
+        private void RegistrationOrder(object sender, EventArgs e)
         {
 
         }
