@@ -29,7 +29,7 @@ namespace SalesManagement_SysDev
             //labelLoginName.Text = FormMenu.LoginName;
             SetFormDataGridView();
             fncButtonEnable(0);
-            fncTextBoxReadOnly(0);
+           
             txbHaFlag.ReadOnly = true;
             txbWaWereHouseFlag.ReadOnly = true;
         }
@@ -50,24 +50,7 @@ namespace SalesManagement_SysDev
             }
         }
 
-        private void fncTextBoxReadOnly(int chk)
-        {
-            switch (chk)
-            { //IDが空であれば0、でなければ1として、テキストボックスの入力を制限する
-                case 0:
-                    txbMaID.ReadOnly = true;
-                    txbEmID.ReadOnly = true;
-                    txbHaDate.ReadOnly = true;
-                    txbHaHidden.ReadOnly = true;
-                    break;
-                case 1:
-                    txbMaID.ReadOnly = false;
-                    txbEmID.ReadOnly = false;
-                    txbHaDate.ReadOnly = false;
-                    txbHaHidden.ReadOnly = false;
-                    break;
-            }
-        }
+       
         private void SetFormDataGridView()
         {
             txbPageSize.Text = "10";
@@ -178,6 +161,62 @@ namespace SalesManagement_SysDev
             dataGridViewDsp.Refresh();
         }
 
+        private void dataGridViewSubDsp_CellClick()
+        {
+
+        }
+
+        private void txbPageSize_TextChanged(object sender, EventArgs e)
+        {
+            if (!String.IsNullOrEmpty(txbPageSize.Text.Trim()))
+            {
+                if (int.Parse(txbPageSize.Text) > 10)
+                {
+                    messageDsp.MsgDsp("");
+                    txbPageSize.Text = "10";
+                    return;
+                }
+                if (int.Parse(txbPageSize.Text) == 0)
+                {
+                    messageDsp.MsgDsp("");
+                    txbPageSize.Text = "1";
+                    return;
+                }
+            }
+
+        }
+        private void txbPageNo_TextChanged(object sender, EventArgs e)
+        {
+            if (!String.IsNullOrEmpty(txbPageNo.Text.Trim()))
+            {
+                if (int.Parse(txbPageNo.Text) == 0)
+                {
+                    messageDsp.MsgDsp("");
+                    txbPageNo.Text = "1";
+                }
+            }
+        }
+        private void txbHaID_TextChanged(object sender, EventArgs e)
+        {//顧客IDが入力されているかどうか
+            if (txbHaID.Text == "" || txbHaID.Text == null)
+            {
+                fncButtonEnable(0);
+                ClearInput();
+            }
+            else
+            {
+                fncButtonEnable(1);
+                txbHaFlag.Text = "0";
+            }
+
+        }
+        private void txbHaHidden_TextChanged(object sender, EventArgs e)
+        {
+            if (txbHaHidden.Text == "" || txbHaHidden.Text == null)
+                txbHaFlag.Text = "0";
+            else
+                txbHaFlag.Text = "2";
+        }
 
         private void btnFirstPage_Click(object sender, EventArgs e)
         {
@@ -234,73 +273,9 @@ namespace SalesManagement_SysDev
             //ページ番号の設定
             txbPageNo.Text = (pageNo + 1).ToString();
         }
-        private void txbHaID_TextChanged(object sender, EventArgs e)
-        {//顧客IDが入力されているかどうか
-            if (txbHaID.Text == "" || txbHaID.Text == null)
-            {
-                fncButtonEnable(0);
-                fncTextBoxReadOnly(0);
-                ClearInput();
-            }
-            else
-            {
-                fncButtonEnable(1);
-                fncTextBoxReadOnly(1);
-                txbHaFlag.Text = "0";
-            }
-
-        }
-        private void txbHaHidden_TextChanged(object sender, EventArgs e)
-        {
-            if (txbHaHidden.Text == "" || txbHaHidden.Text == null)
-                txbHaFlag.Text = "0";
-            else
-                txbHaFlag.Text = "2";
-        }
-        private void txbPageSize_TextChanged(object sender, EventArgs e)
-        {
-            if (!String.IsNullOrEmpty(txbPageSize.Text.Trim()))
-            {
-                if (int.Parse(txbPageSize.Text) > 10)
-                {
-                    messageDsp.MsgDsp("");
-                    txbPageSize.Text = "10";
-                    return;
-                }
-                if (int.Parse(txbPageSize.Text) == 0)
-                {
-                    messageDsp.MsgDsp("");
-                    txbPageSize.Text = "1";
-                    return;
-                }
-            }
-
-        }
-        private void txbPageNo_TextChanged(object sender, EventArgs e)
-        {
-            if (!String.IsNullOrEmpty(txbPageNo.Text.Trim()))
-            {
-                if (int.Parse(txbPageNo.Text) == 0)
-                {
-                    messageDsp.MsgDsp("");
-                    txbPageNo.Text = "1";
-                }
-            }
-        }
-        private void txbPageSize_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')
-            {
-                e.Handled = true;
-            }
-        }
-        private void txbPageNo_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')
-            {
-                e.Handled = true;
-            }
-        }
+       
+       
+        
         private void btnClear_Click(object sender, EventArgs e)
         {
             ClearInput();
@@ -335,7 +310,7 @@ namespace SalesManagement_SysDev
             if (!GetValidDataAtSelect())
                 return;
             //Ha情報抽出
-            GenereteDataAdSelect();
+            GenerateDataAdSelect();
             //Ha情報抽出結果
             SetSelectData();
         }
@@ -369,7 +344,7 @@ namespace SalesManagement_SysDev
             return true;
         }
 
-        private void GenereteDataAdSelect()
+        private void GenerateDataAdSelect()
         {
             T_Hattyu selectCondition = new T_Hattyu()
             {//検索に使用するデータ
@@ -460,11 +435,43 @@ namespace SalesManagement_SysDev
             // データグリッドビューの表示
             GetDataGridView();
         }
-
         private void btnConfirm_Click(object sender, EventArgs e)
         {
 
         }
-    }
 
+        private void btnDetailSearch_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void GetValidDetailDataAtSelect(object sender, EventArgs e)
+        {
+
+        }
+        private void GenerateDetailDataAdSelect(object sender, EventArgs e)
+        {
+
+        }
+        private void SetSelectDetailData(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDetailRegist_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void GetValidDataAtRegistration(object sender, EventArgs e)
+        {
+
+        }
+        private void GenerateDataAdRegistration(object sender, EventArgs e)
+        {
+
+        }
+        private void RegistrationOrder(object sender, EventArgs e)
+        {
+
+        }
+    }
 }
