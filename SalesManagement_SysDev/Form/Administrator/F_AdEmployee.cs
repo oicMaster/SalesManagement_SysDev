@@ -188,20 +188,24 @@ namespace SalesManagement_SysDev
         }
 
 
-        private void txbPageSize_KeyPress(object sender, KeyPressEventArgs e)
+        private void txbID_KeyPress()
         {
-            if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')
-            {
-                e.Handled = true;
-            }
+
         }
-        private void txbPageNo_KeyPress(object sender, KeyPressEventArgs e)
+
+        //txb▼_KeyPress
+
+        private void txbPage_KeyPress()
         {
-            if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')
-            {
-                e.Handled = true;
-            }
+
         }
+
+        private void txbQuntity_KeyPress()
+        {
+
+        }
+
+
 
         private void btnFirstPage_Click(object sender, EventArgs e)
         {
@@ -276,7 +280,7 @@ namespace SalesManagement_SysDev
 
         private void btnDisplay_Click(object sender, EventArgs e)
         {
-            SetFromDataGridView();
+            SetFormDataGridView();
         }
 
         private void labelLoginName_Click(object sender, EventArgs e)
@@ -287,90 +291,6 @@ namespace SalesManagement_SysDev
         {
             Dispose();
         }
-
-
-        private void btnUpdate_Click(object sender, EventArgs e)
-        {
-            if (!GetValidDataAtUpdata())
-                return;
-            var updEmployee = GenerateDataUpdata();
-
-            UpdataEmployee(updEmployee);
-
-        }
-
-
-        private bool GetValidDataAtUpdata()
-        {
-
-            if (!String.IsNullOrEmpty(txbEmID.Text.Trim()))
-            {
-                //社員IDの適否
-                if (!dataInputFormCheck.CheckHalfAlphabetNumeric(txbEmID.Text.Trim()))
-                {
-                    //社員IDの半角英数字チェック
-                    messageDsp.MsgDsp("");
-                    txbEmID.Focus();
-                    return false;
-                }
-                //社員ID文字数チェック
-                if (txbEmID.TextLength != 6)
-                {
-                    messageDsp.MsgDsp("");
-                    txbEmID.Focus();
-                    return false;
-                }
-                if (!employeeDateAccess.CheckEmployeeCDXxistence(int.Parse(txbEmID.Text.Trim())))
-                {
-                    //社員IDの存在チェック
-                    messageDsp.MsgDsp("");
-                    txbEmID.Focus();
-                    return false;
-                }
-            }
-            else
-            {
-                messageDsp.MsgDsp("");
-                txbEmID.Focus();
-                return false;
-            }
-            return true;
-
-
-
-
-        }
-
-        private M_Employee GenerateDataUpdata()
-        {
-            return new M_Employee
-            {
-                EmID = int.Parse(txbEmID.Text.Trim()),
-
-            };
-        }
-
-
-        private void UpdataEmployee(M_Employee updEmployee)
-        {
-            DialogResult result = messageDsp.MsgDsp("");
-
-            if (result == DialogResult.Cancel)
-                return;
-
-            bool flg = employeeDateAccess.UpadateEmployeeData(updEmployee);
-            if (flg == true)
-
-                messageDsp.MsgDsp("");
-            else
-                messageDsp.MsgDsp("");
-
-            txbEmID.Focus();
-
-
-            GetDataGridView();
-        }
-
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
@@ -416,143 +336,8 @@ namespace SalesManagement_SysDev
             dataGridViewDsp.Refresh();
         }
 
-        private void F_AdEmployee_Load(object sender, EventArgs e)
-        {
-            SetFromDataGridView();
-        }
-        private void SetFromDataGridView()
-        {
-            txbPageSize.Text = "100";
-            txbPageNo.Text = "1";
-            dataGridViewDsp.ReadOnly = true;
-            dataGridViewDsp.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-
-            dataGridViewDsp.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-            GetDataGridView();
-        }
-
-        private void buttonPageSizeChange_Click(object sender, EventArgs e)
-        {
-            SetDataGridView();
-        }
 
 
-
-        private void dataGridViewDsp_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            //クリックした行のデータをテキストボックスへ
-            txbEmID.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[0].Value.ToString();
-            txbEmName.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[1].Value.ToString();
-            txbEmHiredate.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[2].Value.ToString();
-            txbSoID.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[3].Value.ToString();
-            txbPoID.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[4].Value.ToString();
-            txbEmPhone.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[6].Value.ToString();
-            txbEmFlag.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[7].Value.ToString();
-            if (dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[8].Value != null)
-                txbEmHiddin.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[8].Value.ToString();
-            else
-                txbEmHiddin.Text = String.Empty;
-        }
-
-        private void btnUpdate_Click_1(object sender, EventArgs e)
-        {
-
-            //妥当な顧客データを取得
-            if (!GetValidDataAtUpdate())
-                return;
-            //顧客情報作成
-            var updEm = GenerateDataAtUpdate();
-            //顧客情報更新
-            UpdateClient(updEm);    //エラーでます
-        }
-
-        private bool GetValidDataAtUpdate()
-        {
-            if (!String.IsNullOrEmpty(txbEmID.Text.Trim()))
-            {
-                if (!employeeDateAccess.CheckEmployeeCDXxistence(int.Parse(txbEmID.Text.Trim())))
-                {
-                    messageDsp.MsgDsp("");
-                    txbEmID.Focus();
-                    return false;
-                }
-            }
-            else
-            {
-                messageDsp.MsgDsp("");
-                txbEmID.Focus();
-                return false;
-            }
-            if (!String.IsNullOrEmpty(txbEmID.Text.Trim()))
-            {
-
-            }
-            else
-            {
-                messageDsp.MsgDsp("");
-                txbSoID.Focus();
-                return false;
-            }
-            if (String.IsNullOrEmpty(txbPoID.Text.Trim()))
-            {
-                messageDsp.MsgDsp("");
-                txbPoID.Focus();
-                return false;
-            }
-            if (String.IsNullOrEmpty(txbEmHiredate.Text.Trim()))
-            {
-                messageDsp.MsgDsp("");
-                txbEmHiredate.Focus();
-                return false;
-            }
-            if (String.IsNullOrEmpty(txbEmPhone.Text.Trim()))
-            {
-                messageDsp.MsgDsp("");
-                txbEmPhone.Focus();
-                return false;
-            }
-            if (String.IsNullOrEmpty(txbEmHiddin.Text.Trim()))
-            {
-                messageDsp.MsgDsp("");
-                txbEmHiddin.Focus();
-                return false;
-            }
-            return true;
-        }
-
-        private M_Employee GenerateDataAtUpdate()
-        {
-            return new M_Employee
-            {
-                EmID = int.Parse(txbEmID.Text.Trim()),
-                EmName = txbEmName.Text.Trim(),
-                SoID = int.Parse((txbSoID.Text.Trim())),
-                PoID = int.Parse((txbPoID.Text.Trim())),
-                EmHiredate = DateTime.Parse(txbEmHiredate.Text.Trim()),
-                EmPhone = txbEmPhone.Text.Trim(),
-                EmFlag = int.Parse(txbEmFlag.Text.Trim()),
-                EmHidden = txbEmHiddin.Text.Trim(),
-            };
-        }
-
-        private void UpdateClient(M_Employee updCl)
-        {
-            DialogResult result = messageDsp.MsgDsp("");
-            if (result == DialogResult.Cancel)
-                return;
-
-            bool flg = employeeDateAccess.UpadateEmployeeData(updCl);
-            if (flg == true)
-                messageDsp.MsgDsp("");
-            else
-                messageDsp.MsgDsp("");
-
-            ClearInput();
-            txbEmID.Focus();
-
-            GetDataGridView();
-        }
 
         private void btnRegist_Click(object sender, EventArgs e)
         {
@@ -661,6 +446,121 @@ namespace SalesManagement_SysDev
 
         }
 
+
+
+
+       
+        private void btnUpdate_Click_1(object sender, EventArgs e)
+        {
+
+            //妥当な顧客データを取得
+            if (!GetValidDataAtUpdate())
+                return;
+            //顧客情報作成
+            var updEm = GenerateDataAtUpdate();
+            //顧客情報更新
+            UpdateClient(updEm);    //エラーでます
+        }
+
+        private bool GetValidDataAtUpdate()
+        {
+            if (!String.IsNullOrEmpty(txbEmID.Text.Trim()))
+            {
+                if (!employeeDateAccess.CheckEmployeeCDXxistence(int.Parse(txbEmID.Text.Trim())))
+                {
+                    messageDsp.MsgDsp("");
+                    txbEmID.Focus();
+                    return false;
+                }
+            }
+            else
+            {
+                messageDsp.MsgDsp("");
+                txbEmID.Focus();
+                return false;
+            }
+            if (!String.IsNullOrEmpty(txbEmID.Text.Trim()))
+            {
+
+            }
+            else
+            {
+                messageDsp.MsgDsp("");
+                txbSoID.Focus();
+                return false;
+            }
+            if (String.IsNullOrEmpty(txbPoID.Text.Trim()))
+            {
+                messageDsp.MsgDsp("");
+                txbPoID.Focus();
+                return false;
+            }
+            if (String.IsNullOrEmpty(txbEmHiredate.Text.Trim()))
+            {
+                messageDsp.MsgDsp("");
+                txbEmHiredate.Focus();
+                return false;
+            }
+            if (String.IsNullOrEmpty(txbEmPhone.Text.Trim()))
+            {
+                messageDsp.MsgDsp("");
+                txbEmPhone.Focus();
+                return false;
+            }
+            if (String.IsNullOrEmpty(txbEmHiddin.Text.Trim()))
+            {
+                messageDsp.MsgDsp("");
+                txbEmHiddin.Focus();
+                return false;
+            }
+            return true;
+        }
+
+        private M_Employee GenerateDataAtUpdate()
+        {
+            return new M_Employee
+            {
+                EmID = int.Parse(txbEmID.Text.Trim()),
+                EmName = txbEmName.Text.Trim(),
+                SoID = int.Parse((txbSoID.Text.Trim())),
+                PoID = int.Parse((txbPoID.Text.Trim())),
+                EmHiredate = DateTime.Parse(txbEmHiredate.Text.Trim()),
+                EmPhone = txbEmPhone.Text.Trim(),
+                EmFlag = int.Parse(txbEmFlag.Text.Trim()),
+                EmHidden = txbEmHiddin.Text.Trim(),
+            };
+        }
+
+        private void UpdateClient(M_Employee updCl)
+        {
+            DialogResult result = messageDsp.MsgDsp("");
+            if (result == DialogResult.Cancel)
+                return;
+
+            bool flg = employeeDateAccess.UpadateEmployeeData(updCl);
+            if (flg == true)
+                messageDsp.MsgDsp("");
+            else
+                messageDsp.MsgDsp("");
+
+            ClearInput();
+            txbEmID.Focus();
+
+            GetDataGridView();
+        }
+
+
+
+       
+        private void F_AdEmployee_Load_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnRegist_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 
