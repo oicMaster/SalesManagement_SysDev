@@ -25,11 +25,7 @@ namespace SalesManagement_SysDev
         }
         private void F_Syukko_Load(object sender, EventArgs e)
         {
-            //labelLoginName.Text = FormMenu.LoginName;
             SetFormDataGridView();
-            //fncButtonEnable(0);
-            //fncTextBoxReadOnly(0);
-            //txbClFlag.ReadOnly = true;
         }
         private void SetFormDataGridView()
         {
@@ -67,7 +63,7 @@ namespace SalesManagement_SysDev
             dataGridViewDsp.Columns[6].Width = 100;
             dataGridViewDsp.Columns[7].Width = 100;
             dataGridViewDsp.Columns[8].Width = 100;
-            
+
             //列の文字の位置の指定
             dataGridViewDsp.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewDsp.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -162,6 +158,11 @@ namespace SalesManagement_SysDev
 
         }
 
+        //txbPageSize_TextChanged
+        //{}
+
+        //txbPageNo_TextChanged
+        //{}
 
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -201,5 +202,6 @@ namespace SalesManagement_SysDev
         {
             SetFormDataGridView();
         }
+
     }
 }
