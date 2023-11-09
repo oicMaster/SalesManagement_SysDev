@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace SalesManagement_SysDev
 {
-    public partial class F_LoWereHous : Form
+    public partial class F_LoWereHousing : Form
     {
-        public F_LoWereHous()
+        public F_LoWereHousing()
         {
             InitializeComponent();
         }

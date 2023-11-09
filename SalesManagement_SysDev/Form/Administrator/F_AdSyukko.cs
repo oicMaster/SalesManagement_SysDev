@@ -15,9 +15,10 @@ namespace SalesManagement_SysDev
     {
         MessageDsp messageDsp = new MessageDsp();
         SyukkoDataAccess syukkoDataAccess = new SyukkoDataAccess();
-        DataInputFormCheck dataInputFormCheck = new DataInputFormCheck();
+        SyukkoDetailDataAccess syukkoDetailDataAccess = new SyukkoDetailDataAccess();
 
         private static List<T_Syukko> Syukko;
+        private static List<T_SyukkoDetail> SyukkoDetail;
         public F_AdSyukko()
         {
             InitializeComponent();
@@ -109,6 +110,59 @@ namespace SalesManagement_SysDev
             else
                 txbSyHidden.Text = String.Empty;
         }
+        private void SetFormDataGridViewSub()
+        {
+            txbPageSizeSub.Text = "5";
+            txbPageNoSub.Text = "1";
+            dataGridViewSubDsp.ReadOnly = true;
+            dataGridViewSubDsp.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridViewSubDsp.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            GetDataGridViewmini();
+        }
+        private void GetDataGridViewmini()
+        {
+            //SyukkoDetail = SyukkoDetailDataAccess.GetArrivalDetailData();
+
+            SetDataGridViewSub();
+        }
+
+
+        private void SetDataGridViewSub()
+        {
+            int pageSize = int.Parse(txbPageSizeSub.Text);
+            int pageNo = int.Parse(txbPageNoSub.Text) - 1;
+            dataGridViewSubDsp.DataSource = SyukkoDetail.Skip(pageSize * pageNo).Take(pageSize).ToList();
+
+            dataGridViewSubDsp.Columns[0].Width = 100;
+            dataGridViewSubDsp.Columns[1].Width = 100;
+            dataGridViewSubDsp.Columns[2].Width = 100;
+            dataGridViewSubDsp.Columns[3].Width = 100;
+
+
+            dataGridViewSubDsp.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewSubDsp.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewSubDsp.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewSubDsp.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            dataGridViewSubDsp.Columns[0].HeaderText = "出庫詳細ID";
+            dataGridViewSubDsp.Columns[1].HeaderText = "出庫ID";
+            dataGridViewSubDsp.Columns[2].HeaderText = "商品ID";
+            dataGridViewSubDsp.Columns[3].HeaderText = "数量";
+
+            dataGridViewSubDsp.Columns[4].Visible = false;
+            dataGridViewSubDsp.Columns[5].Visible = false;
+
+            lblPageSub.Text = "/" + ((int)Math.Ceiling(SyukkoDetail.Count / (double)pageSize)) + "ページ";
+
+            dataGridViewDsp.Refresh();
+        }
+
+        private void dataGridViewSubDsp_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
@@ -122,27 +176,7 @@ namespace SalesManagement_SysDev
         }
         private bool GetValidDataAtSelect()
         {
-            if (!String.IsNullOrEmpty(txbSyID.Text.Trim()))
-            {
-                if (!dataInputFormCheck.CheckNumeric(txbSyID.Text.Trim()))
-                {
-                    messageDsp.MsgDsp("");
-                    txbSyID.Focus();
-                    return false;
-                }
-                if(txbSyID.TextLength > 6)
-                {
-                    messageDsp.MsgDsp("");
-                    txbSyID.Focus();
-                    return false;
-                }
-            }
-            else
-            {
-                messageDsp.MsgDsp("");
-                txbSyID.Focus();
-                return false;
-            }
+
             return true;
         }
         private void SetSelectData()

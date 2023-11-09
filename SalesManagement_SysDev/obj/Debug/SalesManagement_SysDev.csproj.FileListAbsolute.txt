@@ -66,7 +66,6 @@ C:\Users\retro\Desktop\システム開発(Sales)\SalesManagement_SysDev\SalesMan
 C:\Users\retro\Desktop\システム開発(Sales)\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.csproj.AssemblyReference.cache
 C:\Users\retro\Desktop\システム開発(Sales)\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.csproj.SuggestedBindingRedirects.cache
 C:\Users\retro\Desktop\システム開発(Sales)\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.F_AdShipment.resources
-C:\Users\retro\Desktop\システム開発(Sales)\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.F_AdWarehous.resources
 C:\Users\retro\Desktop\システム開発(Sales)\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.F_AdOperationHistory.resources
 C:\Users\retro\Desktop\システム開発(Sales)\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.F_AdArrival.resources
 C:\Users\retro\Desktop\システム開発(Sales)\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.F_AdSyukko.resources
@@ -87,3 +86,4 @@ C:\Users\retro\Desktop\システム開発(Sales)\SalesManagement_SysDev\SalesMan
 C:\Users\retro\Desktop\システム開発(Sales)\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.csproj.CopyComplete
 C:\Users\retro\Desktop\システム開発(Sales)\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.exe
 C:\Users\retro\Desktop\システム開発(Sales)\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.pdb
+C:\Users\retro\Desktop\システム開発(Sales)\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.F_AdWarehousing.resources

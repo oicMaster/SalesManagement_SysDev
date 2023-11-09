@@ -15,9 +15,10 @@ namespace SalesManagement_SysDev
     {
         MessageDsp messageDsp = new MessageDsp();
         ChumonDataAccess chumonDataAccess = new ChumonDataAccess();
-        DataInputFormCheck dataInputFormCheck = new DataInputFormCheck();
+        ChumonDetailDataAccess chumonDetailDataAccess = new ChumonDetailDataAccess();
 
         private static List<T_Chumon> Chumon;
+        private static List<T_ChumonDetail> ChumonDetail;
 
         public F_AdChumon()
         {
@@ -28,8 +29,8 @@ namespace SalesManagement_SysDev
         {
             //labelLoginName.Text = FormMenu.LoginName;
             SetFormDataGridView();
+            SetFormDataGridViewSub();
             fncButtonEnable(0);
-            fncTextBoxReadOnly(0);
             txbChFlag.ReadOnly = true;
             txbChStateFlag.ReadOnly = true;
         }
@@ -44,28 +45,6 @@ namespace SalesManagement_SysDev
                 case 1:
                     btnSearch.Enabled = true;
                     btnConfirm.Enabled = true;
-                    break;
-            }
-        }
-        private void fncTextBoxReadOnly(int chk)
-        {
-            switch (chk)
-            { //顧客IDが空であれば0、でなければ1として、テキストボックスの入力を制限する
-                case 0:
-                    txbSoID.ReadOnly = true;
-                    txbEmID.ReadOnly = true;
-                    txbClID.ReadOnly = true;
-                    txbOrID.ReadOnly = true;
-                    txbChDate.ReadOnly = true;
-                    txbChHidden.ReadOnly = true;
-                    break;
-                case 1:
-                    txbSoID.ReadOnly = false;
-                    txbEmID.ReadOnly = false;
-                    txbClID.ReadOnly = false;
-                    txbOrID.ReadOnly = false;
-                    txbChDate.ReadOnly = false;
-                    txbChHidden.ReadOnly = false;
                     break;
             }
         }
@@ -141,6 +120,55 @@ namespace SalesManagement_SysDev
                 txbChHidden.Text = String.Empty;
         }
 
+        private void SetFormDataGridViewSub()
+        {
+
+            dataGridViewSubDsp.ReadOnly = true;
+            dataGridViewSubDsp.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridViewSubDsp.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            GetDataGridViewSub();
+        }
+        private void GetDataGridViewSub()
+        {
+            //ChumonDetail = chumonDetailDataAccess.GetChumonDetailData();
+
+            SetDataGridViewSub();
+        }
+
+
+        private void SetDataGridViewSub()
+        {
+            int pageSize = int.Parse(txbPageSizeSub.Text);
+            int pageNo = int.Parse(txbPageNoSub.Text) - 1;
+            dataGridViewSubDsp.DataSource = Chumon.Skip(pageSize * pageNo).Take(pageSize).ToList();
+
+            dataGridViewSubDsp.Columns[0].Width = 100;
+            dataGridViewSubDsp.Columns[1].Width = 100;
+            dataGridViewSubDsp.Columns[2].Width = 100;
+            dataGridViewSubDsp.Columns[3].Width = 100;
+
+
+            dataGridViewSubDsp.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewSubDsp.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewSubDsp.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewSubDsp.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            dataGridViewSubDsp.Columns[0].HeaderText = "注文詳細ID";
+            dataGridViewSubDsp.Columns[1].HeaderText = "注文ID";
+            dataGridViewSubDsp.Columns[2].HeaderText = "商品ID";
+            dataGridViewSubDsp.Columns[3].HeaderText = "数量";
+
+            lblPageSub.Text = "/" + ((int)Math.Ceiling(Chumon.Count / (double)pageSize)) + "ページ";
+
+            dataGridViewDsp.Refresh();
+        }
+
+        private void dataGridViewSubDsp_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+
 
         private void txbPageSize_TextChanged(object sender, EventArgs e)
         {
@@ -178,13 +206,11 @@ namespace SalesManagement_SysDev
             if (txbChID.Text == "" || txbChID.Text == null)
             {
                 fncButtonEnable(0);
-                fncTextBoxReadOnly(0);
                 ClearInput();
             }
             else
             {
                 fncButtonEnable(1);
-                fncTextBoxReadOnly(1);
                 txbChFlag.Text = "0";
             }
 
@@ -351,5 +377,6 @@ namespace SalesManagement_SysDev
         {
 
         }
+
     }
 }

@@ -20,7 +20,7 @@ namespace SalesManagement_SysDev
         //メッセージ表示用のインスタンス化
         MessageDsp messageDsp = new MessageDsp();
         //データベース社員テーブルアクセス用のクラスのインスタンス化
-        EmployeeDateAccess employeeDateAccess = new EmployeeDateAccess();
+        EmployeeDataAccess employeeDateAccess = new EmployeeDataAccess();
         //入力形式チェック用クラスのインスタンス化
         DataInputFormCheck dataInputFormCheck = new DataInputFormCheck();
         //データグリッドビュー用の社員データ
@@ -68,7 +68,6 @@ namespace SalesManagement_SysDev
                     txbSoID.ReadOnly = true;
                     txbPoID.ReadOnly = true;
                     txbEmHiredate.ReadOnly = true;
-                    txbEmPassword.ReadOnly = true;
                     txbEmPhone.ReadOnly = true;
                     txbEmHiddin.ReadOnly = true;
                     break;
@@ -78,7 +77,6 @@ namespace SalesManagement_SysDev
                     txbSoID.ReadOnly = false;
                     txbPoID.ReadOnly = false;
                     txbEmHiredate.ReadOnly = false;
-                    txbEmPassword.ReadOnly = false;
                     txbEmPhone.ReadOnly = false;
                     txbEmHiddin.ReadOnly = false;
                     break;
@@ -271,7 +269,6 @@ namespace SalesManagement_SysDev
             txbEmHiredate.Text = String.Empty;
             txbSoID.Text = String.Empty;
             txbPoID.Text = String.Empty;
-            txbEmPassword.Text = String.Empty;
             txbEmPhone.Text = String.Empty;
             txbEmFlag.Text = String.Empty;
             txbEmHiddin.Text = String.Empty;
@@ -450,7 +447,6 @@ namespace SalesManagement_SysDev
             txbEmHiredate.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[2].Value.ToString();
             txbSoID.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[3].Value.ToString();
             txbPoID.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[4].Value.ToString();
-            txbEmPassword.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[5].Value.ToString();
             txbEmPhone.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[6].Value.ToString();
             txbEmFlag.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[7].Value.ToString();
             if (dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[8].Value != null)
@@ -510,12 +506,6 @@ namespace SalesManagement_SysDev
                 txbEmHiredate.Focus();
                 return false;
             }
-            if (String.IsNullOrEmpty(txbEmPassword.Text.Trim()))
-            {
-                messageDsp.MsgDsp("");
-                txbEmPassword.Focus();
-                return false;
-            }
             if (String.IsNullOrEmpty(txbEmPhone.Text.Trim()))
             {
                 messageDsp.MsgDsp("");
@@ -540,7 +530,6 @@ namespace SalesManagement_SysDev
                 SoID = int.Parse((txbSoID.Text.Trim())),
                 PoID = int.Parse((txbPoID.Text.Trim())),
                 EmHiredate = DateTime.Parse(txbEmHiredate.Text.Trim()),
-                EmPassword = txbEmPassword.Text.Trim(),
                 EmPhone = txbEmPhone.Text.Trim(),
                 EmFlag = int.Parse(txbEmFlag.Text.Trim()),
                 EmHidden = txbEmHiddin.Text.Trim(),
@@ -617,12 +606,6 @@ namespace SalesManagement_SysDev
                 txbEmHiredate.Focus();
                 return false;
             }
-            if (String.IsNullOrEmpty(txbEmPassword.Text.Trim()))
-            {
-                messageDsp.MsgDsp("");
-                txbEmPassword.Focus();
-                return false;
-            }
             if (String.IsNullOrEmpty(txbEmPhone.Text.Trim()))
             {
                 messageDsp.MsgDsp("");
@@ -651,7 +634,6 @@ namespace SalesManagement_SysDev
                 SoID = int.Parse((txbSoID.Text.Trim())),
                 PoID = int.Parse((txbPoID.Text.Trim())),
                 EmHiredate = DateTime.Parse(txbEmHiredate.Text.Trim()),
-                EmPassword = txbEmPassword.Text.Trim(),
                 EmPhone = txbEmPhone.Text.Trim(),
                 EmFlag = int.Parse(txbEmFlag.Text.Trim()),
                 EmHidden = txbEmHiddin.Text.Trim(),

@@ -5,10 +5,13 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Security.Authentication.ExtendedProtection;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
 
 namespace SalesManagement_SysDev
@@ -107,7 +110,6 @@ namespace SalesManagement_SysDev
             dataGridViewDsp.Columns[6].HeaderText = "FAX";
             dataGridViewDsp.Columns[7].HeaderText = "顧客管理グラフ";
             dataGridViewDsp.Columns[8].HeaderText = "非表示理由";
-
 
 
             //データグリッドビューの総ページ数
@@ -255,6 +257,7 @@ namespace SalesManagement_SysDev
             txbClPhone.Text = String.Empty;
             txbClPostal.Text = String.Empty;
             txbClFAX.Text = String.Empty;
+            txbClFlag.Text = String.Empty;
             txbClHidden.Text = String.Empty;
         }
         private void btnDisplay_Click(object sender, EventArgs e)
@@ -286,38 +289,31 @@ namespace SalesManagement_SysDev
 
         private bool GetValidDataAtSelect()
         {
-            //空白でないか確認
-            if (!String.IsNullOrEmpty(txbClID.Text.Trim()))
-            {
-                //数値かどうか確認
-                if (!dataInputFormCheck.CheckNumeric(txbClID.Text.Trim()))
-                {
-                    messageDsp.MsgDsp("");
-                    txbClID.Focus();
-                    return false;
-                }
-                //6文字以内か確認
-                if (txbClID.TextLength > 6)
-                {
-                    messageDsp.MsgDsp("");
-                    txbClID.Focus();
-                    return false;
-                }
-            }
-            else
-            {
-                messageDsp.MsgDsp("");
-                txbClID.Focus();
-                return false;
-            }
             return true;
         }
 
         private void GenereteDataAdSelect()
         {
+            if (!int.TryParse(txbClID.Text, out int clID))
+                clID = 0;
+            if(!int.TryParse(txbSoID.Text,out int soID))
+                soID = 0;
+            string clName = txbClName.Text.Trim();
+            string clAddress = txbClAddress.Text.Trim();
+            string clPhone = txbClPhone.Text.Trim();
+            string clPostal = txbClPostal.Text.Trim();
+            string clFAX = txbClFAX.Text.Trim();
+
             M_Client selectCondition = new M_Client()
             {//検索に使用するデータ
-                ClID = int.Parse(txbClID.Text.Trim()),
+                ClID = clID,
+                SoID = soID,
+                ClName = clName,
+                ClAddress = clAddress,
+                ClPhone = clPhone,
+                ClPostal = clPostal,
+                ClFAX = clFAX,
+
             };
             //顧客データの抽出
             Client = clientDataAccess.GetClientData(selectCondition);
