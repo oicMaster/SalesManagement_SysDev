@@ -28,9 +28,10 @@ namespace SalesManagement_SysDev
         private void F_Chumon_Load(object sender, EventArgs e)
         {
             //labelLoginName.Text = FormMenu.LoginName;
+            fncButtonEnable(0);
             SetFormDataGridView();
             SetFormDataGridViewSub();
-            fncButtonEnable(0);
+            
             txbChFlag.ReadOnly = true;
             txbChStateFlag.ReadOnly = true;
         }
@@ -229,12 +230,9 @@ namespace SalesManagement_SysDev
                 e.Handled = true;
             }
         }
-        private void txbPageNo_KeyPress(object sender, KeyPressEventArgs e)
+        private void txbQuntity_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')
-            {
-                e.Handled = true;
-            }
+
         }
 
 
@@ -373,10 +371,15 @@ namespace SalesManagement_SysDev
 
             lblPage.Text = "/" + ((int)Math.Ceiling(Chumon.Count / (double)pageSize)) + "ページ";
         }
-        private void btnConfirm_Click(object sender, EventArgs e)
+
+        private void btnUpdate_Click(object sender, EventArgs e)
         {
 
         }
 
+        private void btnConfirm_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
