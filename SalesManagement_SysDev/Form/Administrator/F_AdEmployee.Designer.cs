@@ -46,14 +46,12 @@
             this.txbPageSize = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.dataGridViewDsp = new System.Windows.Forms.DataGridView();
-            this.txbEmPassword = new System.Windows.Forms.TextBox();
             this.txbEmHiddin = new System.Windows.Forms.TextBox();
             this.txbEmFlag = new System.Windows.Forms.TextBox();
             this.txbEmHiredate = new System.Windows.Forms.TextBox();
             this.txbEmID = new System.Windows.Forms.TextBox();
             this.txbSoID = new System.Windows.Forms.TextBox();
             this.txbEmName = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -223,13 +221,6 @@
             this.dataGridViewDsp.Size = new System.Drawing.Size(904, 316);
             this.dataGridViewDsp.TabIndex = 111;
             // 
-            // txbEmPassword
-            // 
-            this.txbEmPassword.Location = new System.Drawing.Point(728, 202);
-            this.txbEmPassword.Name = "txbEmPassword";
-            this.txbEmPassword.Size = new System.Drawing.Size(100, 22);
-            this.txbEmPassword.TabIndex = 110;
-            // 
             // txbEmHiddin
             // 
             this.txbEmHiddin.Location = new System.Drawing.Point(238, 296);
@@ -271,15 +262,6 @@
             this.txbEmName.Name = "txbEmName";
             this.txbEmName.Size = new System.Drawing.Size(100, 22);
             this.txbEmName.TabIndex = 104;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(729, 162);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(64, 15);
-            this.label7.TabIndex = 103;
-            this.label7.Text = "パスワード";
             // 
             // label6
             // 
@@ -337,7 +319,7 @@
             // 
             // txbEmPhone
             // 
-            this.txbEmPhone.Location = new System.Drawing.Point(848, 202);
+            this.txbEmPhone.Location = new System.Drawing.Point(734, 202);
             this.txbEmPhone.Name = "txbEmPhone";
             this.txbEmPhone.Size = new System.Drawing.Size(100, 22);
             this.txbEmPhone.TabIndex = 134;
@@ -345,7 +327,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(849, 162);
+            this.label2.Location = new System.Drawing.Point(735, 162);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(67, 15);
             this.label2.TabIndex = 133;
@@ -377,14 +359,12 @@
             this.Controls.Add(this.txbPageSize);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.dataGridViewDsp);
-            this.Controls.Add(this.txbEmPassword);
             this.Controls.Add(this.txbEmHiddin);
             this.Controls.Add(this.txbEmFlag);
             this.Controls.Add(this.txbEmHiredate);
             this.Controls.Add(this.txbEmID);
             this.Controls.Add(this.txbSoID);
             this.Controls.Add(this.txbEmName);
-            this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -418,14 +398,12 @@
         private System.Windows.Forms.TextBox txbPageSize;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.DataGridView dataGridViewDsp;
-        private System.Windows.Forms.TextBox txbEmPassword;
         private System.Windows.Forms.TextBox txbEmHiddin;
         private System.Windows.Forms.TextBox txbEmFlag;
         private System.Windows.Forms.TextBox txbEmHiredate;
         private System.Windows.Forms.TextBox txbEmID;
         private System.Windows.Forms.TextBox txbSoID;
         private System.Windows.Forms.TextBox txbEmName;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;

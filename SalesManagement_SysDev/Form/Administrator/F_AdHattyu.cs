@@ -15,9 +15,11 @@ namespace SalesManagement_SysDev
     {
         MessageDsp messageDsp = new MessageDsp();
         HattyuDataAccess hattyuDataAccess = new HattyuDataAccess();
+        HattyuDetailDataAccess hattyuDetailDataaccess = new HattyuDetailDataAccess();
         DataInputFormCheck dataInputFormCheck = new DataInputFormCheck();
 
         private static List<T_Hattyu> Hattyu;
+        private static List<T_HattyuDetail> HattyuDetail;
         public F_AdHattyu()
         {
             InitializeComponent();
@@ -132,6 +134,50 @@ namespace SalesManagement_SysDev
             else
                 txbHaHidden.Text = String.Empty;
         }
+        private void SetFormDataGridViewSub()
+        {
+            txbPageSizeSub.Text = "5";
+            txbPageNoSub.Text = "1";
+            dataGridViewSubDsp.ReadOnly = true;
+            dataGridViewSubDsp.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridViewSubDsp.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            GetDataGridViewSub();
+        }
+        private void GetDataGridViewSub()
+        {
+            //ChumonDetail = chumonDetailDataAccess.GetChumonDetailData();
+
+            SetDataGridViewSub();
+        }
+
+
+        private void SetDataGridViewSub()
+        {
+            int pageSize = int.Parse(txbPageSizeSub.Text);
+            int pageNo = int.Parse(txbPageNoSub.Text) - 1;
+            dataGridViewSubDsp.DataSource = HattyuDetail.Skip(pageSize * pageNo).Take(pageSize).ToList();
+
+            dataGridViewSubDsp.Columns[0].Width = 100;
+            dataGridViewSubDsp.Columns[1].Width = 100;
+            dataGridViewSubDsp.Columns[2].Width = 100;
+            dataGridViewSubDsp.Columns[3].Width = 100;
+
+
+            dataGridViewSubDsp.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewSubDsp.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewSubDsp.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewSubDsp.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            dataGridViewSubDsp.Columns[0].HeaderText = "発注詳細ID";
+            dataGridViewSubDsp.Columns[1].HeaderText = "発注ID";
+            dataGridViewSubDsp.Columns[2].HeaderText = "商品ID";
+            dataGridViewSubDsp.Columns[3].HeaderText = "数量";
+
+            lblPageSub.Text = "/" + ((int)Math.Ceiling(HattyuDetail.Count / (double)pageSize)) + "ページ";
+
+            dataGridViewDsp.Refresh();
+        }
+
 
         private void btnFirstPage_Click(object sender, EventArgs e)
         {

@@ -57,6 +57,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Form\DbAccess\ArrivalDetailDataAccess.cs" />
+    <Compile Include="Form\DbAccess\ChumonDetailDataAccess.cs" />
     <Compile Include="Form\DbAccess\ArrivalDataAccess.cs" />
     <Compile Include="Form\DbAccess\ChumonDataAccess.cs" />
     <Compile Include="Common\DataInputFormCheck.cs" />
@@ -72,11 +74,11 @@
     <Compile Include="Form\Administrator\F_AdShipment.Designer.cs">
       <DependentUpon>F_AdShipment.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\Administrator\F_AdWarehous.cs">
+    <Compile Include="Form\Administrator\F_AdWarehousing.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Administrator\F_AdWarehous.Designer.cs">
-      <DependentUpon>F_AdWarehous.cs</DependentUpon>
+    <Compile Include="Form\Administrator\F_AdWarehousing.Designer.cs">
+      <DependentUpon>F_AdWarehousing.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\Administrator\F_AdOperationHistory.cs">
       <SubType>Form</SubType>
@@ -235,11 +237,11 @@
     <Compile Include="Form\Sales\F_SaShipmant.Designer.cs">
       <DependentUpon>F_SaShipmant.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\Logistics\F_LoWereHous.cs">
+    <Compile Include="Form\Logistics\F_LoWereHousing.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Logistics\F_LoWereHous.Designer.cs">
-      <DependentUpon>F_LoWereHous.cs</DependentUpon>
+    <Compile Include="Form\Logistics\F_LoWereHousing.Designer.cs">
+      <DependentUpon>F_LoWereHousing.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\Store\F_OperationManegement.cs">
       <SubType>Form</SubType>
@@ -249,7 +251,7 @@
     </Compile>
     <Compile Include="Form\DbAccess\ProductDataAccess.cs" />
     <Compile Include="Form\DbAccess\HattyuDataAccess.cs" />
-    <Compile Include="Form\DbAccess\OperationDataAccess.cs" />
+    <Compile Include="Form\DbAccess\OperationHistoryDataAccess.cs" />
     <Compile Include="Form\DbAccess\OrderDataAccess.cs" />
     <Compile Include="Form\Administrator\F_AdMaker.cs">
       <SubType>Form</SubType>
@@ -277,6 +279,10 @@
     </Compile>
     <Compile Include="Form\DbAccess\MakerDataAccess.cs" />
     <Compile Include="Form\DbAccess\PositionDataAccess.cs" />
+    <Compile Include="Form\DbAccess\HattyuDetailDataAccess.cs" />
+    <Compile Include="Form\DbAccess\MajorClassificationDataAccess.cs" />
+    <Compile Include="Form\DbAccess\OrderDetailDataAccess.cs" />
+    <Compile Include="Form\DbAccess\LoginHistoryDataAccess.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Entity\T_Arrival.cs" />
@@ -304,11 +310,17 @@
     <Compile Include="Form\DbAccess\StockDataAccess.cs" />
     <Compile Include="Form\DbAccess\SyukkoDataAccess.cs" />
     <Compile Include="Form\DbAccess\SalesOfficeDataAccess.cs" />
+    <Compile Include="Form\DbAccess\SaleDetailDataAccess.cs" />
+    <Compile Include="Form\DbAccess\ShipmentDetailDataAccess.cs" />
+    <Compile Include="Form\DbAccess\SmallClassification.cs" />
+    <Compile Include="Form\DbAccess\SyukkoDetailDataAccess.cs" />
+    <Compile Include="Form\DbAccess\WarehousingDetailDataAccess.cs" />
+    <Compile Include="Form\DbAccess\WareHousingDataAccess.cs" />
     <EmbeddedResource Include="Form\Administrator\F_AdShipment.resx">
       <DependentUpon>F_AdShipment.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Administrator\F_AdWarehous.resx">
-      <DependentUpon>F_AdWarehous.cs</DependentUpon>
+    <EmbeddedResource Include="Form\Administrator\F_AdWarehousing.resx">
+      <DependentUpon>F_AdWarehousing.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Administrator\F_AdOperationHistory.resx">
       <DependentUpon>F_AdOperationHistory.cs</DependentUpon>

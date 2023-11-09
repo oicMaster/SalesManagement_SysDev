@@ -46,7 +46,6 @@
             this.txbArFlag = new System.Windows.Forms.TextBox();
             this.txbArHidden = new System.Windows.Forms.TextBox();
             this.txbArStateFlag = new System.Windows.Forms.TextBox();
-            this.txbArDate = new System.Windows.Forms.TextBox();
             this.txbEmID = new System.Windows.Forms.TextBox();
             this.txbSoID = new System.Windows.Forms.TextBox();
             this.txbArID = new System.Windows.Forms.TextBox();
@@ -63,7 +62,7 @@
             this.txbClID = new System.Windows.Forms.TextBox();
             this.txbArDetailID = new System.Windows.Forms.TextBox();
             this.labal1 = new System.Windows.Forms.Label();
-            this.dataGridViewMiniDsp = new System.Windows.Forms.DataGridView();
+            this.dataGridViewSubDsp = new System.Windows.Forms.DataGridView();
             this.btnDetailSearch = new System.Windows.Forms.Button();
             this.txbPrID = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
@@ -71,10 +70,19 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.txbArQuantity = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.txbArIDsub = new System.Windows.Forms.TextBox();
+            this.txbArIDSub = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
+            this.dtpArDate = new System.Windows.Forms.DateTimePicker();
+            this.lblPageSub = new System.Windows.Forms.Label();
+            this.txbPageNoSub = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.txbPageSizeSub = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDsp)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMiniDsp)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSubDsp)).BeginInit();
             this.SuspendLayout();
             // 
             // btnConfirm
@@ -139,7 +147,7 @@
             // lblPage
             // 
             this.lblPage.AutoSize = true;
-            this.lblPage.Location = new System.Drawing.Point(748, 687);
+            this.lblPage.Location = new System.Drawing.Point(362, 679);
             this.lblPage.Name = "lblPage";
             this.lblPage.Size = new System.Drawing.Size(43, 15);
             this.lblPage.TabIndex = 84;
@@ -147,7 +155,7 @@
             // 
             // txbPageNo
             // 
-            this.txbPageNo.Location = new System.Drawing.Point(626, 685);
+            this.txbPageNo.Location = new System.Drawing.Point(240, 677);
             this.txbPageNo.Name = "txbPageNo";
             this.txbPageNo.Size = new System.Drawing.Size(100, 22);
             this.txbPageNo.TabIndex = 83;
@@ -156,7 +164,7 @@
             // 
             // btnLastPage
             // 
-            this.btnLastPage.Location = new System.Drawing.Point(1083, 679);
+            this.btnLastPage.Location = new System.Drawing.Point(697, 671);
             this.btnLastPage.Name = "btnLastPage";
             this.btnLastPage.Size = new System.Drawing.Size(75, 23);
             this.btnLastPage.TabIndex = 82;
@@ -166,7 +174,7 @@
             // 
             // btnNextPage
             // 
-            this.btnNextPage.Location = new System.Drawing.Point(1002, 679);
+            this.btnNextPage.Location = new System.Drawing.Point(616, 671);
             this.btnNextPage.Name = "btnNextPage";
             this.btnNextPage.Size = new System.Drawing.Size(75, 23);
             this.btnNextPage.TabIndex = 81;
@@ -176,7 +184,7 @@
             // 
             // btnPreviousPage
             // 
-            this.btnPreviousPage.Location = new System.Drawing.Point(921, 679);
+            this.btnPreviousPage.Location = new System.Drawing.Point(535, 671);
             this.btnPreviousPage.Name = "btnPreviousPage";
             this.btnPreviousPage.Size = new System.Drawing.Size(75, 23);
             this.btnPreviousPage.TabIndex = 80;
@@ -186,7 +194,7 @@
             // 
             // btnFirstPage
             // 
-            this.btnFirstPage.Location = new System.Drawing.Point(840, 679);
+            this.btnFirstPage.Location = new System.Drawing.Point(454, 671);
             this.btnFirstPage.Name = "btnFirstPage";
             this.btnFirstPage.Size = new System.Drawing.Size(75, 23);
             this.btnFirstPage.TabIndex = 79;
@@ -221,6 +229,7 @@
             this.dataGridViewDsp.RowTemplate.Height = 24;
             this.dataGridViewDsp.Size = new System.Drawing.Size(904, 316);
             this.dataGridViewDsp.TabIndex = 76;
+            this.dataGridViewDsp.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewDsp_CellClick);
             // 
             // txbArFlag
             // 
@@ -239,17 +248,10 @@
             // 
             // txbArStateFlag
             // 
-            this.txbArStateFlag.Location = new System.Drawing.Point(770, 155);
+            this.txbArStateFlag.Location = new System.Drawing.Point(804, 155);
             this.txbArStateFlag.Name = "txbArStateFlag";
             this.txbArStateFlag.Size = new System.Drawing.Size(100, 22);
             this.txbArStateFlag.TabIndex = 73;
-            // 
-            // txbArDate
-            // 
-            this.txbArDate.Location = new System.Drawing.Point(651, 155);
-            this.txbArDate.Name = "txbArDate";
-            this.txbArDate.Size = new System.Drawing.Size(100, 22);
-            this.txbArDate.TabIndex = 72;
             // 
             // txbEmID
             // 
@@ -390,15 +392,16 @@
             this.labal1.TabIndex = 98;
             this.labal1.Text = "入荷詳細ID";
             // 
-            // dataGridViewMiniDsp
+            // dataGridViewSubDsp
             // 
-            this.dataGridViewMiniDsp.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewMiniDsp.Location = new System.Drawing.Point(921, 286);
-            this.dataGridViewMiniDsp.Name = "dataGridViewMiniDsp";
-            this.dataGridViewMiniDsp.RowHeadersWidth = 51;
-            this.dataGridViewMiniDsp.RowTemplate.Height = 24;
-            this.dataGridViewMiniDsp.Size = new System.Drawing.Size(377, 316);
-            this.dataGridViewMiniDsp.TabIndex = 97;
+            this.dataGridViewSubDsp.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewSubDsp.Location = new System.Drawing.Point(921, 286);
+            this.dataGridViewSubDsp.Name = "dataGridViewSubDsp";
+            this.dataGridViewSubDsp.RowHeadersWidth = 51;
+            this.dataGridViewSubDsp.RowTemplate.Height = 24;
+            this.dataGridViewSubDsp.Size = new System.Drawing.Size(377, 316);
+            this.dataGridViewSubDsp.TabIndex = 97;
+            this.dataGridViewSubDsp.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewSubDsp_CellClick);
             // 
             // btnDetailSearch
             // 
@@ -462,14 +465,14 @@
             this.label13.TabIndex = 108;
             this.label13.Text = "数量";
             // 
-            // txbArIDsub
+            // txbArIDSub
             // 
-            this.txbArIDsub.Location = new System.Drawing.Point(920, 196);
-            this.txbArIDsub.Name = "txbArIDsub";
-            this.txbArIDsub.Size = new System.Drawing.Size(100, 22);
-            this.txbArIDsub.TabIndex = 111;
-            this.txbArIDsub.TextChanged += new System.EventHandler(this.txbArIDsub_TextChanged);
-            this.txbArIDsub.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbID_KeyPress);
+            this.txbArIDSub.Location = new System.Drawing.Point(920, 196);
+            this.txbArIDSub.Name = "txbArIDSub";
+            this.txbArIDSub.Size = new System.Drawing.Size(100, 22);
+            this.txbArIDSub.TabIndex = 111;
+            this.txbArIDSub.TextChanged += new System.EventHandler(this.txbArIDsub_TextChanged);
+            this.txbArIDSub.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbID_KeyPress);
             // 
             // label14
             // 
@@ -480,12 +483,97 @@
             this.label14.TabIndex = 110;
             this.label14.Text = "入荷ID";
             // 
+            // dtpArDate
+            // 
+            this.dtpArDate.Location = new System.Drawing.Point(626, 155);
+            this.dtpArDate.Name = "dtpArDate";
+            this.dtpArDate.Size = new System.Drawing.Size(155, 22);
+            this.dtpArDate.TabIndex = 112;
+            this.dtpArDate.Value = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            // 
+            // lblPageSub
+            // 
+            this.lblPageSub.AutoSize = true;
+            this.lblPageSub.Location = new System.Drawing.Point(1253, 628);
+            this.lblPageSub.Name = "lblPageSub";
+            this.lblPageSub.Size = new System.Drawing.Size(43, 15);
+            this.lblPageSub.TabIndex = 120;
+            this.lblPageSub.Text = "ページ";
+            // 
+            // txbPageNoSub
+            // 
+            this.txbPageNoSub.Location = new System.Drawing.Point(1131, 626);
+            this.txbPageNoSub.Name = "txbPageNoSub";
+            this.txbPageNoSub.Size = new System.Drawing.Size(100, 22);
+            this.txbPageNoSub.TabIndex = 119;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(1197, 671);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 118;
+            this.button1.Text = "▶|";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(1116, 671);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 117;
+            this.button2.Text = "▶";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(1035, 671);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 116;
+            this.button3.Text = "◀";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(954, 671);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 115;
+            this.button4.Text = "|◀";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // txbPageSizeSub
+            // 
+            this.txbPageSizeSub.Location = new System.Drawing.Point(986, 625);
+            this.txbPageSizeSub.Name = "txbPageSizeSub";
+            this.txbPageSizeSub.Size = new System.Drawing.Size(100, 22);
+            this.txbPageSizeSub.TabIndex = 114;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(899, 628);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(81, 15);
+            this.label16.TabIndex = 113;
+            this.label16.Text = "1ページ行数";
+            // 
             // F_AdArrival
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1347, 727);
-            this.Controls.Add(this.txbArIDsub);
+            this.Controls.Add(this.lblPageSub);
+            this.Controls.Add(this.txbPageNoSub);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.txbPageSizeSub);
+            this.Controls.Add(this.label16);
+            this.Controls.Add(this.dtpArDate);
+            this.Controls.Add(this.txbArIDSub);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.txbArQuantity);
             this.Controls.Add(this.label13);
@@ -496,7 +584,7 @@
             this.Controls.Add(this.btnDetailSearch);
             this.Controls.Add(this.txbArDetailID);
             this.Controls.Add(this.labal1);
-            this.Controls.Add(this.dataGridViewMiniDsp);
+            this.Controls.Add(this.dataGridViewSubDsp);
             this.Controls.Add(this.txbClID);
             this.Controls.Add(this.txbOrID);
             this.Controls.Add(this.label10);
@@ -519,7 +607,6 @@
             this.Controls.Add(this.txbArFlag);
             this.Controls.Add(this.txbArHidden);
             this.Controls.Add(this.txbArStateFlag);
-            this.Controls.Add(this.txbArDate);
             this.Controls.Add(this.txbEmID);
             this.Controls.Add(this.txbSoID);
             this.Controls.Add(this.txbArID);
@@ -535,7 +622,7 @@
             this.Load += new System.EventHandler(this.F_Arrival_Load);
             this.TextChanged += new System.EventHandler(this.txbHidden_TextChanged);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDsp)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMiniDsp)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSubDsp)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -561,7 +648,6 @@
         private System.Windows.Forms.TextBox txbArFlag;
         private System.Windows.Forms.TextBox txbArHidden;
         private System.Windows.Forms.TextBox txbArStateFlag;
-        private System.Windows.Forms.TextBox txbArDate;
         private System.Windows.Forms.TextBox txbEmID;
         private System.Windows.Forms.TextBox txbSoID;
         private System.Windows.Forms.TextBox txbArID;
@@ -578,7 +664,7 @@
         private System.Windows.Forms.TextBox txbClID;
         private System.Windows.Forms.TextBox txbArDetailID;
         private System.Windows.Forms.Label labal1;
-        private System.Windows.Forms.DataGridView dataGridViewMiniDsp;
+        private System.Windows.Forms.DataGridView dataGridViewSubDsp;
         private System.Windows.Forms.Button btnDetailSearch;
         private System.Windows.Forms.TextBox txbPrID;
         private System.Windows.Forms.Label label12;
@@ -586,7 +672,16 @@
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.TextBox txbArQuantity;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox txbArIDsub;
+        private System.Windows.Forms.TextBox txbArIDSub;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.DateTimePicker dtpArDate;
+        private System.Windows.Forms.Label lblPageSub;
+        private System.Windows.Forms.TextBox txbPageNoSub;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.TextBox txbPageSizeSub;
+        private System.Windows.Forms.Label label16;
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace SalesManagement_SysDev
 {
-    partial class F_AdWarehous
+    partial class F_AdWarehousing
     {
         /// <summary>
         /// Required designer variable.
@@ -59,7 +59,7 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.txbWaDetailID = new System.Windows.Forms.TextBox();
             this.labal1 = new System.Windows.Forms.Label();
-            this.dataGridViewMiniDsp = new System.Windows.Forms.DataGridView();
+            this.dataGridViewSubDsp = new System.Windows.Forms.DataGridView();
             this.btnDetailSearch = new System.Windows.Forms.Button();
             this.txbPrID = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
@@ -68,8 +68,16 @@
             this.label9 = new System.Windows.Forms.Label();
             this.txbWeIDsub = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
+            this.lblPageSub = new System.Windows.Forms.Label();
+            this.txbPageNoSub = new System.Windows.Forms.TextBox();
+            this.btnLastPageSub = new System.Windows.Forms.Button();
+            this.btnNextPageSub = new System.Windows.Forms.Button();
+            this.btnPreviousPageSub = new System.Windows.Forms.Button();
+            this.btnFirstPageSub = new System.Windows.Forms.Button();
+            this.txbPageSizeSub = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDsp)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMiniDsp)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSubDsp)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -197,7 +205,7 @@
             // lblPage
             // 
             this.lblPage.AutoSize = true;
-            this.lblPage.Location = new System.Drawing.Point(763, 704);
+            this.lblPage.Location = new System.Drawing.Point(331, 697);
             this.lblPage.Name = "lblPage";
             this.lblPage.Size = new System.Drawing.Size(43, 15);
             this.lblPage.TabIndex = 45;
@@ -205,14 +213,14 @@
             // 
             // txbPageNo
             // 
-            this.txbPageNo.Location = new System.Drawing.Point(641, 702);
+            this.txbPageNo.Location = new System.Drawing.Point(209, 695);
             this.txbPageNo.Name = "txbPageNo";
             this.txbPageNo.Size = new System.Drawing.Size(100, 22);
             this.txbPageNo.TabIndex = 44;
             // 
             // btnLastPage
             // 
-            this.btnLastPage.Location = new System.Drawing.Point(1098, 696);
+            this.btnLastPage.Location = new System.Drawing.Point(666, 689);
             this.btnLastPage.Name = "btnLastPage";
             this.btnLastPage.Size = new System.Drawing.Size(75, 23);
             this.btnLastPage.TabIndex = 43;
@@ -221,7 +229,7 @@
             // 
             // btnNextPage
             // 
-            this.btnNextPage.Location = new System.Drawing.Point(1017, 696);
+            this.btnNextPage.Location = new System.Drawing.Point(585, 689);
             this.btnNextPage.Name = "btnNextPage";
             this.btnNextPage.Size = new System.Drawing.Size(75, 23);
             this.btnNextPage.TabIndex = 42;
@@ -230,7 +238,7 @@
             // 
             // btnPreviousPage
             // 
-            this.btnPreviousPage.Location = new System.Drawing.Point(936, 696);
+            this.btnPreviousPage.Location = new System.Drawing.Point(504, 689);
             this.btnPreviousPage.Name = "btnPreviousPage";
             this.btnPreviousPage.Size = new System.Drawing.Size(75, 23);
             this.btnPreviousPage.TabIndex = 41;
@@ -239,7 +247,7 @@
             // 
             // btnFirstPage
             // 
-            this.btnFirstPage.Location = new System.Drawing.Point(855, 696);
+            this.btnFirstPage.Location = new System.Drawing.Point(423, 689);
             this.btnFirstPage.Name = "btnFirstPage";
             this.btnFirstPage.Size = new System.Drawing.Size(75, 23);
             this.btnFirstPage.TabIndex = 40;
@@ -315,7 +323,6 @@
             this.btnSearch.TabIndex = 57;
             this.btnSearch.Text = "検索";
             this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // txbWaDetailID
             // 
@@ -333,15 +340,15 @@
             this.labal1.TabIndex = 63;
             this.labal1.Text = "入庫詳細ID";
             // 
-            // dataGridViewMiniDsp
+            // dataGridViewSubDsp
             // 
-            this.dataGridViewMiniDsp.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewMiniDsp.Location = new System.Drawing.Point(830, 370);
-            this.dataGridViewMiniDsp.Name = "dataGridViewMiniDsp";
-            this.dataGridViewMiniDsp.RowHeadersWidth = 51;
-            this.dataGridViewMiniDsp.RowTemplate.Height = 24;
-            this.dataGridViewMiniDsp.Size = new System.Drawing.Size(377, 249);
-            this.dataGridViewMiniDsp.TabIndex = 62;
+            this.dataGridViewSubDsp.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewSubDsp.Location = new System.Drawing.Point(830, 370);
+            this.dataGridViewSubDsp.Name = "dataGridViewSubDsp";
+            this.dataGridViewSubDsp.RowHeadersWidth = 51;
+            this.dataGridViewSubDsp.RowTemplate.Height = 24;
+            this.dataGridViewSubDsp.Size = new System.Drawing.Size(377, 249);
+            this.dataGridViewSubDsp.TabIndex = 62;
             // 
             // btnDetailSearch
             // 
@@ -409,11 +416,87 @@
             this.label10.TabIndex = 108;
             this.label10.Text = "入庫ID";
             // 
-            // F_AdWarehous
+            // lblPageSub
+            // 
+            this.lblPageSub.AutoSize = true;
+            this.lblPageSub.Location = new System.Drawing.Point(1169, 637);
+            this.lblPageSub.Name = "lblPageSub";
+            this.lblPageSub.Size = new System.Drawing.Size(43, 15);
+            this.lblPageSub.TabIndex = 175;
+            this.lblPageSub.Text = "ページ";
+            // 
+            // txbPageNoSub
+            // 
+            this.txbPageNoSub.Location = new System.Drawing.Point(1047, 635);
+            this.txbPageNoSub.Name = "txbPageNoSub";
+            this.txbPageNoSub.Size = new System.Drawing.Size(100, 22);
+            this.txbPageNoSub.TabIndex = 174;
+            // 
+            // btnLastPageSub
+            // 
+            this.btnLastPageSub.Location = new System.Drawing.Point(1108, 677);
+            this.btnLastPageSub.Name = "btnLastPageSub";
+            this.btnLastPageSub.Size = new System.Drawing.Size(75, 23);
+            this.btnLastPageSub.TabIndex = 173;
+            this.btnLastPageSub.Text = "▶|";
+            this.btnLastPageSub.UseVisualStyleBackColor = true;
+            // 
+            // btnNextPageSub
+            // 
+            this.btnNextPageSub.Location = new System.Drawing.Point(1027, 677);
+            this.btnNextPageSub.Name = "btnNextPageSub";
+            this.btnNextPageSub.Size = new System.Drawing.Size(75, 23);
+            this.btnNextPageSub.TabIndex = 172;
+            this.btnNextPageSub.Text = "▶";
+            this.btnNextPageSub.UseVisualStyleBackColor = true;
+            // 
+            // btnPreviousPageSub
+            // 
+            this.btnPreviousPageSub.Location = new System.Drawing.Point(946, 677);
+            this.btnPreviousPageSub.Name = "btnPreviousPageSub";
+            this.btnPreviousPageSub.Size = new System.Drawing.Size(75, 23);
+            this.btnPreviousPageSub.TabIndex = 171;
+            this.btnPreviousPageSub.Text = "◀";
+            this.btnPreviousPageSub.UseVisualStyleBackColor = true;
+            // 
+            // btnFirstPageSub
+            // 
+            this.btnFirstPageSub.Location = new System.Drawing.Point(865, 677);
+            this.btnFirstPageSub.Name = "btnFirstPageSub";
+            this.btnFirstPageSub.Size = new System.Drawing.Size(75, 23);
+            this.btnFirstPageSub.TabIndex = 170;
+            this.btnFirstPageSub.Text = "|◀";
+            this.btnFirstPageSub.UseVisualStyleBackColor = true;
+            // 
+            // txbPageSizeSub
+            // 
+            this.txbPageSizeSub.Location = new System.Drawing.Point(907, 637);
+            this.txbPageSizeSub.Name = "txbPageSizeSub";
+            this.txbPageSizeSub.Size = new System.Drawing.Size(100, 22);
+            this.txbPageSizeSub.TabIndex = 169;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(820, 640);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(81, 15);
+            this.label16.TabIndex = 168;
+            this.label16.Text = "1ページ行数";
+            // 
+            // F_AdWarehousing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1326, 748);
+            this.Controls.Add(this.lblPageSub);
+            this.Controls.Add(this.txbPageNoSub);
+            this.Controls.Add(this.btnLastPageSub);
+            this.Controls.Add(this.btnNextPageSub);
+            this.Controls.Add(this.btnPreviousPageSub);
+            this.Controls.Add(this.btnFirstPageSub);
+            this.Controls.Add(this.txbPageSizeSub);
+            this.Controls.Add(this.label16);
             this.Controls.Add(this.txbWeIDsub);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.txbWaQuantity);
@@ -424,7 +507,7 @@
             this.Controls.Add(this.btnDetailSearch);
             this.Controls.Add(this.txbWaDetailID);
             this.Controls.Add(this.labal1);
-            this.Controls.Add(this.dataGridViewMiniDsp);
+            this.Controls.Add(this.dataGridViewSubDsp);
             this.Controls.Add(this.btnConfirm);
             this.Controls.Add(this.btnDisplay);
             this.Controls.Add(this.btnSearch);
@@ -454,10 +537,10 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "F_AdWarehous";
+            this.Name = "F_AdWarehousing";
             this.Text = "入庫管理";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDsp)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMiniDsp)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSubDsp)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -496,7 +579,7 @@
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.TextBox txbWaDetailID;
         private System.Windows.Forms.Label labal1;
-        private System.Windows.Forms.DataGridView dataGridViewMiniDsp;
+        private System.Windows.Forms.DataGridView dataGridViewSubDsp;
         private System.Windows.Forms.Button btnDetailSearch;
         private System.Windows.Forms.TextBox txbPrID;
         private System.Windows.Forms.Label label12;
@@ -505,5 +588,13 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txbWeIDsub;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label lblPageSub;
+        private System.Windows.Forms.TextBox txbPageNoSub;
+        private System.Windows.Forms.Button btnLastPageSub;
+        private System.Windows.Forms.Button btnNextPageSub;
+        private System.Windows.Forms.Button btnPreviousPageSub;
+        private System.Windows.Forms.Button btnFirstPageSub;
+        private System.Windows.Forms.TextBox txbPageSizeSub;
+        private System.Windows.Forms.Label label16;
     }
 }

@@ -15,9 +15,11 @@ namespace SalesManagement_SysDev
     {
         MessageDsp messageDsp = new MessageDsp();
         SaleDataAccess saleDataAccess = new SaleDataAccess();
+        SaleDetailDataAccess saleDetailDataAccess = new SaleDetailDataAccess();
         DataInputFormCheck dataInputFormCheck = new DataInputFormCheck();
 
         private static List<T_Sale> Sale;
+        private static List<T_SaleDetail> SaleDetail;
 
         public F_AdSale()
         {
@@ -138,6 +140,62 @@ namespace SalesManagement_SysDev
             else
                 txbSaHiddin.Text = String.Empty;
         }
+
+        private void SetFormDataGridViewSub()
+        {
+            txbPageSizeSub.Text = "5";
+            txbPageNoSub.Text = "1";
+            dataGridViewSubDsp.ReadOnly = true;
+            dataGridViewSubDsp.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridViewSubDsp.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            GetDataGridViewmini();
+        }
+        private void GetDataGridViewmini()
+        {
+            //SaleDetail = saleDetailDataAccess.GetArrivalDetailData();
+
+            SetDataGridViewSub();
+        }
+
+
+        private void SetDataGridViewSub()
+        {
+            int pageSize = int.Parse(txbPageSizeSub.Text);
+            int pageNo = int.Parse(txbPageNoSub.Text) - 1;
+            dataGridViewSubDsp.DataSource = SaleDetail.Skip(pageSize * pageNo).Take(pageSize).ToList();
+
+            dataGridViewSubDsp.Columns[0].Width = 100;
+            dataGridViewSubDsp.Columns[1].Width = 100;
+            dataGridViewSubDsp.Columns[2].Width = 100;
+            dataGridViewSubDsp.Columns[3].Width = 100;
+            dataGridViewSubDsp.Columns[4].Width = 100;
+
+
+            dataGridViewSubDsp.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewSubDsp.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewSubDsp.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewSubDsp.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewSubDsp.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            dataGridViewSubDsp.Columns[0].HeaderText = "売上詳細ID";
+            dataGridViewSubDsp.Columns[1].HeaderText = "売上ID";
+            dataGridViewSubDsp.Columns[2].HeaderText = "商品ID";
+            dataGridViewSubDsp.Columns[3].HeaderText = "個数";
+            dataGridViewSubDsp.Columns[4].HeaderText = "合計金額";
+
+            dataGridViewSubDsp.Columns[4].Visible = false;
+            dataGridViewSubDsp.Columns[5].Visible = false;
+
+            lblPageSub.Text = "/" + ((int)Math.Ceiling(SaleDetail.Count / (double)pageSize)) + "ページ";
+
+            dataGridViewDsp.Refresh();
+        }
+
+        private void dataGridViewSubDsp_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
 
         private void txbPageSize_TextChanged(object sender, EventArgs e)
         {
