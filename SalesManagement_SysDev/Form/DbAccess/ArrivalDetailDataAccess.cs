@@ -24,5 +24,23 @@ namespace SalesManagement_SysDev
             }
             return arrivalDetail;
         }
+
+
+
+        public List<T_ArrivalDetail> GetArrivalDetailData(T_ArrivalDetail selectCondition)
+        {
+            List<T_ArrivalDetail> arrivalDetail = new List<T_ArrivalDetail>();
+            try
+            {
+                var context = new SalesManagement_DevContext();
+                arrivalDetail = context.T_ArrivalDetails.Where(x => x.ArDetailID == selectCondition.ArDetailID).ToList();
+                context.Dispose();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return arrivalDetail;
+        }
     }
 }
