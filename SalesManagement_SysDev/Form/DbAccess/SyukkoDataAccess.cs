@@ -106,24 +106,5 @@ namespace SalesManagement_SysDev
             }
             return syukko;
         }
-
-
-
-        //非表示を除いたデータの取得
-        public List<T_Syukko> GetSyukkoDspData()
-        {
-            List<T_Syukko> syukko = new List<T_Syukko>();
-            try
-            {
-                var context = new SalesManagement_DevContext();
-                syukko = context.T_Syukkos.Where(x => x.SyFlag == 2).ToList();
-                context.Dispose();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            return syukko;
-        }
     }
 }

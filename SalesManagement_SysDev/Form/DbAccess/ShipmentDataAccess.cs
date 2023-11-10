@@ -106,22 +106,5 @@ namespace SalesManagement_SysDev
             }
             return shipment;
         }
-
-        //非表示を除いたデータの取得
-        public List<T_Shipment> GetShipmentDspData()
-        {
-            List<T_Shipment> shipment = new List<T_Shipment>();
-            try
-            {
-                var context = new SalesManagement_DevContext();
-                shipment = context.T_Shipments.Where(x => x.ShFlag == 2).ToList();
-                context.Dispose();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            return shipment;
-        }
     }
 }

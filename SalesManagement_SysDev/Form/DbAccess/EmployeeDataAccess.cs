@@ -11,7 +11,7 @@ namespace SalesManagement_SysDev
 {
     internal class EmployeeDataAccess
     {
-        public bool CheckEmployeeCDXxistence(int emID)
+        public bool CheckEmployeeCDExistence(int emID)
         {
             bool flg = false;
             try
@@ -99,23 +99,6 @@ namespace SalesManagement_SysDev
                 employee = context.M_Employees.Where(x => x.EmID == selectCondition.EmID).ToList();
                 context.Dispose();
 
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-            }
-            return employee;
-        }
-
-        public List<M_Employee> GetEmployeeDspData()
-        {
-            List<M_Employee> employee = new List<M_Employee>();
-            try
-            {
-                var context = new SalesManagement_DevContext();
-                employee = context.M_Employees.Where(x => x.EmFlag == 2).ToList();
-                context.Dispose();
             }
             catch (Exception ex)
             {

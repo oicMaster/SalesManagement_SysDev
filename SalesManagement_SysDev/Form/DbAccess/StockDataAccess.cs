@@ -81,22 +81,6 @@ namespace SalesManagement_SysDev
             }
             return stock;
         }
-
-        public List<T_Stock> GetStockDspData()//非表示を除いた検索
-        {
-            List<T_Stock> stock = new List<T_Stock>();
-            try
-            {
-                var context = new SalesManagement_DevContext();
-                stock = context.T_Stocks.Where(x => x.StFlag == 2).ToList();
-                context.Dispose();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            return stock;
-        }
     }
 }
 

@@ -14,7 +14,7 @@ namespace SalesManagement_SysDev
     public partial class F_AdWarehousing : Form
     {
         MessageDsp messageDsp = new MessageDsp();
-        WareHousingDataAccess warehousingDataAccess = new WareHousingDataAccess();
+        WarehousingDataAccess warehousingDataAccess = new WarehousingDataAccess();
         WarehousingDetailDataAccess werehousingDetailDataAccess = new WarehousingDetailDataAccess();
 
 

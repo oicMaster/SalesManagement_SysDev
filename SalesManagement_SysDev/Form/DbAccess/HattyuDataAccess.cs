@@ -103,24 +103,5 @@ namespace SalesManagement_SysDev
             }
             return hattyu;
         }
-
-
-
-        //非表示を除いたデータの取得
-        public List<T_Hattyu> GetHattyuDspData()
-        {
-            List<T_Hattyu> hattyu = new List<T_Hattyu>();
-            try
-            {
-                var context = new SalesManagement_DevContext();
-                hattyu = context.T_Hattyus.Where(x => x.HaFlag == 2).ToList();
-                context.Dispose();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            return hattyu;
-        }
     }
 }

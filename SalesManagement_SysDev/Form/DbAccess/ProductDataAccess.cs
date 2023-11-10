@@ -114,22 +114,6 @@ namespace SalesManagement_SysDev
             }
             return product;
         }
-        //非表示を除いたデータの取得
-        public List<M_Product> GetProductDspData()
-        {
-            List<M_Product> product = new List<M_Product>();
-            try
-            {
-                var context = new SalesManagement_DevContext();
-                product = context.M_Products.Where(x => x.PrFlag == 2).ToList();
-                context.Dispose();
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            return product;
-        }
     }
 }
     

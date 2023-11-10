@@ -106,24 +106,5 @@ namespace SalesManagement_SysDev
             }
             return chumon;
         }
-
-
-
-        //非表示を除いたデータの取得
-        public List<T_Chumon> GetChumonDspData()
-        {
-            List<T_Chumon> chumon= new List<T_Chumon>();
-            try
-            {
-                var context = new SalesManagement_DevContext();
-                chumon = context.T_Chumons.Where(x => x.ChFlag == 2).ToList();
-                context.Dispose();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            return chumon;
-        }
     }
 }

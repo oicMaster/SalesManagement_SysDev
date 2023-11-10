@@ -106,24 +106,5 @@ namespace SalesManagement_SysDev
             }
             return order;
         }
-
-
-
-        //非表示を除いたデータの取得
-        public List<T_Order> GetOrderDspData()
-        {
-            List<T_Order> order = new List<T_Order>();
-            try
-            {
-                var context = new SalesManagement_DevContext();
-                order = context.T_Orders.Where(x => x.OrFlag == 2).ToList();
-                context.Dispose();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            return order;
-        }
     }
 }
