@@ -556,5 +556,10 @@ namespace SalesManagement_SysDev
             dataGridViewSubDsp.DataSource = ArrivalDetail;
             lblPageSub.Text = "/" + ((int)Math.Ceiling(ArrivalDetail.Count / (double)pageSize)) + "ページ";
         }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

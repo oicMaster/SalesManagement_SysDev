@@ -40,6 +40,7 @@ namespace SalesManagement_SysDev
             fncButtonEnable(0);
             fncTextBoxReadOnly(0);
             txbEmFlag.ReadOnly = true;
+           
         }
         private void fncButtonEnable(int chk)
         {
@@ -188,23 +189,29 @@ namespace SalesManagement_SysDev
         }
 
 
-        private void txbID_KeyPress()
+        private void txbID_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            if ((sender as TextBox).Text.Length < 6)
+            {
+                if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')
+                    e.Handled = true;
+            }
+            else if ((sender as TextBox).Text.Length == 6)
+            {
+                if (e.KeyChar != '\b')
+                    e.Handled = true;
+            }
         }
 
         //txb▼_KeyPress
 
-        private void txbPage_KeyPress()
+        private void txbPage_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+           if((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')
+            {
+                e.Handled = true;
+            }
         }
-
-        private void txbQuntity_KeyPress()
-        {
-
-        }
-
 
 
         private void btnFirstPage_Click(object sender, EventArgs e)

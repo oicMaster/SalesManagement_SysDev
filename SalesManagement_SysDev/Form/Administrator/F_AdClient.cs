@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Net;
+using System.Runtime.Remoting.Channels;
 using System.Security.Authentication.ExtendedProtection;
 using System.Security.Cryptography;
 using System.Text;
@@ -32,9 +33,11 @@ namespace SalesManagement_SysDev
 
         private void F_Client_Load(object sender, EventArgs e)
         {
-            //labelLoginName.Text = FormMenu.LoginName;
+            //labelLoginName.Text = FormMenu.Log        inName;
             SetFormDataGridView();
             fncButtonEnable(0);
+            SetDataGridView();
+            GetDataGridView();
             txbClFlag.ReadOnly = true;
         }
         private void fncButtonEnable(int chk)
@@ -178,23 +181,31 @@ namespace SalesManagement_SysDev
                 txbClFlag.Text = "2";
         }
 
-        private void txbID_KeyPress()
+        private void txbID_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            if((sender as TextBox).Text.Length < 6)
+            {
+                if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')
+                    e.Handled = true;
+            }
+            else if ((sender as TextBox).Text.Length == 6)
+            {
+                if (e.KeyChar != '\b')
+                    e.Handled = true;
+            }
         }
 
         //txb▼_KeyPress
 
-        private void txbPage_KeyPress()
+        private void txbPage_KeyPress(object sender , KeyPressEventArgs e)
         {
-
+            if((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')
+            {
+                e.Handled = true;
+            }
         }
 
-        private void txbQuntity_KeyPress()
-        {
-
-        }
-
+        
 
 
 

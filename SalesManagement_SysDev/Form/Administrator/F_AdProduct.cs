@@ -217,22 +217,24 @@ namespace SalesManagement_SysDev
         {
 
         }
-        private void txbPageSize_KeyPress(object sender, KeyPressEventArgs e)
+
+        private void txbPrID_KeyPress()
         {
-            if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')
-            {
-                e.Handled = true;
-            }
+
         }
-        private void txbPageNo_KeyPress(object sender, KeyPressEventArgs e)
+       
+        //txb▼_KeyPress
+        
+
+        private void txbPage_KeyPress()
         {
-            if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')
-            {
-                e.Handled = true;
-            }
+
         }
 
+        private void Quntity_KeyPress()
+        {
 
+        }
 
         private void btnFirstPage_Click(object sender, EventArgs e)
         {
@@ -374,6 +376,7 @@ namespace SalesManagement_SysDev
 
             lblPage.Text = "/" + ((int)Math.Ceiling(Product.Count / (double)pageSize)) + "ページ";
         }
+
 
         private void btnRegist_Click(object sender, EventArgs e)
         {
