@@ -51,7 +51,7 @@ namespace SalesManagement_SysDev
             try
             {
                 var context = new SalesManagement_DevContext();
-                var orderDetail = context.T_ArrivalDetails.Single(x => x.ArDetailID == updArD.ArDetailID);
+                var orderDetail = context.T_OrderDetails.Single(x => x.OrDetailID == updOrD.OrDetailID);
 
                 orderDetail.OrDetailID = updOrD.OrDetailID;
                 orderDetail.OrID = updOrD.OrID;
