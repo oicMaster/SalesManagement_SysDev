@@ -5,9 +5,11 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace SalesManagement_SysDev
 {
@@ -17,6 +19,11 @@ namespace SalesManagement_SysDev
         OrderDataAccess orderDataAccess = new OrderDataAccess();
         OrderDetailDataAccess orderDetailDataAccess = new OrderDetailDataAccess();
         DataInputFormCheck dataInputFormCheck = new DataInputFormCheck();
+        SalesOfficeDataAccess salesOfficeDataAccess = new SalesOfficeDataAccess();
+        EmployeeDataAccess employeeDataAccess = new EmployeeDataAccess();
+        ClientDataAccess clientDataAccess = new ClientDataAccess();
+
+
 
         private static List<T_Order> Order;
         private static List<T_OrderDetail> OrderDetail;
@@ -232,7 +239,41 @@ namespace SalesManagement_SysDev
             else
                 txbOrFlag.Text = "2";
         }
-        // private void txbPage_KeyPress
+        private void txbID_KeyPress(object sender, KeyPressEventArgs e)
+        {
+          //  if ((sender as TextBox).Text.Length < 6)
+            //{
+              //  if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')
+                //    e.Handled = true;
+            //}
+           // else if ((sender as TextBox).Text.Length == 6)
+            //{
+              //  if (e.KeyChar != '\b')
+                //    e.Handled = true;
+            //}
+        }
+
+        private void txbPage_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txbQuantity_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (txbOrQuantity.Text.Length < 4)
+            {
+                if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')
+                    e.Handled = true;
+            }
+            else if (txbOrQuantity.Text.Length == 4)
+            {
+                if (e.KeyChar != '\b')
+                    e.Handled = true;
+            }
+        }
         // private void txbQuntity_KeyPress
 
         private void btnFirstPage_Click(object sender, EventArgs e)
@@ -388,19 +429,120 @@ namespace SalesManagement_SysDev
 
         private void btnRegist_Click(object sender, EventArgs e)
         {
+            //妥当な顧客情報取得
+            if (!GetValidDataAtRegistration())
+                return;
+            //顧客情報作成
+            var regOrder = GenereteDataAdRegistration();
 
+            //顧客情報登録
+            orderDataAccess.AddOrderData(regOrder);
         }
-        private void GetValidDataAtRegistration()
+        private bool GetValidDataAtRegistration()
         {
+            if (orderDataAccess.CheckOrIDExistence(int.Parse(txbOrID.Text.Trim())))
+            {
+                messageDsp.MsgDsp("");
+                txbOrID.Focus();
+                return false;
+            }
+            if (orderDataAccess.CheckOrIDExistence(int.Parse(txbSoID.Text.Trim())))
+            {
+                messageDsp.MsgDsp("");
+                txbSoID.Focus();
+                return false;
+            }
+            if (orderDataAccess.CheckOrIDExistence(int.Parse(txbEmID.Text.Trim())))
+            {
+                messageDsp.MsgDsp("");
+                txbEmID.Focus();
+                return false;
+            }
+            if (orderDataAccess.CheckOrIDExistence(int.Parse(txbClID.Text.Trim())))
+            {
+                messageDsp.MsgDsp("");
+                txbClID.Focus();
+                return false;
+            }
 
+            if (!String.IsNullOrEmpty(txbSoID.Text.Trim()))
+            {
+                //▼外部キー認証
+                //DBACCESSを一番上に追加して、主キーの存在有無を確認する
+            }
+            else
+            {
+                messageDsp.MsgDsp("");
+                txbSoID.Focus();
+                return false;
+            }
+            if (String.IsNullOrEmpty(txbEmID.Text.Trim()))
+            {
+                messageDsp.MsgDsp("");
+                txbEmID.Focus();
+                return false;
+            }
+            if (String.IsNullOrEmpty(txbClID.Text.Trim()))
+            {
+                messageDsp.MsgDsp("");
+                txbClID.Focus();
+                return false;
+            }
+            if (String.IsNullOrEmpty(txbClCharge.Text.Trim()))
+            {
+                messageDsp.MsgDsp("");
+                txbClCharge.Focus();
+                return false;
+            }
+            if (String.IsNullOrEmpty(txbOrDate.Text.Trim()))
+            {
+                messageDsp.MsgDsp("");
+                txbOrDate.Focus();
+                return false;
+            }
+            if (String.IsNullOrEmpty(txbOrStateFlag.Text.Trim()))
+            {
+                messageDsp.MsgDsp("");
+                txbOrStateFlag.Focus();
+                return false;
+            }
+            if (!String.IsNullOrEmpty(txbOrFlag.Text.Trim()))
+            {
+                messageDsp.MsgDsp("");
+                txbOrStateFlag.Focus();
+                return false;
+            }
+            return true;
         }
-        private void GenerateDataAdRegistration()
+        private T_Order GenereteDataAdRegistration()
         {
-
+            return new T_Order
+            {
+                //▼全部
+            };
         }
-        private void RegistrationOrder()
+        private void RegistrationOrder(T_Order regOrder)
         {
+            // 登録確認メッセージ
+            DialogResult result = messageDsp.MsgDsp("");
 
+            if (result == DialogResult.Cancel)
+                return;
+
+            // 部署情報の登録
+            bool flg = orderDataAccess.AddOrderData(regOrder);
+            if (flg == true)
+                messageDsp.MsgDsp("");
+            else
+                messageDsp.MsgDsp("");
+
+            txbClID.Focus();
+
+            // 入力エリアのクリア
+            ClearInput();
+
+            // データグリッドビューの表示
+            GetDataGridView();
         }
        
 
@@ -414,34 +556,57 @@ namespace SalesManagement_SysDev
 
         private void btnDetailSearch_Click(object sender, EventArgs e)
         {
-
+            if (!GetValidDetailDataAtSelect())
+                return;
+            GenerateDetailDataAdSelect();
+            //Or情報抽出結果
+            SetSelectDetailData();
         }
-        private void GetValidDetailDataAtSelect(object sender, EventArgs e)
+        private bool GetValidDetailDataAtSelect()
         {
-
+            return true;
         }
-        private void GenerateDetailDataAdSelect(object sender, EventArgs e)
+        private void GenerateDetailDataAdSelect()
         {
-
+            if (!int.TryParse(txbOrDetailID.Text, out int orDetailID))
+                orDetailID = 0;
+            if (!int.TryParse(txbOrID.Text, out int orID))
+                orID = 0;
+            if (!int.TryParse(txbPrID.Text, out int prID))
+                prID = 0;
+            
+            //検索に使用するデータ
+            T_OrderDetail selectCondition = new T_OrderDetail()
+            {//検索に使用するデータ　全て変数で行う
+                OrDetailID = orDetailID,
+                OrID = orID,
+                PrID = prID,               
+            };
+            //orデータの抽出
+            OrderDetail = orderDetailDataAccess.GetOrderDetailData(selectCondition);
         }
-        private void SetSelectDetailData(object sender, EventArgs e)
+        private void SetSelectDetailData()
         {
-
+            //ページ数の表示
+            txbPageNoSub.Text = "1";
+            int pageSize = int.Parse(txbPageSizeSub.Text.Trim());
+            dataGridViewSubDsp.DataSource = OrderDetail;
+            lblPageSub.Text = "/" + ((int)Math.Ceiling(OrderDetail.Count / (double)pageSize)) + "ページ";
         }
 
         private void btnDetailRegist_Click(object sender, EventArgs e)
         {
-
+            
         }
-        private void GetValidDataAtRegistration(object sender, EventArgs e)
+        private void GetValidDetailDataAtRegistration(object sender, EventArgs e)
+        {
+            
+        }
+        private void GenerateDetailDataAdRegistration(object sender, EventArgs e)
         {
 
         }
-        private void GenerateDataAdRegistration(object sender, EventArgs e)
-        {
-
-        }
-        private void RegistrationOrder(object sender, EventArgs e)
+        private void RegistrationOrderDetail(object sender, EventArgs e)
         {
 
         }

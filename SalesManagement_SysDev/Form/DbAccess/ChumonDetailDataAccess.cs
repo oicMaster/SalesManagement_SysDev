@@ -28,17 +28,17 @@ namespace SalesManagement_SysDev
             return flg;
         }
 
-        public bool UpdateChumonDetailData(T_ChumonDetail updArD)
+        public bool UpdateChumonDetailData(T_ChumonDetail updChD)
         {
             try
             {
                 var context = new SalesManagement_DevContext();
                 var chumonDetail = context.T_ChumonDetails.Single(x => x.ChDetailID == updChD.ChDetailID);
 
-                chumonDetail.ChDetailID = updArD.ChDetailID;
-                chumonDetail.ChID = updArD.ChID;
-                chumonDetail.PrID = updArD.PrID;
-                chumonDetail.ArQuantity = updArD.ArQuantity;
+                chumonDetail.ChDetailID = updChD.ChDetailID;
+                chumonDetail.ChID = updChD.ChID;
+                chumonDetail.PrID = updChD.PrID;
+                chumonDetail.ChQuantity = updChD.ChQuantity;
                 context.SaveChanges();
                 context.Dispose();
                 return true;

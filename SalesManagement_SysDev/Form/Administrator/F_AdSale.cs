@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace SalesManagement_SysDev
 {
@@ -252,9 +253,42 @@ namespace SalesManagement_SysDev
                 txbSaFlag.Text = "2";
         }
 
-        //private void txbPage_KeyPress
+        private void txbID_KeyPress(object sender, KeyPressEventArgs e)
+        {
+          //  if ((sender as TextBox).Text.Length < 6)
+            //{
+              //  if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')
+             //       e.Handled = true;
+            //}
+            //else if ((sender as TextBox).Text.Length == 6)
+            //{
+              //  if (e.KeyChar != '\b')
+              //      e.Handled = true;
+            //}
+        }
 
-        //private void txbQuntity_KeyPress
+
+        private void txbPage_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txbQuantity_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (txbSaQuantity.Text.Length < 4)
+            {
+                if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')
+                    e.Handled = true;
+            }
+            else if (txbSaQuantity.Text.Length == 4)
+            {
+                if (e.KeyChar != '\b')
+                    e.Handled = true;
+            }
+        }
 
         private void btnFirstPage_Click(object sender, EventArgs e)
         {
@@ -391,20 +425,42 @@ namespace SalesManagement_SysDev
 
         private void btnDetailSearch_Click(object sender, EventArgs e)
         {
-
+            if (!GetValidDetailDataAtSelect())
+                return;
+            GenerateDetailDataAdSelect();
+            //Sa情報抽出結果
+            SetSelectDetailData();
         }
-        private void GetValidDetailDataAtRegistration()
+        private bool GetValidDetailDataAtSelect()
         {
-
+            return true;
         }
-        private void GenerateDetailDataAdRegistration()
+        private void GenerateDetailDataAdSelect()
         {
-
+            if (!int.TryParse(txbSaDetailID.Text, out int saDetailID))
+                saDetailID = 0;
+            if (!int.TryParse(txbSaID.Text, out int saID))
+                saID = 0;
+            if (!int.TryParse(txbPrID.Text, out int prID))
+                prID = 0;
+            //検索に使用するデータ
+            T_SaleDetail selectCondition = new T_SaleDetail()
+            {//検索に使用するデータ　全て変数で行う
+                SaDetailID = saDetailID,
+                SaID = saID,
+                PrID = prID,
+            };
+            //saデータの抽出
+            SaleDetail = saleDetailDataAccess.GetSaleDetailData(selectCondition);
         }
         private void SetSelectDetailData()
         
         {
-
+                //ページ数の表示
+                txbPageNoSub.Text = "1";
+                int pageSize = int.Parse(txbPageSizeSub.Text.Trim());
+                dataGridViewSubDsp.DataSource = SaleDetail;
+                lblPageSub.Text = "/" + ((int)Math.Ceiling(SaleDetail.Count / (double)pageSize)) + "ページ";
         }
     }
 }

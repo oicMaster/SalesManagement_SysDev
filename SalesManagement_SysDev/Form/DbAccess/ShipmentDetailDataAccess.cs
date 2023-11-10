@@ -27,7 +27,7 @@ namespace SalesManagement_SysDev
             return flg;
         }
 
-        public bool AddShipmentData(T_Shipment regShD)
+        public bool AddShipmentData(T_ShipmentDetail regShD)
         {
             try
             {
