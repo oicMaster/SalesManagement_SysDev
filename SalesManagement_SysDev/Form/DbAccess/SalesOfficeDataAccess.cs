@@ -26,5 +26,10 @@ namespace SalesManagement_SysDev
             }
             return flg;
         }
+
+        //public bool AddSalesOfficeData(M_SalesOffice regSo)
+        //public bool UpdateSalesOfficeData(M_SalesOffice updSo)
+        //public List<M_SalesOffice> GetSalesOfficeData()
+        //public List<M_SalesOffice> GetSalesOfficeData(M_SalesOffice selectCondition)
     }
 }

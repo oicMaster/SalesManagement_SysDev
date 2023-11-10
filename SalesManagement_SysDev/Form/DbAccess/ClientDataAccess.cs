@@ -110,23 +110,5 @@ namespace SalesManagement_SysDev
             return client;
         }
         
-
-
-        //非表示を除いたデータの取得
-        public List<M_Client> GetClientDspData()
-        {
-            List<M_Client> client = new List<M_Client>();
-            try
-            {
-                var context = new SalesManagement_DevContext();
-                client = context.M_Clients.Where(x => x.ClFlag == 2).ToList();
-                context.Dispose();
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            return client;
-        }
     }
 }

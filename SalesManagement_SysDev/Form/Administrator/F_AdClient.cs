@@ -133,6 +133,75 @@ namespace SalesManagement_SysDev
             else
                 txbClHidden.Text = String.Empty;
         }
+
+        private void txbPageSize_TextChanged(object sender, EventArgs e)
+        {
+            if (!String.IsNullOrEmpty(txbPageSize.Text.Trim()))
+            {
+                if (int.Parse(txbPageSize.Text) == 0)
+                    txbPageSize.Text = "1";
+                if (int.Parse(txbPageSize.Text) > 10)
+                    txbPageSize.Text = "10";
+            }
+        }
+        private void txbPageNo_TextChanged(object sender, EventArgs e)
+        {
+            if (!String.IsNullOrEmpty(txbPageNo.Text.Trim()))
+            {
+                if (int.Parse(txbPageNo.Text) == 0)
+                {
+                    messageDsp.MsgDsp("");
+                    txbPageNo.Text = "1";
+                }
+            }
+        }
+
+        private void txbClID_TextChanged(object sender, EventArgs e)
+        {//顧客IDが入力されているかどうか
+            if (txbClID.Text == "" || txbClID.Text == null)
+            {
+                fncButtonEnable(0);
+                ClearInput();
+            }
+            else
+            {
+                fncButtonEnable(1);
+                txbClFlag.Text = "0";
+            }
+
+        }
+        private void txbClHidden_TextChanged(object sender, EventArgs e)
+        {
+            if (txbClHidden.Text == "" || txbClHidden.Text == null)
+                txbClFlag.Text = "0";
+            else
+                txbClFlag.Text = "2";
+        }
+
+        private void txbID_KeyPress()
+        {
+
+        }
+
+        //txb▼_KeyPress
+
+        private void txbPage_KeyPress()
+        {
+
+        }
+
+        private void txbQuntity_KeyPress()
+        {
+
+        }
+
+
+
+
+
+
+
+
         private void btnFirstPage_Click(object sender, EventArgs e)
         {
             int pageSize = int.Parse(txbPageSize.Text);
@@ -188,62 +257,9 @@ namespace SalesManagement_SysDev
             //ページ番号の設定
             txbPageNo.Text = (pageNo + 1).ToString();
         }
-        private void txbClID_TextChanged(object sender, EventArgs e)
-        {//顧客IDが入力されているかどうか
-            if (txbClID.Text == "" || txbClID.Text == null)
-            {
-                fncButtonEnable(0);
-                ClearInput();
-            }
-            else
-            {
-                fncButtonEnable(1);
-                txbClFlag.Text = "0";
-            }
 
-        }
-        private void txbClHidden_TextChanged(object sender, EventArgs e)
-        {
-            if (txbClHidden.Text == "" || txbClHidden.Text == null)
-                txbClFlag.Text = "0";
-            else
-                txbClFlag.Text = "2";
-        }
-        private void txbPageSize_TextChanged(object sender, EventArgs e)
-        {
-            if (!String.IsNullOrEmpty(txbPageSize.Text.Trim()))
-            {
-                if (int.Parse(txbPageSize.Text) == 0)
-                    txbPageSize.Text = "1";
-                if (int.Parse(txbPageSize.Text) > 10)
-                    txbPageSize.Text = "10";
-            }
-        }
-        private void txbPageNo_TextChanged(object sender, EventArgs e)
-        {
-            if (!String.IsNullOrEmpty(txbPageNo.Text.Trim()))
-            {
-                if (int.Parse(txbPageNo.Text) == 0)
-                {
-                    messageDsp.MsgDsp("");
-                    txbPageNo.Text = "1";
-                }
-            }   
-        }
-        private void txbPageSize_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')
-            {
-                e.Handled = true;
-            }
-        }
-        private void txbPageNo_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')
-            {
-                e.Handled = true;
-            }
-        }
+
+
         private void btnClear_Click(object sender, EventArgs e)
         {
             ClearInput();
@@ -296,7 +312,7 @@ namespace SalesManagement_SysDev
         {
             if (!int.TryParse(txbClID.Text, out int clID))
                 clID = 0;
-            if(!int.TryParse(txbSoID.Text,out int soID))
+            if (!int.TryParse(txbSoID.Text, out int soID))
                 soID = 0;
             string clName = txbClName.Text.Trim();
             string clAddress = txbClAddress.Text.Trim();
@@ -324,9 +340,109 @@ namespace SalesManagement_SysDev
             txbPageNo.Text = "1";
             int pageSize = int.Parse(txbPageSize.Text.Trim());
             dataGridViewDsp.DataSource = Client;
-
             lblPage.Text = "/" + ((int)Math.Ceiling(Client.Count / (double)pageSize)) + "ページ";
         }
+
+        private void btnRegist_Click(object sender, EventArgs e)
+        {
+            //妥当な顧客情報取得
+            if (!GetValidDataAtRegistration())
+                return;
+            //顧客情報作成
+            var regClient = GenereteDataAdRegistration();
+
+            //顧客情報登録
+            RegistrationClient(regClient);
+        }
+
+        private bool GetValidDataAtRegistration()
+        {
+            if (!String.IsNullOrEmpty(txbSoID.Text.Trim()))
+            {
+                //▼外部キー認証
+                //DBACCESSを一番上に追加して、主キーの存在有無を確認する
+            }
+            else
+            {
+                messageDsp.MsgDsp("");
+                txbSoID.Focus();
+                return false;
+            }
+            if (String.IsNullOrEmpty(txbClName.Text.Trim()))
+            {
+                messageDsp.MsgDsp("");
+                txbClName.Focus();
+                return false;
+            }
+            if (String.IsNullOrEmpty(txbClAddress.Text.Trim()))
+            {
+                messageDsp.MsgDsp("");
+                txbClAddress.Focus();
+                return false;
+            }
+            if (String.IsNullOrEmpty(txbClPhone.Text.Trim()))
+            {
+                messageDsp.MsgDsp("");
+                txbClPhone.Focus();
+                return false;
+            }
+            if (String.IsNullOrEmpty(txbClPostal.Text.Trim()))
+            {
+                messageDsp.MsgDsp("");
+                txbClPostal.Focus();
+                return false;
+            }
+            if (String.IsNullOrEmpty(txbClFAX.Text.Trim()))
+            {
+                messageDsp.MsgDsp("");
+                txbClFAX.Focus();
+                return false;
+            }
+            if (!String.IsNullOrEmpty(txbClFAX.Text.Trim()))
+            {//登録の時は非表示理由を必ず空白にしたい
+                messageDsp.MsgDsp("");
+                txbClFAX.Focus();
+                return false;
+            }
+            return true;
+        }
+        private M_Client GenereteDataAdRegistration()
+        {
+            return new M_Client
+            {
+                //▼全部
+            };
+        }
+
+        private void RegistrationClient(M_Client regClient)
+        {
+            // 登録確認メッセージ
+            DialogResult result = messageDsp.MsgDsp("");
+
+            if (result == DialogResult.Cancel)
+                return;
+
+            // 部署情報の登録
+            bool flg = clientDataAccess.AddClientData(regClient);
+            if (flg == true)
+                messageDsp.MsgDsp("");
+            else
+                messageDsp.MsgDsp("");
+
+            txbClID.Focus();
+
+            // 入力エリアのクリア
+            ClearInput();
+
+            // データグリッドビューの表示
+            GetDataGridView();
+        }
+
+
+
+
+
+
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
@@ -443,102 +559,5 @@ namespace SalesManagement_SysDev
             GetDataGridView();
         }
 
-
-
-
-        private void btnRegist_Click(object sender, EventArgs e)
-        {
-            //妥当な顧客情報取得
-            if (!GetValidDataAtRegistration())
-                return;
-            //顧客情報作成
-            var regClient = GenereteDataAdRegistration();
-
-            //顧客情報登録
-            RegistrationClient(regClient);
-        }
-
-        private bool GetValidDataAtRegistration()
-        {
-            if (!String.IsNullOrEmpty(txbSoID.Text.Trim()))
-            {
-                //▼外部キー認証
-               //DBACCESSを一番上に追加して、主キーの存在有無を確認する
-            }
-            else
-            {
-                messageDsp.MsgDsp("");
-                txbSoID.Focus();
-                return false;
-            }
-            if (String.IsNullOrEmpty(txbClName.Text.Trim()))
-            {
-                messageDsp.MsgDsp("");
-                txbClName.Focus();
-                return false;
-            }
-            if (String.IsNullOrEmpty(txbClAddress.Text.Trim()))
-            {
-                messageDsp.MsgDsp("");
-                txbClAddress.Focus();
-                return false;
-            }
-            if (String.IsNullOrEmpty(txbClPhone.Text.Trim()))
-            {
-                messageDsp.MsgDsp("");
-                txbClPhone.Focus();
-                return false;
-            }
-            if (String.IsNullOrEmpty(txbClPostal.Text.Trim()))
-            {
-                messageDsp.MsgDsp("");
-                txbClPostal.Focus();
-                return false;
-            }
-            if (String.IsNullOrEmpty(txbClFAX.Text.Trim()))
-            {
-                messageDsp.MsgDsp("");
-                txbClFAX.Focus();
-                return false;
-            }
-            if (!String.IsNullOrEmpty(txbClFAX.Text.Trim()))
-            {//登録の時は非表示理由を必ず空白にしたい
-                messageDsp.MsgDsp("");
-                txbClFAX.Focus();
-                return false;
-            }
-            return true;
-        }
-        private M_Client GenereteDataAdRegistration()
-        {
-            return new M_Client
-            {
-                //▼全部
-            };
-        }
-
-        private void RegistrationClient(M_Client regClient)
-        {
-            // 登録確認メッセージ
-            DialogResult result = messageDsp.MsgDsp("");
-
-            if (result == DialogResult.Cancel)
-                return;
-
-            // 部署情報の登録
-            bool flg = clientDataAccess.AddClientData(regClient);
-            if (flg == true)
-                messageDsp.MsgDsp("");
-            else
-                messageDsp.MsgDsp("");
-
-            txbClID.Focus();
-
-            // 入力エリアのクリア
-            ClearInput();
-
-            // データグリッドビューの表示
-            GetDataGridView();
-        }
     }
 }

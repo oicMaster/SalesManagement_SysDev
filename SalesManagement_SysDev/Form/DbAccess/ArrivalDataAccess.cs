@@ -106,24 +106,5 @@ namespace SalesManagement_SysDev
             }
             return arrival;
         }
-
-
-
-        //非表示を除いたデータの取得
-        public List<T_Arrival> GetArrivalDspData()
-        {
-            List<T_Arrival> arrival = new List<T_Arrival>();
-            try
-            {
-                var context = new SalesManagement_DevContext();
-                arrival = context.T_Arrivals.Where(x => x.ArFlag == 2).ToList();
-                context.Dispose();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            return arrival;
-        }
     }
 }

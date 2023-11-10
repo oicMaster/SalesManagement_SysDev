@@ -105,24 +105,5 @@ namespace SalesManagement_SysDev
             }
             return sale;
         }
-
-
-
-        //非表示を除いたデータの取得
-        public List<T_Sale> GetSaleDspData()
-        {
-            List<T_Sale> sale = new List<T_Sale>();
-            try
-            {
-                var context = new SalesManagement_DevContext();
-                sale = context.T_Sales.Where(x => x.SaFlag == 2).ToList();
-                context.Dispose();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            return sale;
-        }
     }
 }
