@@ -17,7 +17,6 @@ namespace SalesManagement_SysDev
     {
         MessageDsp messageDsp = new MessageDsp();
         ProductDataAccess productDataAccess = new ProductDataAccess();
-        DataInputFormCheck dataInputFormCheck = new DataInputFormCheck();
 
         private static List<M_Product> Product;
 
@@ -84,7 +83,7 @@ namespace SalesManagement_SysDev
         {
             txbPageSize.Text = "10";
             txbPageNo.Text = "1";
-            dataGridViewDsp.ReadOnly=true;
+            dataGridViewDsp.ReadOnly = true;
             dataGridViewDsp.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewDsp.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
@@ -98,9 +97,9 @@ namespace SalesManagement_SysDev
 
         private void SetDataGridView()
         {
-            int pageSize =int.Parse(txbPageSize.Text);
-            int pageNo=int.Parse(txbPageNo.Text);
-            dataGridViewDsp.DataSource =Product.Skip(pageSize+pageNo).Take(pageSize).ToList();
+            int pageSize = int.Parse(txbPageSize.Text);
+            int pageNo = int.Parse(txbPageNo.Text);
+            dataGridViewDsp.DataSource = Product.Skip(pageSize + pageNo).Take(pageSize).ToList();
 
             dataGridViewDsp.Columns[0].Width = 100;
             dataGridViewDsp.Columns[1].Width = 100;
@@ -114,10 +113,10 @@ namespace SalesManagement_SysDev
             dataGridViewDsp.Columns[9].Width = 100;
             dataGridViewDsp.Columns[10].Width = 100;
             dataGridViewDsp.Columns[11].Width = 100;
-            
 
-            dataGridViewDsp.Columns[0].DefaultCellStyle.Alignment =DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewDsp.Columns[1].DefaultCellStyle.Alignment =DataGridViewContentAlignment.MiddleLeft;
+
+            dataGridViewDsp.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewDsp.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewDsp.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewDsp.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewDsp.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
@@ -143,7 +142,7 @@ namespace SalesManagement_SysDev
             dataGridViewDsp.Columns[11].HeaderText = "非表示理由";
 
 
-            lblPage.Text ="/"+((int)Math.Ceiling(Product.Count/(double)pageSize))+"ページ";
+            lblPage.Text = "/" + ((int)Math.Ceiling(Product.Count / (double)pageSize)) + "ページ";
 
             dataGridViewDsp.Refresh();
 
@@ -217,22 +216,24 @@ namespace SalesManagement_SysDev
         {
 
         }
-        private void txbPageSize_KeyPress(object sender, KeyPressEventArgs e)
+
+        private void txbPrID_KeyPress()
         {
-            if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')
-            {
-                e.Handled = true;
-            }
-        }
-        private void txbPageNo_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')
-            {
-                e.Handled = true;
-            }
+
         }
 
+        //txb▼_KeyPress
 
+
+        private void txbPage_KeyPress()
+        {
+
+        }
+
+        private void Quntity_KeyPress()
+        {
+
+        }
 
         private void btnFirstPage_Click(object sender, EventArgs e)
         {
@@ -333,28 +334,10 @@ namespace SalesManagement_SysDev
                 return;
             GenerateDataAtSelect();
             SetSelectData();
-            
+
         }
         private bool GetValidDataAtSelect()
         {
-            //商品ID入力時チェック
-            if (!String.IsNullOrEmpty(txbPrID.Text.Trim()))
-            {
-                if (!dataInputFormCheck.CheckNumeric(txbPrID.Text.Trim()))
-                {
-                    messageDsp.MsgDsp("");
-                    txbPrID.Focus();
-                    return false;
-                }
-                //商品IDの文字数チェック
-                if (txbPrID.TextLength >= 6)
-                {
-                    //MessageBox.Show("商品IDは６文字までです");
-                    messageDsp.MsgDsp("");
-                    txbPrID.Focus();
-                    return false;
-                }
-            }
             return true;
         }
         private void GenerateDataAtSelect()
@@ -374,6 +357,7 @@ namespace SalesManagement_SysDev
 
             lblPage.Text = "/" + ((int)Math.Ceiling(Product.Count / (double)pageSize)) + "ページ";
         }
+
 
         private void btnRegist_Click(object sender, EventArgs e)
         {
@@ -579,7 +563,7 @@ namespace SalesManagement_SysDev
         {
             return new M_Product
             {
-             //全部
+                //全部
             };
         }
         private void UpdateProduct(M_Product updPr)
@@ -598,6 +582,6 @@ namespace SalesManagement_SysDev
             txbPrID.Focus();
 
             GetDataGridView();
-        }        
+        }
     }
 }

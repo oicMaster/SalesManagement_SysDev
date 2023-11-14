@@ -11,7 +11,7 @@ namespace SalesManagement_SysDev
 {
     internal class EmployeeDataAccess
     {
-        public bool CheckEmployeeCDExistence(int emID)
+        public bool CheckEmIDExistence(int emID)
         {
             bool flg = false;
             try

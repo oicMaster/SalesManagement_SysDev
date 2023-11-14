@@ -135,7 +135,6 @@
             this.btnSearch.TabIndex = 39;
             this.btnSearch.Text = "検索";
             this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // txbMaHidden
             // 
@@ -164,7 +163,6 @@
             this.txbMaPostal.Name = "txbMaPostal";
             this.txbMaPostal.Size = new System.Drawing.Size(100, 22);
             this.txbMaPostal.TabIndex = 61;
-            this.txbMaPostal.TextChanged += new System.EventHandler(this.txbClPostal_TextChanged);
             // 
             // txbMaPhone
             // 
@@ -265,7 +263,6 @@
             this.label1.Size = new System.Drawing.Size(66, 15);
             this.label1.TabIndex = 47;
             this.label1.Text = "メーカーID";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // dataGridViewDsp
             // 
@@ -383,9 +380,10 @@
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnRegist);
             this.Controls.Add(this.btnSearch);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "F_AdMaker";
             this.Text = "メーカ管理";
+            this.Load += new System.EventHandler(this.F_AdMaker_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDsp)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

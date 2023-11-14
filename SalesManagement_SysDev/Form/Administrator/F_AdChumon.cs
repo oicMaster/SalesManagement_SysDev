@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Data.Entity.Infrastructure.Design.Executor;
 
 namespace SalesManagement_SysDev
 {
@@ -16,6 +17,11 @@ namespace SalesManagement_SysDev
         MessageDsp messageDsp = new MessageDsp();
         ChumonDataAccess chumonDataAccess = new ChumonDataAccess();
         ChumonDetailDataAccess chumonDetailDataAccess = new ChumonDetailDataAccess();
+        SalesOfficeDataAccess salesOfficeIDataAccess = new SalesOfficeDataAccess();
+        EmployeeDataAccess employeelDataAccess = new EmployeeDataAccess();
+        ClientDataAccess clientDataAccess = new ClientDataAccess();
+        OrderDataAccess orderDataAccess = new OrderDataAccess();
+        ProductDataAccess productDataAccess = new ProductDataAccess();
 
         private static List<T_Chumon> Chumon;
         private static List<T_ChumonDetail> ChumonDetail;
@@ -24,31 +30,37 @@ namespace SalesManagement_SysDev
         {
             InitializeComponent();
         }
-
         private void F_Chumon_Load(object sender, EventArgs e)
         {
             //labelLoginName.Text = FormMenu.LoginName;
-            fncButtonEnable(0);
             SetFormDataGridView();
-            SetFormDataGridViewSub();
-            
-            txbChFlag.ReadOnly = true;
-            txbChStateFlag.ReadOnly = true;
+            SetFormDetailDataGridView();
+            fncButtonEnable(0);
+            txbFlag.ReadOnly = true;
+            txbStateFlag.ReadOnly = true;
+
+            //※
         }
+
         private void fncButtonEnable(int chk)
         {
             switch (chk)
-            { //顧客IDが空であれば0、でなければ1として、ボタンの使用を制限する
+            { //IDが空であれば0、でなければ1として、ボタンの使用を制限する
                 case 0:
-                    btnSearch.Enabled = true;
                     btnConfirm.Enabled = false;
+                    btnUpdate.Enabled = false;
                     break;
                 case 1:
-                    btnSearch.Enabled = true;
                     btnConfirm.Enabled = true;
                     break;
+                //非表示理由とIDが入力されているか
+                case 2:
+                    btnUpdate.Enabled = true;
+                    break;
+
             }
         }
+
         private void SetFormDataGridView()
         {
             txbPageSize.Text = "10";
@@ -59,6 +71,7 @@ namespace SalesManagement_SysDev
 
             GetDataGridView();
         }
+
         private void GetDataGridView()
         {
             Chumon = chumonDataAccess.GetChumonData();
@@ -101,90 +114,101 @@ namespace SalesManagement_SysDev
             dataGridViewDsp.Columns[7].HeaderText = "注文管理グラフ";
             dataGridViewDsp.Columns[8].HeaderText = "非表示理由";
 
+            //※
+
             lblPage.Text = "/" + ((int)Math.Ceiling(Chumon.Count / (double)pageSize)) + "ページ";
 
             dataGridViewDsp.Refresh();
         }
-        private void dataGridViewData_CellClick(object sender, DataGridViewCellEventArgs e)
+
+        private void dataGridViewDsp_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             txbChID.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[0].Value.ToString();
             txbSoID.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[1].Value.ToString();
-            txbEmID.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[2].Value.ToString();
+            if (dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[2].Value != null)
+                txbEmID.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[2].Value.ToString();
+            else
+                txbEmID.Text = String.Empty;
             txbClID.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[3].Value.ToString();
             txbOrID.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[4].Value.ToString();
-            txbChDate.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[5].Value.ToString();
-            txbChStateFlag.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[6].Value.ToString();
-            txbChFlag.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[7].Value.ToString();
+            //Date
+            txbStateFlag.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[6].Value.ToString();
+            txbFlag.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[7].Value.ToString();
             if (dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[8].Value != null)
-                txbChHidden.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[8].Value.ToString();
+                txbHidden.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[8].Value.ToString();
             else
-                txbChHidden.Text = String.Empty;
+                txbHidden.Text = String.Empty;
+
         }
 
-        private void SetFormDataGridViewSub()
+        private void SetFormDetailDataGridView()
         {
-
-            dataGridViewSubDsp.ReadOnly = true;
-            dataGridViewSubDsp.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridViewSubDsp.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            GetDataGridViewSub();
+            txbDetailPageSize.Text = "5";
+            txbDetailPageNo.Text = "1";
+            dataGridViewDetailDsp.ReadOnly = true;
+            dataGridViewDetailDsp.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridViewDetailDsp.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            GetDetailDataGridView();
         }
-        private void GetDataGridViewSub()
+        private void GetDetailDataGridView()
         {
-            //ChumonDetail = chumonDetailDataAccess.GetChumonDetailData();
-
-            SetDataGridViewSub();
+            ChumonDetail = chumonDetailDataAccess.GetChumonDetailData();
+            SetDetailDataGridView();
         }
 
 
-        private void SetDataGridViewSub()
+        private void SetDetailDataGridView()
         {
-            int pageSize = int.Parse(txbPageSizeSub.Text);
-            int pageNo = int.Parse(txbPageNoSub.Text) - 1;
-            dataGridViewSubDsp.DataSource = Chumon.Skip(pageSize * pageNo).Take(pageSize).ToList();
+            int pageSize = int.Parse(txbDetailPageSize.Text);
+            int pageNo = int.Parse(txbDetailPageNo.Text) - 1;
+            dataGridViewDetailDsp.DataSource = ChumonDetail.Skip(pageSize * pageNo).Take(pageSize).ToList();
 
-            dataGridViewSubDsp.Columns[0].Width = 100;
-            dataGridViewSubDsp.Columns[1].Width = 100;
-            dataGridViewSubDsp.Columns[2].Width = 100;
-            dataGridViewSubDsp.Columns[3].Width = 100;
+            dataGridViewDetailDsp.Columns[0].Width = 100;
+            dataGridViewDetailDsp.Columns[1].Width = 100;
+            dataGridViewDetailDsp.Columns[2].Width = 100;
+            dataGridViewDetailDsp.Columns[3].Width = 100;
 
 
-            dataGridViewSubDsp.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewSubDsp.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewSubDsp.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewSubDsp.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewDetailDsp.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewDetailDsp.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewDetailDsp.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewDetailDsp.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            dataGridViewSubDsp.Columns[0].HeaderText = "注文詳細ID";
-            dataGridViewSubDsp.Columns[1].HeaderText = "注文ID";
-            dataGridViewSubDsp.Columns[2].HeaderText = "商品ID";
-            dataGridViewSubDsp.Columns[3].HeaderText = "数量";
+            dataGridViewDetailDsp.Columns[0].HeaderText = "注文詳細ID";
+            dataGridViewDetailDsp.Columns[1].HeaderText = "注文ID";
+            dataGridViewDetailDsp.Columns[2].HeaderText = "商品ID";
+            dataGridViewDetailDsp.Columns[3].HeaderText = "数量";
 
-            lblPageSub.Text = "/" + ((int)Math.Ceiling(Chumon.Count / (double)pageSize)) + "ページ";
+
+            dataGridViewDetailDsp.Columns[4].Visible = false;
+            dataGridViewDetailDsp.Columns[5].Visible = false;
+
+            lblDetailPage.Text = "/" + ((int)Math.Ceiling(ChumonDetail.Count / (double)pageSize)) + "ページ";
 
             dataGridViewDsp.Refresh();
         }
 
-        private void dataGridViewSubDsp_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridViewDetailDsp_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            txbChDetailID.Text = dataGridViewDetailDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[0].Value.ToString();
+            txbChIDsub.Text = dataGridViewDetailDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[1].Value.ToString();
+            txbPrID.Text = dataGridViewDetailDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[2].Value.ToString();
+            txbQuantity.Text = dataGridViewDetailDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[3].Value.ToString();
         }
-
 
 
         private void txbPageSize_TextChanged(object sender, EventArgs e)
         {
-            if (!String.IsNullOrEmpty(txbPageSize.Text.Trim()))
+            if (!String.IsNullOrEmpty((sender as TextBox).Text))
             {
-                if (int.Parse(txbPageSize.Text) > 10)
+                if (int.Parse((sender as TextBox).Text) > 10)
                 {
-                    messageDsp.MsgDsp("");
-                    txbPageSize.Text = "10";
+                    (sender as TextBox).Text = "10";
                     return;
                 }
-                if (int.Parse(txbPageSize.Text) == 0)
+                if (int.Parse((sender as TextBox).Text) == 0)
                 {
-                    messageDsp.MsgDsp("");
-                    txbPageSize.Text = "1";
+                    (sender as TextBox).Text = "1";
                     return;
                 }
             }
@@ -192,19 +216,18 @@ namespace SalesManagement_SysDev
 
         private void txbPageNo_TextChanged(object sender, EventArgs e)
         {
-            if (!String.IsNullOrEmpty(txbPageNo.Text.Trim()))
+            if (!String.IsNullOrEmpty((sender as TextBox).Text.Trim()))
             {
-                if (int.Parse(txbPageNo.Text) == 0)
+                if (int.Parse((sender as TextBox).Text) == 0)
                 {
-                    messageDsp.MsgDsp("");
-                    txbPageNo.Text = "1";
+                    (sender as TextBox).Text = "1";
                 }
             }
         }
 
-        private void txbChID_TextChanged(object sender, EventArgs e)
-        {//IDが入力されているかどうか
-            if (txbChID.Text == "" || txbChID.Text == null)
+        private void txbKeyID_TextChanged(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty((sender as TextBox).Text))
             {
                 fncButtonEnable(0);
                 ClearInput();
@@ -212,28 +235,64 @@ namespace SalesManagement_SysDev
             else
             {
                 fncButtonEnable(1);
-                txbChFlag.Text = "0";
+                txbFlag.Text = "0";
+                txbStateFlag.Text = "0";
             }
+            txbChIDsub.Text = txbChID.Text;
+        }
 
-        }
-        private void txbChHidden_TextChanged(object sender, EventArgs e)
+        private void txbHidden_TextChanged(object sender, EventArgs e)
         {
-            if (txbChHidden.Text == "" || txbChHidden.Text == null)
-                txbChFlag.Text = "0";
+            if (!String.IsNullOrEmpty((sender as TextBox).Text.Trim()))
+                txbFlag.Text = "0";
             else
-                txbChFlag.Text = "2";
+                txbFlag.Text = "2";
         }
-        private void txbPageSize_KeyPress(object sender, KeyPressEventArgs e)
+
+        //メイングリッドビュー,サブグリッドビューで使用する主キーのテキストボックスの文字を連動させる。
+        private void txbKeyIDsub_TextChanged(object sender, EventArgs e)
+        {
+            txbChID.Text = txbChIDsub.Text;
+        }
+
+        //PageSize,Noのテキストボックスに連結させる。
+        private void txbPage_KeyPress(object sender, KeyPressEventArgs e)
         {
             if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')
             {
                 e.Handled = true;
             }
         }
-        private void txbQuntity_KeyPress(object sender, KeyPressEventArgs e)
+        //IDがつく全てのテキストボックスに連結させる。
+        private void txbID_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            if ((sender as TextBox).Text.Length < 6)
+            {
+                if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')
+                    e.Handled = true;
+            }
+            else if ((sender as TextBox).Text.Length == 6)
+            {
+                if (e.KeyChar != '\b')
+                    e.Handled = true;
+            }
         }
+        //数量or個数のテキストボックスに連結させる。
+        private void txbQuantity_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((sender as TextBox).Text.Length < 4)
+            {
+                if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')
+                    e.Handled = true;
+            }
+            else if (this.Text.Length == 4)
+            {
+                if (e.KeyChar != '\b')
+                    e.Handled = true;
+            }
+        }
+        //↓入力上限がある全てのデータに設定する。
+        //private void txb~~~~~_KeyPress(object sender, KeyPressEventArgs e)
 
 
 
@@ -295,30 +354,85 @@ namespace SalesManagement_SysDev
             //ページ番号の設定
             txbPageNo.Text = (pageNo + 1).ToString();
         }
+
+        private void btnDetailFirstPage_Click(object sender, EventArgs e)
+        {
+            int pageSize = int.Parse(txbDetailPageSize.Text);
+            dataGridViewDetailDsp.DataSource = ChumonDetail.Take(pageSize).ToList();
+
+            // DataGridViewを更新
+            dataGridViewDetailDsp.Refresh();
+            //ページ番号の設定
+            txbDetailPageNo.Text = "1";
+        }
+
+        private void btnDetailPreviousPage_Click(object sender, EventArgs e)
+        {
+            int pageSize = int.Parse(txbDetailPageSize.Text);
+            int pageNo = int.Parse(txbDetailPageNo.Text) - 2;
+            dataGridViewDetailDsp.DataSource = ChumonDetail.Skip(pageSize * pageNo).Take(pageSize).ToList();
+
+            // DataGridViewを更新
+            dataGridViewDetailDsp.Refresh();
+            //ページ番号の設定
+            if (pageNo + 1 > 1)
+                txbDetailPageNo.Text = (pageNo + 1).ToString();
+            else
+                txbDetailPageNo.Text = "1";
+        }
+
+        private void btnDetailNextPage_Click(object sender, EventArgs e)
+        {
+            int pageSize = int.Parse(txbDetailPageSize.Text);
+            int pageNo = int.Parse(txbDetailPageNo.Text);
+            //最終ページの計算
+            int lastNo = (int)Math.Ceiling(ChumonDetail.Count / (double)pageSize) - 1;
+            //最終ページでなければ
+            if (pageNo <= lastNo)
+                dataGridViewDetailDsp.DataSource = ChumonDetail.Skip(pageSize * pageNo).Take(pageSize).ToList();
+
+            // DataGridViewを更新
+            dataGridViewDetailDsp.Refresh();
+            //ページ番号の設定
+            int lastPage = (int)Math.Ceiling(ChumonDetail.Count / (double)pageSize);
+            if (pageNo >= lastPage)
+                txbDetailPageNo.Text = lastPage.ToString();
+            else
+                txbDetailPageNo.Text = (pageNo + 1).ToString();
+        }
+
+        private void btnDetailLastPage_Click(object sender, EventArgs e)
+        {
+            int pageSize = int.Parse(txbDetailPageSize.Text);
+            //最終ページの計算
+            int pageNo = (int)Math.Ceiling(ChumonDetail.Count / (double)pageSize) - 1;
+            dataGridViewDetailDsp.DataSource = ChumonDetail.Skip(pageSize * pageNo).Take(pageSize).ToList();
+
+            // DataGridViewを更新
+            dataGridViewDetailDsp.Refresh();
+            //ページ番号の設定
+            txbDetailPageNo.Text = (pageNo + 1).ToString();
+        }
+
         private void btnClear_Click(object sender, EventArgs e)
         {
             ClearInput();
         }
         private void ClearInput()
-        {
+        {//全てのテキストボックスを空白にする
             txbChID.Text = String.Empty;
             txbSoID.Text = String.Empty;
             txbEmID.Text = String.Empty;
             txbClID.Text = String.Empty;
             txbOrID.Text = String.Empty;
-            txbChDate.Text = String.Empty;
-            txbChStateFlag.Text = String.Empty;
-            txbChFlag.Text = String.Empty;
-            txbChHidden.Text = String.Empty;
+            txbDate.Text = String.Empty;
+            txbStateFlag.Text = String.Empty;
+            txbFlag.Text = String.Empty;
+            txbHidden.Text = String.Empty;
         }
         private void btnDisplay_Click(object sender, EventArgs e)
         {
             SetFormDataGridView();
-        }
-
-        private void lblLoginName_Click(object sender, EventArgs e)
-        {
-
         }
         private void btnClose_Click(object sender, EventArgs e)
         {
@@ -328,31 +442,13 @@ namespace SalesManagement_SysDev
 
 
 
-
-
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            //妥当なchデータを取得
-            if (!GetValidDataAtSelect())
-                return;
             //ch情報抽出
             GenereteDataAdSelect();
             //ch情報抽出結果
             SetSelectData();
         }
-
-        private bool GetValidDataAtSelect()
-        {
-            //空白でないか確認
-            if (String.IsNullOrEmpty(txbChID.Text.Trim()))
-            {
-                messageDsp.MsgDsp("");
-                txbChID.Focus();
-                return false;
-            }
-            return true;
-        }
-
         private void GenereteDataAdSelect()
         {
             T_Chumon selectCondition = new T_Chumon()
@@ -374,12 +470,91 @@ namespace SalesManagement_SysDev
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+            //妥当な顧客データを取得
+            if (!GetValidDataAtUpdate())
+                return;
+            //顧客情報作成
+            var updCh = GenerateDataAtUpdate();
+            //エラー文を書かなきゃダメ
 
+            //顧客情報更新
+            UpdateArrival(updCh);
         }
 
+        private bool GetValidDataAtUpdate()
+        {
+            if (!chumonDataAccess.CheckChIDExistence(int.Parse(txbChID.Text)))
+            {
+                messageDsp.MsgDsp("");
+                txbChID.Focus();
+                return false;
+            }
+            return true;
+        }
+
+        private T_Chumon GenerateDataAtUpdate()
+        {
+            return new T_Chumon
+            {
+                ChID = int.Parse(txbClID.Text.Trim()),
+                ChFlag = 2,
+                ChHidden = txbHidden.Text.Trim()
+            };
+        }
+
+        private void UpdateArrival(T_Chumon updCh)
+        {
+            DialogResult result = messageDsp.MsgDsp("");
+            if (result == DialogResult.Cancel)
+                return;
+
+            bool flg = chumonDataAccess.UpdateChumonData(updCh);
+            if (flg == true)
+                messageDsp.MsgDsp("");
+            else
+                messageDsp.MsgDsp("");
+
+            ClearInput();
+            txbChID.Focus();
+
+            GetDataGridView();
+        }
         private void btnConfirm_Click(object sender, EventArgs e)
         {
 
         }
+
+        private void btnDetailSearch_Click(object sender, EventArgs e)
+        {
+            GenereteDetailDataAdSelect();
+            SetSelectDetailData();
+        }
+
+        private void GenereteDetailDataAdSelect()
+        {
+            if (!int.TryParse(txbChDetailID.Text, out int chDetailID))
+                chDetailID = 0;
+            if (!int.TryParse(txbChIDsub.Text, out int chID))
+                chID = 0;
+            if (!int.TryParse(txbPrID.Text, out int prID))
+                prID = 0;
+            //検索に使用するデータ
+            T_ChumonDetail selectCondition = new T_ChumonDetail()
+            {//検索に使用するデータ　全て変数で行う
+                ChDetailID = chDetailID,
+                ChID = chID,
+                PrID = prID,
+            };
+            //arデータの抽出
+            ChumonDetail = chumonDetailDataAccess.GetChumonDetailData(selectCondition);
+        }
+        private void SetSelectDetailData()
+        {//ページ数の表示
+            txbDetailPageNo.Text = "1";
+            int pageSize = int.Parse(txbDetailPageSize.Text.Trim());
+            dataGridViewDetailDsp.DataSource = ChumonDetail;
+            lblDetailPage.Text = "/" + ((int)Math.Ceiling(ChumonDetail.Count / (double)pageSize)) + "ページ";
+        }
+    
     }
 }

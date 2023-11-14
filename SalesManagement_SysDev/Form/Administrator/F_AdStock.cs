@@ -18,7 +18,7 @@ namespace SalesManagement_SysDev
         //メッセージの表示用のクラスのインスタンス化
         StockDataAccess stockDataAccess = new StockDataAccess();
         //データベーステーブル用のインスタンス化
-        DataInputFormCheck dataInputFormCheck = new DataInputFormCheck();
+        CommonModule dataInputFormCheck = new CommonModule();
         //dataグリッドビュー用のテーブルデータインスタンス化
         private static List<T_Stock> Stock;
         
@@ -40,33 +40,13 @@ namespace SalesManagement_SysDev
 
         private bool GetValidDataAtUpdate()
         {
-            if (!String.IsNullOrEmpty(txbStID.Text.Trim()))
-            {
-                if (!dataInputFormCheck.CheckHalfAlphabetNumeric(txbStID.Text.Trim()))
-                {
-                    messageDsp.MsgDsp("");
-                    txbStID.Focus();
-                    return false;
-                }
-                if(txbStID.TextLength >6)
-                {
-                    messageDsp.MsgDsp("");
-                    txbStID.Focus();
-                    return false;
-                }
-                if(!stockDataAccess.CheckStIDExistence(int.Parse(txbStID.Text.Trim())))//要確認
-                {
-                    messageDsp.MsgDsp("");
-                    txbStID.Focus();
-                    return false;
-                }
-            }
-            else
+            if (!stockDataAccess.CheckStIDExistence(int.Parse(txbStID.Text.Trim())))//要確認
             {
                 messageDsp.MsgDsp("");
                 txbStID.Focus();
                 return false;
             }
+            //※
             return false;
         }
         private T_Stock GenerateDataAtUpdate()
@@ -151,33 +131,10 @@ namespace SalesManagement_SysDev
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            if (!GetValidDataAtSelect())
-                return;
             GenerateDataAtSelect();
 
             SetSelectData();
 
-        }
-
-        private bool GetValidDataAtSelect()
-        {
-            if (!String.IsNullOrEmpty(txbStID.Text.Trim()))
-            {
-                if(!dataInputFormCheck.CheckHalfAlphabetNumeric(txbStID.Text.Trim()))
-                {
-                    messageDsp.MsgDsp("");//半角チェック
-                    txbStID.Focus();
-                    return false;
-                }
-                if (txbStID.TextLength > 6)//文字数7文字以上
-                {
-                    messageDsp.MsgDsp("");
-                    txbStID.Focus();
-                    return false;
-                }
-            }
-            return false;
-            
         }
         private void GenerateDataAtSelect()
         {

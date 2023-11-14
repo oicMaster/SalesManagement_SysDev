@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Data.Entity.Infrastructure.Design.Executor;
 
 namespace SalesManagement_SysDev
 {
@@ -15,11 +16,16 @@ namespace SalesManagement_SysDev
     {
         MessageDsp messageDsp = new MessageDsp();
         HattyuDataAccess hattyuDataAccess = new HattyuDataAccess();
-        HattyuDetailDataAccess hattyuDetailDataaccess = new HattyuDetailDataAccess();
-        DataInputFormCheck dataInputFormCheck = new DataInputFormCheck();
+        HattyuDetailDataAccess hattyuDetailDataAccess = new HattyuDetailDataAccess();
+        MakerDataAccess makerDataAccess = new MakerDataAccess();
+        EmployeeDataAccess employeeDataAccess = new EmployeeDataAccess();
+        ProductDataAccess productDataAccess = new ProductDataAccess();
 
         private static List<T_Hattyu> Hattyu;
         private static List<T_HattyuDetail> HattyuDetail;
+
+        //登録のボタンEnable条件がまだ
+
         public F_AdHattyu()
         {
             InitializeComponent();
@@ -28,29 +34,39 @@ namespace SalesManagement_SysDev
         {
             //labelLoginName.Text = FormMenu.LoginName;
             SetFormDataGridView();
+            SetFormDetailDataGridView();
             fncButtonEnable(0);
-           
-            txbHaFlag.ReadOnly = true;
-            txbWaWereHouseFlag.ReadOnly = true;
+            txbFlag.ReadOnly = true;
+            txbStateFlag.ReadOnly = true;
+
+            //※
+
         }
+
         private void fncButtonEnable(int chk)
         {
             switch (chk)
             { //IDが空であれば0、でなければ1として、ボタンの使用を制限する
                 case 0:
-                    btnSearch.Enabled = true;
-                    btnRegist.Enabled = false;
                     btnConfirm.Enabled = false;
+                    btnUpdate.Enabled = false;
+                    btnRegist.Enabled = false;
                     break;
                 case 1:
-                    btnSearch.Enabled = true;
-                    btnRegist.Enabled = true;
                     btnConfirm.Enabled = true;
                     break;
+                //非表示理由とIDが入力されているか
+                case 2:
+                    btnUpdate.Enabled = true;
+                    break;
+                    //全部入力されているか
+                case 3:
+                    btnRegist.Enabled = true;
+                    break;
+
             }
         }
 
-       
         private void SetFormDataGridView()
         {
             txbPageSize.Text = "10";
@@ -61,6 +77,7 @@ namespace SalesManagement_SysDev
 
             GetDataGridView();
         }
+
         private void GetDataGridView()
         {
             Hattyu = hattyuDataAccess.GetHattyuData();
@@ -97,108 +114,115 @@ namespace SalesManagement_SysDev
             dataGridViewDsp.Columns[4].HeaderText = "入庫済フラグ";
             dataGridViewDsp.Columns[5].HeaderText = "発注管理フラグ";
             dataGridViewDsp.Columns[6].HeaderText = "非表示理由";
-            
 
+            //※
 
             lblPage.Text = "/" + ((int)Math.Ceiling(Hattyu.Count / (double)pageSize)) + "ページ";
 
             dataGridViewDsp.Refresh();
         }
-        private void dataGridViewData_CellClick(object sender, DataGridViewCellEventArgs e)
+
+        private void dataGridViewDsp_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             txbHaID.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[0].Value.ToString();
             txbMaID.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[1].Value.ToString();
             txbEmID.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[2].Value.ToString();
-            txbHaDate.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[3].Value.ToString();
-            txbWaWereHouseFlag.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[4].Value.ToString();
-            txbHaFlag.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[5].Value.ToString();
+            //※
+            txbStateFlag.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[4].Value.ToString();
+            txbFlag.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[5].Value.ToString();
             if (dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[6].Value != null)
-                txbHaHidden.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[6].Value.ToString();
+                txbHidden.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[6].Value.ToString();
             else
-                txbHaHidden.Text = String.Empty;
-        }
-        private void SetFormDataGridViewSub()
-        {
-            txbPageSizeSub.Text = "5";
-            txbPageNoSub.Text = "1";
-            dataGridViewSubDsp.ReadOnly = true;
-            dataGridViewSubDsp.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridViewSubDsp.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            GetDataGridViewSub();
-        }
-        private void GetDataGridViewSub()
-        {
-            //ChumonDetail = chumonDetailDataAccess.GetChumonDetailData();
-
-            SetDataGridViewSub();
+                txbHidden.Text = String.Empty;
         }
 
-
-        private void SetDataGridViewSub()
+        private void SetFormDetailDataGridView()
         {
-            int pageSize = int.Parse(txbPageSizeSub.Text);
-            int pageNo = int.Parse(txbPageNoSub.Text) - 1;
-            dataGridViewSubDsp.DataSource = HattyuDetail.Skip(pageSize * pageNo).Take(pageSize).ToList();
+            txbDetailPageSize.Text = "5";
+            txbDetailPageNo.Text = "1";
+            dataGridViewDetailDsp.ReadOnly = true;
+            dataGridViewDetailDsp.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridViewDetailDsp.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            GetDetailDataGridView();
+        }
+        private void GetDetailDataGridView()
+        {
+            HattyuDetail = hattyuDetailDataAccess.GetHattyuDetailData();
+            SetDetailDataGridView();
+        }
 
-            dataGridViewSubDsp.Columns[0].Width = 100;
-            dataGridViewSubDsp.Columns[1].Width = 100;
-            dataGridViewSubDsp.Columns[2].Width = 100;
-            dataGridViewSubDsp.Columns[3].Width = 100;
+
+        private void SetDetailDataGridView()
+        {
+            int pageSize = int.Parse(txbDetailPageSize.Text);
+            int pageNo = int.Parse(txbDetailPageNo.Text) - 1;
+            dataGridViewDetailDsp.DataSource = HattyuDetail.Skip(pageSize * pageNo).Take(pageSize).ToList();
+
+            dataGridViewDetailDsp.Columns[0].Width = 100;
+            dataGridViewDetailDsp.Columns[1].Width = 100;
+            dataGridViewDetailDsp.Columns[2].Width = 100;
+            dataGridViewDetailDsp.Columns[3].Width = 100;
 
 
-            dataGridViewSubDsp.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewSubDsp.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewSubDsp.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewSubDsp.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewDetailDsp.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewDetailDsp.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewDetailDsp.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewDetailDsp.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            dataGridViewSubDsp.Columns[0].HeaderText = "発注詳細ID";
-            dataGridViewSubDsp.Columns[1].HeaderText = "発注ID";
-            dataGridViewSubDsp.Columns[2].HeaderText = "商品ID";
-            dataGridViewSubDsp.Columns[3].HeaderText = "数量";
+            dataGridViewDetailDsp.Columns[0].HeaderText = "発注詳細ID";
+            dataGridViewDetailDsp.Columns[1].HeaderText = "発注ID";
+            dataGridViewDetailDsp.Columns[2].HeaderText = "商品ID";
+            dataGridViewDetailDsp.Columns[3].HeaderText = "数量";
 
-            lblPageSub.Text = "/" + ((int)Math.Ceiling(HattyuDetail.Count / (double)pageSize)) + "ページ";
+
+            dataGridViewDetailDsp.Columns[4].Visible = false;
+            dataGridViewDetailDsp.Columns[5].Visible = false;
+
+            lblDetailPage.Text = "/" + ((int)Math.Ceiling(HattyuDetail.Count / (double)pageSize)) + "ページ";
 
             dataGridViewDsp.Refresh();
         }
 
-        private void dataGridViewSubDsp_CellClick()
+        private void dataGridViewDetailDsp_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            txbHaDetailID.Text = dataGridViewDetailDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[0].Value.ToString();
+            txbHaIDsub.Text = dataGridViewDetailDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[1].Value.ToString();
+            txbPrID.Text = dataGridViewDetailDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[2].Value.ToString();
+            txbQuantity.Text = dataGridViewDetailDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[3].Value.ToString();
         }
+
 
         private void txbPageSize_TextChanged(object sender, EventArgs e)
         {
-            if (!String.IsNullOrEmpty(txbPageSize.Text.Trim()))
+            if (!String.IsNullOrEmpty((sender as TextBox).Text))
             {
-                if (int.Parse(txbPageSize.Text) > 10)
+                if (int.Parse((sender as TextBox).Text) > 10)
                 {
-                    messageDsp.MsgDsp("");
-                    txbPageSize.Text = "10";
+                    (sender as TextBox).Text = "10";
                     return;
                 }
-                if (int.Parse(txbPageSize.Text) == 0)
+                if (int.Parse((sender as TextBox).Text) == 0)
                 {
-                    messageDsp.MsgDsp("");
-                    txbPageSize.Text = "1";
+                    (sender as TextBox).Text = "1";
                     return;
                 }
             }
-
         }
+
         private void txbPageNo_TextChanged(object sender, EventArgs e)
         {
-            if (!String.IsNullOrEmpty(txbPageNo.Text.Trim()))
+            if (!String.IsNullOrEmpty((sender as TextBox).Text.Trim()))
             {
-                if (int.Parse(txbPageNo.Text) == 0)
+                if (int.Parse((sender as TextBox).Text) == 0)
                 {
-                    messageDsp.MsgDsp("");
-                    txbPageNo.Text = "1";
+                    (sender as TextBox).Text = "1";
                 }
             }
         }
-        private void txbHaID_TextChanged(object sender, EventArgs e)
-        {//顧客IDが入力されているかどうか
-            if (txbHaID.Text == "" || txbHaID.Text == null)
+
+        private void txbKeyID_TextChanged(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty((sender as TextBox).Text))
             {
                 fncButtonEnable(0);
                 ClearInput();
@@ -206,17 +230,66 @@ namespace SalesManagement_SysDev
             else
             {
                 fncButtonEnable(1);
-                txbHaFlag.Text = "0";
+                txbFlag.Text = "0";
+                txbStateFlag.Text = "0";
             }
+            txbHaIDsub.Text = txbHaID.Text;
+        }
 
-        }
-        private void txbHaHidden_TextChanged(object sender, EventArgs e)
+        private void txbHidden_TextChanged(object sender, EventArgs e)
         {
-            if (txbHaHidden.Text == "" || txbHaHidden.Text == null)
-                txbHaFlag.Text = "0";
+            if (!String.IsNullOrEmpty((sender as TextBox).Text.Trim()))
+                txbFlag.Text = "0";
             else
-                txbHaFlag.Text = "2";
+                txbFlag.Text = "2";
         }
+
+        //メイングリッドビュー,サブグリッドビューで使用する主キーのテキストボックスの文字を連動させる。
+        private void txbKeyIDsub_TextChanged(object sender, EventArgs e)
+        {
+            txbHaID.Text = txbHaIDsub.Text;
+        }
+
+        //PageSize,Noのテキストボックスに連結させる。
+        private void txbPage_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')
+            {
+                e.Handled = true;
+            }
+        }
+        //IDがつく全てのテキストボックスに連結させる。
+        private void txbID_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((sender as TextBox).Text.Length < 6)
+            {
+                if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')
+                    e.Handled = true;
+            }
+            else if ((sender as TextBox).Text.Length == 6)
+            {
+                if (e.KeyChar != '\b')
+                    e.Handled = true;
+            }
+        }
+        //数量or個数のテキストボックスに連結させる。
+        private void txbQuantity_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((sender as TextBox).Text.Length < 4)
+            {
+                if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')
+                    e.Handled = true;
+            }
+            else if (this.Text.Length == 4)
+            {
+                if (e.KeyChar != '\b')
+                    e.Handled = true;
+            }
+        }
+        //↓入力上限がある全てのデータに設定する。
+        //private void txb~~~~~_KeyPress(object sender, KeyPressEventArgs e)
+
+
 
         private void btnFirstPage_Click(object sender, EventArgs e)
         {
@@ -228,6 +301,7 @@ namespace SalesManagement_SysDev
             //ページ番号の設定
             txbPageNo.Text = "1";
         }
+
         private void btnPreviousPage_Click(object sender, EventArgs e)
         {
             int pageSize = int.Parse(txbPageSize.Text);
@@ -242,6 +316,7 @@ namespace SalesManagement_SysDev
             else
                 txbPageNo.Text = "1";
         }
+
         private void btnNextPage_Click(object sender, EventArgs e)
         {
             int pageSize = int.Parse(txbPageSize.Text);
@@ -261,6 +336,7 @@ namespace SalesManagement_SysDev
             else
                 txbPageNo.Text = (pageNo + 1).ToString();
         }
+
         private void btnLastPage_Click(object sender, EventArgs e)
         {
             int pageSize = int.Parse(txbPageSize.Text);
@@ -273,30 +349,83 @@ namespace SalesManagement_SysDev
             //ページ番号の設定
             txbPageNo.Text = (pageNo + 1).ToString();
         }
-       
-       
-        
+
+        private void btnDetailFirstPage_Click(object sender, EventArgs e)
+        {
+            int pageSize = int.Parse(txbDetailPageSize.Text);
+            dataGridViewDetailDsp.DataSource = HattyuDetail.Take(pageSize).ToList();
+
+            // DataGridViewを更新
+            dataGridViewDetailDsp.Refresh();
+            //ページ番号の設定
+            txbDetailPageNo.Text = "1";
+        }
+
+        private void btnDetailPreviousPage_Click(object sender, EventArgs e)
+        {
+            int pageSize = int.Parse(txbDetailPageSize.Text);
+            int pageNo = int.Parse(txbDetailPageNo.Text) - 2;
+            dataGridViewDetailDsp.DataSource = HattyuDetail.Skip(pageSize * pageNo).Take(pageSize).ToList();
+
+            // DataGridViewを更新
+            dataGridViewDetailDsp.Refresh();
+            //ページ番号の設定
+            if (pageNo + 1 > 1)
+                txbDetailPageNo.Text = (pageNo + 1).ToString();
+            else
+                txbDetailPageNo.Text = "1";
+        }
+
+        private void btnDetailNextPage_Click(object sender, EventArgs e)
+        {
+            int pageSize = int.Parse(txbDetailPageSize.Text);
+            int pageNo = int.Parse(txbDetailPageNo.Text);
+            //最終ページの計算
+            int lastNo = (int)Math.Ceiling(HattyuDetail.Count / (double)pageSize) - 1;
+            //最終ページでなければ
+            if (pageNo <= lastNo)
+                dataGridViewDetailDsp.DataSource = HattyuDetail.Skip(pageSize * pageNo).Take(pageSize).ToList();
+
+            // DataGridViewを更新
+            dataGridViewDetailDsp.Refresh();
+            //ページ番号の設定
+            int lastPage = (int)Math.Ceiling(HattyuDetail.Count / (double)pageSize);
+            if (pageNo >= lastPage)
+                txbDetailPageNo.Text = lastPage.ToString();
+            else
+                txbDetailPageNo.Text = (pageNo + 1).ToString();
+        }
+
+        private void btnDetailLastPage_Click(object sender, EventArgs e)
+        {
+            int pageSize = int.Parse(txbDetailPageSize.Text);
+            //最終ページの計算
+            int pageNo = (int)Math.Ceiling(HattyuDetail.Count / (double)pageSize) - 1;
+            dataGridViewDetailDsp.DataSource = HattyuDetail.Skip(pageSize * pageNo).Take(pageSize).ToList();
+
+            // DataGridViewを更新
+            dataGridViewDetailDsp.Refresh();
+            //ページ番号の設定
+            txbDetailPageNo.Text = (pageNo + 1).ToString();
+        }
+
         private void btnClear_Click(object sender, EventArgs e)
         {
             ClearInput();
         }
         private void ClearInput()
-        {//テキストボックスを空にする
+        {//全てのテキストボックスを空白にする
             txbHaID.Text = String.Empty;
             txbMaID.Text = String.Empty;
             txbEmID.Text = String.Empty;
-            txbHaDate.Text = String.Empty;
-            txbWaWereHouseFlag.Text = String.Empty;
-            txbHaFlag.Text = String.Empty;
-            txbHaHidden.Text = String.Empty;
+            txbDate.Text = String.Empty;
+            txbStateFlag.Text = String.Empty;
+            txbFlag.Text = String.Empty;
+            txbHidden.Text = String.Empty;
         }
         private void btnDisplay_Click(object sender, EventArgs e)
         {
             SetFormDataGridView();
-        }
-        private void labelLoginName_Click(object sender, EventArgs e)
-        {
-
         }
         private void btnClose_Click(object sender, EventArgs e)
         {
@@ -304,54 +433,21 @@ namespace SalesManagement_SysDev
         }
 
 
+
+
+
+
+
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            //妥当なHaデータを取得
-            if (!GetValidDataAtSelect())
-                return;
             //Ha情報抽出
             GenerateDataAdSelect();
             //Ha情報抽出結果
             SetSelectData();
         }
-
-        private bool GetValidDataAtSelect()
-        {
-            //空白でないか確認
-            if (!String.IsNullOrEmpty(txbHaID.Text.Trim()))
-            {
-                //数値かどうか確認？？
-                if (!dataInputFormCheck.CheckNumeric(txbHaID.Text.Trim()))
-                {
-                    messageDsp.MsgDsp("");
-                    txbHaID.Focus();
-                    return false;
-                }
-                //6文字以内か確認
-                if (txbHaID.TextLength > 6)
-                {
-                    messageDsp.MsgDsp("");
-                    txbHaID.Focus();
-                    return false;
-                }
-            }
-            else
-            {
-                messageDsp.MsgDsp("");
-                txbHaID.Focus();
-                return false;
-            }
-            return true;
-        }
-
         private void GenerateDataAdSelect()
         {
-            T_Hattyu selectCondition = new T_Hattyu()
-            {//検索に使用するデータ
-                HaID = int.Parse(txbHaID.Text.Trim()),
-            };
-            //顧客データの抽出
-            Hattyu = hattyuDataAccess.GetHattyuData(selectCondition);
+            //※
         }
 
         private void SetSelectData()
@@ -377,38 +473,13 @@ namespace SalesManagement_SysDev
 
         private bool GetValidDataAtRegistration()
         {
-            if (!String.IsNullOrEmpty(txbHaID.Text.Trim()))
-            {
-                if (!hattyuDataAccess.CheckHaIDExistence(int.Parse(txbHaID.Text.Trim())))
-                {
-                    messageDsp.MsgDsp("");
-                    txbHaID.Focus();
-                    return false;
-                }
-            }
-            else
-            {
-                messageDsp.MsgDsp("");
-                txbHaID.Focus();
-                return false;
-            }
-
-            //ここ
-
-
-            if (!String.IsNullOrEmpty(txbHaHidden.Text.Trim()))
-            {//登録の時は非表示理由を必ず空白にしたい
-                messageDsp.MsgDsp("");
-                txbHaHidden.Focus();
-                return false;
-            }
             return true;
         }
         private T_Hattyu GenereteDataAdRegistration()
         {
             return new　T_Hattyu
             {
-                //▼全部
+                //※
             };
         }
 
@@ -435,6 +506,55 @@ namespace SalesManagement_SysDev
             // データグリッドビューの表示
             GetDataGridView();
         }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            //顧客情報作成
+            var updHa = GenerateDataAtUpdate();
+            //エラー文を書かなきゃダメ
+
+            //顧客情報更新
+            UpdateHattyu(updHa);
+        }
+
+        private bool GetValidDataAtUpdate()
+        {
+            if (!hattyuDataAccess.CheckHaIDExistence(int.Parse(txbHaID.Text)))
+            {
+                messageDsp.MsgDsp("");
+                txbHaID.Focus();
+                return false;
+            }
+            return true;
+        }
+
+        private T_Hattyu GenerateDataAtUpdate()
+        {
+            return new T_Hattyu
+            {
+                HaID = int.Parse(txbHaID.Text.Trim()),
+                HaFlag = 2,
+                HaHidden = txbHidden.Text.Trim()
+            };
+        }
+
+        private void UpdateHattyu(T_Hattyu updHa)
+        {
+            DialogResult result = messageDsp.MsgDsp("");
+            if (result == DialogResult.Cancel)
+                return;
+
+            bool flg = hattyuDataAccess.UpdateHattyuData(updHa);
+            if (flg == true)
+                messageDsp.MsgDsp("");
+            else
+                messageDsp.MsgDsp("");
+
+            ClearInput();
+            txbHaID.Focus();
+
+            GetDataGridView();
+        }
         private void btnConfirm_Click(object sender, EventArgs e)
         {
 
@@ -442,36 +562,54 @@ namespace SalesManagement_SysDev
 
         private void btnDetailSearch_Click(object sender, EventArgs e)
         {
-
+            GenereteDetailDataAdSelect();
+            //Ar情報抽出結果
+            SetSelectDetailData();
         }
-        private void GetValidDetailDataAtSelect(object sender, EventArgs e)
-        {
 
+        private void GenereteDetailDataAdSelect()
+        {
+            if (!int.TryParse(txbHaDetailID.Text, out int haDetailID))
+                haDetailID = 0;
+            if (!int.TryParse(txbHaIDsub.Text, out int haID))
+                haID = 0;
+            if (!int.TryParse(txbPrID.Text, out int prID))
+                prID = 0;
+            //検索に使用するデータ
+            T_HattyuDetail selectCondition = new T_HattyuDetail()
+            {//検索に使用するデータ　全て変数で行う
+                HaDetailID = haDetailID,
+                HaID = haID,
+                PrID = prID,
+            };
+            //arデータの抽出
+            HattyuDetail = hattyuDetailDataAccess.GetHattyuDetailData(selectCondition);
         }
-        private void GenerateDetailDataAdSelect(object sender, EventArgs e)
-        {
-
-        }
-        private void SetSelectDetailData(object sender, EventArgs e)
-        {
-
+        private void SetSelectDetailData()
+        {//ページ数の表示
+            txbDetailPageNo.Text = "1";
+            int pageSize = int.Parse(txbDetailPageSize.Text.Trim());
+            dataGridViewDetailDsp.DataSource = HattyuDetail;
+            lblDetailPage.Text = "/" + ((int)Math.Ceiling(HattyuDetail.Count / (double)pageSize)) + "ページ";
         }
 
         private void btnDetailRegist_Click(object sender, EventArgs e)
         {
 
         }
-        private void GetValidDataAtRegistration(object sender, EventArgs e)
+        private void GetValidDetailDataAtRegistration()
         {
 
         }
-        private void GenerateDataAdRegistration(object sender, EventArgs e)
+        private void GenerateDetailDataAdRegistration()
         {
 
         }
-        private void RegistrationOrder(object sender, EventArgs e)
+        private void RegistrationOrderDetail()
         {
 
         }
+
+ 
     }
 }

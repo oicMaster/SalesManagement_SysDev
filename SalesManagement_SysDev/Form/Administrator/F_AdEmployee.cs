@@ -22,7 +22,6 @@ namespace SalesManagement_SysDev
         //データベース社員テーブルアクセス用のクラスのインスタンス化
         EmployeeDataAccess employeeDateAccess = new EmployeeDataAccess();
         //入力形式チェック用クラスのインスタンス化
-        DataInputFormCheck dataInputFormCheck = new DataInputFormCheck();
         //データグリッドビュー用の社員データ
         private static List<M_Employee> Employees;
 
@@ -40,6 +39,7 @@ namespace SalesManagement_SysDev
             fncButtonEnable(0);
             fncTextBoxReadOnly(0);
             txbEmFlag.ReadOnly = true;
+
         }
         private void fncButtonEnable(int chk)
         {
@@ -188,23 +188,29 @@ namespace SalesManagement_SysDev
         }
 
 
-        private void txbID_KeyPress()
+        private void txbID_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            if ((sender as TextBox).Text.Length < 6)
+            {
+                if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')
+                    e.Handled = true;
+            }
+            else if ((sender as TextBox).Text.Length == 6)
+            {
+                if (e.KeyChar != '\b')
+                    e.Handled = true;
+            }
         }
 
         //txb▼_KeyPress
 
-        private void txbPage_KeyPress()
+        private void txbPage_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')
+            {
+                e.Handled = true;
+            }
         }
-
-        private void txbQuntity_KeyPress()
-        {
-
-        }
-
 
 
         private void btnFirstPage_Click(object sender, EventArgs e)
@@ -353,61 +359,7 @@ namespace SalesManagement_SysDev
 
         private bool GetValidDataAtRegistration()
         {
-            if (!String.IsNullOrEmpty(txbEmID.Text.Trim()))
-            {
-                if (!employeeDateAccess.CheckEmployeeCDExistence(int.Parse(txbEmID.Text.Trim())))
-                {
-                    messageDsp.MsgDsp("");
-                    txbEmID.Focus();
-                    return false;
-                }
-
-            }
-            else
-            {
-                messageDsp.MsgDsp("");
-                txbEmID.Focus();
-                return false;
-            }
-            if (!String.IsNullOrEmpty(txbSoID.Text.Trim()))
-            {
-
-            }
-            else
-            {
-                messageDsp.MsgDsp("");
-                txbSoID.Focus();
-                return false;
-            }
-            if (String.IsNullOrEmpty(txbPoID.Text.Trim()))
-            {
-                messageDsp.MsgDsp("");
-                txbPoID.Focus();
-                return false;
-            }
-            if (String.IsNullOrEmpty(txbEmHiredate.Text.Trim()))
-            {
-                messageDsp.MsgDsp("");
-                txbEmHiredate.Focus();
-                return false;
-            }
-            if (String.IsNullOrEmpty(txbEmPhone.Text.Trim()))
-            {
-                messageDsp.MsgDsp("");
-                txbEmPhone.Focus();
-                return false;
-            }
-            if (String.IsNullOrEmpty(txbEmHiddin.Text.Trim()))
-            {
-                messageDsp.MsgDsp("");
-                txbEmHiddin.Focus();
-                return false;
-            }
             return true;
-
-
-
-
         }
 
         private M_Employee GenereteDataAdRegistration()
@@ -466,7 +418,7 @@ namespace SalesManagement_SysDev
         {
             if (!String.IsNullOrEmpty(txbEmID.Text.Trim()))
             {
-                if (!employeeDateAccess.CheckEmployeeCDExistence(int.Parse(txbEmID.Text.Trim())))
+                if (!employeeDateAccess.CheckEmIDExistence(int.Parse(txbEmID.Text.Trim())))
                 {
                     messageDsp.MsgDsp("");
                     txbEmID.Focus();
