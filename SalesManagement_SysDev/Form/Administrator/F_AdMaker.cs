@@ -16,18 +16,7 @@ namespace SalesManagement_SysDev
         {
             InitializeComponent();
         }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txbClPostal_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnSearch_Click(object sender, EventArgs e)
+        private void F_AdMaker_Load(object sender, EventArgs e)
         {
 
         }

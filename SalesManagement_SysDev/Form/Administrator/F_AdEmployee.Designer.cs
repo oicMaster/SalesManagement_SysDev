@@ -60,6 +60,7 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.txbEmPhone = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnClear = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDsp)).BeginInit();
             this.SuspendLayout();
             // 
@@ -333,11 +334,21 @@
             this.label2.TabIndex = 133;
             this.label2.Text = "電話番号";
             // 
+            // btnClear
+            // 
+            this.btnClear.Location = new System.Drawing.Point(900, 68);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(75, 23);
+            this.btnClear.TabIndex = 135;
+            this.btnClear.Text = "入力クリア";
+            this.btnClear.UseVisualStyleBackColor = true;
+            // 
             // F_AdEmployee
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1347, 820);
+            this.Controls.Add(this.btnClear);
             this.Controls.Add(this.txbEmPhone);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnUpdate);
@@ -412,5 +423,6 @@
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.TextBox txbEmPhone;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnClear;
     }
 }

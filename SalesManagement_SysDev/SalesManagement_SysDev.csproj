@@ -61,7 +61,7 @@
     <Compile Include="Form\DbAccess\ChumonDetailDataAccess.cs" />
     <Compile Include="Form\DbAccess\ArrivalDataAccess.cs" />
     <Compile Include="Form\DbAccess\ChumonDataAccess.cs" />
-    <Compile Include="Common\DataInputFormCheck.cs" />
+    <Compile Include="Common\CommonModule.cs" />
     <Compile Include="Common\MessageDsp.cs" />
     <Compile Include="Common\PasswordHash.cs" />
     <Compile Include="Form\DbAccess\EmployeeDataAccess.cs" />
