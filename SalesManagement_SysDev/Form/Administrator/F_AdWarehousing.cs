@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -111,7 +112,10 @@ namespace SalesManagement_SysDev
             dataGridViewDsp.Columns[6].HeaderText = "入庫管理フラグ";
 
 
-            //※
+            dataGridViewDetailDsp.Columns[7].Visible = false;
+            dataGridViewDetailDsp.Columns[8].Visible = false;
+            dataGridViewDetailDsp.Columns[9].Visible = false;
+            
 
             lblPage.Text = "/" + ((int)Math.Ceiling(Warehousing.Count / (double)pageSize)) + "ページ";
 
@@ -445,9 +449,18 @@ namespace SalesManagement_SysDev
         }
         private void GenereteDataAdSelect()
         {
+            if (!int.TryParse(txbWaID.Text, out int waID))
+                waID = 0;
+            if (!int.TryParse(txbHaID.Text, out int haID))
+                haID = 0;
+            if (!int.TryParse(txbEmID.Text, out int emID))
+                emID = 0;
+           
             T_Warehousing selectCondition = new T_Warehousing()
             {//検索に使用するデータ
-                WaID = int.Parse(txbWaID.Text.Trim()),
+                WaID = waID,
+                HaID = haID,
+                EmID = emID,
             };
             //入庫データの抽出
             Warehousing = warehousingDataAccess.GetWarehousingData(selectCondition);

@@ -114,7 +114,13 @@ namespace SalesManagement_SysDev
             dataGridViewDsp.Columns[7].HeaderText = "出荷管理フラフ";
             dataGridViewDsp.Columns[8].HeaderText = "非表示理由";
 
-            //※
+            
+            dataGridViewDetailDsp.Columns[9].Visible = false;
+            dataGridViewDetailDsp.Columns[10].Visible = false;
+            dataGridViewDetailDsp.Columns[11].Visible = false;
+            dataGridViewDetailDsp.Columns[12].Visible = false;
+            dataGridViewDetailDsp.Columns[13].Visible = false;
+            
 
             //データグリッドビューの総ページ数
             lblPage.Text = "/" + ((int)Math.Ceiling(Shipment.Count / (double)pageSize)) + "ページ";
@@ -450,9 +456,24 @@ namespace SalesManagement_SysDev
         }
         private void GenereteDataAdSelect()
         {
+            //文字列型以外はif文を付ける　FlagとHiddenはいらない
+            if (!int.TryParse(txbShID.Text, out int shID))
+                shID = 0;
+            if (!int.TryParse(txbClID.Text, out int clID))
+                clID = 0;
+            if (!int.TryParse(txbEmID.Text, out int emID))
+                emID = 0;
+            if (!int.TryParse(txbSoID.Text, out int soID))
+                soID = 0;            
+            if (!int.TryParse(txbOrID.Text, out int orID))
+                orID = 0;
             T_Shipment selectCondition = new T_Shipment()
             {
-                //※
+                ShID = shID,
+                ClID = clID,
+                EmID = emID,
+                SoID = soID,               
+                OrID = orID,
             };
             Shipment = shipmentDataAccess.GetShipmentData(selectCondition);
         }

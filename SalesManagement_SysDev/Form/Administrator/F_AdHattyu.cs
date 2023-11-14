@@ -115,8 +115,12 @@ namespace SalesManagement_SysDev
             dataGridViewDsp.Columns[5].HeaderText = "発注管理フラグ";
             dataGridViewDsp.Columns[6].HeaderText = "非表示理由";
 
-            //※
-
+            
+            dataGridViewDsp.Columns[7].Visible = false;
+            dataGridViewDsp.Columns[8].Visible = false;
+            dataGridViewDsp.Columns[9].Visible = false;
+            dataGridViewDsp.Columns[10].Visible = false;
+            
             lblPage.Text = "/" + ((int)Math.Ceiling(Hattyu.Count / (double)pageSize)) + "ページ";
 
             dataGridViewDsp.Refresh();
@@ -447,7 +451,26 @@ namespace SalesManagement_SysDev
         }
         private void GenerateDataAdSelect()
         {
-            //※
+            
+            //文字列型以外はif文を付ける　FlagとHiddenはいらない
+            if (!int.TryParse(txbHaID.Text, out int haID))
+                haID = 0;
+            if (!int.TryParse(txbMaID.Text, out int maID))
+                maID = 0;
+            if (!int.TryParse(txbEmID.Text, out int emID))
+                emID = 0;
+            
+            
+            //検索に使用するデータ
+            T_Hattyu selectCondition = new T_Hattyu()
+            {//検索に使用するデータ　全て変数で行う
+                HaID = haID,
+                MaID = maID,
+                EmID = emID,
+               
+            };
+            //arデータの抽出
+            Hattyu = hattyuDataAccess.GetHattyuData(selectCondition);
         }
 
         private void SetSelectData()
@@ -477,9 +500,15 @@ namespace SalesManagement_SysDev
         }
         private T_Hattyu GenereteDataAdRegistration()
         {
+            string hidden = txbHidden.Text;
             return new　T_Hattyu
             {
-                //※
+                HaID =int.Parse(txbHaID.Text.Trim()),
+                MaID =int.Parse(txbMaID.Text.Trim()),
+                EmID =int.Parse(txbEmID.Text.Trim()),
+                HaDate = DateTime.Parse(txbDate.Text.Trim()),
+                HaFlag =int.Parse(txbFlag.Text.Trim()),
+                HaHidden = hidden,
             };
         }
 
