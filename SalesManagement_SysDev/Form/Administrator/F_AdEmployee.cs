@@ -12,6 +12,7 @@ using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace SalesManagement_SysDev
 {
@@ -36,84 +37,56 @@ namespace SalesManagement_SysDev
         {
             //labelLoginName.Text = FormMenu.LoginName;
             SetFormDataGridView();
+
             fncButtonEnable(0);
-            fncTextBoxReadOnly(0);
-            txbEmFlag.ReadOnly = true;
+            txbFlag.ReadOnly = true;
+
+
+            //コード追加部分
+            //※
 
         }
+
         private void fncButtonEnable(int chk)
         {
             switch (chk)
-            { //顧客IDが空であれば0、でなければ1として、ボタンの使用を制限する
+            { //IDが空であれば0、でなければ1として、ボタンの使用を制限する
                 case 0:
-                    btnRegist.Enabled = true;
-                    btnSearch.Enabled = true;
+
                     btnUpdate.Enabled = false;
                     break;
                 case 1:
-                    btnRegist.Enabled = true;
-                    btnSearch.Enabled = true;
+
+                    break;
+                //非表示理由とIDが入力されているか
+                case 2:
                     btnUpdate.Enabled = true;
                     break;
-            }
-        }
-
-        private void fncTextBoxReadOnly(int chk)
-        {
-            switch (chk)
-            {
-                case 0:
-                    txbEmID.ReadOnly = true;
-                    txbEmName.ReadOnly = true;
-                    txbSoID.ReadOnly = true;
-                    txbPoID.ReadOnly = true;
-                    txbEmHiredate.ReadOnly = true;
-                    txbEmPhone.ReadOnly = true;
-                    txbEmHiddin.ReadOnly = true;
-                    break;
-                case 1:
-                    txbEmID.ReadOnly = false;
-                    txbEmName.ReadOnly = false;
-                    txbSoID.ReadOnly = false;
-                    txbPoID.ReadOnly = false;
-                    txbEmHiredate.ReadOnly = false;
-                    txbEmPhone.ReadOnly = false;
-                    txbEmHiddin.ReadOnly = false;
-                    break;
-
-
 
             }
         }
 
         private void SetFormDataGridView()
         {
-            //データグリッドビューのページサイズの設定
             txbPageSize.Text = "10";
-            //データグリッドビューのページ番号の設定
             txbPageNo.Text = "1";
-            //読み取り専用
             dataGridViewDsp.ReadOnly = true;
-            //行をクリックで選択出来る
             dataGridViewDsp.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            //ヘッダーの位置
             dataGridViewDsp.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            //データグリッドビューのデータ取得
+
             GetDataGridView();
         }
+
         private void GetDataGridView()
         {
             Employees = employeeDateAccess.GetEmployeeData();
-
             SetDataGridView();
-
         }
-
         private void SetDataGridView()
         {
             int pageSize = int.Parse(txbPageSize.Text);
-            int pageNO = int.Parse(txbPageNo.Text) - 1;
-            dataGridViewDsp.DataSource = Employees.Skip(pageSize * pageNO);
+            int pageNo = int.Parse(txbPageNo.Text) - 1;
+            dataGridViewDsp.DataSource = Employees.Skip(pageSize * pageNo).Take(pageSize).ToList();
 
             dataGridViewDsp.Columns[0].Width = 100;
             dataGridViewDsp.Columns[1].Width = 200;
@@ -124,27 +97,46 @@ namespace SalesManagement_SysDev
             dataGridViewDsp.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewDsp.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewDsp.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewDsp.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewDsp.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewDsp.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewDsp.Columns[9].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+
+            dataGridViewDsp.Columns[0].HeaderText = "社員ID";
+            dataGridViewDsp.Columns[1].HeaderText = "社員名";
+            dataGridViewDsp.Columns[2].HeaderText = "営業所ID";
+            dataGridViewDsp.Columns[3].HeaderText = "役職ID";
+            dataGridViewDsp.Columns[4].HeaderText = "入社年月日";
+            dataGridViewDsp.Columns[6].HeaderText = "電話番号";
+            dataGridViewDsp.Columns[8].HeaderText = "社員管理フラグ";
+            dataGridViewDsp.Columns[9].HeaderText = "非表示理由";
+
 
             lblPage.Text = "/" + ((int)Math.Ceiling(Employees.Count / (double)pageSize)) + "ページ";
 
             dataGridViewDsp.Refresh();
-
         }
+
+        private void dataGridViewDsp_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //※
+        }
+
+
+
 
         private void txbPageSize_TextChanged(object sender, EventArgs e)
         {
-            if (!String.IsNullOrEmpty(txbPageSize.Text.Trim()))
+            if (!String.IsNullOrEmpty((sender as TextBox).Text))
             {
-                if (int.Parse(txbPageSize.Text) > 10)
+                if (int.Parse((sender as TextBox).Text) > 10)
                 {
-                    messageDsp.MsgDsp("");
-                    txbPageSize.Text = "10";
+                    (sender as TextBox).Text = "10";
                     return;
                 }
-                if (int.Parse(txbPageSize.Text) == 0)
+                if (int.Parse((sender as TextBox).Text) == 0)
                 {
-                    messageDsp.MsgDsp("");
-                    txbPageSize.Text = "1";
+                    (sender as TextBox).Text = "1";
                     return;
                 }
             }
@@ -152,42 +144,50 @@ namespace SalesManagement_SysDev
 
         private void txbPageNo_TextChanged(object sender, EventArgs e)
         {
-            if (!String.IsNullOrEmpty(txbPageNo.Text.Trim()))
+            if (!String.IsNullOrEmpty((sender as TextBox).Text.Trim()))
             {
-                if (int.Parse(txbPageNo.Text) == 0)
+                if (int.Parse((sender as TextBox).Text) == 0)
                 {
-                    messageDsp.MsgDsp("");
-                    txbPageNo.Text = "1";
+                    (sender as TextBox).Text = "1";
                 }
-
             }
         }
-        private void txbEmID_TextChanged(object sender, EventArgs e)
+
+        private void txbKeyID_TextChanged(object sender, EventArgs e)
         {
-            //顧客IDが入力されているかどうか
-            if (txbEmID.Text == "" || txbEmID.Text == null)
+            if (String.IsNullOrEmpty((sender as TextBox).Text))
             {
                 fncButtonEnable(0);
-                fncTextBoxReadOnly(0);
                 ClearInput();
             }
             else
             {
                 fncButtonEnable(1);
-                fncTextBoxReadOnly(1);
-                txbEmFlag.Text = "0";
+                txbFlag.Text = "0";
+                txbFlag.Text = "0";
+            }
+
+        }
+
+        private void txbHidden_TextChanged(object sender, EventArgs e)
+        {
+            if (!String.IsNullOrEmpty((sender as TextBox).Text.Trim()))
+                txbFlag.Text = "0";
+            else
+                txbFlag.Text = "2";
+        }
+
+        //メイングリッドビュー,サブグリッドビューで使用する主キーのテキストボックスの文字を連動させる。
+
+        //PageSize,Noのテキストボックスに連結させる。
+        private void txbPage_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')
+            {
+                e.Handled = true;
             }
         }
-
-        private void txbEmHidden_TextChanged(object sender, EventArgs e)
-        {
-            if (txbEmHiddin.Text == "" || txbEmHiddin == null)
-                txbEmFlag.Text = "0";
-            else
-                txbEmFlag.Text = "2";
-        }
-
-
+        //IDがつく全てのテキストボックスに連結させる。
         private void txbID_KeyPress(object sender, KeyPressEventArgs e)
         {
             if ((sender as TextBox).Text.Length < 6)
@@ -201,16 +201,23 @@ namespace SalesManagement_SysDev
                     e.Handled = true;
             }
         }
-
-        //txb▼_KeyPress
-
-        private void txbPage_KeyPress(object sender, KeyPressEventArgs e)
+        //数量or個数のテキストボックスに連結させる。
+        private void txbQuantity_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')
+            if ((sender as TextBox).Text.Length < 4)
             {
-                e.Handled = true;
+                if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')
+                    e.Handled = true;
+            }
+            else if (this.Text.Length == 4)
+            {
+                if (e.KeyChar != '\b')
+                    e.Handled = true;
             }
         }
+        //↓入力上限がある全てのデータに設定する。
+        //private void txb~~~~~_KeyPress(object sender, KeyPressEventArgs e)
+
 
 
         private void btnFirstPage_Click(object sender, EventArgs e)
@@ -218,9 +225,8 @@ namespace SalesManagement_SysDev
             int pageSize = int.Parse(txbPageSize.Text);
             dataGridViewDsp.DataSource = Employees.Take(pageSize).ToList();
 
-            //DataGridViewを更新
+            // DataGridViewを更新
             dataGridViewDsp.Refresh();
-
             //ページ番号の設定
             txbPageNo.Text = "1";
         }
@@ -231,8 +237,7 @@ namespace SalesManagement_SysDev
             int pageNo = int.Parse(txbPageNo.Text) - 2;
             dataGridViewDsp.DataSource = Employees.Skip(pageSize * pageNo).Take(pageSize).ToList();
 
-
-            //DataGridViewを更新
+            // DataGridViewを更新
             dataGridViewDsp.Refresh();
             //ページ番号の設定
             if (pageNo + 1 > 1)
@@ -244,15 +249,21 @@ namespace SalesManagement_SysDev
         private void btnNextPage_Click(object sender, EventArgs e)
         {
             int pageSize = int.Parse(txbPageSize.Text);
-            int PageNo = int.Parse(txbPageNo.Text);
+            int pageNo = int.Parse(txbPageNo.Text);
             //最終ページの計算
             int lastNo = (int)Math.Ceiling(Employees.Count / (double)pageSize) - 1;
             //最終ページでなければ
-            if (PageNo <= lastNo)
-                txbPageNo.Text = lastNo.ToString();
-            else
-                txbPageNo.Text = (PageNo + 1).ToString();
+            if (pageNo <= lastNo)
+                dataGridViewDsp.DataSource = Employees.Skip(pageSize * pageNo).Take(pageSize).ToList();
 
+            // DataGridViewを更新
+            dataGridViewDsp.Refresh();
+            //ページ番号の設定
+            int lastPage = (int)Math.Ceiling(Employees.Count / (double)pageSize);
+            if (pageNo >= lastPage)
+                txbPageNo.Text = lastPage.ToString();
+            else
+                txbPageNo.Text = (pageNo + 1).ToString();
         }
 
         private void btnLastPage_Click(object sender, EventArgs e)
@@ -260,43 +271,39 @@ namespace SalesManagement_SysDev
             int pageSize = int.Parse(txbPageSize.Text);
             //最終ページの計算
             int pageNo = (int)Math.Ceiling(Employees.Count / (double)pageSize) - 1;
-            dataGridViewDsp.DataSource = Employees.Skip(pageSize * pageNo).Take(pageSize).ToString();
+            dataGridViewDsp.DataSource = Employees.Skip(pageSize * pageNo).Take(pageSize).ToList();
 
-            //DataGridViewを更新
+            // DataGridViewを更新
             dataGridViewDsp.Refresh();
             //ページ番号の設定
             txbPageNo.Text = (pageNo + 1).ToString();
         }
+
 
         private void btnClear_Click(object sender, EventArgs e)
         {
             ClearInput();
         }
         private void ClearInput()
-        {
+        {//全てのテキストボックスを空白にする
             txbEmID.Text = String.Empty;
-            txbEmName.Text = String.Empty;
-            txbEmHiredate.Text = String.Empty;
+            txbName.Text = String.Empty;
+            txbHiredate.Text = String.Empty;
             txbSoID.Text = String.Empty;
             txbPoID.Text = String.Empty;
-            txbEmPhone.Text = String.Empty;
-            txbEmFlag.Text = String.Empty;
-            txbEmHiddin.Text = String.Empty;
+            txbPhone.Text = String.Empty;
+            txbFlag.Text = String.Empty;
+            txbHiddin.Text = String.Empty;
         }
-
         private void btnDisplay_Click(object sender, EventArgs e)
         {
             SetFormDataGridView();
-        }
-
-        private void labelLoginName_Click(object sender, EventArgs e)
-        {
-
         }
         private void btnClose_Click(object sender, EventArgs e)
         {
             Dispose();
         }
+
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
@@ -367,13 +374,13 @@ namespace SalesManagement_SysDev
             return new M_Employee
             {
                 EmID = int.Parse(txbEmID.Text.Trim()),
-                EmName = txbEmName.Text.Trim(),
+                EmName = txbName.Text.Trim(),
                 SoID = int.Parse((txbSoID.Text.Trim())),
                 PoID = int.Parse((txbPoID.Text.Trim())),
-                EmHiredate = DateTime.Parse(txbEmHiredate.Text.Trim()),
-                EmPhone = txbEmPhone.Text.Trim(),
-                EmFlag = int.Parse(txbEmFlag.Text.Trim()),
-                EmHidden = txbEmHiddin.Text.Trim(),
+                EmHiredate = DateTime.Parse(txbHiredate.Text.Trim()),
+                EmPhone = txbPhone.Text.Trim(),
+                EmFlag = int.Parse(txbFlag.Text.Trim()),
+                EmHidden = txbHiddin.Text.Trim(),
             };
         }
 
@@ -447,22 +454,22 @@ namespace SalesManagement_SysDev
                 txbPoID.Focus();
                 return false;
             }
-            if (String.IsNullOrEmpty(txbEmHiredate.Text.Trim()))
+            if (String.IsNullOrEmpty(txbHiredate.Text.Trim()))
             {
                 messageDsp.MsgDsp("");
-                txbEmHiredate.Focus();
+                txbHiredate.Focus();
                 return false;
             }
-            if (String.IsNullOrEmpty(txbEmPhone.Text.Trim()))
+            if (String.IsNullOrEmpty(txbPhone.Text.Trim()))
             {
                 messageDsp.MsgDsp("");
-                txbEmPhone.Focus();
+                txbPhone.Focus();
                 return false;
             }
-            if (String.IsNullOrEmpty(txbEmHiddin.Text.Trim()))
+            if (String.IsNullOrEmpty(txbHiddin.Text.Trim()))
             {
                 messageDsp.MsgDsp("");
-                txbEmHiddin.Focus();
+                txbHiddin.Focus();
                 return false;
             }
             return true;
@@ -473,13 +480,13 @@ namespace SalesManagement_SysDev
             return new M_Employee
             {
                 EmID = int.Parse(txbEmID.Text.Trim()),
-                EmName = txbEmName.Text.Trim(),
+                EmName = txbName.Text.Trim(),
                 SoID = int.Parse((txbSoID.Text.Trim())),
                 PoID = int.Parse((txbPoID.Text.Trim())),
-                EmHiredate = DateTime.Parse(txbEmHiredate.Text.Trim()),
-                EmPhone = txbEmPhone.Text.Trim(),
-                EmFlag = int.Parse(txbEmFlag.Text.Trim()),
-                EmHidden = txbEmHiddin.Text.Trim(),
+                EmHiredate = DateTime.Parse(txbHiredate.Text.Trim()),
+                EmPhone = txbPhone.Text.Trim(),
+                EmFlag = int.Parse(txbFlag.Text.Trim()),
+                EmHidden = txbHiddin.Text.Trim(),
             };
         }
 
@@ -501,6 +508,7 @@ namespace SalesManagement_SysDev
             GetDataGridView();
         }
 
+        
     }
 }
 

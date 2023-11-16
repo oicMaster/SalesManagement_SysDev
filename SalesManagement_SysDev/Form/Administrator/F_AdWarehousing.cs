@@ -240,10 +240,7 @@ namespace SalesManagement_SysDev
 
         private void txbHidden_TextChanged(object sender, EventArgs e)
         {
-            if (!String.IsNullOrEmpty((sender as TextBox).Text.Trim()))
-                txbFlag.Text = "0";
-            else
-                txbFlag.Text = "2";
+
         }
 
         //メイングリッドビュー,サブグリッドビューで使用する主キーのテキストボックスの文字を連動させる。
@@ -255,10 +252,7 @@ namespace SalesManagement_SysDev
         //PageSize,Noのテキストボックスに連結させる。
         private void txbPage_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')
-            {
-                e.Handled = true;
-            }
+
         }
         //IDがつく全てのテキストボックスに連結させる。
         private void txbID_KeyPress(object sender, KeyPressEventArgs e)
@@ -516,6 +510,16 @@ namespace SalesManagement_SysDev
             txbWaID.Focus();
 
             GetDataGridView();
+        }
+
+        private void btnConfirm_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDetailSearch_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

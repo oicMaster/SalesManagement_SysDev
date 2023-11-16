@@ -154,32 +154,35 @@
             // txbWaID
             // 
             this.txbWaID.Location = new System.Drawing.Point(46, 206);
-            this.txbWaID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txbWaID.Margin = new System.Windows.Forms.Padding(4);
             this.txbWaID.Name = "txbWaID";
             this.txbWaID.Size = new System.Drawing.Size(124, 25);
             this.txbWaID.TabIndex = 7;
             this.txbWaID.TextChanged += new System.EventHandler(this.txbKeyID_TextChanged);
+            this.txbWaID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbID_KeyPress);
             // 
             // txbHaID
             // 
             this.txbHaID.Location = new System.Drawing.Point(204, 206);
-            this.txbHaID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txbHaID.Margin = new System.Windows.Forms.Padding(4);
             this.txbHaID.Name = "txbHaID";
             this.txbHaID.Size = new System.Drawing.Size(124, 25);
             this.txbHaID.TabIndex = 8;
+            this.txbHaID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbID_KeyPress);
             // 
             // txbEmID
             // 
             this.txbEmID.Location = new System.Drawing.Point(352, 206);
-            this.txbEmID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txbEmID.Margin = new System.Windows.Forms.Padding(4);
             this.txbEmID.Name = "txbEmID";
             this.txbEmID.Size = new System.Drawing.Size(124, 25);
             this.txbEmID.TabIndex = 9;
+            this.txbEmID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbID_KeyPress);
             // 
             // txbDate
             // 
             this.txbDate.Location = new System.Drawing.Point(504, 206);
-            this.txbDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txbDate.Margin = new System.Windows.Forms.Padding(4);
             this.txbDate.Name = "txbDate";
             this.txbDate.Size = new System.Drawing.Size(124, 25);
             this.txbDate.TabIndex = 10;
@@ -187,7 +190,7 @@
             // txbStateFlag
             // 
             this.txbStateFlag.Location = new System.Drawing.Point(655, 206);
-            this.txbStateFlag.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txbStateFlag.Margin = new System.Windows.Forms.Padding(4);
             this.txbStateFlag.Name = "txbStateFlag";
             this.txbStateFlag.Size = new System.Drawing.Size(124, 25);
             this.txbStateFlag.TabIndex = 11;
@@ -195,7 +198,7 @@
             // txbHidden
             // 
             this.txbHidden.Location = new System.Drawing.Point(46, 330);
-            this.txbHidden.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txbHidden.Margin = new System.Windows.Forms.Padding(4);
             this.txbHidden.Name = "txbHidden";
             this.txbHidden.Size = new System.Drawing.Size(124, 25);
             this.txbHidden.TabIndex = 12;
@@ -203,7 +206,7 @@
             // txbFlag
             // 
             this.txbFlag.Location = new System.Drawing.Point(211, 330);
-            this.txbFlag.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txbFlag.Margin = new System.Windows.Forms.Padding(4);
             this.txbFlag.Name = "txbFlag";
             this.txbFlag.Size = new System.Drawing.Size(124, 25);
             this.txbFlag.TabIndex = 13;
@@ -212,7 +215,7 @@
             // 
             this.dataGridViewDsp.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewDsp.Location = new System.Drawing.Point(32, 364);
-            this.dataGridViewDsp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridViewDsp.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridViewDsp.Name = "dataGridViewDsp";
             this.dataGridViewDsp.RowHeadersWidth = 51;
             this.dataGridViewDsp.RowTemplate.Height = 24;
@@ -232,7 +235,7 @@
             // txbPageNo
             // 
             this.txbPageNo.Location = new System.Drawing.Point(261, 834);
-            this.txbPageNo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txbPageNo.Margin = new System.Windows.Forms.Padding(4);
             this.txbPageNo.Name = "txbPageNo";
             this.txbPageNo.Size = new System.Drawing.Size(124, 25);
             this.txbPageNo.TabIndex = 44;
@@ -240,47 +243,55 @@
             // btnLastPage
             // 
             this.btnLastPage.Location = new System.Drawing.Point(832, 827);
-            this.btnLastPage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnLastPage.Margin = new System.Windows.Forms.Padding(4);
             this.btnLastPage.Name = "btnLastPage";
             this.btnLastPage.Size = new System.Drawing.Size(94, 28);
             this.btnLastPage.TabIndex = 43;
             this.btnLastPage.Text = "▶|";
             this.btnLastPage.UseVisualStyleBackColor = true;
+            this.btnLastPage.Click += new System.EventHandler(this.btnLastPage_Click);
+            this.btnLastPage.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbPage_KeyPress);
             // 
             // btnNextPage
             // 
             this.btnNextPage.Location = new System.Drawing.Point(731, 827);
-            this.btnNextPage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnNextPage.Margin = new System.Windows.Forms.Padding(4);
             this.btnNextPage.Name = "btnNextPage";
             this.btnNextPage.Size = new System.Drawing.Size(94, 28);
             this.btnNextPage.TabIndex = 42;
             this.btnNextPage.Text = "▶";
             this.btnNextPage.UseVisualStyleBackColor = true;
+            this.btnNextPage.Click += new System.EventHandler(this.btnNextPage_Click);
+            this.btnNextPage.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbPage_KeyPress);
             // 
             // btnPreviousPage
             // 
             this.btnPreviousPage.Location = new System.Drawing.Point(630, 827);
-            this.btnPreviousPage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnPreviousPage.Margin = new System.Windows.Forms.Padding(4);
             this.btnPreviousPage.Name = "btnPreviousPage";
             this.btnPreviousPage.Size = new System.Drawing.Size(94, 28);
             this.btnPreviousPage.TabIndex = 41;
             this.btnPreviousPage.Text = "◀";
             this.btnPreviousPage.UseVisualStyleBackColor = true;
+            this.btnPreviousPage.Click += new System.EventHandler(this.btnPreviousPage_Click);
+            this.btnPreviousPage.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbPage_KeyPress);
             // 
             // btnFirstPage
             // 
             this.btnFirstPage.Location = new System.Drawing.Point(529, 827);
-            this.btnFirstPage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnFirstPage.Margin = new System.Windows.Forms.Padding(4);
             this.btnFirstPage.Name = "btnFirstPage";
             this.btnFirstPage.Size = new System.Drawing.Size(94, 28);
             this.btnFirstPage.TabIndex = 40;
             this.btnFirstPage.Text = "|◀";
             this.btnFirstPage.UseVisualStyleBackColor = true;
+            this.btnFirstPage.Click += new System.EventHandler(this.btnFirstPage_Click);
+            this.btnFirstPage.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbPage_KeyPress);
             // 
             // txbPageSize
             // 
             this.txbPageSize.Location = new System.Drawing.Point(124, 833);
-            this.txbPageSize.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txbPageSize.Margin = new System.Windows.Forms.Padding(4);
             this.txbPageSize.Name = "txbPageSize";
             this.txbPageSize.Size = new System.Drawing.Size(124, 25);
             this.txbPageSize.TabIndex = 39;
@@ -298,12 +309,13 @@
             // btnClose
             // 
             this.btnClose.Location = new System.Drawing.Point(1325, 44);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(4);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(94, 28);
             this.btnClose.TabIndex = 56;
             this.btnClose.Text = "閉じる";
             this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // lblLoginName
             // 
@@ -328,27 +340,29 @@
             // btnConfirm
             // 
             this.btnConfirm.Location = new System.Drawing.Point(458, 44);
-            this.btnConfirm.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnConfirm.Margin = new System.Windows.Forms.Padding(4);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Size = new System.Drawing.Size(94, 28);
             this.btnConfirm.TabIndex = 61;
             this.btnConfirm.Text = "発注確定";
             this.btnConfirm.UseVisualStyleBackColor = true;
+            this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
             // 
             // btnDisplay
             // 
             this.btnDisplay.Location = new System.Drawing.Point(799, 44);
-            this.btnDisplay.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDisplay.Margin = new System.Windows.Forms.Padding(4);
             this.btnDisplay.Name = "btnDisplay";
             this.btnDisplay.Size = new System.Drawing.Size(94, 28);
             this.btnDisplay.TabIndex = 60;
             this.btnDisplay.Text = "一覧表示";
             this.btnDisplay.UseVisualStyleBackColor = true;
+            this.btnDisplay.Click += new System.EventHandler(this.btnDisplay_Click);
             // 
             // btnSearch
             // 
             this.btnSearch.Location = new System.Drawing.Point(698, 44);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(4);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(94, 28);
             this.btnSearch.TabIndex = 57;
@@ -359,10 +373,11 @@
             // txbWaDetailID
             // 
             this.txbWaDetailID.Location = new System.Drawing.Point(1048, 380);
-            this.txbWaDetailID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txbWaDetailID.Margin = new System.Windows.Forms.Padding(4);
             this.txbWaDetailID.Name = "txbWaDetailID";
             this.txbWaDetailID.Size = new System.Drawing.Size(124, 25);
             this.txbWaDetailID.TabIndex = 64;
+            this.txbWaDetailID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbID_KeyPress);
             // 
             // labal1
             // 
@@ -378,7 +393,7 @@
             // 
             this.dataGridViewDetailDsp.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewDetailDsp.Location = new System.Drawing.Point(1038, 444);
-            this.dataGridViewDetailDsp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridViewDetailDsp.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridViewDetailDsp.Name = "dataGridViewDetailDsp";
             this.dataGridViewDetailDsp.RowHeadersWidth = 51;
             this.dataGridViewDetailDsp.RowTemplate.Height = 24;
@@ -388,20 +403,22 @@
             // btnDetailSearch
             // 
             this.btnDetailSearch.Location = new System.Drawing.Point(1372, 379);
-            this.btnDetailSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDetailSearch.Margin = new System.Windows.Forms.Padding(4);
             this.btnDetailSearch.Name = "btnDetailSearch";
             this.btnDetailSearch.Size = new System.Drawing.Size(94, 28);
             this.btnDetailSearch.TabIndex = 65;
             this.btnDetailSearch.Text = "詳細検索";
             this.btnDetailSearch.UseVisualStyleBackColor = true;
+            this.btnDetailSearch.Click += new System.EventHandler(this.btnDetailSearch_Click);
             // 
             // txbPrID
             // 
             this.txbPrID.Location = new System.Drawing.Point(1184, 379);
-            this.txbPrID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txbPrID.Margin = new System.Windows.Forms.Padding(4);
             this.txbPrID.Name = "txbPrID";
             this.txbPrID.Size = new System.Drawing.Size(124, 25);
             this.txbPrID.TabIndex = 104;
+            this.txbPrID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbID_KeyPress);
             // 
             // label12
             // 
@@ -416,7 +433,7 @@
             // btnUpdate
             // 
             this.btnUpdate.Location = new System.Drawing.Point(335, 46);
-            this.btnUpdate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnUpdate.Margin = new System.Windows.Forms.Padding(4);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(115, 28);
             this.btnUpdate.TabIndex = 105;
@@ -427,10 +444,11 @@
             // txbQuantity
             // 
             this.txbQuantity.Location = new System.Drawing.Point(1184, 280);
-            this.txbQuantity.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txbQuantity.Margin = new System.Windows.Forms.Padding(4);
             this.txbQuantity.Name = "txbQuantity";
             this.txbQuantity.Size = new System.Drawing.Size(124, 25);
             this.txbQuantity.TabIndex = 107;
+            this.txbQuantity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbQuantity_KeyPress);
             // 
             // label9
             // 
@@ -445,10 +463,11 @@
             // txbWaIDsub
             // 
             this.txbWaIDsub.Location = new System.Drawing.Point(1048, 277);
-            this.txbWaIDsub.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txbWaIDsub.Margin = new System.Windows.Forms.Padding(4);
             this.txbWaIDsub.Name = "txbWaIDsub";
             this.txbWaIDsub.Size = new System.Drawing.Size(124, 25);
             this.txbWaIDsub.TabIndex = 109;
+            this.txbWaIDsub.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbID_KeyPress);
             // 
             // label10
             // 
@@ -463,12 +482,13 @@
             // btnClear
             // 
             this.btnClear.Location = new System.Drawing.Point(914, 46);
-            this.btnClear.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnClear.Margin = new System.Windows.Forms.Padding(4);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(94, 28);
             this.btnClear.TabIndex = 176;
             this.btnClear.Text = "入力クリア";
             this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // lblDetailPage
             // 
@@ -483,7 +503,7 @@
             // txbDetailPageNo
             // 
             this.txbDetailPageNo.Location = new System.Drawing.Point(1325, 761);
-            this.txbDetailPageNo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txbDetailPageNo.Margin = new System.Windows.Forms.Padding(4);
             this.txbDetailPageNo.Name = "txbDetailPageNo";
             this.txbDetailPageNo.Size = new System.Drawing.Size(124, 25);
             this.txbDetailPageNo.TabIndex = 183;
@@ -491,47 +511,55 @@
             // btnDetailLastPage
             // 
             this.btnDetailLastPage.Location = new System.Drawing.Point(1408, 815);
-            this.btnDetailLastPage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDetailLastPage.Margin = new System.Windows.Forms.Padding(4);
             this.btnDetailLastPage.Name = "btnDetailLastPage";
             this.btnDetailLastPage.Size = new System.Drawing.Size(94, 28);
             this.btnDetailLastPage.TabIndex = 182;
             this.btnDetailLastPage.Text = "▶|";
             this.btnDetailLastPage.UseVisualStyleBackColor = true;
+            this.btnDetailLastPage.Click += new System.EventHandler(this.btnDetailLastPage_Click);
+            this.btnDetailLastPage.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbPage_KeyPress);
             // 
             // btnDetailNextPage
             // 
             this.btnDetailNextPage.Location = new System.Drawing.Point(1306, 815);
-            this.btnDetailNextPage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDetailNextPage.Margin = new System.Windows.Forms.Padding(4);
             this.btnDetailNextPage.Name = "btnDetailNextPage";
             this.btnDetailNextPage.Size = new System.Drawing.Size(94, 28);
             this.btnDetailNextPage.TabIndex = 181;
             this.btnDetailNextPage.Text = "▶";
             this.btnDetailNextPage.UseVisualStyleBackColor = true;
+            this.btnDetailNextPage.Click += new System.EventHandler(this.btnDetailNextPage_Click);
+            this.btnDetailNextPage.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbPage_KeyPress);
             // 
             // btnDetailPreviousPage
             // 
             this.btnDetailPreviousPage.Location = new System.Drawing.Point(1205, 815);
-            this.btnDetailPreviousPage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDetailPreviousPage.Margin = new System.Windows.Forms.Padding(4);
             this.btnDetailPreviousPage.Name = "btnDetailPreviousPage";
             this.btnDetailPreviousPage.Size = new System.Drawing.Size(94, 28);
             this.btnDetailPreviousPage.TabIndex = 180;
             this.btnDetailPreviousPage.Text = "◀";
             this.btnDetailPreviousPage.UseVisualStyleBackColor = true;
+            this.btnDetailPreviousPage.Click += new System.EventHandler(this.btnDetailPreviousPage_Click);
+            this.btnDetailPreviousPage.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbPage_KeyPress);
             // 
             // btnDetailFirstPage
             // 
             this.btnDetailFirstPage.Location = new System.Drawing.Point(1104, 815);
-            this.btnDetailFirstPage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDetailFirstPage.Margin = new System.Windows.Forms.Padding(4);
             this.btnDetailFirstPage.Name = "btnDetailFirstPage";
             this.btnDetailFirstPage.Size = new System.Drawing.Size(94, 28);
             this.btnDetailFirstPage.TabIndex = 179;
             this.btnDetailFirstPage.Text = "|◀";
             this.btnDetailFirstPage.UseVisualStyleBackColor = true;
+            this.btnDetailFirstPage.Click += new System.EventHandler(this.btnDetailFirstPage_Click);
+            this.btnDetailFirstPage.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbPage_KeyPress);
             // 
             // txbDetailPageSize
             // 
             this.txbDetailPageSize.Location = new System.Drawing.Point(1144, 760);
-            this.txbDetailPageSize.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txbDetailPageSize.Margin = new System.Windows.Forms.Padding(4);
             this.txbDetailPageSize.Name = "txbDetailPageSize";
             this.txbDetailPageSize.Size = new System.Drawing.Size(124, 25);
             this.txbDetailPageSize.TabIndex = 178;
@@ -600,7 +628,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "F_AdWarehousing";
             this.Text = "入庫管理";
             this.Load += new System.EventHandler(this.F_WareHousing_Load);
