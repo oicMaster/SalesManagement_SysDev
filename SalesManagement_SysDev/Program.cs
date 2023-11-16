@@ -16,7 +16,7 @@ namespace SalesManagement_SysDev
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new F_AdArrival());
+            Application.Run(new F_AdOrder());
         }
 
         //①管理システムメモと順番が違うメソッドは順番通りにしてください。基本ChangedやPressなどを固めています。

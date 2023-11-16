@@ -123,7 +123,14 @@ namespace SalesManagement_SysDev
             dataGridViewDsp.Columns[7].HeaderText = "受注管理フラフ";
             dataGridViewDsp.Columns[8].HeaderText = "非表示理由";
 
-            //※
+            dataGridViewDetailDsp.Columns[9].Visible = false;
+            dataGridViewDetailDsp.Columns[10].Visible = false;
+            dataGridViewDetailDsp.Columns[11].Visible = false;
+            dataGridViewDetailDsp.Columns[12].Visible = false;
+            dataGridViewDetailDsp.Columns[13].Visible = false;
+            dataGridViewDetailDsp.Columns[14].Visible = false;
+            dataGridViewDetailDsp.Columns[15].Visible = false;
+            dataGridViewDetailDsp.Columns[16].Visible = false;
 
             lblPage.Text = "/" + ((int)Math.Ceiling(Order.Count / (double)pageSize)) + "ページ";
 
@@ -471,9 +478,20 @@ namespace SalesManagement_SysDev
 
         private void GenereteDataAdSelect()
         {
+            if (!int.TryParse(txbOrID.Text, out int orID))
+                orID = 0;
+            if (!int.TryParse(txbSoID.Text, out int soID))
+                soID = 0;
+            if (!int.TryParse(txbEmID.Text, out int emID))
+                emID = 0;
+            if (!int.TryParse(txbClID.Text, out int clID))
+                clID = 0;
             T_Order selectCondition = new T_Order()
             {//検索に使用するデータ
-              //※
+                OrID = orID,
+                SoID = soID,
+                EmID = emID,
+                ClID = clID,
             };
             //orデータの抽出
             orderDataAccess.GetOrderData(selectCondition);
@@ -529,10 +547,19 @@ namespace SalesManagement_SysDev
         }
         private T_Order GenereteDataAdRegistration()
         {
+            string hidden = txbHidden.Text;
             return new T_Order
             {
-                //※
+                OrID =int.Parse(txbOrID.Text),
+                SoID = int.Parse(txbSoID.Text),
+                EmID = int.Parse(txbEmID.Text),
+                ClID = int.Parse(txbClID.Text),
+                OrDate = DateTime.Parse(txbDate.Text),
+                OrStateFlag = int.Parse(txbFlag.Text),
+                OrFlag = int.Parse(txbFlag.Text),
+                OrHidden = hidden,
             };
+            
         }
         private void RegistrationOrder(T_Order regOrder)
         {

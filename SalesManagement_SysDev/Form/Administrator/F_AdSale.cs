@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -443,9 +444,24 @@ namespace SalesManagement_SysDev
         private void GenereteDataAdSelect()
         {
             //※
+            if (!int.TryParse(txbSaID.Text, out int saID))
+                saID = 0;
+            if (!int.TryParse(txbClID.Text, out int clID))
+                clID = 0;
+            if (!int.TryParse(txbSoID.Text, out int soID))
+                soID = 0;
+            if (!int.TryParse(txbEmID.Text, out int emID))
+                emID = 0;           
+            if (!int.TryParse(txbChID.Text, out int chID))
+                chID = 0;
             T_Sale selectCondition = new T_Sale()
             {//検索に使用するデータ
-                //※
+             //※
+                SaID = saID,
+                ClID = clID,
+                SoID = soID,
+                EmID = emID,
+                ChID = chID,
             };
             //顧客データの抽出
             Sale = saleDataAccess.GetSaleData(selectCondition);

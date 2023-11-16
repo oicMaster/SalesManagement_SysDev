@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -460,9 +461,23 @@ namespace SalesManagement_SysDev
         }
         private void GenereteDataAdSelect()
         {
+            if (!int.TryParse(txbSyID.Text, out int syID))
+                syID = 0;
+            if (!int.TryParse(txbEmID.Text, out int emID))
+                emID = 0;
+            if (!int.TryParse(txbClID.Text, out int clID))
+                clID = 0;
+            if (!int.TryParse(txbSoID.Text, out int soID))
+                soID = 0;
+            if (!int.TryParse(txbOrID.Text, out int orID))
+                orID = 0;
             T_Syukko selectCondition = new T_Syukko()
             {//検索に使用するデータ
-                SyID = int.Parse(txbSyID.Text.Trim()),
+                SyID = syID,              
+                EmID = emID,
+                ClID = clID,
+                SoID = soID,
+                OrID = orID
             };
             //出庫データの抽出
             Syukko = syukkoDataAccess.GetSyukkoData(selectCondition);

@@ -23,6 +23,7 @@ namespace SalesManagement_SysDev
         //他クラスのインスタンス化
         MessageDsp messageDsp = new MessageDsp();
         ClientDataAccess clientDataAccess = new ClientDataAccess();
+        SalesOfficeDataAccess salesOfficeDataAccess = new SalesOfficeDataAccess();
 
         private static List<M_Client> Client;
 
@@ -111,7 +112,13 @@ namespace SalesManagement_SysDev
             dataGridViewDsp.Columns[7].HeaderText = "顧客管理グラフ";
             dataGridViewDsp.Columns[8].HeaderText = "非表示理由";
 
-            //※
+            dataGridViewDsp.Columns[9].Visible = false;
+            dataGridViewDsp.Columns[10].Visible = false;
+            dataGridViewDsp.Columns[11].Visible = false;
+            dataGridViewDsp.Columns[12].Visible = false;
+            dataGridViewDsp.Columns[13].Visible = false;
+            dataGridViewDsp.Columns[14].Visible = false;
+            dataGridViewDsp.Columns[15].Visible = false;
 
             lblPage.Text = "/" + ((int)Math.Ceiling(Client.Count / (double)pageSize)) + "ページ";
 
@@ -357,14 +364,37 @@ namespace SalesManagement_SysDev
 
         private bool GetValidDataAtRegistration()
         {
-            //※
+            if (!clientDataAccess.CheckClIDExistence(int.Parse(txbClID.Text)))
+            {
+                messageDsp.MsgDsp("");
+                txbClID.Focus();
+               
+                return false;
+            }
+            if (!salesOfficeDataAccess.CheckSoIDExistence(int.Parse(txbSoID.Text)))
+            {
+                messageDsp.MsgDsp("");
+                txbSoID.Focus();
+
+                return false;
+            }
             return true;
         }
         private M_Client GenereteDataAdRegistration()
         {
+            string hidden = txbHidden.Text;
             return new M_Client
             {
-                //※
+                
+                ClID = int.Parse(txbClID.Text),
+                SoID = int.Parse(txbSoID.Text),
+                ClName = txbName.Text,
+                ClAddress = txbName.Text,
+                ClPhone =txbPhone.Text,
+                ClPostal = txbPostal.Text,
+                ClFAX =txbFAX.Text,
+                ClFlag = int.Parse(txbFlag.Text),
+                ClHidden = hidden,
             };
         }
 
