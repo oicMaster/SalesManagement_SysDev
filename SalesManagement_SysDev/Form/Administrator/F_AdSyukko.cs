@@ -282,16 +282,7 @@ namespace SalesManagement_SysDev
         //数量or個数のテキストボックスに連結させる。
         private void txbQuantity_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if ((sender as TextBox).Text.Length < 4)
-            {
-                if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')
-                    e.Handled = true;
-            }
-            else if (this.Text.Length == 4)
-            {
-                if (e.KeyChar != '\b')
-                    e.Handled = true;
-            }
+
         }
         //↓入力上限がある全てのデータに設定する。
         //private void txb~~~~~_KeyPress(object sender, KeyPressEventArgs e)
@@ -536,6 +527,11 @@ namespace SalesManagement_SysDev
         }
 
         private void btnConfirm_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDetailSearch_Click(object sender, EventArgs e)
         {
 
         }

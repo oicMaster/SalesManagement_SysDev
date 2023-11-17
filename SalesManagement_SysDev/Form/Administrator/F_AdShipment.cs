@@ -543,5 +543,9 @@ namespace SalesManagement_SysDev
 
         }
 
+        private void btnDetailSearch_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
