@@ -123,6 +123,7 @@
             this.btnUpdate.TabIndex = 41;
             this.btnUpdate.Text = "更新";
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnRegist
             // 
@@ -133,6 +134,7 @@
             this.btnRegist.TabIndex = 40;
             this.btnRegist.Text = "登録";
             this.btnRegist.UseVisualStyleBackColor = true;
+            this.btnRegist.Click += new System.EventHandler(this.btnRegist_Click);
             // 
             // btnSearch
             // 
@@ -143,6 +145,7 @@
             this.btnSearch.TabIndex = 39;
             this.btnSearch.Text = "検索";
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // txbHidden
             // 

@@ -20,6 +20,7 @@ namespace SalesManagement_SysDev
         EmployeeDataAccess employeelDataAccess = new EmployeeDataAccess();
         OrderDataAccess orderDataAccess = new OrderDataAccess();
         ProductDataAccess productDataAccess = new ProductDataAccess();
+        ClientDataAccess clientDataAccess = new ClientDataAccess();
 
         private static List<T_Arrival> Arrival;
         private static List<T_ArrivalDetail> ArrivalDetail;
@@ -536,6 +537,31 @@ namespace SalesManagement_SysDev
                 txbArID.Focus();
                 return false;
             }
+            if (!salesOfficeIDataAccess.CheckSoIDExistence(int.Parse(txbSoID.Text)))
+            {
+                messageDsp.MsgDsp("");
+                txbSoID.Focus();
+                return false;
+            }
+            if (!employeelDataAccess.CheckEmIDExistence(int.Parse(txbEmID.Text)))
+            {
+                messageDsp.MsgDsp("");
+                txbEmID.Focus();
+                return false;
+            }
+            if (!clientDataAccess.CheckClIDExistence(int.Parse(txbClID.Text)))
+            {
+                messageDsp.MsgDsp("");
+                txbClID.Focus();
+                return false;
+            }
+            if (!orderDataAccess.CheckOrIDExistence(int.Parse(txbOrID.Text)))
+            {
+                messageDsp.MsgDsp("");
+                txbOrID.Focus();
+                return false;
+            }
+
             return true;
         }
 

@@ -444,11 +444,20 @@ namespace SalesManagement_SysDev
                 txbClID.Focus();
                 return false;
             }
+            if (!salesOfficeDataAccess.CheckSoIDExistence(int.Parse(txbSoID.Text)))
+            {
+                messageDsp.MsgDsp("");
+                txbSoID.Focus();
+
+                return false;
+            }
+
             return true;
         }
 
         private M_Client GenerateDataAtUpdate()
         {
+            string hidden = txbHidden.Text;
             return new M_Client
             {
                 ClID = int.Parse(txbClID.Text.Trim()),
@@ -459,7 +468,7 @@ namespace SalesManagement_SysDev
                 ClPostal = txbPostal.Text.Trim(),
                 ClFAX = txbFAX.Text.Trim(),
                 ClFlag = int.Parse(txbFlag.Text),
-                ClHidden = txbHidden.Text.Trim(),
+                ClHidden = hidden
             };
         }
 
