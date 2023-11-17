@@ -456,9 +456,23 @@ namespace SalesManagement_SysDev
         }
         private void GenereteDataAdSelect()
         {
+            if (!int.TryParse(txbChID.Text, out int chID))
+                chID = 0;
+            if (!int.TryParse(txbSoID.Text, out int soID))
+                soID = 0;
+            if (!int.TryParse(txbEmID.Text, out int emID))
+                emID = 0;
+            if (!int.TryParse(txbClID.Text, out int clID))
+                clID = 0;
+            if (!int.TryParse(txbOrID.Text, out int orID))
+                orID = 0;
             T_Chumon selectCondition = new T_Chumon()
             {//検索に使用するデータ
-                ChID = int.Parse(txbChID.Text.Trim()),
+                ChID = chID,
+                SoID = soID,
+                EmID = emID,
+                ClID = clID,
+                OrID = orID
             };
             //chデータの抽出
             Chumon = chumonDataAccess.GetChumonData(selectCondition);
@@ -492,6 +506,30 @@ namespace SalesManagement_SysDev
             {
                 messageDsp.MsgDsp("");
                 txbChID.Focus();
+                return false;
+            }
+            if (!salesOfficeIDataAccess.CheckSoIDExistence(int.Parse(txbSoID.Text)))
+            {
+                messageDsp.MsgDsp("");
+                txbSoID.Focus();
+                return false;
+            }
+            if (!employeelDataAccess.CheckEmIDExistence(int.Parse(txbEmID.Text)))
+            {
+                messageDsp.MsgDsp("");
+                txbEmID.Focus();
+                return false;
+            }
+            if (!clientDataAccess.CheckClIDExistence(int.Parse(txbClID.Text)))
+            {
+                messageDsp.MsgDsp("");
+                txbClID.Focus();
+                return false;
+            }
+            if (!orderDataAccess.CheckOrIDExistence(int.Parse(txbOrID.Text)))
+            {
+                messageDsp.MsgDsp("");
+                txbOrID.Focus();
                 return false;
             }
             return true;

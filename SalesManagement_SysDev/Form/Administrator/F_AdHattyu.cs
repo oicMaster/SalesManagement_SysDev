@@ -545,6 +545,18 @@ namespace SalesManagement_SysDev
                 txbHaID.Focus();
                 return false;
             }
+            if (!makerDataAccess.CheckMaIDExistence(int.Parse(txbMaID.Text)))
+            {
+                messageDsp.MsgDsp("");
+                txbMaID.Focus();
+                return false;
+            }
+            if (!employeeDataAccess.CheckEmIDExistence(int.Parse(txbEmID.Text)))
+            {
+                messageDsp.MsgDsp("");
+                txbEmID.Focus();
+                return false;
+            }
             return true;
         }
 
@@ -602,7 +614,7 @@ namespace SalesManagement_SysDev
                 HaID = haID,
                 PrID = prID,
             };
-            //arデータの抽出
+            //haデータの抽出
             HattyuDetail = hattyuDetailDataAccess.GetHattyuDetailData(selectCondition);
         }
         private void SetSelectDetailData()

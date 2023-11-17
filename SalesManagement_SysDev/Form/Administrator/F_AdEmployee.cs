@@ -22,6 +22,8 @@ namespace SalesManagement_SysDev
         MessageDsp messageDsp = new MessageDsp();
         //データベース社員テーブルアクセス用のクラスのインスタンス化
         EmployeeDataAccess employeeDateAccess = new EmployeeDataAccess();
+        SalesOfficeDataAccess salesOfficeIDataAccess = new SalesOfficeDataAccess();
+        PositionDataAccess positionDataAccess = new PositionDataAccess();
         //入力形式チェック用クラスのインスタンス化
         //データグリッドビュー用の社員データ
         private static List<M_Employee> Employees;
@@ -324,6 +326,18 @@ namespace SalesManagement_SysDev
                 txbEmID.Focus();
                 return false;
             }
+            if (!salesOfficeIDataAccess.CheckSoIDExistence(int.Parse(txbSoID.Text)))
+            {
+                messageDsp.MsgDsp("");
+                txbSoID.Focus();
+                return false;
+            }
+            if (!positionDataAccess.CheckPoIDExistence(int.Parse(txbPoID.Text)))
+            {
+                messageDsp.MsgDsp("");
+                txbPoID.Focus();
+                return false;
+            }
             return true;
         }
         private void GenerateDataAtSelect()
@@ -409,7 +423,7 @@ namespace SalesManagement_SysDev
 
 
 
-        private void btnUpdate_Click_1(object sender, EventArgs e)
+        private void btnUpdate_Click(object sender, EventArgs e)
         {
 
             //妥当な顧客データを取得
@@ -423,60 +437,13 @@ namespace SalesManagement_SysDev
 
         private bool GetValidDataAtUpdate()
         {
-            if (!String.IsNullOrEmpty(txbEmID.Text.Trim()))
-            {
-                if (!employeeDateAccess.CheckEmIDExistence(int.Parse(txbEmID.Text.Trim())))
-                {
-                    messageDsp.MsgDsp("");
-                    txbEmID.Focus();
-                    return false;
-                }
-            }
-            else
-            {
-                messageDsp.MsgDsp("");
-                txbEmID.Focus();
-                return false;
-            }
-            if (!String.IsNullOrEmpty(txbEmID.Text.Trim()))
-            {
-
-            }
-            else
-            {
-                messageDsp.MsgDsp("");
-                txbSoID.Focus();
-                return false;
-            }
-            if (String.IsNullOrEmpty(txbPoID.Text.Trim()))
-            {
-                messageDsp.MsgDsp("");
-                txbPoID.Focus();
-                return false;
-            }
-            if (String.IsNullOrEmpty(txbHiredate.Text.Trim()))
-            {
-                messageDsp.MsgDsp("");
-                txbHiredate.Focus();
-                return false;
-            }
-            if (String.IsNullOrEmpty(txbPhone.Text.Trim()))
-            {
-                messageDsp.MsgDsp("");
-                txbPhone.Focus();
-                return false;
-            }
-            if (String.IsNullOrEmpty(txbHiddin.Text.Trim()))
-            {
-                messageDsp.MsgDsp("");
-                txbHiddin.Focus();
-                return false;
-            }
+            
             return true;
         }
 
         private M_Employee GenerateDataAtUpdate()
         {
+
             return new M_Employee
             {
                 EmID = int.Parse(txbEmID.Text.Trim()),
@@ -508,7 +475,7 @@ namespace SalesManagement_SysDev
             GetDataGridView();
         }
 
-        
+       
     }
 }
 

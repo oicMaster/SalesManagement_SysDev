@@ -9,6 +9,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace SalesManagement_SysDev
@@ -17,6 +18,8 @@ namespace SalesManagement_SysDev
     {
         MessageDsp messageDsp = new MessageDsp();
         ProductDataAccess productDataAccess = new ProductDataAccess();
+        MakerDataAccess makerDataAccess = new MakerDataAccess();
+        SmallClassification smallClassification = new SmallClassification();
 
         private static List<M_Product> Product;
 
@@ -28,55 +31,12 @@ namespace SalesManagement_SysDev
         private void F_AdProduct_Load(object sender, EventArgs e)
         {
             //labelLoginName.Text = FormMenu.LoginName;
+            //labelLoginName.Text = FormMenu.LoginName;
             SetFormDataGridView();
-            fncButtonEnable(0);
-            fncTextBoxReadOnly(0);
-            txbPrFlag.ReadOnly = true;
-        }
-        private void fncButtonEnable(int chk)
-        {
-            switch (chk)
-            { //IDが空であれば0、でなければ1として、ボタンの使用を制限する
-                case 0:
-                    btnSearch.Enabled = true;
-                    btnRegist.Enabled = false;
-                    btnUpdate.Enabled = false;
-                    break;
-                case 1:
-                    btnSearch.Enabled = true;
-                    btnRegist.Enabled = true;
-                    btnUpdate.Enabled = true;
-                    break;
-            }
-        }
+            txbFlag.ReadOnly = true;
+            txbHidden.ReadOnly = true;
+            //※
 
-        private void fncTextBoxReadOnly(int chk)
-        {
-            switch (chk)
-            { //IDが空であれば0、でなければ1として、テキストボックスの入力を制限する
-                case 0:
-                    txbMaID.ReadOnly = true;
-                    txbPrName.ReadOnly = true;
-                    txbPrice.ReadOnly = true;
-                    txbPrSafetyStock.ReadOnly = true;
-                    txbScID.ReadOnly = true;
-                    txbPrModelNumber.ReadOnly = true;
-                    txbPrColor.ReadOnly = true;
-                    txbPrReleaseDate.ReadOnly = true;
-                    txbPrHidden.ReadOnly = true;
-                    break;
-                case 1:
-                    txbMaID.ReadOnly = false;
-                    txbPrName.ReadOnly = false;
-                    txbPrice.ReadOnly = false;
-                    txbPrSafetyStock.ReadOnly = false;
-                    txbScID.ReadOnly = false;
-                    txbPrModelNumber.ReadOnly = false;
-                    txbPrColor.ReadOnly = false;
-                    txbPrReleaseDate.ReadOnly = false;
-                    txbPrHidden.ReadOnly = false;
-                    break;
-            }
         }
 
         private void SetFormDataGridView()
@@ -89,96 +49,102 @@ namespace SalesManagement_SysDev
 
             GetDataGridView();
         }
+
         private void GetDataGridView()
         {
             Product = productDataAccess.GetProductData();
             SetDataGridView();
         }
-
         private void SetDataGridView()
         {
             int pageSize = int.Parse(txbPageSize.Text);
-            int pageNo = int.Parse(txbPageNo.Text);
-            dataGridViewDsp.DataSource = Product.Skip(pageSize + pageNo).Take(pageSize).ToList();
+            int pageNo = int.Parse(txbPageNo.Text) - 1;
+            dataGridViewDsp.DataSource = Product.Skip(pageSize * pageNo).Take(pageSize).ToList();
 
-            dataGridViewDsp.Columns[0].Width = 100;
-            dataGridViewDsp.Columns[1].Width = 100;
-            dataGridViewDsp.Columns[2].Width = 100;
-            dataGridViewDsp.Columns[3].Width = 100;
-            dataGridViewDsp.Columns[4].Width = 100;
-            dataGridViewDsp.Columns[5].Width = 100;
-            dataGridViewDsp.Columns[6].Width = 100;
-            dataGridViewDsp.Columns[7].Width = 100;
-            dataGridViewDsp.Columns[8].Width = 100;
+            dataGridViewDsp.Columns[0].Width = 120;
+            dataGridViewDsp.Columns[1].Width = 130;
+            dataGridViewDsp.Columns[2].Width = 150;
+            dataGridViewDsp.Columns[3].Width = 340;
+            dataGridViewDsp.Columns[4].Width = 140;
+            dataGridViewDsp.Columns[5].Width = 120;
+            dataGridViewDsp.Columns[6].Width = 140;
+            dataGridViewDsp.Columns[7].Width = 160;
+            dataGridViewDsp.Columns[8].Width = 550;
             dataGridViewDsp.Columns[9].Width = 100;
             dataGridViewDsp.Columns[10].Width = 100;
-            dataGridViewDsp.Columns[11].Width = 100;
 
 
-            dataGridViewDsp.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewDsp.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewDsp.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewDsp.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewDsp.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewDsp.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewDsp.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewDsp.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewDsp.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewDsp.Columns[9].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewDsp.Columns[10].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewDsp.Columns[11].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewDsp.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewDsp.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewDsp.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewDsp.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewDsp.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewDsp.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewDsp.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewDsp.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewDsp.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewDsp.Columns[9].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewDsp.Columns[10].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             dataGridViewDsp.Columns[0].HeaderText = "商品ID";
-            dataGridViewDsp.Columns[1].HeaderText = "メーカID";
+            dataGridViewDsp.Columns[1].HeaderText = "メーカーID";
             dataGridViewDsp.Columns[2].HeaderText = "商品名";
             dataGridViewDsp.Columns[3].HeaderText = "価格";
-            dataGridViewDsp.Columns[4].HeaderText = "JANコード";
-            dataGridViewDsp.Columns[5].HeaderText = "安全在庫数";
-            dataGridViewDsp.Columns[6].HeaderText = "小分類ID";
-            dataGridViewDsp.Columns[7].HeaderText = "型番";
-            dataGridViewDsp.Columns[8].HeaderText = "色";
-            dataGridViewDsp.Columns[9].HeaderText = "発売日";
-            dataGridViewDsp.Columns[10].HeaderText = "商品管理フラグ";
-            dataGridViewDsp.Columns[11].HeaderText = "非表示理由";
+            dataGridViewDsp.Columns[4].HeaderText = "安全在個数";
+            dataGridViewDsp.Columns[5].HeaderText = "小分類ID";
+            dataGridViewDsp.Columns[6].HeaderText = "型番";
+            dataGridViewDsp.Columns[7].HeaderText = "色";
+            dataGridViewDsp.Columns[8].HeaderText = "発売日";
+            dataGridViewDsp.Columns[9].HeaderText = "商品管理フラグ";
+            dataGridViewDsp.Columns[10].HeaderText = "非表示理由";
 
+
+            dataGridViewDsp.Columns[11].Visible = false;
+            dataGridViewDsp.Columns[12].Visible = false;
+            dataGridViewDsp.Columns[13].Visible = false;
+            dataGridViewDsp.Columns[14].Visible = false;
+            dataGridViewDsp.Columns[15].Visible = false;
+            dataGridViewDsp.Columns[16].Visible = false;
+            dataGridViewDsp.Columns[17].Visible = false;
+            dataGridViewDsp.Columns[18].Visible = false;
+            dataGridViewDsp.Columns[19].Visible = false;
+            dataGridViewDsp.Columns[20].Visible = false;
 
             lblPage.Text = "/" + ((int)Math.Ceiling(Product.Count / (double)pageSize)) + "ページ";
 
             dataGridViewDsp.Refresh();
-
         }
-        private void dataGridViewData_CellClick(object sender, DataGridViewCellEventArgs e)
+
+        private void dataGridViewDsp_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             txbPrID.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[0].Value.ToString();
             txbMaID.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[1].Value.ToString();
-            txbPrName.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[2].Value.ToString();
+            txbName.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[2].Value.ToString();
             txbPrice.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[3].Value.ToString();
-            txbPrSafetyStock.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[4].Value.ToString();
-            txbScID.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[5].Value.ToString();
-            txbPrModelNumber.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[6].Value.ToString();
-            txbPrColor.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[7].Value.ToString();
-            txbPrReleaseDate.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[8].Value.ToString();
-            txbPrFlag.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[9].Value.ToString();
+            txbSafetyStock.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[5].Value.ToString();
+            txbScID.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[6].Value.ToString();
+            txbModelNumber.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[7].Value.ToString();
+            txbColor.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[8].Value.ToString();
+            txbReleaseDate.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[9].Value.ToString();
             if (dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[10].Value != null)
-                txbPrHidden.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[10].Value.ToString();
+                txbFlag.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[11].Value.ToString();
             else
-                txbPrHidden.Text = String.Empty;
+                txbFlag.Text = String.Empty;
         }
+
 
         private void txbPageSize_TextChanged(object sender, EventArgs e)
         {
-            if (!String.IsNullOrEmpty(txbPageSize.Text.Trim()))
+            if (!String.IsNullOrEmpty((sender as TextBox).Text))
             {
-                if (int.Parse(txbPageSize.Text) > 10)
+                if (int.Parse((sender as TextBox).Text) > 10)
                 {
-                    messageDsp.MsgDsp("");
-                    txbPageSize.Text = "10";
+                    (sender as TextBox).Text = "10";
                     return;
                 }
-                if (int.Parse(txbPageSize.Text) == 0)
+                if (int.Parse((sender as TextBox).Text) == 0)
                 {
-                    messageDsp.MsgDsp("");
-                    txbPageSize.Text = "1";
+                    (sender as TextBox).Text = "1";
                     return;
                 }
             }
@@ -186,54 +152,85 @@ namespace SalesManagement_SysDev
 
         private void txbPageNo_TextChanged(object sender, EventArgs e)
         {
-            if (!String.IsNullOrEmpty(txbPageNo.Text.Trim()))
+            if (!String.IsNullOrEmpty((sender as TextBox).Text.Trim()))
             {
-                if (int.Parse(txbPageNo.Text) == 0)
+                if (int.Parse((sender as TextBox).Text) == 0)
                 {
-                    messageDsp.MsgDsp("");
-                    txbPageNo.Text = "1";
+                    (sender as TextBox).Text = "1";
                 }
             }
         }
 
-        private void txbPrID_TextChanged(object sender, EventArgs e)
-        {//IDが入力されているかどうか
-            if (txbPrID.Text == "" || txbPrID.Text == null)
-            {
-                fncButtonEnable(0);
-                fncTextBoxReadOnly(0);
+        private void txbKeyID_TextChanged(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty((sender as TextBox).Text))
+            {//※
+                //fncButtonEnable(0);
                 ClearInput();
             }
             else
             {
-                fncButtonEnable(1);
-                fncTextBoxReadOnly(1);
-                txbPrFlag.Text = "0";
+                //fncButtonEnable(1);
+                txbFlag.Text = "0";
+
             }
-
+            txbPrID.Text = txbPrID.Text;
         }
-        private void txbPrHidden_TextChanged(object sender, EventArgs e)
+
+        private void txbHidden_TextChanged(object sender, EventArgs e)
         {
-
+            if (!String.IsNullOrEmpty((sender as TextBox).Text.Trim()))
+                txbFlag.Text = "0";
+            else
+                txbFlag.Text = "2";
         }
 
-        private void txbPrID_KeyPress()
+        //メイングリッドビュー,サブグリッドビューで使用する主キーのテキストボックスの文字を連動させる。
+        private void txbKeyIDsub_TextChanged(object sender, EventArgs e)
         {
-
+            txbPrID.Text = txbPrID.Text;
         }
 
-        //txb▼_KeyPress
-
-
-        private void txbPage_KeyPress()
+        //PageSize,Noのテキストボックスに連結させる。
+        private void txbPage_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')
+            {
+                e.Handled = true;
+            }
         }
-
-        private void Quntity_KeyPress()
+        //IDがつく全てのテキストボックスに連結させる。
+        private void txbID_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            if ((sender as TextBox).Text.Length < 6)
+            {
+                if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')
+                    e.Handled = true;
+            }
+            else if ((sender as TextBox).Text.Length == 6)
+            {
+                if (e.KeyChar != '\b')
+                    e.Handled = true;
+            }
         }
+        //数量or個数のテキストボックスに連結させる。
+        private void txbQuantity_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((sender as TextBox).Text.Length < 4)
+            {
+                if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')
+                    e.Handled = true;
+            }
+            else if (this.Text.Length == 4)
+            {
+                if (e.KeyChar != '\b')
+                    e.Handled = true;
+            }
+        }
+        //↓入力上限がある全てのデータに設定する。
+        //private void txb~~~~~_KeyPress(object sender, KeyPressEventArgs e)
+
+
 
         private void btnFirstPage_Click(object sender, EventArgs e)
         {
@@ -293,35 +290,31 @@ namespace SalesManagement_SysDev
             //ページ番号の設定
             txbPageNo.Text = (pageNo + 1).ToString();
         }
+
+
+
         private void btnClear_Click(object sender, EventArgs e)
         {
             ClearInput();
         }
         private void ClearInput()
-        {
+        {//全てのテキストボックスを空白にする
+            txbPrID.Text = String.Empty;
             txbMaID.Text = String.Empty;
-            txbPrName.Text = String.Empty;
+            txbName.Text = String.Empty;
             txbPrice.Text = String.Empty;
-            txbPrSafetyStock.Text = String.Empty;
+            txbSafetyStock.Text = String.Empty;
             txbScID.Text = String.Empty;
-            txbPrModelNumber.Text = String.Empty;
-            txbPrColor.Text = String.Empty;
-            txbPrReleaseDate.Text = String.Empty;
-            txbPrFlag.Text = String.Empty;
-            txbPrHidden.Text = String.Empty;
+            txbModelNumber.Text = String.Empty;
+            txbColor.Text = String.Empty;
+            txbReleaseDate.Text = String.Empty;
+            txbFlag.Text = String.Empty;
+            txbHidden.Text = String.Empty;
         }
-
-
         private void btnDisplay_Click(object sender, EventArgs e)
         {
             SetFormDataGridView();
         }
-
-        private void lblLoginName_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnClose_Click(object sender, EventArgs e)
         {
             Dispose();
@@ -330,18 +323,18 @@ namespace SalesManagement_SysDev
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            if (!GetValidDataAtSelect())
-                return;
+            
             GenerateDataAtSelect();
             SetSelectData();
 
         }
-        private bool GetValidDataAtSelect()
-        {
-            return true;
-        }
+        
         private void GenerateDataAtSelect()
         {
+            if (!int.TryParse(txbPrID.Text, out int prID))
+                prID = 0;
+            if (!int.TryParse(txbMaID.Text, out int maID))
+                maID = 0;
             M_Product selectCondition = new M_Product()
             {
                 PrID = int.Parse(txbPrID.Text.Trim()),
@@ -361,87 +354,35 @@ namespace SalesManagement_SysDev
 
         private void btnRegist_Click(object sender, EventArgs e)
         {
-            //妥当な顧客情報取得
+            //妥当な商品情報取得
             if (!GetValidDataAtRegistration())
                 return;
-            //顧客情報作成
+            //商品情報作成
             var regProduct = GenereteDataAdRegistration();
 
-            //顧客情報登録
+            //商品情報登録
             RegistrationProduct(regProduct);
         }
 
         private bool GetValidDataAtRegistration()
         {
-            if (!String.IsNullOrEmpty(txbPrID.Text.Trim()))
+            
+            if (!productDataAccess.CheckPrIDExistence(int.Parse(txbPrID.Text)))
             {
-                if (!productDataAccess.CheckPrIDExistence(int.Parse(txbPrID.Text.Trim())))
-                {
                     messageDsp.MsgDsp("");
                     txbPrID.Focus();
                     return false;
-                }
             }
-            else
-            {
-                messageDsp.MsgDsp("");
-                txbPrID.Focus();
-                return false;
-            }
-            if (!String.IsNullOrEmpty(txbMaID.Text.Trim()))
-            {
-                //▼外部キー認証
-            }
-            else
+            if (!makerDataAccess.CheckMaIDExistence(int.Parse(txbMaID.Text)))
             {
                 messageDsp.MsgDsp("");
                 txbMaID.Focus();
                 return false;
             }
-            if (String.IsNullOrEmpty(txbPrName.Text.Trim()))
+            if (!smallClassification.CheckScIDExistence(int.Parse(txbScID.Text)))
             {
                 messageDsp.MsgDsp("");
-                txbPrName.Focus();
-                return false;
-            }
-            if (String.IsNullOrEmpty(txbPrice.Text.Trim()))
-            {
-                messageDsp.MsgDsp("");
-                txbPrice.Focus();
-                return false;
-            }
-            if (String.IsNullOrEmpty(txbPrSafetyStock.Text.Trim()))
-            {
-                messageDsp.MsgDsp("");
-                txbPrSafetyStock.Focus();
-                return false;
-            }
-            if (String.IsNullOrEmpty(txbScID.Text.Trim()))
-            {
-                //外部キー認証
-            }
-            if (String.IsNullOrEmpty(txbPrModelNumber.Text.Trim()))
-            {
-                messageDsp.MsgDsp("");
-                txbPrModelNumber.Focus();
-                return false;
-            }
-            if (String.IsNullOrEmpty(txbPrColor.Text.Trim()))
-            {
-                messageDsp.MsgDsp("");
-                txbPrColor.Focus();
-                return false;
-            }
-            if (String.IsNullOrEmpty(txbPrReleaseDate.Text.Trim()))
-            {
-                messageDsp.MsgDsp("");
-                txbPrReleaseDate.Focus();
-                return false;
-            }
-            if (!String.IsNullOrEmpty(txbPrHidden.Text.Trim()))
-            {//登録の時は非表示理由を必ず空白にしたい
-                messageDsp.MsgDsp("");
-                txbPrHidden.Focus();
+                txbScID.Focus();
                 return false;
             }
             return true;
@@ -449,10 +390,22 @@ namespace SalesManagement_SysDev
         }
         private M_Product GenereteDataAdRegistration()
         {
+            string hidden = txbHidden.Text;
             return new M_Product
             {
                 //▼全部
-            };
+                PrID = int.Parse(txbPrID.Text),
+                MaID = int.Parse(txbMaID.Text),
+                PrName = txbName.Text,
+                Price = int.Parse(txbPrice.Text),
+                PrSafetyStock = int.Parse(txbSafetyStock.Text),
+                ScID = int.Parse(txbScID.Text),
+                PrModelNumber = txbModelNumber.Text,
+                PrColor = txbColor.Text,
+                PrReleaseDate = DateTime.Parse(txbReleaseDate.Text),
+                PrFlag = int.Parse(txbFlag.Text),
+                PrHidden = hidden,
+            }; 
         }
         private void RegistrationProduct(M_Product regProduct)
         {
@@ -492,69 +445,22 @@ namespace SalesManagement_SysDev
 
         private bool GetValidDataAtUpdate()
         {
-            if (!String.IsNullOrEmpty(txbPrID.Text.Trim()))
-            {
-                if (!productDataAccess.CheckPrIDExistence(int.Parse(txbPrID.Text.Trim())))
-                {
-                    messageDsp.MsgDsp("");
-                    txbPrID.Focus();
-                    return false;
-                }
-            }
-            else
+            if (!productDataAccess.CheckPrIDExistence(int.Parse(txbPrID.Text.Trim())))
             {
                 messageDsp.MsgDsp("");
                 txbPrID.Focus();
                 return false;
             }
-            if (!String.IsNullOrEmpty(txbMaID.Text.Trim()))
-            {
-                //▼外部キー認証
-            }
-            else
+            if (!makerDataAccess.CheckMaIDExistence(int.Parse(txbMaID.Text.Trim())))
             {
                 messageDsp.MsgDsp("");
                 txbMaID.Focus();
                 return false;
             }
-            if (String.IsNullOrEmpty(txbPrName.Text.Trim()))
+            if (!smallClassification.CheckScIDExistence(int.Parse(txbScID.Text.Trim())))
             {
                 messageDsp.MsgDsp("");
-                txbPrName.Focus();
-                return false;
-            }
-            if (String.IsNullOrEmpty(txbPrice.Text.Trim()))
-            {
-                messageDsp.MsgDsp("");
-                txbPrice.Focus();
-                return false;
-            }
-            if (String.IsNullOrEmpty(txbPrSafetyStock.Text.Trim()))
-            {
-                messageDsp.MsgDsp("");
-                txbPrSafetyStock.Focus();
-                return false;
-            }
-            if (String.IsNullOrEmpty(txbScID.Text.Trim()))
-            {
-                //外部キー認証
-            }
-            if (String.IsNullOrEmpty(txbPrModelNumber.Text.Trim()))
-            {
-                messageDsp.MsgDsp("");
-                txbPrModelNumber.Focus();
-                return false;
-            }
-            if (String.IsNullOrEmpty(txbPrColor.Text.Trim()))
-            {
-                messageDsp.MsgDsp("");
-                txbPrColor.Focus();
-                return false;
-            }
-            if (String.IsNullOrEmpty(txbPrReleaseDate.Text.Trim()))
-            {
-                messageDsp.MsgDsp("");
-                txbPrReleaseDate.Focus();
+                txbScID.Focus();
                 return false;
             }
             return true;
@@ -564,6 +470,12 @@ namespace SalesManagement_SysDev
             return new M_Product
             {
                 //全部
+                PrID =int.Parse(txbPrID.Text.Trim()),
+                MaID =int.Parse(txbMaID.Text.Trim()),
+                PrName =txbName.Text.Trim(),
+                Price =int.Parse(txbPrice.Text.Trim()),
+               // PrSafetyStock = 
+
             };
         }
         private void UpdateProduct(M_Product updPr)

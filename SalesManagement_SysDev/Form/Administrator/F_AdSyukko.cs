@@ -533,7 +533,35 @@ namespace SalesManagement_SysDev
 
         private void btnDetailSearch_Click(object sender, EventArgs e)
         {
-
+            GenerateDetailDataAdSelect();
+            //Sy情報抽出結果
+            SetSelectDetailData();
+        }
+        private void GenerateDetailDataAdSelect()
+        {
+            if (!int.TryParse(txbSyDetailID.Text, out int syDetailID))
+                syDetailID = 0;
+            if (!int.TryParse(txbSyID.Text, out int syID))
+                syID = 0;
+            if (!int.TryParse(txbPrID.Text, out int prID))
+                prID = 0;
+            //検索に使用するデータ
+            T_SyukkoDetail selectCondition = new T_SyukkoDetail()
+            {//検索に使用するデータ　全て変数で行う
+                SyDetailID = syDetailID,
+                SyID = syID,
+                PrID = prID,
+            };
+            //syデータの抽出
+            SyukkoDetail = syukkoDetailDataAccess.GetSyukkoDetailData(selectCondition);
+        }
+        private void SetSelectDetailData()
+        {
+            //ページ数の表示
+            txbDetailPageNo.Text = "1";
+            int pageSize = int.Parse(txbDetailPageSize.Text.Trim());
+            dataGridViewDetailDsp.DataSource = SyukkoDetail;
+            lblDetailPage.Text = "/" + ((int)Math.Ceiling(SyukkoDetail.Count / (double)pageSize)) + "ページ";
         }
     }
 }

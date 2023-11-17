@@ -67,7 +67,7 @@
             // txbPoID
             // 
             this.txbPoID.Location = new System.Drawing.Point(609, 242);
-            this.txbPoID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txbPoID.Margin = new System.Windows.Forms.Padding(4);
             this.txbPoID.Name = "txbPoID";
             this.txbPoID.Size = new System.Drawing.Size(124, 25);
             this.txbPoID.TabIndex = 131;
@@ -95,7 +95,7 @@
             // btnRegist
             // 
             this.btnRegist.Location = new System.Drawing.Point(585, 82);
-            this.btnRegist.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRegist.Margin = new System.Windows.Forms.Padding(4);
             this.btnRegist.Name = "btnRegist";
             this.btnRegist.Size = new System.Drawing.Size(94, 28);
             this.btnRegist.TabIndex = 127;
@@ -105,7 +105,7 @@
             // btnDisplay
             // 
             this.btnDisplay.Location = new System.Drawing.Point(730, 82);
-            this.btnDisplay.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDisplay.Margin = new System.Windows.Forms.Padding(4);
             this.btnDisplay.Name = "btnDisplay";
             this.btnDisplay.Size = new System.Drawing.Size(94, 28);
             this.btnDisplay.TabIndex = 126;
@@ -115,7 +115,7 @@
             // btnSearch
             // 
             this.btnSearch.Location = new System.Drawing.Point(446, 82);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(4);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(94, 28);
             this.btnSearch.TabIndex = 124;
@@ -126,7 +126,7 @@
             // btnClose
             // 
             this.btnClose.Location = new System.Drawing.Point(1430, 104);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(4);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(94, 28);
             this.btnClose.TabIndex = 123;
@@ -166,7 +166,7 @@
             // txbPageNo
             // 
             this.txbPageNo.Location = new System.Drawing.Point(895, 878);
-            this.txbPageNo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txbPageNo.Margin = new System.Windows.Forms.Padding(4);
             this.txbPageNo.Name = "txbPageNo";
             this.txbPageNo.Size = new System.Drawing.Size(124, 25);
             this.txbPageNo.TabIndex = 118;
@@ -174,7 +174,7 @@
             // btnLastPage
             // 
             this.btnLastPage.Location = new System.Drawing.Point(1466, 871);
-            this.btnLastPage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnLastPage.Margin = new System.Windows.Forms.Padding(4);
             this.btnLastPage.Name = "btnLastPage";
             this.btnLastPage.Size = new System.Drawing.Size(94, 28);
             this.btnLastPage.TabIndex = 117;
@@ -184,7 +184,7 @@
             // btnNextPage
             // 
             this.btnNextPage.Location = new System.Drawing.Point(1365, 871);
-            this.btnNextPage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnNextPage.Margin = new System.Windows.Forms.Padding(4);
             this.btnNextPage.Name = "btnNextPage";
             this.btnNextPage.Size = new System.Drawing.Size(94, 28);
             this.btnNextPage.TabIndex = 116;
@@ -194,7 +194,7 @@
             // btnPreviousPage
             // 
             this.btnPreviousPage.Location = new System.Drawing.Point(1264, 871);
-            this.btnPreviousPage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnPreviousPage.Margin = new System.Windows.Forms.Padding(4);
             this.btnPreviousPage.Name = "btnPreviousPage";
             this.btnPreviousPage.Size = new System.Drawing.Size(94, 28);
             this.btnPreviousPage.TabIndex = 115;
@@ -204,7 +204,7 @@
             // btnFirstPage
             // 
             this.btnFirstPage.Location = new System.Drawing.Point(1162, 871);
-            this.btnFirstPage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnFirstPage.Margin = new System.Windows.Forms.Padding(4);
             this.btnFirstPage.Name = "btnFirstPage";
             this.btnFirstPage.Size = new System.Drawing.Size(94, 28);
             this.btnFirstPage.TabIndex = 114;
@@ -214,7 +214,7 @@
             // txbPageSize
             // 
             this.txbPageSize.Location = new System.Drawing.Point(231, 868);
-            this.txbPageSize.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txbPageSize.Margin = new System.Windows.Forms.Padding(4);
             this.txbPageSize.Name = "txbPageSize";
             this.txbPageSize.Size = new System.Drawing.Size(124, 25);
             this.txbPageSize.TabIndex = 113;
@@ -233,7 +233,7 @@
             // 
             this.dataGridViewDsp.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewDsp.Location = new System.Drawing.Point(126, 400);
-            this.dataGridViewDsp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridViewDsp.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridViewDsp.Name = "dataGridViewDsp";
             this.dataGridViewDsp.RowHeadersWidth = 51;
             this.dataGridViewDsp.RowTemplate.Height = 24;
@@ -243,7 +243,7 @@
             // txbHiddin
             // 
             this.txbHiddin.Location = new System.Drawing.Point(298, 355);
-            this.txbHiddin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txbHiddin.Margin = new System.Windows.Forms.Padding(4);
             this.txbHiddin.Name = "txbHiddin";
             this.txbHiddin.Size = new System.Drawing.Size(124, 25);
             this.txbHiddin.TabIndex = 109;
@@ -251,7 +251,7 @@
             // txbFlag
             // 
             this.txbFlag.Location = new System.Drawing.Point(140, 355);
-            this.txbFlag.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txbFlag.Margin = new System.Windows.Forms.Padding(4);
             this.txbFlag.Name = "txbFlag";
             this.txbFlag.Size = new System.Drawing.Size(124, 25);
             this.txbFlag.TabIndex = 108;
@@ -259,7 +259,7 @@
             // txbHiredate
             // 
             this.txbHiredate.Location = new System.Drawing.Point(765, 242);
-            this.txbHiredate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txbHiredate.Margin = new System.Windows.Forms.Padding(4);
             this.txbHiredate.Name = "txbHiredate";
             this.txbHiredate.Size = new System.Drawing.Size(124, 25);
             this.txbHiredate.TabIndex = 107;
@@ -267,7 +267,7 @@
             // txbEmID
             // 
             this.txbEmID.Location = new System.Drawing.Point(176, 242);
-            this.txbEmID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txbEmID.Margin = new System.Windows.Forms.Padding(4);
             this.txbEmID.Name = "txbEmID";
             this.txbEmID.Size = new System.Drawing.Size(124, 25);
             this.txbEmID.TabIndex = 106;
@@ -275,7 +275,7 @@
             // txbSoID
             // 
             this.txbSoID.Location = new System.Drawing.Point(476, 242);
-            this.txbSoID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txbSoID.Margin = new System.Windows.Forms.Padding(4);
             this.txbSoID.Name = "txbSoID";
             this.txbSoID.Size = new System.Drawing.Size(124, 25);
             this.txbSoID.TabIndex = 105;
@@ -283,7 +283,7 @@
             // txbName
             // 
             this.txbName.Location = new System.Drawing.Point(332, 242);
-            this.txbName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txbName.Margin = new System.Windows.Forms.Padding(4);
             this.txbName.Name = "txbName";
             this.txbName.Size = new System.Drawing.Size(124, 25);
             this.txbName.TabIndex = 104;
@@ -341,17 +341,18 @@
             // btnUpdate
             // 
             this.btnUpdate.Location = new System.Drawing.Point(985, 82);
-            this.btnUpdate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnUpdate.Margin = new System.Windows.Forms.Padding(4);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(94, 28);
             this.btnUpdate.TabIndex = 132;
             this.btnUpdate.Text = "更新";
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // txbPhone
             // 
             this.txbPhone.Location = new System.Drawing.Point(918, 242);
-            this.txbPhone.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txbPhone.Margin = new System.Windows.Forms.Padding(4);
             this.txbPhone.Name = "txbPhone";
             this.txbPhone.Size = new System.Drawing.Size(124, 25);
             this.txbPhone.TabIndex = 134;
@@ -369,7 +370,7 @@
             // btnClear
             // 
             this.btnClear.Location = new System.Drawing.Point(1125, 82);
-            this.btnClear.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnClear.Margin = new System.Windows.Forms.Padding(4);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(94, 28);
             this.btnClear.TabIndex = 135;
@@ -414,10 +415,10 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "F_AdEmployee";
             this.Text = "社員管理";
-           
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDsp)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

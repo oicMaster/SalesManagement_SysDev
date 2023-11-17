@@ -1,9 +1,11 @@
-﻿using System;
+﻿using SalesManagement_SysDev.Common;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -15,6 +17,7 @@ namespace SalesManagement_SysDev
     {
         MakerDataAccess makerDataAccess = new MakerDataAccess();
         private static List<M_Maker> Maker;
+        MessageDsp messageDsp = new MessageDsp();
         public F_AdMaker()
         {
             InitializeComponent();
@@ -120,7 +123,17 @@ namespace SalesManagement_SysDev
 
         private void dataGridViewDsp_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //※
+            txbMaID.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[0].Value.ToString();      
+            txbName.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[1].Value.ToString();
+            txbAddress.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[2].Value.ToString();
+            txbPhone.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[3].Value.ToString();
+            txbPostal.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[4].Value.ToString();
+            txbFAX.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[5].Value.ToString();
+            txbFlag.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[6].Value.ToString();
+            if (dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[7].Value != null)
+                txbHidden.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[7].Value.ToString();
+            else
+                txbHidden.Text = String.Empty;
         }
 
 
@@ -303,6 +316,164 @@ namespace SalesManagement_SysDev
         private void btnClose_Click(object sender, EventArgs e)
         {
             Dispose();
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            //メーカ情報抽出
+            GenereteDataAdSelect();
+            //メーカ情報抽出結果
+            SetSelectData();
+        }
+        private void GenereteDataAdSelect()
+        {
+            if (!int.TryParse(txbMaID.Text, out int maID))
+                maID = 0;          
+            string maName = txbName.Text.Trim();
+            string maAddress = txbAddress.Text.Trim();
+            string maPhone = txbPhone.Text.Trim();
+            string maPostal = txbPostal.Text.Trim();
+            string maFAX = txbFAX.Text.Trim();
+
+
+            M_Maker selectCondition = new M_Maker()
+            {//検索に使用するデータ
+                MaID = maID,
+                MaName = maName,
+                MaAddress = maAddress,
+                MaPhone = maPhone,
+                MaPostal = maPostal,
+                MaFAX = maFAX,
+
+            };
+            //メーカデータの抽出
+            Maker = makerDataAccess.GetMakerData(selectCondition);
+        }
+
+        private void SetSelectData()
+        {//ページ数の表示
+            txbPageNo.Text = "1";
+            int pageSize = int.Parse(txbPageSize.Text.Trim());
+            dataGridViewDsp.DataSource = Maker;
+            lblPage.Text = "/" + ((int)Math.Ceiling(Maker.Count / (double)pageSize)) + "ページ";
+        }
+
+        private void btnRegist_Click(object sender, EventArgs e)
+        {
+            //妥当なメーカ情報取得
+            if (!GetValidDataAtRegistration())
+                return;
+            //メーカ情報作成
+            var regMaker = GenereteDataAdRegistration();
+
+            //メーカ情報登録
+            RegistrationClient(regMaker);
+        }
+        private bool GetValidDataAtRegistration()
+        {
+            if (!makerDataAccess.CheckMaIDExistence(int.Parse(txbMaID.Text)))
+            {
+                messageDsp.MsgDsp("");
+                txbMaID.Focus();
+
+                return false;
+            }
+            
+           
+            return true;
+        }
+        private M_Maker GenereteDataAdRegistration()
+        {
+            string hidden = txbHidden.Text;
+            return new M_Maker
+            {
+
+                MaID = int.Parse(txbMaID.Text),               
+                MaName = txbName.Text,
+                MaAddress = txbName.Text,
+                MaPhone = txbPhone.Text,
+                MaPostal = txbPostal.Text,
+                MaFAX = txbFAX.Text,
+                MaFlag = int.Parse(txbFlag.Text),
+                MaHidden = hidden,
+            };
+        }
+
+        private void RegistrationClient(M_Maker regMaker)
+        {
+            // 登録確認メッセージ
+            DialogResult result = messageDsp.MsgDsp("");
+
+            if (result == DialogResult.Cancel)
+                return;
+
+            // 部署情報の登録
+            bool flg = makerDataAccess.AddMakerData(regMaker);
+            if (flg == true)
+                messageDsp.MsgDsp("");
+            else
+                messageDsp.MsgDsp("");
+
+            txbMaID.Focus();
+
+            // 入力エリアのクリア
+            ClearInput();
+
+            // データグリッドビューの表示
+            GetDataGridView();
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {          
+            if (!GetValidDataAtUpdate())
+                return;      
+            var updMa = GenerateDataAtUpdate();
+            //エラー文を書かなきゃダメ         
+            UpdateMaker(updMa);
+        }
+        private bool GetValidDataAtUpdate()
+        {
+            if (!makerDataAccess.CheckMaIDExistence(int.Parse(txbMaID.Text.Trim())))
+            {
+                messageDsp.MsgDsp("");
+                txbMaID.Focus();
+                return false;
+            }
+            return true;
+        }
+
+        private M_Maker GenerateDataAtUpdate()
+        {
+            return new M_Maker
+            {
+                MaID = int.Parse(txbMaID.Text.Trim()),               
+                MaName = txbName.Text.Trim(),
+                MaAddress = txbAddress.Text.Trim(),
+                MaPhone = txbPhone.Text.Trim(),
+                MaPostal = txbPostal.Text.Trim(),
+                MaFAX = txbFAX.Text.Trim(),
+                MaFlag = int.Parse(txbFlag.Text),
+                MaHidden = txbHidden.Text.Trim(),
+            };
+        }
+
+
+        private void UpdateMaker(M_Maker updMa)
+        {
+            DialogResult result = messageDsp.MsgDsp("");
+            if (result == DialogResult.Cancel)
+                return;
+
+            bool flg = makerDataAccess.UpdateMakerData(updMa);
+            if (flg == true)
+                messageDsp.MsgDsp("");
+            else
+                messageDsp.MsgDsp("");
+
+            ClearInput();
+            txbMaID.Focus();
+
+            GetDataGridView();
         }
     }
 }
