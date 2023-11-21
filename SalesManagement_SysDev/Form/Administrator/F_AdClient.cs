@@ -491,5 +491,14 @@ namespace SalesManagement_SysDev
             GetDataGridView();
         }
 
+        private void txbName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
