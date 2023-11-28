@@ -328,20 +328,43 @@ namespace SalesManagement_SysDev
             SetSelectData();
 
         }
-        
+
         private void GenerateDataAtSelect()
         {
             if (!int.TryParse(txbPrID.Text, out int prID))
                 prID = 0;
             if (!int.TryParse(txbMaID.Text, out int maID))
                 maID = 0;
+            string prName = txbName.Text.Trim();
+            if (!int.TryParse(txbPrice.Text, out int price))
+                price = 0;
+            if (!int.TryParse(txbSafetyStock.Text, out int prSafetyStock))
+                prSafetyStock = 0;
+            if (!int.TryParse(txbScID.Text, out int scID))
+                scID = 0;
+            string prModelNumber = txbModelNumber.Text.Trim();
+            string prColor = txbColor.Text.Trim();
+
+
+
             M_Product selectCondition = new M_Product()
             {
-                PrID = int.Parse(txbPrID.Text.Trim()),
+                PrID = prID,
+                MaID = maID,
+                PrName = prName,
+                Price = price,
+                PrSafetyStock = prSafetyStock,
+                ScID = scID,
+                PrModelNumber = prModelNumber,
+                PrColor = prColor,
+
+
+
             };
             Product = productDataAccess.GetProductData(selectCondition);
 
         }
+
         private void SetSelectData()
         {
             txbPageNo.Text = "1";
@@ -467,15 +490,20 @@ namespace SalesManagement_SysDev
         }
         private M_Product GenerateDataAtUpdate()
         {
+            string hidden = txbHidden.Text;
             return new M_Product
             {
-                //全部
-                PrID =int.Parse(txbPrID.Text.Trim()),
-                MaID =int.Parse(txbMaID.Text.Trim()),
-                PrName =txbName.Text.Trim(),
-                Price =int.Parse(txbPrice.Text.Trim()),
-               // PrSafetyStock = 
-
+                PrID = int.Parse(txbPrID.Text),
+                MaID = int.Parse(txbMaID.Text),
+                PrName = txbName.Text,
+                Price = int.Parse(txbPrice.Text),
+                PrSafetyStock = int.Parse(txbSafetyStock.Text),
+                ScID = int.Parse(txbScID.Text),
+                PrModelNumber = txbModelNumber.Text,
+                PrColor = txbColor.Text,
+                PrReleaseDate = DateTime.Parse(txbReleaseDate.Text),
+                PrFlag = int.Parse(txbFlag.Text),
+                PrHidden = hidden,
             };
         }
         private void UpdateProduct(M_Product updPr)

@@ -444,16 +444,17 @@ namespace SalesManagement_SysDev
 
         private M_Maker GenerateDataAtUpdate()
         {
+            string hidden = txbHidden.Text;
             return new M_Maker
             {
-                MaID = int.Parse(txbMaID.Text.Trim()),               
-                MaName = txbName.Text.Trim(),
-                MaAddress = txbAddress.Text.Trim(),
-                MaPhone = txbPhone.Text.Trim(),
-                MaPostal = txbPostal.Text.Trim(),
-                MaFAX = txbFAX.Text.Trim(),
+                MaID = int.Parse(txbMaID.Text),
+                MaName = txbName.Text,
+                MaAddress = txbName.Text,
+                MaPhone = txbPhone.Text,
+                MaPostal = txbPostal.Text,
+                MaFAX = txbFAX.Text,
                 MaFlag = int.Parse(txbFlag.Text),
-                MaHidden = txbHidden.Text.Trim(),
+                MaHidden = hidden,
             };
         }
 

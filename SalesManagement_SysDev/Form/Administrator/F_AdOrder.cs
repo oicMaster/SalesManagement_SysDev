@@ -17,7 +17,7 @@ namespace SalesManagement_SysDev
         MessageDsp messageDsp = new MessageDsp();
         OrderDataAccess orderDataAccess = new OrderDataAccess();
         OrderDetailDataAccess orderDetailDataAccess = new OrderDetailDataAccess();
-        CommonModule dataInputFormCheck = new CommonModule();
+        CommonModule commonModule = new CommonModule();
         SalesOfficeDataAccess salesOfficeDataAccess = new SalesOfficeDataAccess();
         EmployeeDataAccess employeeDataAccess = new EmployeeDataAccess();
         ClientDataAccess clientDataAccess = new ClientDataAccess();
@@ -123,14 +123,14 @@ namespace SalesManagement_SysDev
             dataGridViewDsp.Columns[7].HeaderText = "受注管理フラフ";
             dataGridViewDsp.Columns[8].HeaderText = "非表示理由";
 
-            dataGridViewDetailDsp.Columns[9].Visible = false;
-            dataGridViewDetailDsp.Columns[10].Visible = false;
-            dataGridViewDetailDsp.Columns[11].Visible = false;
-            dataGridViewDetailDsp.Columns[12].Visible = false;
-            dataGridViewDetailDsp.Columns[13].Visible = false;
-            dataGridViewDetailDsp.Columns[14].Visible = false;
-            dataGridViewDetailDsp.Columns[15].Visible = false;
-            dataGridViewDetailDsp.Columns[16].Visible = false;
+            dataGridViewDsp.Columns[9].Visible = false;
+            dataGridViewDsp.Columns[10].Visible = false;
+            dataGridViewDsp.Columns[11].Visible = false;
+            dataGridViewDsp.Columns[12].Visible = false;
+            dataGridViewDsp.Columns[13].Visible = false;
+            dataGridViewDsp.Columns[14].Visible = false;
+            dataGridViewDsp.Columns[15].Visible = false;
+            dataGridViewDsp.Columns[16].Visible = false;
 
             lblPage.Text = "/" + ((int)Math.Ceiling(Order.Count / (double)pageSize)) + "ページ";
 

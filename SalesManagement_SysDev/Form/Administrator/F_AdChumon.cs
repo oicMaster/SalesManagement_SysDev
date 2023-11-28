@@ -22,6 +22,7 @@ namespace SalesManagement_SysDev
         ClientDataAccess clientDataAccess = new ClientDataAccess();
         OrderDataAccess orderDataAccess = new OrderDataAccess();
         ProductDataAccess productDataAccess = new ProductDataAccess();
+        CommonModule commonModule = new CommonModule();
 
         private static List<T_Chumon> Chumon;
         private static List<T_ChumonDetail> ChumonDetail;
@@ -202,32 +203,25 @@ namespace SalesManagement_SysDev
         }
 
 
+        private void txbPageSize_Leave(object sender, EventArgs e)
+        {
+            commonModule.PageLeave(txbPageSize);
+            SetDataGridView();
+        }
+
+        private void txbDetailPageSize_Leave(object sender, EventArgs e)
+        {
+            commonModule.PageLeave(txbDetailPageSize);
+            SetDataGridView();
+        }
         private void txbPageSize_TextChanged(object sender, EventArgs e)
         {
-            if (!String.IsNullOrEmpty((sender as TextBox).Text))
-            {
-                if (int.Parse((sender as TextBox).Text) > 10)
-                {
-                    (sender as TextBox).Text = "10";
-                    return;
-                }
-                if (int.Parse((sender as TextBox).Text) == 0)
-                {
-                    (sender as TextBox).Text = "1";
-                    return;
-                }
-            }
+            commonModule.PageSizeTextChanged(sender, 10);
         }
 
         private void txbPageNo_TextChanged(object sender, EventArgs e)
         {
-            if (!String.IsNullOrEmpty((sender as TextBox).Text.Trim()))
-            {
-                if (int.Parse((sender as TextBox).Text) == 0)
-                {
-                    (sender as TextBox).Text = "1";
-                }
-            }
+            commonModule.PageNoTextChanged(sender);
         }
 
         private void txbKeyID_TextChanged(object sender, EventArgs e)
@@ -243,182 +237,68 @@ namespace SalesManagement_SysDev
                 txbFlag.Text = "0";
                 txbStateFlag.Text = "0";
             }
-            txbChIDsub.Text = txbChID.Text;
+            commonModule.KeyIDKeyPress(sender, txbChDetailID);
         }
 
-        private void txbHidden_TextChanged(object sender, EventArgs e)
-        {
-            if (!String.IsNullOrEmpty((sender as TextBox).Text.Trim()))
-                txbFlag.Text = "0";
-            else
-                txbFlag.Text = "2";
-        }
-
-        //メイングリッドビュー,サブグリッドビューで使用する主キーのテキストボックスの文字を連動させる。
         private void txbKeyIDsub_TextChanged(object sender, EventArgs e)
         {
-            txbChID.Text = txbChIDsub.Text;
+            commonModule.KeyIDKeyPress(sender, txbChID);
         }
 
-        //PageSize,Noのテキストボックスに連結させる。
         private void txbPage_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')
-            {
-                e.Handled = true;
-            }
+            commonModule.PageKeyPress(e);
         }
-        //IDがつく全てのテキストボックスに連結させる。
+
         private void txbID_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if ((sender as TextBox).Text.Length < 6)
-            {
-                if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')
-                    e.Handled = true;
-            }
-            else if ((sender as TextBox).Text.Length == 6)
-            {
-                if (e.KeyChar != '\b')
-                    e.Handled = true;
-            }
+            commonModule.LimitValueKeyPress(sender, e, 6);
         }
-        //数量or個数のテキストボックスに連結させる。
+
         private void txbQuantity_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if ((sender as TextBox).Text.Length < 4)
-            {
-                if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')
-                    e.Handled = true;
-            }
-            else if (this.Text.Length == 4)
-            {
-                if (e.KeyChar != '\b')
-                    e.Handled = true;
-            }
+            commonModule.LimitValueKeyPress(sender, e, 4);
         }
-        //↓入力上限がある全てのデータに設定する。
-        //private void txb~~~~~_KeyPress(object sender, KeyPressEventArgs e)
-
-
 
         private void btnFirstPage_Click(object sender, EventArgs e)
         {
-            int pageSize = int.Parse(txbPageSize.Text);
-            dataGridViewDsp.DataSource = Chumon.Take(pageSize).ToList();
-
-            // DataGridViewを更新
-            dataGridViewDsp.Refresh();
-            //ページ番号の設定
-            txbPageNo.Text = "1";
+            commonModule.FirstPageClick(txbPageSize, txbPageNo, dataGridViewDsp, new List<object>(Chumon));
         }
 
         private void btnPreviousPage_Click(object sender, EventArgs e)
         {
-            int pageSize = int.Parse(txbPageSize.Text);
-            int pageNo = int.Parse(txbPageNo.Text) - 2;
-            dataGridViewDsp.DataSource = Chumon.Skip(pageSize * pageNo).Take(pageSize).ToList();
-
-            // DataGridViewを更新
-            dataGridViewDsp.Refresh();
-            //ページ番号の設定
-            if (pageNo + 1 > 1)
-                txbPageNo.Text = (pageNo + 1).ToString();
-            else
-                txbPageNo.Text = "1";
+            commonModule.PreviousPageClick(txbPageSize, txbPageNo, dataGridViewDsp, new List<object>(Chumon));
         }
 
         private void btnNextPage_Click(object sender, EventArgs e)
         {
-            int pageSize = int.Parse(txbPageSize.Text);
-            int pageNo = int.Parse(txbPageNo.Text);
-            //最終ページの計算
-            int lastNo = (int)Math.Ceiling(Chumon.Count / (double)pageSize) - 1;
-            //最終ページでなければ
-            if (pageNo <= lastNo)
-                dataGridViewDsp.DataSource = Chumon.Skip(pageSize * pageNo).Take(pageSize).ToList();
-
-            // DataGridViewを更新
-            dataGridViewDsp.Refresh();
-            //ページ番号の設定
-            int lastPage = (int)Math.Ceiling(Chumon.Count / (double)pageSize);
-            if (pageNo >= lastPage)
-                txbPageNo.Text = lastPage.ToString();
-            else
-                txbPageNo.Text = (pageNo + 1).ToString();
+            commonModule.NextPageClick(txbPageSize, txbPageNo, dataGridViewDsp, new List<object>(Chumon));
         }
 
         private void btnLastPage_Click(object sender, EventArgs e)
         {
-            int pageSize = int.Parse(txbPageSize.Text);
-            //最終ページの計算
-            int pageNo = (int)Math.Ceiling(Chumon.Count / (double)pageSize) - 1;
-            dataGridViewDsp.DataSource = Chumon.Skip(pageSize * pageNo).Take(pageSize).ToList();
-
-            // DataGridViewを更新
-            dataGridViewDsp.Refresh();
-            //ページ番号の設定
-            txbPageNo.Text = (pageNo + 1).ToString();
+            commonModule.LastPageClick(txbPageSize, txbPageNo, dataGridViewDsp, new List<object>(Chumon));
         }
 
         private void btnDetailFirstPage_Click(object sender, EventArgs e)
         {
-            int pageSize = int.Parse(txbDetailPageSize.Text);
-            dataGridViewDetailDsp.DataSource = ChumonDetail.Take(pageSize).ToList();
-
-            // DataGridViewを更新
-            dataGridViewDetailDsp.Refresh();
-            //ページ番号の設定
-            txbDetailPageNo.Text = "1";
+            commonModule.FirstPageClick(txbDetailPageSize, txbDetailPageNo, dataGridViewDetailDsp, new List<object>(ChumonDetail));
         }
 
         private void btnDetailPreviousPage_Click(object sender, EventArgs e)
         {
-            int pageSize = int.Parse(txbDetailPageSize.Text);
-            int pageNo = int.Parse(txbDetailPageNo.Text) - 2;
-            dataGridViewDetailDsp.DataSource = ChumonDetail.Skip(pageSize * pageNo).Take(pageSize).ToList();
-
-            // DataGridViewを更新
-            dataGridViewDetailDsp.Refresh();
-            //ページ番号の設定
-            if (pageNo + 1 > 1)
-                txbDetailPageNo.Text = (pageNo + 1).ToString();
-            else
-                txbDetailPageNo.Text = "1";
+            commonModule.PreviousPageClick(txbDetailPageSize, txbDetailPageNo, dataGridViewDetailDsp, new List<object>(ChumonDetail));
         }
 
         private void btnDetailNextPage_Click(object sender, EventArgs e)
         {
-            int pageSize = int.Parse(txbDetailPageSize.Text);
-            int pageNo = int.Parse(txbDetailPageNo.Text);
-            //最終ページの計算
-            int lastNo = (int)Math.Ceiling(ChumonDetail.Count / (double)pageSize) - 1;
-            //最終ページでなければ
-            if (pageNo <= lastNo)
-                dataGridViewDetailDsp.DataSource = ChumonDetail.Skip(pageSize * pageNo).Take(pageSize).ToList();
-
-            // DataGridViewを更新
-            dataGridViewDetailDsp.Refresh();
-            //ページ番号の設定
-            int lastPage = (int)Math.Ceiling(ChumonDetail.Count / (double)pageSize);
-            if (pageNo >= lastPage)
-                txbDetailPageNo.Text = lastPage.ToString();
-            else
-                txbDetailPageNo.Text = (pageNo + 1).ToString();
+            commonModule.NextPageClick(txbDetailPageSize, txbDetailPageNo, dataGridViewDetailDsp, new List<object>(ChumonDetail));
         }
 
         private void btnDetailLastPage_Click(object sender, EventArgs e)
         {
-            int pageSize = int.Parse(txbDetailPageSize.Text);
-            //最終ページの計算
-            int pageNo = (int)Math.Ceiling(ChumonDetail.Count / (double)pageSize) - 1;
-            dataGridViewDetailDsp.DataSource = ChumonDetail.Skip(pageSize * pageNo).Take(pageSize).ToList();
-
-            // DataGridViewを更新
-            dataGridViewDetailDsp.Refresh();
-            //ページ番号の設定
-            txbDetailPageNo.Text = (pageNo + 1).ToString();
+            commonModule.LastPageClick(txbDetailPageSize, txbDetailPageNo, dataGridViewDetailDsp, new List<object>(ChumonDetail));
         }
-
         private void btnClear_Click(object sender, EventArgs e)
         {
             ClearInput();
