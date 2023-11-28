@@ -52,6 +52,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btnClear = new System.Windows.Forms.Button();
+            this.lblPrName = new System.Windows.Forms.Label();
+            this.cmbHint = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDsp)).BeginInit();
             this.SuspendLayout();
             // 
@@ -263,11 +265,32 @@
             this.btnClear.Text = "入力クリア";
             this.btnClear.UseVisualStyleBackColor = true;
             // 
+            // lblPrName
+            // 
+            this.lblPrName.AutoSize = true;
+            this.lblPrName.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblPrName.Location = new System.Drawing.Point(221, 133);
+            this.lblPrName.Name = "lblPrName";
+            this.lblPrName.Size = new System.Drawing.Size(49, 20);
+            this.lblPrName.TabIndex = 156;
+            this.lblPrName.Text = "----";
+            // 
+            // cmbHint
+            // 
+            this.cmbHint.FormattingEnabled = true;
+            this.cmbHint.Location = new System.Drawing.Point(748, 165);
+            this.cmbHint.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbHint.Name = "cmbHint";
+            this.cmbHint.Size = new System.Drawing.Size(160, 23);
+            this.cmbHint.TabIndex = 157;
+            // 
             // F_AdStock
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1315, 729);
+            this.Controls.Add(this.cmbHint);
+            this.Controls.Add(this.lblPrName);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label9);
@@ -325,5 +348,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Label lblPrName;
+        private System.Windows.Forms.ComboBox cmbHint;
     }
 }

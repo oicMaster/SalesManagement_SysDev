@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SalesManagement_SysDev.Common;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,6 +15,7 @@ namespace SalesManagement_SysDev
     public partial class F_AdSalesOffice : Form
     {
         SalesOfficeDataAccess salesOfficeDataAccess = new SalesOfficeDataAccess();
+        MessageDsp messageDsp = new MessageDsp();
         private static List<M_SalesOffice> SalesOffice;
 
         public F_AdSalesOffice()
@@ -317,5 +319,157 @@ namespace SalesManagement_SysDev
             Dispose();
         }
 
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            GenerateDataAtSelect();
+            SetSelectData();
+        }
+        private void GenerateDataAtSelect()
+        {
+            if (int.TryParse(txbSoID.Text, out var soID))
+                soID = 0;
+            string soName = txbName.Text.Trim();
+            string soAddress = txbAddress.Text.Trim();
+            string soPhone = txbPhone.Text.Trim();
+            string soPostal = txbPostal.Text.Trim();
+            string soFAX = txbFAX.Text.Trim();
+
+            M_SalesOffice selectCondition = new M_SalesOffice()
+            {
+                SoID = soID,
+                SoName = soName,
+                SoAddress = soAddress,
+                SoPhone = soPhone,
+                SoPostal = soPostal,
+                SoFAX = soFAX,
+
+            };
+            SalesOffice = salesOfficeDataAccess.GetSaleData(selectCondition);
+        }
+        private void SetSelectData()
+        {
+            txbPageNo.Text = "1";
+            int pageSize = int.Parse(txbPageSize.Text.Trim());
+            dataGridViewDsp.DataSource = SalesOffice;
+
+            lblPage.Text = "/" + ((int)Math.Ceiling(SalesOffice.Count / (double)pageSize)) + "ページ";
+        }
+
+
+        private void btnRegist_Click(object sender, EventArgs e)
+        {
+            //妥当な商品情報取得
+            if (!GetValidDataAtRegistration())
+                return;
+            //商品情報作成
+            var regSalesOffice = GenereteDataAdRegistration();
+
+            //商品情報登録
+            RegistrationProduct(regSalesOffice);
+        }
+
+        private bool GetValidDataAtRegistration()
+        {
+            if (!salesOfficeDataAccess.CheckSoIDExistence(int.Parse(txbSoID.Text)))
+            {
+                messageDsp.MsgDsp("");
+                txbSoID.Focus();
+                return false;
+            }
+            return true;
+        }
+        private M_SalesOffice GenereteDataAdRegistration()
+        {
+            string hidden = txbHidden.Text;
+            return new M_SalesOffice
+            {
+                SoID = int.Parse(txbSoID.Text),
+                SoName = txbName.Text,
+                SoAddress = txbAddress.Text,
+                SoPhone = txbPhone.Text,
+                SoPostal = txbPostal.Text,
+                SoFAX = txbFAX.Text,
+                SoFlag = int.Parse(txbFlag.Text),
+                SoHidden = hidden,
+            };
+        }
+        private void RegistrationProduct(M_SalesOffice regSalesOffice)
+        {
+            // 登録確認メッセージ
+            DialogResult result = messageDsp.MsgDsp("");
+
+            if (result == DialogResult.Cancel)
+                return;
+
+            /*
+            bool flg = salesOfficeDataAccess.AddSalesOfficeData(regSalesOffice);
+            if (flg == true)
+                messageDsp.MsgDsp("");
+            else
+                messageDsp.MsgDsp("");
+            */
+            txbSoID.Focus();
+
+            // 入力エリアのクリア
+            ClearInput();
+
+            // データグリッドビューの表示
+            GetDataGridView();
+        }
+
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            //妥当な顧客データを取得
+            if (!GetValidDataAtUpdate())
+                return;
+            //顧客情報作成
+            var updSo = GenerateDataAtUpdate();
+            //顧客情報更新
+            UpdateProduct(updSo);
+        }
+        private bool GetValidDataAtUpdate()
+        {
+            if (!salesOfficeDataAccess.CheckSoIDExistence(int.Parse(txbSoID.Text)))
+            {
+                messageDsp.MsgDsp("");
+                txbSoID.Focus();
+                return false;
+            }
+            return true;
+        }
+        private M_SalesOffice GenerateDataAtUpdate()
+        {
+            string hidden = txbHidden.Text;
+            return new M_SalesOffice
+            {
+                SoID = int.Parse(txbSoID.Text),
+                SoName = txbName.Text,
+                SoAddress = txbAddress.Text,
+                SoPhone = txbPhone.Text,
+                SoPostal = txbPostal.Text,
+                SoFAX = txbFAX.Text,
+                SoFlag = int.Parse(txbFlag.Text),
+                SoHidden = hidden,
+            };
+        }
+        private void UpdateProduct(M_SalesOffice updSo)
+        {
+            DialogResult result = messageDsp.MsgDsp("");
+            if (result == DialogResult.Cancel)
+                return;
+
+            /*
+            bool flg = salesOfficeDataAccess.UpdateSalesOfficeData(updSo);
+            if (flg == true)
+                messageDsp.MsgDsp("");
+            else
+                messageDsp.MsgDsp("");
+            */
+            ClearInput();
+            txbSoID.Focus();
+
+            GetDataGridView();
+        }
     }
 }

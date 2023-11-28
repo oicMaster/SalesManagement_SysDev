@@ -265,18 +265,6 @@
     <Compile Include="Form\Administrator\F_AdSalesOffice.Designer.cs">
       <DependentUpon>F_AdSalesOffice.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\Logistics\F_LoOperationHistory.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form\Logistics\F_LoOperationHistory.Designer.cs">
-      <DependentUpon>F_LoOperationHistory.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Form\Sales\F_SaOperationHistory.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form\Sales\F_SaOperationHistory.Designer.cs">
-      <DependentUpon>F_SaOperationHistory.cs</DependentUpon>
-    </Compile>
     <Compile Include="Form\DbAccess\MakerDataAccess.cs" />
     <Compile Include="Form\DbAccess\PositionDataAccess.cs" />
     <Compile Include="Form\DbAccess\HattyuDetailDataAccess.cs" />
@@ -363,6 +351,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Administrator\F_AdSalesOffice.resx">
       <DependentUpon>F_AdSalesOffice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Store\F_OperationManegement.resx">
+      <DependentUpon>F_OperationManegement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

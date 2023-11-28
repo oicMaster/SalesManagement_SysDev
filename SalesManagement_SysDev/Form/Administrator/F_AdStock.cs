@@ -138,11 +138,20 @@ namespace SalesManagement_SysDev
         }
         private void GenerateDataAtSelect()
         {
+            if (!int.TryParse(txbStID.Text, out int stID))
+                stID = 0;
+            if (!int.TryParse(txbPrID.Text, out int prID))
+                prID = 0;
+            if (!int.TryParse(txbStQuantity.Text, out int stQuantity))
+                stQuantity = 0;
+
             T_Stock selectCondition = new T_Stock()
             {
-                StID = int.Parse(txbStID.Text.Trim()),
-
+                StID = stID,
+                PrID = prID,
+                StQuantity = stQuantity,
             };
+            Stock = stockDataAccess.GetStockData(selectCondition);
         }
         private void SetSelectData()
         {
@@ -151,7 +160,7 @@ namespace SalesManagement_SysDev
 
             dataGridViewDsp.DataSource = Stock;
 
-            lblPage.Text ="/"+((int)Math.Ceiling(Stock.Count/(double)pageSize))+"ページ";
+            lblPage.Text = "/" + ((int)Math.Ceiling(Stock.Count / (double)pageSize)) + "ページ";
         }
     }
 }

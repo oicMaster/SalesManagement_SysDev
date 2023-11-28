@@ -489,16 +489,42 @@ namespace SalesManagement_SysDev
 
         private bool GetValidDataAtUpdate()
         {
+            /*
             if (!syukkoDataAccess.CheckSyIDExistence(int.Parse(txbSyID.Text)))
             {
                 messageDsp.MsgDsp("");
                 txbSyID.Focus();
                 return false;
             }
+            if (!clientDataAccess.CheckClIDExistence(int.Parse(txbClID.Text)))
+            {
+                messageDsp.MsgDsp("");
+                txbClID.Focus();
+                return false;
+            }
+            if (!employeeDataAccess.CheckEmIDExistence(int.Parse(txbEmID.Text)))
+            {
+                messageDsp.MsgDsp("");
+                txbEmID.Focus();
+                return false;
+            }
+            if (!salesOfficeDataAccess.CheckSoIDExistence(int.Parse(txbSoID.Text)))
+            {
+                messageDsp.MsgDsp("");
+                txbSoID.Focus();
+                return false;
+            }
+            if (!orderDataAccess.CheckOrIDExistence(int.Parse(txbOrID.Text)))
+            {
+                messageDsp.MsgDsp("");
+                txbOrID.Focus();
+                return false;
+            }
+            */
             return true;
         }
 
-        private T_Syukko GenerateDataAtUpdate()
+            private T_Syukko GenerateDataAtUpdate()
         {
             return new T_Syukko
             {

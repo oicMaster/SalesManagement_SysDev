@@ -13,8 +13,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
-using static System.Data.Entity.Infrastructure.Design.Executor;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
 
 namespace SalesManagement_SysDev
 {
@@ -24,6 +22,7 @@ namespace SalesManagement_SysDev
         MessageDsp messageDsp = new MessageDsp();
         ClientDataAccess clientDataAccess = new ClientDataAccess();
         SalesOfficeDataAccess salesOfficeDataAccess = new SalesOfficeDataAccess();
+        CommonModule commonModule = new CommonModule();
 
         private static List<M_Client> Client;
 
@@ -82,15 +81,21 @@ namespace SalesManagement_SysDev
             int pageNo = int.Parse(txbPageNo.Text) - 1;
             dataGridViewDsp.DataSource = Client.Skip(pageSize * pageNo).Take(pageSize).ToList();
 
-            dataGridViewDsp.Columns[0].Width = 100;
-            dataGridViewDsp.Columns[1].Width = 100;
-            dataGridViewDsp.Columns[2].Width = 100;
-            dataGridViewDsp.Columns[3].Width = 100;
-            dataGridViewDsp.Columns[4].Width = 100;
-            dataGridViewDsp.Columns[5].Width = 100;
-            dataGridViewDsp.Columns[6].Width = 100;
-            dataGridViewDsp.Columns[7].Width = 100;
-            dataGridViewDsp.Columns[8].Width = 100;
+            dataGridViewDsp.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.False;
+            dataGridViewDsp.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewDsp.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            dataGridViewDsp.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dataGridViewDsp.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dataGridViewDsp.Font = new Font("MS UI Gothic", 18);
+            //dataGridViewDsp.Columns[0].Width = 100;
+            //dataGridViewDsp.Columns[1].Width = 100;
+            //dataGridViewDsp.Columns[2].Width = 100;
+            //dataGridViewDsp.Columns[3].Width = 100;
+            //dataGridViewDsp.Columns[4].Width = 100;
+            //dataGridViewDsp.Columns[5].Width = 100;
+            //dataGridViewDsp.Columns[6].Width = 100;
+            //dataGridViewDsp.Columns[7].Width = 100;
+            //dataGridViewDsp.Columns[8].Width = 100;
             //列の文字の位置の指定
             dataGridViewDsp.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewDsp.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -144,32 +149,19 @@ namespace SalesManagement_SysDev
         }
 
 
+        private void txbPageSize_Leave(object sender, EventArgs e)
+        {
+            commonModule.PageLeave(txbPageSize);
+            SetDataGridView();
+        }
         private void txbPageSize_TextChanged(object sender, EventArgs e)
         {
-            if (!String.IsNullOrEmpty((sender as TextBox).Text))
-            {
-                if (int.Parse((sender as TextBox).Text) > 10)
-                {
-                    (sender as TextBox).Text = "10";
-                    return;
-                }
-                if (int.Parse((sender as TextBox).Text) == 0)
-                {
-                    (sender as TextBox).Text = "1";
-                    return;
-                }
-            }
+            commonModule.PageSizeTextChanged(sender, 10);
         }
 
         private void txbPageNo_TextChanged(object sender, EventArgs e)
         {
-            if (!String.IsNullOrEmpty((sender as TextBox).Text.Trim()))
-            {
-                if (int.Parse((sender as TextBox).Text) == 0)
-                {
-                    (sender as TextBox).Text = "1";
-                }
-            }
+            commonModule.PageNoTextChanged(sender);
         }
 
         private void txbKeyID_TextChanged(object sender, EventArgs e)
@@ -186,39 +178,25 @@ namespace SalesManagement_SysDev
             }
         }
 
-        private void txbHidden_TextChanged(object sender, EventArgs e)
+        private void txbKeyIDsub_TextChanged(object sender, EventArgs e)
         {
-            if (!String.IsNullOrEmpty(this.Text.Trim()))
-                txbFlag.Text = "0";
-            else
-                txbFlag.Text = "2";
+            commonModule.KeyIDKeyPress(sender, txbClID);
         }
 
-        //PageSize,Noのテキストボックスに連結させる。
         private void txbPage_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')
-            {
-                e.Handled = true;
-            }
+            commonModule.PageKeyPress(e);
         }
-        //IDがつく全てのテキストボックスに連結させる。
+
         private void txbID_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (this.Text.Length < 6)
-            {
-                if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')
-                    e.Handled = true;
-            }
-            else if (this.Text.Length == 6)
-            {
-                if (e.KeyChar != '\b')
-                    e.Handled = true;
-            }
+            commonModule.LimitValueKeyPress(sender, e, 6);
         }
-        //↓入力上限がある全てのデータに設定する。
-        //private void txb~~~~~_KeyPress(object sender, KeyPressEventArgs e)
 
+        private void txbQuantity_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            commonModule.LimitValueKeyPress(sender, e, 4);
+        }
 
 
         private void btnFirstPage_Click(object sender, EventArgs e)
@@ -260,7 +238,7 @@ namespace SalesManagement_SysDev
             // DataGridViewを更新
             dataGridViewDsp.Refresh();
             //ページ番号の設定
-            int lastPage = (int)Math.Ceiling(Client.Count / (double)pageSize);
+            int lastPage = (int)Math.Ceiling(Client.Count / (double)pageSize) ;
             if (pageNo >= lastPage)
                 txbPageNo.Text = lastPage.ToString();
             else
@@ -279,7 +257,6 @@ namespace SalesManagement_SysDev
             //ページ番号の設定
             txbPageNo.Text = (pageNo + 1).ToString();
         }
-
 
         private void btnClear_Click(object sender, EventArgs e)
         {
