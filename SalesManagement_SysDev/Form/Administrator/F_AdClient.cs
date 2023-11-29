@@ -24,6 +24,7 @@ namespace SalesManagement_SysDev
         MessageDsp messageDsp = new MessageDsp();
         ClientDataAccess clientDataAccess = new ClientDataAccess();
         SalesOfficeDataAccess salesOfficeDataAccess = new SalesOfficeDataAccess();
+        CommonModule commonModule = new CommonModule();
 
         private static List<M_Client> Client;
 
@@ -78,9 +79,7 @@ namespace SalesManagement_SysDev
         }
         private void SetDataGridView()
         {
-            int pageSize = int.Parse(txbPageSize.Text);
-            int pageNo = int.Parse(txbPageNo.Text) - 1;
-            dataGridViewDsp.DataSource = Client.Skip(pageSize * pageNo).Take(pageSize).ToList();
+            commonModule.SetDataGridView(txbPageSize, txbPageNo, dataGridViewDsp,lblPage, new List<object>(Client));
 
             dataGridViewDsp.Columns[0].Width = 100;
             dataGridViewDsp.Columns[1].Width = 100;
@@ -119,8 +118,6 @@ namespace SalesManagement_SysDev
             dataGridViewDsp.Columns[13].Visible = false;
             dataGridViewDsp.Columns[14].Visible = false;
             dataGridViewDsp.Columns[15].Visible = false;
-
-            lblPage.Text = "/" + ((int)Math.Ceiling(Client.Count / (double)pageSize)) + "ページ";
 
             dataGridViewDsp.Refresh();
         }
@@ -234,17 +231,7 @@ namespace SalesManagement_SysDev
 
         private void btnPreviousPage_Click(object sender, EventArgs e)
         {
-            int pageSize = int.Parse(txbPageSize.Text);
-            int pageNo = int.Parse(txbPageNo.Text) - 2;
-            dataGridViewDsp.DataSource = Client.Skip(pageSize * pageNo).Take(pageSize).ToList();
-
-            // DataGridViewを更新
-            dataGridViewDsp.Refresh();
-            //ページ番号の設定
-            if (pageNo + 1 > 1)
-                txbPageNo.Text = (pageNo + 1).ToString();
-            else
-                txbPageNo.Text = "1";
+            commonModule.PreviousPageClick(txbPageSize, txbPageNo, dataGridViewDsp, new List<object>(Client));
         }
 
         private void btnNextPage_Click(object sender, EventArgs e)
@@ -368,7 +355,7 @@ namespace SalesManagement_SysDev
             {
                 messageDsp.MsgDsp("");
                 txbClID.Focus();
-               
+
                 return false;
             }
             if (!salesOfficeDataAccess.CheckSoIDExistence(int.Parse(txbSoID.Text)))
