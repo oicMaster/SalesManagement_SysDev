@@ -41,9 +41,11 @@ namespace SalesManagement_SysDev
             SetFormDataGridView();
             SetFormDetailDataGridView();
             fncButtonEnable(0);
+            fncButtonEnable(4);
             txbFlag.ReadOnly = true;
             txbStateFlag.ReadOnly = true;
-            txbDate.ReadOnly = true;
+            dtpDate.Value = DateTime.Now;
+            dtpDate.Checked = false;
 
             cmbHint.Items.Add("検索");
             cmbHint.Items.Add("非表示");
@@ -58,7 +60,7 @@ namespace SalesManagement_SysDev
             txbEmID.TabIndex = 2;
             txbClID.TabIndex = 3;
             txbOrID.TabIndex = 4;
-            txbDate.TabIndex = 5;
+            dtpDate.TabIndex = 5;
             txbHidden.TabIndex = 6;
             btnSearch.TabIndex = 7;
             btnUpdate.TabIndex = 8;
@@ -90,12 +92,14 @@ namespace SalesManagement_SysDev
             { 
                 case 0:
                     btnConfirm.Enabled = false;
-                    btnUpdate.Enabled = false;
                     break;
                 case 1:
                     btnConfirm.Enabled = true;
                     break;
-                case 2:
+                case 4:
+                    btnUpdate.Enabled = false;
+                    break;
+                case 5:
                     btnUpdate.Enabled = true;
                     break;
 
@@ -120,7 +124,7 @@ namespace SalesManagement_SysDev
                 case 4:
                     lblArID.ForeColor = Color.Red;
                     lblSoID.ForeColor = Color.Black;
-                    lblEmID.ForeColor = Color.Black;
+                    lblEmID.ForeColor = Color.Green;
                     lblClID.ForeColor = Color.Black;
                     lblOrID.ForeColor = Color.Black;
                     lblHidden.ForeColor= Color.Red;
@@ -315,7 +319,6 @@ namespace SalesManagement_SysDev
         }
         private void txbDetailPageNo_Leave(object sender, EventArgs e)
         {
-
             SetDataGridView();
         }
 
@@ -334,13 +337,26 @@ namespace SalesManagement_SysDev
             if (String.IsNullOrEmpty((sender as TextBox).Text))
             {
                 fncButtonEnable(0);
-                ClearInput();
+                fncButtonEnable(4);
             }
             else
             {
                 fncButtonEnable(1);
+                if (!String.IsNullOrEmpty(txbHidden.Text))
+                    fncButtonEnable(5);
             }
-            commonModule.KeyIDKeyPress(sender, txbArDetailID);
+            commonModule.KeyIDKeyPress(sender, txbArIDsub);
+        }
+        private void txbHidden_TextChanged(object sender, EventArgs e)
+        {
+            if (!String.IsNullOrEmpty(txbHidden.Text))
+            {
+                if (!String.IsNullOrEmpty(txbArID.Text))
+                    fncButtonEnable(5);
+            }
+            else
+                fncButtonEnable(4);
+
         }
 
         private void txbKeyIDsub_TextChanged(object sender, EventArgs e)
@@ -500,7 +516,7 @@ namespace SalesManagement_SysDev
         }
         private void btnDisplay_Click(object sender, EventArgs e)
         {
-            SetFormDataGridView();
+            SetDataGridView();
         }
         private void btnClose_Click(object sender, EventArgs e)
         {
@@ -579,11 +595,14 @@ namespace SalesManagement_SysDev
                 txbSoID.Focus();
                 return false;
             }
-            if (!employeeDataAccess.CheckEmIDExistence(int.Parse(txbEmID.Text)))
+            if(String.IsNullOrEmpty(txbEmID.Text))
             {
-                messageDsp.MsgDsp("");
-                txbEmID.Focus();
-                return false;
+                if (!employeeDataAccess.CheckEmIDExistence(int.Parse(txbEmID.Text)))
+                {
+                    messageDsp.MsgDsp("");
+                    txbEmID.Focus();
+                    return false;
+                }
             }
             if (!clientDataAccess.CheckClIDExistence(int.Parse(txbClID.Text)))
             {
@@ -630,7 +649,7 @@ namespace SalesManagement_SysDev
         private void btnConfirm_Click(object sender, EventArgs e)
         {
             //foreach()
-            //var message = context.M_Messages.Where(x => x.ArID == arID).ToArray();
+
         }
 
         private void btnDetailSearch_Click(object sender, EventArgs e)
@@ -665,9 +684,7 @@ namespace SalesManagement_SysDev
 
         private void cmbHint_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int chk = commonModule.ComboBoxHint(sender);
-            fncTextBoxColor(chk);
-        }
 
+        }
     }
 }

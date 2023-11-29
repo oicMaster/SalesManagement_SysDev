@@ -419,7 +419,7 @@ namespace SalesManagement_SysDev
         {
             return new T_Chumon
             {
-                ChID = int.Parse(txbClID.Text.Trim()),
+                ChID = int.Parse(txbChID.Text.Trim()),
                 ChFlag = 2,
                 ChHidden = txbHidden.Text.Trim()
             };
