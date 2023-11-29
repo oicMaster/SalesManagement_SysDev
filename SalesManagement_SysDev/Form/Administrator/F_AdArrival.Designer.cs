@@ -80,7 +80,6 @@
             this.btnDetailFirstPage = new System.Windows.Forms.Button();
             this.txbDetailPageSize = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
-            this.txbDate = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label15 = new System.Windows.Forms.Label();
             this.cmbHint = new System.Windows.Forms.ComboBox();
@@ -92,6 +91,7 @@
             this.lblSoName = new System.Windows.Forms.Label();
             this.lblEmName = new System.Windows.Forms.Label();
             this.lblClName = new System.Windows.Forms.Label();
+            this.dtpDate = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDsp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDetailDsp)).BeginInit();
             this.panel1.SuspendLayout();
@@ -197,7 +197,7 @@
             // 
             // btnLastPage
             // 
-            this.btnLastPage.Font = new System.Drawing.Font("MS UI Gothic", 12F);
+            this.btnLastPage.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
             this.btnLastPage.Location = new System.Drawing.Point(1570, 330);
             this.btnLastPage.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnLastPage.Name = "btnLastPage";
@@ -210,7 +210,7 @@
             // 
             // btnNextPage
             // 
-            this.btnNextPage.Font = new System.Drawing.Font("MS UI Gothic", 12F);
+            this.btnNextPage.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
             this.btnNextPage.Location = new System.Drawing.Point(1510, 330);
             this.btnNextPage.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnNextPage.Name = "btnNextPage";
@@ -223,7 +223,7 @@
             // 
             // btnPreviousPage
             // 
-            this.btnPreviousPage.Font = new System.Drawing.Font("MS UI Gothic", 12F);
+            this.btnPreviousPage.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
             this.btnPreviousPage.Location = new System.Drawing.Point(1420, 330);
             this.btnPreviousPage.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnPreviousPage.Name = "btnPreviousPage";
@@ -236,7 +236,7 @@
             // 
             // btnFirstPage
             // 
-            this.btnFirstPage.Font = new System.Drawing.Font("MS UI Gothic", 12F);
+            this.btnFirstPage.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
             this.btnFirstPage.Location = new System.Drawing.Point(1360, 330);
             this.btnFirstPage.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnFirstPage.Name = "btnFirstPage";
@@ -303,6 +303,7 @@
             this.txbHidden.Name = "txbHidden";
             this.txbHidden.Size = new System.Drawing.Size(1055, 25);
             this.txbHidden.TabIndex = 74;
+            this.txbHidden.TextChanged += new System.EventHandler(this.txbHidden_TextChanged);
             // 
             // txbStateFlag
             // 
@@ -633,6 +634,7 @@
             // 
             // btnDetailLastPage
             // 
+            this.btnDetailLastPage.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
             this.btnDetailLastPage.Location = new System.Drawing.Point(740, 330);
             this.btnDetailLastPage.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnDetailLastPage.Name = "btnDetailLastPage";
@@ -645,6 +647,7 @@
             // 
             // btnDetailNextPage
             // 
+            this.btnDetailNextPage.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
             this.btnDetailNextPage.Location = new System.Drawing.Point(680, 330);
             this.btnDetailNextPage.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnDetailNextPage.Name = "btnDetailNextPage";
@@ -657,6 +660,7 @@
             // 
             // btnDetailPreviousPage
             // 
+            this.btnDetailPreviousPage.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
             this.btnDetailPreviousPage.Location = new System.Drawing.Point(600, 330);
             this.btnDetailPreviousPage.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnDetailPreviousPage.Name = "btnDetailPreviousPage";
@@ -669,6 +673,7 @@
             // 
             // btnDetailFirstPage
             // 
+            this.btnDetailFirstPage.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
             this.btnDetailFirstPage.Location = new System.Drawing.Point(540, 330);
             this.btnDetailFirstPage.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnDetailFirstPage.Name = "btnDetailFirstPage";
@@ -703,16 +708,6 @@
             this.label16.Size = new System.Drawing.Size(92, 16);
             this.label16.TabIndex = 113;
             this.label16.Text = "1ページ行数";
-            // 
-            // txbDate
-            // 
-            this.txbDate.Font = new System.Drawing.Font("MS UI Gothic", 15.75F, System.Drawing.FontStyle.Bold);
-            this.txbDate.Location = new System.Drawing.Point(175, 195);
-            this.txbDate.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.txbDate.Multiline = true;
-            this.txbDate.Name = "txbDate";
-            this.txbDate.Size = new System.Drawing.Size(180, 25);
-            this.txbDate.TabIndex = 121;
             // 
             // panel1
             // 
@@ -810,46 +805,57 @@
             // lblPrName
             // 
             this.lblPrName.AutoSize = true;
-            this.lblPrName.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblPrName.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.lblPrName.Location = new System.Drawing.Point(180, 805);
             this.lblPrName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPrName.Name = "lblPrName";
-            this.lblPrName.Size = new System.Drawing.Size(39, 16);
+            this.lblPrName.Size = new System.Drawing.Size(43, 16);
             this.lblPrName.TabIndex = 157;
             this.lblPrName.Text = "----";
             // 
             // lblSoName
             // 
             this.lblSoName.AutoSize = true;
-            this.lblSoName.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblSoName.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.lblSoName.Location = new System.Drawing.Point(400, 125);
             this.lblSoName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblSoName.Name = "lblSoName";
-            this.lblSoName.Size = new System.Drawing.Size(39, 16);
+            this.lblSoName.Size = new System.Drawing.Size(43, 16);
             this.lblSoName.TabIndex = 125;
             this.lblSoName.Text = "----";
             // 
             // lblEmName
             // 
             this.lblEmName.AutoSize = true;
-            this.lblEmName.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblEmName.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.lblEmName.Location = new System.Drawing.Point(640, 125);
             this.lblEmName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblEmName.Name = "lblEmName";
-            this.lblEmName.Size = new System.Drawing.Size(39, 16);
+            this.lblEmName.Size = new System.Drawing.Size(43, 16);
             this.lblEmName.TabIndex = 126;
             this.lblEmName.Text = "----";
             // 
             // lblClName
             // 
             this.lblClName.AutoSize = true;
-            this.lblClName.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblClName.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.lblClName.Location = new System.Drawing.Point(880, 125);
             this.lblClName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblClName.Name = "lblClName";
-            this.lblClName.Size = new System.Drawing.Size(39, 16);
+            this.lblClName.Size = new System.Drawing.Size(43, 16);
             this.lblClName.TabIndex = 127;
             this.lblClName.Text = "----";
+            // 
+            // dtpDate
+            // 
+            this.dtpDate.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
+            this.dtpDate.Location = new System.Drawing.Point(180, 195);
+            this.dtpDate.MaxDate = new System.DateTime(3000, 12, 31, 0, 0, 0, 0);
+            this.dtpDate.MinDate = new System.DateTime(2023, 1, 1, 0, 0, 0, 0);
+            this.dtpDate.Name = "dtpDate";
+            this.dtpDate.ShowCheckBox = true;
+            this.dtpDate.Size = new System.Drawing.Size(186, 29);
+            this.dtpDate.TabIndex = 158;
             // 
             // F_AdArrival
             // 
@@ -857,6 +863,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(1904, 1041);
+            this.Controls.Add(this.dtpDate);
             this.Controls.Add(this.lblPrName);
             this.Controls.Add(this.cmbHint);
             this.Controls.Add(this.lblArIDsub);
@@ -866,7 +873,6 @@
             this.Controls.Add(this.txbArDetailID);
             this.Controls.Add(this.lblSoName);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.txbDate);
             this.Controls.Add(this.btnDisplay);
             this.Controls.Add(this.txbQuantity);
             this.Controls.Add(this.btnUpdate);
@@ -966,7 +972,6 @@
         private System.Windows.Forms.Button btnDetailFirstPage;
         private System.Windows.Forms.TextBox txbDetailPageSize;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.TextBox txbDate;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
@@ -978,5 +983,6 @@
         private System.Windows.Forms.Label lblPrName;
         private System.Windows.Forms.CheckBox cbxConfirm;
         private System.Windows.Forms.CheckBox cbxHidden;
+        private System.Windows.Forms.DateTimePicker dtpDate;
     }
 }
