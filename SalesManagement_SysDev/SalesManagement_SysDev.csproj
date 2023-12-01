@@ -304,6 +304,9 @@
     <Compile Include="Form\DbAccess\SyukkoDetailDataAccess.cs" />
     <Compile Include="Form\DbAccess\WarehousingDetailDataAccess.cs" />
     <Compile Include="Form\DbAccess\WarehousingDataAccess.cs" />
+    <EmbeddedResource Include="Form\Administrator\F_AdMenu.resx">
+      <DependentUpon>F_AdMenu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Administrator\F_AdShipment.resx">
       <DependentUpon>F_AdShipment.cs</DependentUpon>
     </EmbeddedResource>

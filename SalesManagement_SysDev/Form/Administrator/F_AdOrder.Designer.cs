@@ -700,6 +700,7 @@
             this.dtpDate.ShowCheckBox = true;
             this.dtpDate.Size = new System.Drawing.Size(186, 29);
             this.dtpDate.TabIndex = 160;
+            this.dtpDate.ValueChanged += new System.EventHandler(this.dtpDate_ValueChanged);
             // 
             // F_AdOrder
             // 

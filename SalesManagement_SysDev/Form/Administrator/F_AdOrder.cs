@@ -450,7 +450,7 @@ namespace SalesManagement_SysDev
             txbEmID.Text = String.Empty;
             txbClID.Text = String.Empty;
             txbCharge.Text = String.Empty;
-            txbDate.Text = String.Empty;
+            dtpDate.Value = DateTime.Now;
             txbStateFlag.Text = String.Empty;
             txbFlag.Text = String.Empty;
             txbHidden.Text = String.Empty;
@@ -554,7 +554,7 @@ namespace SalesManagement_SysDev
                 SoID = int.Parse(txbSoID.Text),
                 EmID = int.Parse(txbEmID.Text),
                 ClID = int.Parse(txbClID.Text),
-                OrDate = DateTime.Parse(txbDate.Text),
+                OrDate = DateTime.Now,
                 OrStateFlag = int.Parse(txbFlag.Text),
                 OrFlag = int.Parse(txbFlag.Text),
                 OrHidden = hidden,
@@ -688,6 +688,11 @@ namespace SalesManagement_SysDev
 
         }
         private void RegistrationOrderDetail()
+        {
+
+        }
+
+        private void dtpDate_ValueChanged(object sender, EventArgs e)
         {
 
         }

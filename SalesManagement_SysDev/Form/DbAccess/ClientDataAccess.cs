@@ -100,7 +100,8 @@ namespace SalesManagement_SysDev
             try
             {
                 var context = new SalesManagement_DevContext();
-                client = context.M_Clients.Where(x => x.ClID == selectCondition.ClID).ToList();
+                client = context.M_Clients.Where(x => (selectCondition.ClID == 0 || x.ClID == selectCondition.ClID) &&
+                        (selectCondition.SoID == 0 || x.SoID == selectCondition.SoID)).ToList();
                 context.Dispose();
             }
             catch(Exception ex)

@@ -115,15 +115,15 @@ namespace SalesManagement_SysDev
             dataGridViewDsp.Columns[8].HeaderText = "非表示理由";
 
             
-            dataGridViewDetailDsp.Columns[9].Visible = false;
-            dataGridViewDetailDsp.Columns[10].Visible = false;
-            dataGridViewDetailDsp.Columns[11].Visible = false;
-            dataGridViewDetailDsp.Columns[12].Visible = false;
-            dataGridViewDetailDsp.Columns[13].Visible = false;
+            dataGridViewDsp.Columns[9].Visible = false;
+            dataGridViewDsp.Columns[10].Visible = false;
+            dataGridViewDsp.Columns[11].Visible = false;
+            dataGridViewDsp.Columns[12].Visible = false;
+            dataGridViewDsp.Columns[13].Visible = false;
             
 
             //データグリッドビューの総ページ数
-            lblPage.Text = "/" + ((int)Math.Ceiling(Shipment.Count / (double)pageSize)) + "ページ";
+            lblPageNo.Text = "/" + ((int)Math.Ceiling(Shipment.Count / (double)pageSize)) + "ページ";
 
             dataGridViewDsp.Refresh();
         }
@@ -136,7 +136,7 @@ namespace SalesManagement_SysDev
             txbSoID.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[3].Value.ToString();
             txbOrID.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[4].Value.ToString();
             txbStateFlag.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[5].Value.ToString();
-           //※
+            dtpDate.Text = dataGridViewDsp.Rows[dataGridViewDetailDsp.CurrentRow.Index].Cells[6].Value.ToString();
             txbFlag.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[7].Value.ToString();
             if (dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[8].Value != null)
                 txbHidden.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[8].Value.ToString();
@@ -187,7 +187,7 @@ namespace SalesManagement_SysDev
             dataGridViewDetailDsp.Columns[4].Visible = false;
             dataGridViewDetailDsp.Columns[5].Visible = false;
 
-            lblDetailPage.Text = "/" + ((int)Math.Ceiling(ShipmentDetail.Count / (double)pageSize)) + "ページ";
+            lblDetailPageNo.Text = "/" + ((int)Math.Ceiling(ShipmentDetail.Count / (double)pageSize)) + "ページ";
 
             dataGridViewDsp.Refresh();
         }
@@ -197,7 +197,7 @@ namespace SalesManagement_SysDev
             txbShDetailID.Text = dataGridViewDetailDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[0].Value.ToString();
             txbShIDsub.Text = dataGridViewDetailDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[1].Value.ToString();
             txbPrID.Text = dataGridViewDetailDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[2].Value.ToString();
-            txbShQuantity.Text = dataGridViewDetailDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[3].Value.ToString();
+            txbQuantity.Text = dataGridViewDetailDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[3].Value.ToString();
         }
 
 
@@ -429,7 +429,7 @@ namespace SalesManagement_SysDev
             txbSoID.Text = String.Empty;
             txbOrID.Text = String.Empty;
             txbStateFlag.Text = String.Empty;
-            txbDate.Text = String.Empty;
+            dtpDate.Value = DateTime.Now;
             txbFlag.Text = String.Empty;
             txbHidden.Text = String.Empty;
         }
@@ -483,7 +483,7 @@ namespace SalesManagement_SysDev
             int pageSize = int.Parse(txbPageSize.Text.Trim());
             dataGridViewDsp.DataSource = Shipment;
 
-            lblPage.Text = "/" + ((int)Math.Ceiling(Shipment.Count / (double)pageSize)) + "ページ";
+            lblPageNo.Text = "/" + ((int)Math.Ceiling(Shipment.Count / (double)pageSize)) + "ページ";
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -544,6 +544,11 @@ namespace SalesManagement_SysDev
         }
 
         private void btnDetailSearch_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dtpDate_ValueChanged(object sender, EventArgs e)
         {
 
         }

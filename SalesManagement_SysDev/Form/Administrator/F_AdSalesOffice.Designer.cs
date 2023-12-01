@@ -31,7 +31,7 @@
             this.dataGridViewDsp = new System.Windows.Forms.DataGridView();
             this.btnDisplay = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
-            this.lblPage = new System.Windows.Forms.Label();
+            this.lblPageNo = new System.Windows.Forms.Label();
             this.txbPageNo = new System.Windows.Forms.TextBox();
             this.btnLastPage = new System.Windows.Forms.Button();
             this.btnNextPage = new System.Windows.Forms.Button();
@@ -40,7 +40,7 @@
             this.lblLoginName = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             this.txbPageSize = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
+            this.lblPageSize = new System.Windows.Forms.Label();
             this.btnClear = new System.Windows.Forms.Button();
             this.txbHidden = new System.Windows.Forms.TextBox();
             this.txbFlag = new System.Windows.Forms.TextBox();
@@ -50,17 +50,17 @@
             this.txbAddress = new System.Windows.Forms.TextBox();
             this.txbName = new System.Windows.Forms.TextBox();
             this.txbSoID = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
+            this.lblHIdden = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblFAX = new System.Windows.Forms.Label();
+            this.lblPortal = new System.Windows.Forms.Label();
+            this.lblPhone = new System.Windows.Forms.Label();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnRegist = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblAddress = new System.Windows.Forms.Label();
+            this.lblName = new System.Windows.Forms.Label();
+            this.lblSoID = new System.Windows.Forms.Label();
             this.cmbHint = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDsp)).BeginInit();
             this.SuspendLayout();
@@ -69,7 +69,7 @@
             // 
             this.dataGridViewDsp.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewDsp.Location = new System.Drawing.Point(24, 273);
-            this.dataGridViewDsp.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridViewDsp.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridViewDsp.Name = "dataGridViewDsp";
             this.dataGridViewDsp.RowHeadersWidth = 51;
             this.dataGridViewDsp.RowTemplate.Height = 24;
@@ -79,7 +79,7 @@
             // btnDisplay
             // 
             this.btnDisplay.Location = new System.Drawing.Point(505, 22);
-            this.btnDisplay.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnDisplay.Margin = new System.Windows.Forms.Padding(2);
             this.btnDisplay.Name = "btnDisplay";
             this.btnDisplay.Size = new System.Drawing.Size(56, 18);
             this.btnDisplay.TabIndex = 73;
@@ -96,20 +96,20 @@
             this.label10.TabIndex = 72;
             this.label10.Text = "ログイン情報";
             // 
-            // lblPage
+            // lblPageNo
             // 
-            this.lblPage.AutoSize = true;
-            this.lblPage.Location = new System.Drawing.Point(590, 581);
-            this.lblPage.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblPage.Name = "lblPage";
-            this.lblPage.Size = new System.Drawing.Size(35, 12);
-            this.lblPage.TabIndex = 71;
-            this.lblPage.Text = "ページ";
+            this.lblPageNo.AutoSize = true;
+            this.lblPageNo.Location = new System.Drawing.Point(590, 581);
+            this.lblPageNo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblPageNo.Name = "lblPageNo";
+            this.lblPageNo.Size = new System.Drawing.Size(35, 12);
+            this.lblPageNo.TabIndex = 71;
+            this.lblPageNo.Text = "ページ";
             // 
             // txbPageNo
             // 
             this.txbPageNo.Location = new System.Drawing.Point(498, 578);
-            this.txbPageNo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbPageNo.Margin = new System.Windows.Forms.Padding(2);
             this.txbPageNo.Name = "txbPageNo";
             this.txbPageNo.Size = new System.Drawing.Size(76, 19);
             this.txbPageNo.TabIndex = 70;
@@ -117,7 +117,7 @@
             // btnLastPage
             // 
             this.btnLastPage.Location = new System.Drawing.Point(841, 574);
-            this.btnLastPage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnLastPage.Margin = new System.Windows.Forms.Padding(2);
             this.btnLastPage.Name = "btnLastPage";
             this.btnLastPage.Size = new System.Drawing.Size(56, 18);
             this.btnLastPage.TabIndex = 69;
@@ -127,7 +127,7 @@
             // btnNextPage
             // 
             this.btnNextPage.Location = new System.Drawing.Point(780, 574);
-            this.btnNextPage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnNextPage.Margin = new System.Windows.Forms.Padding(2);
             this.btnNextPage.Name = "btnNextPage";
             this.btnNextPage.Size = new System.Drawing.Size(56, 18);
             this.btnNextPage.TabIndex = 68;
@@ -137,7 +137,7 @@
             // btnPreviousPage
             // 
             this.btnPreviousPage.Location = new System.Drawing.Point(719, 574);
-            this.btnPreviousPage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnPreviousPage.Margin = new System.Windows.Forms.Padding(2);
             this.btnPreviousPage.Name = "btnPreviousPage";
             this.btnPreviousPage.Size = new System.Drawing.Size(56, 18);
             this.btnPreviousPage.TabIndex = 67;
@@ -147,7 +147,7 @@
             // btnFirstPage
             // 
             this.btnFirstPage.Location = new System.Drawing.Point(658, 574);
-            this.btnFirstPage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnFirstPage.Margin = new System.Windows.Forms.Padding(2);
             this.btnFirstPage.Name = "btnFirstPage";
             this.btnFirstPage.Size = new System.Drawing.Size(56, 18);
             this.btnFirstPage.TabIndex = 66;
@@ -167,7 +167,7 @@
             // btnClose
             // 
             this.btnClose.Location = new System.Drawing.Point(684, 22);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(2);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(56, 18);
             this.btnClose.TabIndex = 64;
@@ -177,25 +177,25 @@
             // txbPageSize
             // 
             this.txbPageSize.Location = new System.Drawing.Point(83, 572);
-            this.txbPageSize.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbPageSize.Margin = new System.Windows.Forms.Padding(2);
             this.txbPageSize.Name = "txbPageSize";
             this.txbPageSize.Size = new System.Drawing.Size(76, 19);
             this.txbPageSize.TabIndex = 63;
             // 
-            // label11
+            // lblPageSize
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(22, 574);
-            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(65, 12);
-            this.label11.TabIndex = 62;
-            this.label11.Text = "1ページ行数";
+            this.lblPageSize.AutoSize = true;
+            this.lblPageSize.Location = new System.Drawing.Point(22, 574);
+            this.lblPageSize.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblPageSize.Name = "lblPageSize";
+            this.lblPageSize.Size = new System.Drawing.Size(65, 12);
+            this.lblPageSize.TabIndex = 62;
+            this.lblPageSize.Text = "1ページ行数";
             // 
             // btnClear
             // 
             this.btnClear.Location = new System.Drawing.Point(566, 22);
-            this.btnClear.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnClear.Margin = new System.Windows.Forms.Padding(2);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(56, 18);
             this.btnClear.TabIndex = 61;
@@ -205,7 +205,7 @@
             // txbHidden
             // 
             this.txbHidden.Location = new System.Drawing.Point(83, 234);
-            this.txbHidden.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbHidden.Margin = new System.Windows.Forms.Padding(2);
             this.txbHidden.Name = "txbHidden";
             this.txbHidden.Size = new System.Drawing.Size(76, 19);
             this.txbHidden.TabIndex = 60;
@@ -213,7 +213,7 @@
             // txbFlag
             // 
             this.txbFlag.Location = new System.Drawing.Point(98, 202);
-            this.txbFlag.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbFlag.Margin = new System.Windows.Forms.Padding(2);
             this.txbFlag.Name = "txbFlag";
             this.txbFlag.Size = new System.Drawing.Size(76, 19);
             this.txbFlag.TabIndex = 59;
@@ -221,7 +221,7 @@
             // txbFAX
             // 
             this.txbFAX.Location = new System.Drawing.Point(346, 174);
-            this.txbFAX.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbFAX.Margin = new System.Windows.Forms.Padding(2);
             this.txbFAX.Name = "txbFAX";
             this.txbFAX.Size = new System.Drawing.Size(76, 19);
             this.txbFAX.TabIndex = 58;
@@ -229,7 +229,7 @@
             // txbPostal
             // 
             this.txbPostal.Location = new System.Drawing.Point(208, 174);
-            this.txbPostal.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbPostal.Margin = new System.Windows.Forms.Padding(2);
             this.txbPostal.Name = "txbPostal";
             this.txbPostal.Size = new System.Drawing.Size(76, 19);
             this.txbPostal.TabIndex = 57;
@@ -237,7 +237,7 @@
             // txbPhone
             // 
             this.txbPhone.Location = new System.Drawing.Point(70, 172);
-            this.txbPhone.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbPhone.Margin = new System.Windows.Forms.Padding(2);
             this.txbPhone.Name = "txbPhone";
             this.txbPhone.Size = new System.Drawing.Size(76, 19);
             this.txbPhone.TabIndex = 56;
@@ -245,7 +245,7 @@
             // txbAddress
             // 
             this.txbAddress.Location = new System.Drawing.Point(64, 143);
-            this.txbAddress.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbAddress.Margin = new System.Windows.Forms.Padding(2);
             this.txbAddress.Name = "txbAddress";
             this.txbAddress.Size = new System.Drawing.Size(76, 19);
             this.txbAddress.TabIndex = 55;
@@ -253,7 +253,7 @@
             // txbName
             // 
             this.txbName.Location = new System.Drawing.Point(208, 114);
-            this.txbName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbName.Margin = new System.Windows.Forms.Padding(2);
             this.txbName.Name = "txbName";
             this.txbName.Size = new System.Drawing.Size(76, 19);
             this.txbName.TabIndex = 53;
@@ -261,20 +261,20 @@
             // txbSoID
             // 
             this.txbSoID.Location = new System.Drawing.Point(70, 111);
-            this.txbSoID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbSoID.Margin = new System.Windows.Forms.Padding(2);
             this.txbSoID.Name = "txbSoID";
             this.txbSoID.Size = new System.Drawing.Size(76, 19);
             this.txbSoID.TabIndex = 52;
             // 
-            // label9
+            // lblHIdden
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(17, 234);
-            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(65, 12);
-            this.label9.TabIndex = 51;
-            this.label9.Text = "非表示理由";
+            this.lblHIdden.AutoSize = true;
+            this.lblHIdden.Location = new System.Drawing.Point(17, 234);
+            this.lblHIdden.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblHIdden.Name = "lblHIdden";
+            this.lblHIdden.Size = new System.Drawing.Size(65, 12);
+            this.lblHIdden.TabIndex = 51;
+            this.lblHIdden.Text = "非表示理由";
             // 
             // label8
             // 
@@ -286,40 +286,40 @@
             this.label8.TabIndex = 50;
             this.label8.Text = "営業所管理フラグ";
             // 
-            // label7
+            // lblFAX
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(310, 174);
-            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(27, 12);
-            this.label7.TabIndex = 49;
-            this.label7.Text = "FAX";
+            this.lblFAX.AutoSize = true;
+            this.lblFAX.Location = new System.Drawing.Point(310, 174);
+            this.lblFAX.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblFAX.Name = "lblFAX";
+            this.lblFAX.Size = new System.Drawing.Size(27, 12);
+            this.lblFAX.TabIndex = 49;
+            this.lblFAX.Text = "FAX";
             // 
-            // label6
+            // lblPortal
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(160, 178);
-            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(53, 12);
-            this.label6.TabIndex = 48;
-            this.label6.Text = "郵便番号";
+            this.lblPortal.AutoSize = true;
+            this.lblPortal.Location = new System.Drawing.Point(160, 178);
+            this.lblPortal.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblPortal.Name = "lblPortal";
+            this.lblPortal.Size = new System.Drawing.Size(53, 12);
+            this.lblPortal.TabIndex = 48;
+            this.lblPortal.Text = "郵便番号";
             // 
-            // label5
+            // lblPhone
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(22, 174);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(53, 12);
-            this.label5.TabIndex = 47;
-            this.label5.Text = "電話番号";
+            this.lblPhone.AutoSize = true;
+            this.lblPhone.Location = new System.Drawing.Point(22, 174);
+            this.lblPhone.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblPhone.Name = "lblPhone";
+            this.lblPhone.Size = new System.Drawing.Size(53, 12);
+            this.lblPhone.TabIndex = 47;
+            this.lblPhone.Text = "電話番号";
             // 
             // btnUpdate
             // 
             this.btnUpdate.Location = new System.Drawing.Point(321, 22);
-            this.btnUpdate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnUpdate.Margin = new System.Windows.Forms.Padding(2);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(56, 18);
             this.btnUpdate.TabIndex = 46;
@@ -329,7 +329,7 @@
             // btnRegist
             // 
             this.btnRegist.Location = new System.Drawing.Point(382, 22);
-            this.btnRegist.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnRegist.Margin = new System.Windows.Forms.Padding(2);
             this.btnRegist.Name = "btnRegist";
             this.btnRegist.Size = new System.Drawing.Size(56, 18);
             this.btnRegist.TabIndex = 45;
@@ -339,7 +339,7 @@
             // btnSearch
             // 
             this.btnSearch.Location = new System.Drawing.Point(260, 22);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(2);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(56, 18);
             this.btnSearch.TabIndex = 44;
@@ -347,35 +347,35 @@
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
-            // label4
+            // lblAddress
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(22, 146);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(29, 12);
-            this.label4.TabIndex = 43;
-            this.label4.Text = "住所";
+            this.lblAddress.AutoSize = true;
+            this.lblAddress.Location = new System.Drawing.Point(22, 146);
+            this.lblAddress.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblAddress.Name = "lblAddress";
+            this.lblAddress.Size = new System.Drawing.Size(29, 12);
+            this.lblAddress.TabIndex = 43;
+            this.lblAddress.Text = "住所";
             // 
-            // label2
+            // lblName
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(154, 117);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 12);
-            this.label2.TabIndex = 41;
-            this.label2.Text = "営業所名";
+            this.lblName.AutoSize = true;
+            this.lblName.Location = new System.Drawing.Point(154, 117);
+            this.lblName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(53, 12);
+            this.lblName.TabIndex = 41;
+            this.lblName.Text = "営業所名";
             // 
-            // label1
+            // lblSoID
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(22, 116);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(52, 12);
-            this.label1.TabIndex = 40;
-            this.label1.Text = "営業所ID";
+            this.lblSoID.AutoSize = true;
+            this.lblSoID.Location = new System.Drawing.Point(22, 116);
+            this.lblSoID.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblSoID.Name = "lblSoID";
+            this.lblSoID.Size = new System.Drawing.Size(52, 12);
+            this.lblSoID.TabIndex = 40;
+            this.lblSoID.Text = "営業所ID";
             // 
             // cmbHint
             // 
@@ -394,7 +394,7 @@
             this.Controls.Add(this.dataGridViewDsp);
             this.Controls.Add(this.btnDisplay);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.lblPage);
+            this.Controls.Add(this.lblPageNo);
             this.Controls.Add(this.txbPageNo);
             this.Controls.Add(this.btnLastPage);
             this.Controls.Add(this.btnNextPage);
@@ -403,7 +403,7 @@
             this.Controls.Add(this.lblLoginName);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.txbPageSize);
-            this.Controls.Add(this.label11);
+            this.Controls.Add(this.lblPageSize);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.txbHidden);
             this.Controls.Add(this.txbFlag);
@@ -413,17 +413,17 @@
             this.Controls.Add(this.txbAddress);
             this.Controls.Add(this.txbName);
             this.Controls.Add(this.txbSoID);
-            this.Controls.Add(this.label9);
+            this.Controls.Add(this.lblHIdden);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.lblFAX);
+            this.Controls.Add(this.lblPortal);
+            this.Controls.Add(this.lblPhone);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnRegist);
             this.Controls.Add(this.btnSearch);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblAddress);
+            this.Controls.Add(this.lblName);
+            this.Controls.Add(this.lblSoID);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "F_AdSalesOffice";
             this.Text = "営業所管理";
@@ -438,7 +438,7 @@
         private System.Windows.Forms.DataGridView dataGridViewDsp;
         private System.Windows.Forms.Button btnDisplay;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label lblPage;
+        private System.Windows.Forms.Label lblPageNo;
         private System.Windows.Forms.TextBox txbPageNo;
         private System.Windows.Forms.Button btnLastPage;
         private System.Windows.Forms.Button btnNextPage;
@@ -447,7 +447,7 @@
         private System.Windows.Forms.Label lblLoginName;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.TextBox txbPageSize;
-        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label lblPageSize;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.TextBox txbHidden;
         private System.Windows.Forms.TextBox txbFlag;
@@ -457,17 +457,17 @@
         private System.Windows.Forms.TextBox txbAddress;
         private System.Windows.Forms.TextBox txbName;
         private System.Windows.Forms.TextBox txbSoID;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label lblHIdden;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblFAX;
+        private System.Windows.Forms.Label lblPortal;
+        private System.Windows.Forms.Label lblPhone;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnRegist;
         private System.Windows.Forms.Button btnSearch;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblAddress;
+        private System.Windows.Forms.Label lblName;
+        private System.Windows.Forms.Label lblSoID;
         private System.Windows.Forms.ComboBox cmbHint;
     }
 }

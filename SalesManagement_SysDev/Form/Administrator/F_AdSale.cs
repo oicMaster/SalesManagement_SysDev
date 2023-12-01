@@ -413,7 +413,7 @@ namespace SalesManagement_SysDev
             txbSaID.Text = string.Empty;
             txbEmID.Text = string.Empty;
             txbHidden.Text = string.Empty;
-            txbDate.Text = string.Empty;
+            dtpDate.Value = DateTime.Now;
             txbSaDetailID.Text = string.Empty;
             txbPrID.Text = string.Empty;
             txbFlag.Text = string.Empty;
@@ -560,6 +560,11 @@ namespace SalesManagement_SysDev
             int pageSize = int.Parse(txbDetailPageSize.Text.Trim());
             dataGridViewDetailDsp.DataSource = SaleDetail;
             lblDetailPage.Text = "/" + ((int)Math.Ceiling(SaleDetail.Count / (double)pageSize)) + "ページ";
+        }
+
+        private void dtpDate_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

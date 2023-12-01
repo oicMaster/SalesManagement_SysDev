@@ -121,7 +121,7 @@ namespace SalesManagement_SysDev
             dataGridViewDsp.Columns[9].Visible = false;
             dataGridViewDsp.Columns[10].Visible = false;
             
-            lblPage.Text = "/" + ((int)Math.Ceiling(Hattyu.Count / (double)pageSize)) + "ページ";
+            lblPageNo.Text = "/" + ((int)Math.Ceiling(Hattyu.Count / (double)pageSize)) + "ページ";
 
             dataGridViewDsp.Refresh();
         }
@@ -182,7 +182,7 @@ namespace SalesManagement_SysDev
             dataGridViewDetailDsp.Columns[4].Visible = false;
             dataGridViewDetailDsp.Columns[5].Visible = false;
 
-            lblDetailPage.Text = "/" + ((int)Math.Ceiling(HattyuDetail.Count / (double)pageSize)) + "ページ";
+            lblDetailPageNo.Text = "/" + ((int)Math.Ceiling(HattyuDetail.Count / (double)pageSize)) + "ページ";
 
             dataGridViewDsp.Refresh();
         }
@@ -413,7 +413,7 @@ namespace SalesManagement_SysDev
             txbHaID.Text = String.Empty;
             txbMaID.Text = String.Empty;
             txbEmID.Text = String.Empty;
-            txbDate.Text = String.Empty;
+            dtpDate.Value = DateTime.Now;
             txbStateFlag.Text = String.Empty;
             txbFlag.Text = String.Empty;
             txbHidden.Text = String.Empty;
@@ -470,7 +470,7 @@ namespace SalesManagement_SysDev
             int pageSize = int.Parse(txbPageSize.Text.Trim());
             dataGridViewDsp.DataSource = Hattyu;
 
-            lblPage.Text = "/" + ((int)Math.Ceiling(Hattyu.Count / (double)pageSize)) + "ページ";
+            lblPageNo.Text = "/" + ((int)Math.Ceiling(Hattyu.Count / (double)pageSize)) + "ページ";
         }
 
         private void btnRegist_Click(object sender, EventArgs e)
@@ -492,12 +492,12 @@ namespace SalesManagement_SysDev
         private T_Hattyu GenereteDataAdRegistration()
         {
             string hidden = txbHidden.Text;
-            return new　T_Hattyu
+            return new T_Hattyu
             {
-                HaID =int.Parse(txbHaID.Text.Trim()),
-                MaID =int.Parse(txbMaID.Text.Trim()),
-                EmID =int.Parse(txbEmID.Text.Trim()),
-                HaDate = DateTime.Parse(txbDate.Text.Trim()),
+                HaID = int.Parse(txbHaID.Text.Trim()),
+                MaID = int.Parse(txbMaID.Text.Trim()),
+                EmID = int.Parse(txbEmID.Text.Trim()),
+                HaDate = DateTime.Now,
                 HaFlag =int.Parse(txbFlag.Text.Trim()),
                 HaHidden = hidden,
             };
@@ -622,7 +622,7 @@ namespace SalesManagement_SysDev
             txbDetailPageNo.Text = "1";
             int pageSize = int.Parse(txbDetailPageSize.Text.Trim());
             dataGridViewDetailDsp.DataSource = HattyuDetail;
-            lblDetailPage.Text = "/" + ((int)Math.Ceiling(HattyuDetail.Count / (double)pageSize)) + "ページ";
+            lblDetailPageNo.Text = "/" + ((int)Math.Ceiling(HattyuDetail.Count / (double)pageSize)) + "ページ";
         }
 
         private void btnDetailRegist_Click(object sender, EventArgs e)
@@ -642,6 +642,9 @@ namespace SalesManagement_SysDev
 
         }
 
- 
+        private void dtpDate_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

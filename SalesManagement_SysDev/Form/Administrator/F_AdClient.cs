@@ -86,6 +86,7 @@ namespace SalesManagement_SysDev
             dataGridViewDsp.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             dataGridViewDsp.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridViewDsp.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            
             dataGridViewDsp.Font = new Font("MS UI Gothic", 18);
             //dataGridViewDsp.Columns[0].Width = 100;
             //dataGridViewDsp.Columns[1].Width = 100;
@@ -201,13 +202,7 @@ namespace SalesManagement_SysDev
 
         private void btnFirstPage_Click(object sender, EventArgs e)
         {
-            int pageSize = int.Parse(txbPageSize.Text);
-            dataGridViewDsp.DataSource = Client.Take(pageSize).ToList();
-
-            // DataGridViewを更新
-            dataGridViewDsp.Refresh();
-            //ページ番号の設定
-            txbPageNo.Text = "1";
+            commonModule.FirstPageClick(txbPageSize,txbPageNo,dataGridViewDsp,new List<object>(Client));
         }
 
         private void btnPreviousPage_Click(object sender, EventArgs e)
@@ -298,22 +293,11 @@ namespace SalesManagement_SysDev
                 clID = 0;
             if (!int.TryParse(txbSoID.Text, out int soID))
                 soID = 0;
-            string clName = txbName.Text.Trim();
-            string clAddress = txbAddress.Text.Trim();
-            string clPhone = txbPhone.Text.Trim();
-            string clPostal = txbPostal.Text.Trim();
-            string clFAX = txbFAX.Text.Trim();
 
             M_Client selectCondition = new M_Client()
             {//検索に使用するデータ
                 ClID = clID,
                 SoID = soID,
-                ClName = clName,
-                ClAddress = clAddress,
-                ClPhone = clPhone,
-                ClPostal = clPostal,
-                ClFAX = clFAX,
-
             };
             //顧客データの抽出
             Client = clientDataAccess.GetClientData(selectCondition);

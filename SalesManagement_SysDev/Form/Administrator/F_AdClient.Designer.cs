@@ -49,7 +49,6 @@
             this.txbFAX = new System.Windows.Forms.TextBox();
             this.txbHidden = new System.Windows.Forms.TextBox();
             this.btnClear = new System.Windows.Forms.Button();
-            this.label11 = new System.Windows.Forms.Label();
             this.txbPageSize = new System.Windows.Forms.TextBox();
             this.btnClose = new System.Windows.Forms.Button();
             this.lblLoginName = new System.Windows.Forms.Label();
@@ -67,6 +66,9 @@
             this.cmbHint = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.cbxDisplay = new System.Windows.Forms.CheckBox();
+            this.cbxHidden = new System.Windows.Forms.CheckBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.lblEmName = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDsp)).BeginInit();
             this.panel1.SuspendLayout();
@@ -121,7 +123,7 @@
             // 
             this.btnSearch.Font = new System.Drawing.Font("MS UI Gothic", 20.25F);
             this.btnSearch.Location = new System.Drawing.Point(1502, 111);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(2);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(124, 48);
             this.btnSearch.TabIndex = 4;
@@ -133,7 +135,7 @@
             // 
             this.btnRegist.Font = new System.Drawing.Font("MS UI Gothic", 20.25F);
             this.btnRegist.Location = new System.Drawing.Point(1777, 111);
-            this.btnRegist.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnRegist.Margin = new System.Windows.Forms.Padding(2);
             this.btnRegist.Name = "btnRegist";
             this.btnRegist.Size = new System.Drawing.Size(124, 48);
             this.btnRegist.TabIndex = 5;
@@ -145,7 +147,7 @@
             // 
             this.btnUpdate.Font = new System.Drawing.Font("MS UI Gothic", 20.25F);
             this.btnUpdate.Location = new System.Drawing.Point(1643, 111);
-            this.btnUpdate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnUpdate.Margin = new System.Windows.Forms.Padding(2);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(124, 48);
             this.btnUpdate.TabIndex = 6;
@@ -211,7 +213,7 @@
             // txbClID
             // 
             this.txbClID.Location = new System.Drawing.Point(171, 148);
-            this.txbClID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbClID.Margin = new System.Windows.Forms.Padding(2);
             this.txbClID.Name = "txbClID";
             this.txbClID.Size = new System.Drawing.Size(131, 19);
             this.txbClID.TabIndex = 13;
@@ -220,7 +222,7 @@
             // txbSoID
             // 
             this.txbSoID.Location = new System.Drawing.Point(516, 150);
-            this.txbSoID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbSoID.Margin = new System.Windows.Forms.Padding(2);
             this.txbSoID.Name = "txbSoID";
             this.txbSoID.Size = new System.Drawing.Size(131, 19);
             this.txbSoID.TabIndex = 14;
@@ -228,7 +230,7 @@
             // txbName
             // 
             this.txbName.Location = new System.Drawing.Point(819, 147);
-            this.txbName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbName.Margin = new System.Windows.Forms.Padding(2);
             this.txbName.Name = "txbName";
             this.txbName.Size = new System.Drawing.Size(131, 19);
             this.txbName.TabIndex = 15;
@@ -237,7 +239,7 @@
             // txbAddress
             // 
             this.txbAddress.Location = new System.Drawing.Point(1155, 146);
-            this.txbAddress.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbAddress.Margin = new System.Windows.Forms.Padding(2);
             this.txbAddress.Name = "txbAddress";
             this.txbAddress.Size = new System.Drawing.Size(343, 19);
             this.txbAddress.TabIndex = 16;
@@ -245,7 +247,7 @@
             // txbPhone
             // 
             this.txbPhone.Location = new System.Drawing.Point(171, 188);
-            this.txbPhone.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbPhone.Margin = new System.Windows.Forms.Padding(2);
             this.txbPhone.Name = "txbPhone";
             this.txbPhone.Size = new System.Drawing.Size(203, 19);
             this.txbPhone.TabIndex = 17;
@@ -253,7 +255,7 @@
             // txbPostal
             // 
             this.txbPostal.Location = new System.Drawing.Point(516, 188);
-            this.txbPostal.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbPostal.Margin = new System.Windows.Forms.Padding(2);
             this.txbPostal.Name = "txbPostal";
             this.txbPostal.Size = new System.Drawing.Size(100, 19);
             this.txbPostal.TabIndex = 18;
@@ -261,7 +263,7 @@
             // txbFAX
             // 
             this.txbFAX.Location = new System.Drawing.Point(819, 191);
-            this.txbFAX.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbFAX.Margin = new System.Windows.Forms.Padding(2);
             this.txbFAX.Name = "txbFAX";
             this.txbFAX.Size = new System.Drawing.Size(131, 19);
             this.txbFAX.TabIndex = 19;
@@ -269,7 +271,7 @@
             // txbHidden
             // 
             this.txbHidden.Location = new System.Drawing.Point(171, 240);
-            this.txbHidden.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbHidden.Margin = new System.Windows.Forms.Padding(2);
             this.txbHidden.Name = "txbHidden";
             this.txbHidden.Size = new System.Drawing.Size(520, 19);
             this.txbHidden.TabIndex = 21;
@@ -278,7 +280,7 @@
             // 
             this.btnClear.Font = new System.Drawing.Font("MS UI Gothic", 18F);
             this.btnClear.Location = new System.Drawing.Point(1643, 181);
-            this.btnClear.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnClear.Margin = new System.Windows.Forms.Padding(2);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(140, 36);
             this.btnClear.TabIndex = 24;
@@ -286,21 +288,10 @@
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.label11.Location = new System.Drawing.Point(33, 723);
-            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(92, 16);
-            this.label11.TabIndex = 25;
-            this.label11.Text = "1ページ行数";
-            // 
             // txbPageSize
             // 
             this.txbPageSize.Location = new System.Drawing.Point(129, 724);
-            this.txbPageSize.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbPageSize.Margin = new System.Windows.Forms.Padding(2);
             this.txbPageSize.Name = "txbPageSize";
             this.txbPageSize.Size = new System.Drawing.Size(76, 19);
             this.txbPageSize.TabIndex = 26;
@@ -309,7 +300,7 @@
             // btnClose
             // 
             this.btnClose.Location = new System.Drawing.Point(1793, 17);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(2);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(100, 40);
             this.btnClose.TabIndex = 27;
@@ -330,7 +321,7 @@
             // btnFirstPage
             // 
             this.btnFirstPage.Location = new System.Drawing.Point(624, 726);
-            this.btnFirstPage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnFirstPage.Margin = new System.Windows.Forms.Padding(2);
             this.btnFirstPage.Name = "btnFirstPage";
             this.btnFirstPage.Size = new System.Drawing.Size(56, 18);
             this.btnFirstPage.TabIndex = 30;
@@ -341,7 +332,7 @@
             // btnPreviousPage
             // 
             this.btnPreviousPage.Location = new System.Drawing.Point(684, 726);
-            this.btnPreviousPage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnPreviousPage.Margin = new System.Windows.Forms.Padding(2);
             this.btnPreviousPage.Name = "btnPreviousPage";
             this.btnPreviousPage.Size = new System.Drawing.Size(56, 18);
             this.btnPreviousPage.TabIndex = 31;
@@ -352,7 +343,7 @@
             // btnNextPage
             // 
             this.btnNextPage.Location = new System.Drawing.Point(744, 726);
-            this.btnNextPage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnNextPage.Margin = new System.Windows.Forms.Padding(2);
             this.btnNextPage.Name = "btnNextPage";
             this.btnNextPage.Size = new System.Drawing.Size(56, 18);
             this.btnNextPage.TabIndex = 32;
@@ -363,7 +354,7 @@
             // btnLastPage
             // 
             this.btnLastPage.Location = new System.Drawing.Point(804, 726);
-            this.btnLastPage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnLastPage.Margin = new System.Windows.Forms.Padding(2);
             this.btnLastPage.Name = "btnLastPage";
             this.btnLastPage.Size = new System.Drawing.Size(56, 18);
             this.btnLastPage.TabIndex = 33;
@@ -374,7 +365,7 @@
             // txbPageNo
             // 
             this.txbPageNo.Location = new System.Drawing.Point(452, 724);
-            this.txbPageNo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbPageNo.Margin = new System.Windows.Forms.Padding(2);
             this.txbPageNo.Name = "txbPageNo";
             this.txbPageNo.Size = new System.Drawing.Size(76, 19);
             this.txbPageNo.TabIndex = 34;
@@ -394,7 +385,7 @@
             // txbFlag
             // 
             this.txbFlag.Location = new System.Drawing.Point(1155, 191);
-            this.txbFlag.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbFlag.Margin = new System.Windows.Forms.Padding(2);
             this.txbFlag.Name = "txbFlag";
             this.txbFlag.Size = new System.Drawing.Size(135, 19);
             this.txbFlag.TabIndex = 20;
@@ -413,7 +404,7 @@
             // 
             this.btnDisplay.Font = new System.Drawing.Font("MS UI Gothic", 18F);
             this.btnDisplay.Location = new System.Drawing.Point(1505, 180);
-            this.btnDisplay.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnDisplay.Margin = new System.Windows.Forms.Padding(2);
             this.btnDisplay.Name = "btnDisplay";
             this.btnDisplay.Size = new System.Drawing.Size(121, 36);
             this.btnDisplay.TabIndex = 38;
@@ -424,12 +415,12 @@
             // dataGridViewDsp
             // 
             this.dataGridViewDsp.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewDsp.Location = new System.Drawing.Point(35, 309);
-            this.dataGridViewDsp.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridViewDsp.Location = new System.Drawing.Point(9, 12);
+            this.dataGridViewDsp.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridViewDsp.Name = "dataGridViewDsp";
             this.dataGridViewDsp.RowHeadersWidth = 51;
             this.dataGridViewDsp.RowTemplate.Height = 24;
-            this.dataGridViewDsp.Size = new System.Drawing.Size(1858, 174);
+            this.dataGridViewDsp.Size = new System.Drawing.Size(1858, 322);
             this.dataGridViewDsp.TabIndex = 39;
             // 
             // panel1
@@ -440,9 +431,9 @@
             this.panel1.Controls.Add(this.label10);
             this.panel1.Controls.Add(this.lblLoginName);
             this.panel1.Controls.Add(this.btnClose);
-            this.panel1.Location = new System.Drawing.Point(0, 4);
+            this.panel1.Location = new System.Drawing.Point(0, 10);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1907, 102);
+            this.panel1.Size = new System.Drawing.Size(1920, 100);
             this.panel1.TabIndex = 40;
             this.panel1.Visible = false;
             // 
@@ -467,6 +458,9 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
+            this.panel2.Controls.Add(this.cbxDisplay);
+            this.panel2.Controls.Add(this.cbxHidden);
+            this.panel2.Controls.Add(this.dataGridViewDsp);
             this.panel2.Controls.Add(this.label11);
             this.panel2.Controls.Add(this.txbPageSize);
             this.panel2.Controls.Add(this.lblPage);
@@ -479,6 +473,39 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1886, 754);
             this.panel2.TabIndex = 41;
+            // 
+            // cbxDisplay
+            // 
+            this.cbxDisplay.AutoSize = true;
+            this.cbxDisplay.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.cbxDisplay.Location = new System.Drawing.Point(811, 371);
+            this.cbxDisplay.Name = "cbxDisplay";
+            this.cbxDisplay.Size = new System.Drawing.Size(77, 20);
+            this.cbxDisplay.TabIndex = 102;
+            this.cbxDisplay.Text = "未処理";
+            this.cbxDisplay.UseVisualStyleBackColor = true;
+            // 
+            // cbxHidden
+            // 
+            this.cbxHidden.AutoSize = true;
+            this.cbxHidden.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.cbxHidden.Location = new System.Drawing.Point(911, 371);
+            this.cbxHidden.Name = "cbxHidden";
+            this.cbxHidden.Size = new System.Drawing.Size(94, 20);
+            this.cbxHidden.TabIndex = 101;
+            this.cbxHidden.Text = "非表示済";
+            this.cbxHidden.UseVisualStyleBackColor = true;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.label11.Location = new System.Drawing.Point(33, 723);
+            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(92, 16);
+            this.label11.TabIndex = 25;
+            this.label11.Text = "1ページ行数";
             // 
             // lblEmName
             // 
@@ -496,10 +523,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(1904, 1030);
+            this.ClientSize = new System.Drawing.Size(1904, 1041);
             this.Controls.Add(this.lblEmName);
             this.Controls.Add(this.txbSoID);
-            this.Controls.Add(this.dataGridViewDsp);
             this.Controls.Add(this.txbClID);
             this.Controls.Add(this.btnDisplay);
             this.Controls.Add(this.btnClear);
@@ -524,7 +550,7 @@
             this.Controls.Add(this.lblClID);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "F_AdClient";
             this.Text = "顧客管理";
             this.Load += new System.EventHandler(this.F_Client_Load);
@@ -561,7 +587,6 @@
         private System.Windows.Forms.TextBox txbFAX;
         private System.Windows.Forms.TextBox txbHidden;
         private System.Windows.Forms.Button btnClear;
-        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txbPageSize;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Label lblLoginName;
@@ -580,5 +605,8 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label lblEmName;
         private System.Windows.Forms.ComboBox cmbHint;
+        private System.Windows.Forms.CheckBox cbxDisplay;
+        private System.Windows.Forms.CheckBox cbxHidden;
+        private System.Windows.Forms.Label label11;
     }
 }

@@ -37,8 +37,14 @@ namespace SalesManagement_SysDev
             SetFormDataGridView();
             SetFormDetailDataGridView();
             fncButtonEnable(0);
-            txbFlag.ReadOnly = true;
-            txbStateFlag.ReadOnly = true;
+
+
+            dtpDate.Value = DateTime.Now;
+            dtpDate.Checked = false;
+
+
+            cmbHint.Items.Add("検索");
+            cmbHint.SelectedIndex = 0;
 
             //※
         }
@@ -75,7 +81,7 @@ namespace SalesManagement_SysDev
 
         private void GetDataGridView()
         {
-            Chumon = chumonDataAccess.GetChumonData();
+            Chumon = chumonDataAccess.GetChumonData(1,2);
             SetDataGridView();
         }
         private void SetDataGridView()
@@ -83,6 +89,9 @@ namespace SalesManagement_SysDev
             int pageSize = int.Parse(txbPageSize.Text);
             int pageNo = int.Parse(txbPageNo.Text) - 1;
             dataGridViewDsp.DataSource = Chumon.Skip(pageSize * pageNo).Take(pageSize).ToList();
+
+            dataGridViewDsp.RowHeadersVisible = false;
+            dataGridViewDsp.Font = new Font("MS UI Gothic", 18);
 
             dataGridViewDsp.Columns[0].Width = 100;
             dataGridViewDsp.Columns[1].Width = 100;
@@ -122,7 +131,7 @@ namespace SalesManagement_SysDev
             dataGridViewDsp.Columns[13].Visible = false;
             dataGridViewDsp.Columns[14].Visible = false;
 
-            lblPage.Text = "/" + ((int)Math.Ceiling(Chumon.Count / (double)pageSize)) + "ページ";
+            lblPageNo.Text = "/" + ((int)Math.Ceiling(Chumon.Count / (double)pageSize)) + "ページ";
 
             dataGridViewDsp.Refresh();
         }
@@ -169,6 +178,9 @@ namespace SalesManagement_SysDev
             int pageNo = int.Parse(txbDetailPageNo.Text) - 1;
             dataGridViewDetailDsp.DataSource = ChumonDetail.Skip(pageSize * pageNo).Take(pageSize).ToList();
 
+            dataGridViewDetailDsp.RowHeadersVisible = false;
+            dataGridViewDetailDsp.Font = new Font("MS UI Gothic", 18);
+
             dataGridViewDetailDsp.Columns[0].Width = 100;
             dataGridViewDetailDsp.Columns[1].Width = 100;
             dataGridViewDetailDsp.Columns[2].Width = 100;
@@ -189,7 +201,7 @@ namespace SalesManagement_SysDev
             dataGridViewDetailDsp.Columns[4].Visible = false;
             dataGridViewDetailDsp.Columns[5].Visible = false;
 
-            lblDetailPage.Text = "/" + ((int)Math.Ceiling(ChumonDetail.Count / (double)pageSize)) + "ページ";
+            lblDetailPageNo.Text = "/" + ((int)Math.Ceiling(ChumonDetail.Count / (double)pageSize)) + "ページ";
 
             dataGridViewDsp.Refresh();
         }
@@ -304,20 +316,36 @@ namespace SalesManagement_SysDev
             ClearInput();
         }
         private void ClearInput()
-        {//全てのテキストボックスを空白にする
+        {
             txbChID.Text = String.Empty;
             txbSoID.Text = String.Empty;
             txbEmID.Text = String.Empty;
             txbClID.Text = String.Empty;
             txbOrID.Text = String.Empty;
-            txbDate.Text = String.Empty;
+            dtpDate.Value = DateTime.Now;
             txbStateFlag.Text = String.Empty;
             txbFlag.Text = String.Empty;
             txbHidden.Text = String.Empty;
         }
         private void btnDisplay_Click(object sender, EventArgs e)
         {
-            SetFormDataGridView();
+            if (cbxConfirm.Checked && cbxHidden.Checked)
+            {
+                Chumon = chumonDataAccess.GetChumonData(3, 3);
+            }
+            else if (!cbxConfirm.Checked && cbxHidden.Checked)
+            {
+                Chumon = chumonDataAccess.GetChumonData(1, 3);
+            }
+            else if (cbxConfirm.Checked && !cbxHidden.Checked)
+            {
+                Chumon = chumonDataAccess.GetChumonData(3, 2);
+            }
+            else if (!cbxConfirm.Checked && !cbxHidden.Checked)
+            {
+                Chumon = chumonDataAccess.GetChumonData(1, 2);
+            }
+            SetDataGridView();
         }
         private void btnClose_Click(object sender, EventArgs e)
         {
@@ -364,7 +392,7 @@ namespace SalesManagement_SysDev
             int pageSize = int.Parse(txbPageSize.Text.Trim());
             dataGridViewDsp.DataSource = Chumon;
 
-            lblPage.Text = "/" + ((int)Math.Ceiling(Chumon.Count / (double)pageSize)) + "ページ";
+            lblPageNo.Text = "/" + ((int)Math.Ceiling(Chumon.Count / (double)pageSize)) + "ページ";
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -476,8 +504,12 @@ namespace SalesManagement_SysDev
             txbDetailPageNo.Text = "1";
             int pageSize = int.Parse(txbDetailPageSize.Text.Trim());
             dataGridViewDetailDsp.DataSource = ChumonDetail;
-            lblDetailPage.Text = "/" + ((int)Math.Ceiling(ChumonDetail.Count / (double)pageSize)) + "ページ";
+            lblDetailPageNo.Text = "/" + ((int)Math.Ceiling(ChumonDetail.Count / (double)pageSize)) + "ページ";
         }
-    
+
+        private void dtpDate_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

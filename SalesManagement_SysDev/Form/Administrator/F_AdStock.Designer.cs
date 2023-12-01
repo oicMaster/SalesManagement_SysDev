@@ -28,49 +28,51 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label9 = new System.Windows.Forms.Label();
+            this.lblPrID = new System.Windows.Forms.Label();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnDisplay = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.lblLoginName = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.lblPage = new System.Windows.Forms.Label();
+            this.lblPageNo = new System.Windows.Forms.Label();
             this.txbPageNo = new System.Windows.Forms.TextBox();
             this.btnLastPage = new System.Windows.Forms.Button();
             this.btnNextPage = new System.Windows.Forms.Button();
             this.btnPreviousPage = new System.Windows.Forms.Button();
             this.btnFirstPage = new System.Windows.Forms.Button();
             this.txbPageSize = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
+            this.lblPageSize = new System.Windows.Forms.Label();
             this.dataGridViewDsp = new System.Windows.Forms.DataGridView();
-            this.txbStQuantity = new System.Windows.Forms.TextBox();
-            this.txbStFlag = new System.Windows.Forms.TextBox();
+            this.txbQuantity = new System.Windows.Forms.TextBox();
+            this.txbFlag = new System.Windows.Forms.TextBox();
             this.txbPrID = new System.Windows.Forms.TextBox();
             this.txbStID = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblQuantity = new System.Windows.Forms.Label();
+            this.lblStID = new System.Windows.Forms.Label();
+            this.lblFlag = new System.Windows.Forms.Label();
             this.btnClear = new System.Windows.Forms.Button();
             this.lblPrName = new System.Windows.Forms.Label();
             this.cmbHint = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDsp)).BeginInit();
             this.SuspendLayout();
             // 
-            // label9
+            // lblPrID
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(219, 116);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(51, 15);
-            this.label9.TabIndex = 128;
-            this.label9.Text = "商品ID";
+            this.lblPrID.AutoSize = true;
+            this.lblPrID.Location = new System.Drawing.Point(164, 93);
+            this.lblPrID.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblPrID.Name = "lblPrID";
+            this.lblPrID.Size = new System.Drawing.Size(40, 12);
+            this.lblPrID.TabIndex = 128;
+            this.lblPrID.Text = "商品ID";
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(683, 22);
+            this.btnUpdate.Location = new System.Drawing.Point(512, 18);
+            this.btnUpdate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(75, 23);
+            this.btnUpdate.Size = new System.Drawing.Size(56, 18);
             this.btnUpdate.TabIndex = 127;
             this.btnUpdate.Text = "更新";
             this.btnUpdate.UseVisualStyleBackColor = true;
@@ -78,9 +80,10 @@
             // 
             // btnDisplay
             // 
-            this.btnDisplay.Location = new System.Drawing.Point(572, 22);
+            this.btnDisplay.Location = new System.Drawing.Point(429, 18);
+            this.btnDisplay.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnDisplay.Name = "btnDisplay";
-            this.btnDisplay.Size = new System.Drawing.Size(75, 23);
+            this.btnDisplay.Size = new System.Drawing.Size(56, 18);
             this.btnDisplay.TabIndex = 126;
             this.btnDisplay.Text = "一覧表示";
             this.btnDisplay.UseVisualStyleBackColor = true;
@@ -88,9 +91,10 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(341, 22);
+            this.btnSearch.Location = new System.Drawing.Point(256, 18);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.Size = new System.Drawing.Size(56, 18);
             this.btnSearch.TabIndex = 124;
             this.btnSearch.Text = "検索";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -98,9 +102,10 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(1128, 41);
+            this.btnClose.Location = new System.Drawing.Point(846, 33);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(75, 23);
+            this.btnClose.Size = new System.Drawing.Size(56, 18);
             this.btnClose.TabIndex = 123;
             this.btnClose.Text = "閉じる";
             this.btnClose.UseVisualStyleBackColor = true;
@@ -108,159 +113,178 @@
             // lblLoginName
             // 
             this.lblLoginName.AutoSize = true;
-            this.lblLoginName.Location = new System.Drawing.Point(1044, 88);
+            this.lblLoginName.Location = new System.Drawing.Point(783, 70);
+            this.lblLoginName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblLoginName.Name = "lblLoginName";
-            this.lblLoginName.Size = new System.Drawing.Size(67, 15);
+            this.lblLoginName.Size = new System.Drawing.Size(53, 12);
             this.lblLoginName.TabIndex = 122;
             this.lblLoginName.Text = "千田真隆";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(945, 88);
+            this.label8.Location = new System.Drawing.Point(709, 70);
+            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(82, 15);
+            this.label8.Size = new System.Drawing.Size(65, 12);
             this.label8.TabIndex = 121;
             this.label8.Text = "ログイン情報";
             // 
-            // lblPage
+            // lblPageNo
             // 
-            this.lblPage.AutoSize = true;
-            this.lblPage.Location = new System.Drawing.Point(822, 688);
-            this.lblPage.Name = "lblPage";
-            this.lblPage.Size = new System.Drawing.Size(43, 15);
-            this.lblPage.TabIndex = 119;
-            this.lblPage.Text = "ページ";
+            this.lblPageNo.AutoSize = true;
+            this.lblPageNo.Location = new System.Drawing.Point(616, 550);
+            this.lblPageNo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblPageNo.Name = "lblPageNo";
+            this.lblPageNo.Size = new System.Drawing.Size(35, 12);
+            this.lblPageNo.TabIndex = 119;
+            this.lblPageNo.Text = "ページ";
             // 
             // txbPageNo
             // 
-            this.txbPageNo.Location = new System.Drawing.Point(700, 686);
+            this.txbPageNo.Location = new System.Drawing.Point(525, 549);
+            this.txbPageNo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txbPageNo.Name = "txbPageNo";
-            this.txbPageNo.Size = new System.Drawing.Size(100, 22);
+            this.txbPageNo.Size = new System.Drawing.Size(76, 19);
             this.txbPageNo.TabIndex = 118;
             // 
             // btnLastPage
             // 
-            this.btnLastPage.Location = new System.Drawing.Point(1157, 680);
+            this.btnLastPage.Location = new System.Drawing.Point(868, 544);
+            this.btnLastPage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnLastPage.Name = "btnLastPage";
-            this.btnLastPage.Size = new System.Drawing.Size(75, 23);
+            this.btnLastPage.Size = new System.Drawing.Size(56, 18);
             this.btnLastPage.TabIndex = 117;
             this.btnLastPage.Text = "▶|";
             this.btnLastPage.UseVisualStyleBackColor = true;
             // 
             // btnNextPage
             // 
-            this.btnNextPage.Location = new System.Drawing.Point(1076, 680);
+            this.btnNextPage.Location = new System.Drawing.Point(807, 544);
+            this.btnNextPage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnNextPage.Name = "btnNextPage";
-            this.btnNextPage.Size = new System.Drawing.Size(75, 23);
+            this.btnNextPage.Size = new System.Drawing.Size(56, 18);
             this.btnNextPage.TabIndex = 116;
             this.btnNextPage.Text = "▶";
             this.btnNextPage.UseVisualStyleBackColor = true;
             // 
             // btnPreviousPage
             // 
-            this.btnPreviousPage.Location = new System.Drawing.Point(995, 680);
+            this.btnPreviousPage.Location = new System.Drawing.Point(746, 544);
+            this.btnPreviousPage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnPreviousPage.Name = "btnPreviousPage";
-            this.btnPreviousPage.Size = new System.Drawing.Size(75, 23);
+            this.btnPreviousPage.Size = new System.Drawing.Size(56, 18);
             this.btnPreviousPage.TabIndex = 115;
             this.btnPreviousPage.Text = "◀";
             this.btnPreviousPage.UseVisualStyleBackColor = true;
             // 
             // btnFirstPage
             // 
-            this.btnFirstPage.Location = new System.Drawing.Point(914, 680);
+            this.btnFirstPage.Location = new System.Drawing.Point(686, 544);
+            this.btnFirstPage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnFirstPage.Name = "btnFirstPage";
-            this.btnFirstPage.Size = new System.Drawing.Size(75, 23);
+            this.btnFirstPage.Size = new System.Drawing.Size(56, 18);
             this.btnFirstPage.TabIndex = 114;
             this.btnFirstPage.Text = "|◀";
             this.btnFirstPage.UseVisualStyleBackColor = true;
             // 
             // txbPageSize
             // 
-            this.txbPageSize.Location = new System.Drawing.Point(169, 677);
+            this.txbPageSize.Location = new System.Drawing.Point(127, 542);
+            this.txbPageSize.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txbPageSize.Name = "txbPageSize";
-            this.txbPageSize.Size = new System.Drawing.Size(100, 22);
+            this.txbPageSize.Size = new System.Drawing.Size(76, 19);
             this.txbPageSize.TabIndex = 113;
             // 
-            // label11
+            // lblPageSize
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(82, 680);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(81, 15);
-            this.label11.TabIndex = 112;
-            this.label11.Text = "1ページ行数";
+            this.lblPageSize.AutoSize = true;
+            this.lblPageSize.Location = new System.Drawing.Point(62, 544);
+            this.lblPageSize.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblPageSize.Name = "lblPageSize";
+            this.lblPageSize.Size = new System.Drawing.Size(65, 12);
+            this.lblPageSize.TabIndex = 112;
+            this.lblPageSize.Text = "1ページ行数";
             // 
             // dataGridViewDsp
             // 
             this.dataGridViewDsp.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewDsp.Location = new System.Drawing.Point(85, 287);
+            this.dataGridViewDsp.Location = new System.Drawing.Point(64, 230);
+            this.dataGridViewDsp.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGridViewDsp.Name = "dataGridViewDsp";
             this.dataGridViewDsp.RowHeadersWidth = 51;
             this.dataGridViewDsp.RowTemplate.Height = 24;
-            this.dataGridViewDsp.Size = new System.Drawing.Size(743, 316);
+            this.dataGridViewDsp.Size = new System.Drawing.Size(557, 253);
             this.dataGridViewDsp.TabIndex = 111;
             // 
-            // txbStQuantity
+            // txbQuantity
             // 
-            this.txbStQuantity.Location = new System.Drawing.Point(360, 156);
-            this.txbStQuantity.Name = "txbStQuantity";
-            this.txbStQuantity.Size = new System.Drawing.Size(100, 22);
-            this.txbStQuantity.TabIndex = 110;
+            this.txbQuantity.Location = new System.Drawing.Point(270, 125);
+            this.txbQuantity.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbQuantity.Name = "txbQuantity";
+            this.txbQuantity.Size = new System.Drawing.Size(76, 19);
+            this.txbQuantity.TabIndex = 110;
             // 
-            // txbStFlag
+            // txbFlag
             // 
-            this.txbStFlag.Location = new System.Drawing.Point(519, 156);
-            this.txbStFlag.Name = "txbStFlag";
-            this.txbStFlag.Size = new System.Drawing.Size(100, 22);
-            this.txbStFlag.TabIndex = 109;
+            this.txbFlag.Location = new System.Drawing.Point(389, 125);
+            this.txbFlag.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbFlag.Name = "txbFlag";
+            this.txbFlag.Size = new System.Drawing.Size(76, 19);
+            this.txbFlag.TabIndex = 109;
             // 
             // txbPrID
             // 
-            this.txbPrID.Location = new System.Drawing.Point(222, 156);
+            this.txbPrID.Location = new System.Drawing.Point(166, 125);
+            this.txbPrID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txbPrID.Name = "txbPrID";
-            this.txbPrID.Size = new System.Drawing.Size(100, 22);
+            this.txbPrID.Size = new System.Drawing.Size(76, 19);
             this.txbPrID.TabIndex = 105;
             // 
             // txbStID
             // 
-            this.txbStID.Location = new System.Drawing.Point(96, 156);
+            this.txbStID.Location = new System.Drawing.Point(72, 125);
+            this.txbStID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txbStID.Name = "txbStID";
-            this.txbStID.Size = new System.Drawing.Size(100, 22);
+            this.txbStID.Size = new System.Drawing.Size(76, 19);
             this.txbStID.TabIndex = 104;
             // 
-            // label7
+            // lblQuantity
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(357, 116);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(52, 15);
-            this.label7.TabIndex = 103;
-            this.label7.Text = "在庫数";
+            this.lblQuantity.AutoSize = true;
+            this.lblQuantity.Location = new System.Drawing.Point(268, 93);
+            this.lblQuantity.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblQuantity.Name = "lblQuantity";
+            this.lblQuantity.Size = new System.Drawing.Size(41, 12);
+            this.lblQuantity.TabIndex = 103;
+            this.lblQuantity.Text = "在庫数";
             // 
-            // label1
+            // lblStID
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(133, 116);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(51, 15);
-            this.label1.TabIndex = 97;
-            this.label1.Text = "在庫ID";
+            this.lblStID.AutoSize = true;
+            this.lblStID.Location = new System.Drawing.Point(100, 93);
+            this.lblStID.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblStID.Name = "lblStID";
+            this.lblStID.Size = new System.Drawing.Size(40, 12);
+            this.lblStID.TabIndex = 97;
+            this.lblStID.Text = "在庫ID";
             // 
-            // label2
+            // lblFlag
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(516, 116);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(99, 15);
-            this.label2.TabIndex = 129;
-            this.label2.Text = "在庫管理フラグ";
+            this.lblFlag.AutoSize = true;
+            this.lblFlag.Location = new System.Drawing.Point(387, 93);
+            this.lblFlag.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblFlag.Name = "lblFlag";
+            this.lblFlag.Size = new System.Drawing.Size(78, 12);
+            this.lblFlag.TabIndex = 129;
+            this.lblFlag.Text = "在庫管理フラグ";
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(811, 22);
+            this.btnClear.Location = new System.Drawing.Point(608, 18);
+            this.btnClear.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(75, 23);
+            this.btnClear.Size = new System.Drawing.Size(56, 18);
             this.btnClear.TabIndex = 130;
             this.btnClear.Text = "入力クリア";
             this.btnClear.UseVisualStyleBackColor = true;
@@ -269,52 +293,53 @@
             // 
             this.lblPrName.AutoSize = true;
             this.lblPrName.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblPrName.Location = new System.Drawing.Point(221, 133);
+            this.lblPrName.Location = new System.Drawing.Point(166, 106);
+            this.lblPrName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPrName.Name = "lblPrName";
-            this.lblPrName.Size = new System.Drawing.Size(49, 20);
+            this.lblPrName.Size = new System.Drawing.Size(39, 16);
             this.lblPrName.TabIndex = 156;
             this.lblPrName.Text = "----";
             // 
             // cmbHint
             // 
             this.cmbHint.FormattingEnabled = true;
-            this.cmbHint.Location = new System.Drawing.Point(748, 165);
-            this.cmbHint.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbHint.Location = new System.Drawing.Point(561, 132);
             this.cmbHint.Name = "cmbHint";
-            this.cmbHint.Size = new System.Drawing.Size(160, 23);
+            this.cmbHint.Size = new System.Drawing.Size(121, 20);
             this.cmbHint.TabIndex = 157;
             // 
             // F_AdStock
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1315, 729);
+            this.ClientSize = new System.Drawing.Size(986, 583);
             this.Controls.Add(this.cmbHint);
             this.Controls.Add(this.lblPrName);
             this.Controls.Add(this.btnClear);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label9);
+            this.Controls.Add(this.lblFlag);
+            this.Controls.Add(this.lblPrID);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnDisplay);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.lblLoginName);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.lblPage);
+            this.Controls.Add(this.lblPageNo);
             this.Controls.Add(this.txbPageNo);
             this.Controls.Add(this.btnLastPage);
             this.Controls.Add(this.btnNextPage);
             this.Controls.Add(this.btnPreviousPage);
             this.Controls.Add(this.btnFirstPage);
             this.Controls.Add(this.txbPageSize);
-            this.Controls.Add(this.label11);
+            this.Controls.Add(this.lblPageSize);
             this.Controls.Add(this.dataGridViewDsp);
-            this.Controls.Add(this.txbStQuantity);
-            this.Controls.Add(this.txbStFlag);
+            this.Controls.Add(this.txbQuantity);
+            this.Controls.Add(this.txbFlag);
             this.Controls.Add(this.txbPrID);
             this.Controls.Add(this.txbStID);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblQuantity);
+            this.Controls.Add(this.lblStID);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "F_AdStock";
             this.Text = "在庫管理";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDsp)).EndInit();
@@ -324,29 +349,29 @@
         }
 
         #endregion
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label lblPrID;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnDisplay;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Label lblLoginName;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label lblPage;
+        private System.Windows.Forms.Label lblPageNo;
         private System.Windows.Forms.TextBox txbPageNo;
         private System.Windows.Forms.Button btnLastPage;
         private System.Windows.Forms.Button btnNextPage;
         private System.Windows.Forms.Button btnPreviousPage;
         private System.Windows.Forms.Button btnFirstPage;
         private System.Windows.Forms.TextBox txbPageSize;
-        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label lblPageSize;
         private System.Windows.Forms.DataGridView dataGridViewDsp;
-        private System.Windows.Forms.TextBox txbStQuantity;
-        private System.Windows.Forms.TextBox txbStFlag;
+        private System.Windows.Forms.TextBox txbQuantity;
+        private System.Windows.Forms.TextBox txbFlag;
         private System.Windows.Forms.TextBox txbPrID;
         private System.Windows.Forms.TextBox txbStID;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblQuantity;
+        private System.Windows.Forms.Label lblStID;
+        private System.Windows.Forms.Label lblFlag;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Label lblPrName;
         private System.Windows.Forms.ComboBox cmbHint;
