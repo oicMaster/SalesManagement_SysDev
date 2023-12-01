@@ -74,13 +74,13 @@ namespace SalesManagement_SysDev
         }
 
         //データの取得
-        public List<T_Arrival> GetArrivalData()
+        public List<T_Arrival> GetArrivalData(int confirm, int hidden)
         {
             List<T_Arrival> arrival = new List<T_Arrival>();
             try
             {
                 var context = new SalesManagement_DevContext();
-                arrival = context.T_Arrivals.ToList();
+                arrival = context.T_Arrivals.Where(x =>x.ArStateFlag != confirm && x.ArFlag != hidden).ToList();
                 context.Dispose();
             }
             catch (Exception ex)
@@ -97,8 +97,18 @@ namespace SalesManagement_SysDev
             try
             {
                 var context = new SalesManagement_DevContext();
-                arrival = context.T_Arrivals.Where(x => x.ArID == selectCondition.ArID).ToList();
+                arrival = context.T_Arrivals.Where(x =>
+                  (selectCondition.ArID == 0 || x.ArID == selectCondition.ArID) && 
+                  (selectCondition.SoID == 0 || x.SoID == selectCondition.SoID) && 
+                  (selectCondition.EmID == 0 || x.EmID == selectCondition.EmID) && 
+                  (selectCondition.ClID == 0 || x.ClID == selectCondition.ClID) && 
+                  (selectCondition.OrID == 0 || x.OrID == selectCondition.OrID) &&
+                  (selectCondition.ArDate == DateTime.Parse(("2000/01/01")) || x.ArDate == selectCondition.ArDate) &&
+                  (selectCondition.ArDate == DateTime.Parse(("2000/01/01")) || x.ArDate == selectCondition.ArDate) &&
+                  (selectCondition.ArStateFlag == 1 || x.ArStateFlag == selectCondition.ArStateFlag) && 
+                  (selectCondition.ArFlag == 2 || x.ArFlag == selectCondition.ArFlag)).ToList();
                 context.Dispose();
+
             }
             catch (Exception ex)
             {
@@ -107,4 +117,5 @@ namespace SalesManagement_SysDev
             return arrival;
         }
     }
+
 }

@@ -116,7 +116,7 @@ namespace SalesManagement_SysDev
             dataGridViewDsp.Columns[12].Visible = false;
             dataGridViewDsp.Columns[13].Visible = false;
 
-            lblPage.Text = "/" + ((int)Math.Ceiling(Maker.Count / (double)pageSize)) + "ページ";
+            lblPageNo.Text = "/" + ((int)Math.Ceiling(Maker.Count / (double)pageSize)) + "ページ";
 
             dataGridViewDsp.Refresh();
         }
@@ -355,7 +355,7 @@ namespace SalesManagement_SysDev
             txbPageNo.Text = "1";
             int pageSize = int.Parse(txbPageSize.Text.Trim());
             dataGridViewDsp.DataSource = Maker;
-            lblPage.Text = "/" + ((int)Math.Ceiling(Maker.Count / (double)pageSize)) + "ページ";
+            lblPageNo.Text = "/" + ((int)Math.Ceiling(Maker.Count / (double)pageSize)) + "ページ";
         }
 
         private void btnRegist_Click(object sender, EventArgs e)

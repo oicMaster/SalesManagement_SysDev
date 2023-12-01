@@ -74,13 +74,13 @@ namespace SalesManagement_SysDev
         }
 
         //データの取得
-        public List<T_Chumon> GetChumonData()
+        public List<T_Chumon> GetChumonData(int confirm, int hidden)
         {
             List<T_Chumon> chumon = new List<T_Chumon>();
             try
             {
                 var context = new SalesManagement_DevContext();
-                chumon = context.T_Chumons.ToList();
+                chumon = context.T_Chumons.Where(x => x.ChStateFlag != confirm && x.ChFlag != hidden).ToList();
                 context.Dispose();
             }
             catch (Exception ex)

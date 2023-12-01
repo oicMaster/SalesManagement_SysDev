@@ -125,7 +125,7 @@ namespace SalesManagement_SysDev
             txbScID.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[6].Value.ToString();
             txbModelNumber.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[7].Value.ToString();
             txbColor.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[8].Value.ToString();
-            txbReleaseDate.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[9].Value.ToString();
+            txbDate.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[9].Value.ToString();
             if (dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[10].Value != null)
                 txbFlag.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[11].Value.ToString();
             else
@@ -307,7 +307,7 @@ namespace SalesManagement_SysDev
             txbScID.Text = String.Empty;
             txbModelNumber.Text = String.Empty;
             txbColor.Text = String.Empty;
-            txbReleaseDate.Text = String.Empty;
+            txbDate.Text = String.Empty;
             txbFlag.Text = String.Empty;
             txbHidden.Text = String.Empty;
         }
@@ -425,7 +425,7 @@ namespace SalesManagement_SysDev
                 ScID = int.Parse(txbScID.Text),
                 PrModelNumber = txbModelNumber.Text,
                 PrColor = txbColor.Text,
-                PrReleaseDate = DateTime.Parse(txbReleaseDate.Text),
+                PrReleaseDate = DateTime.Parse(txbDate.Text),
                 PrFlag = int.Parse(txbFlag.Text),
                 PrHidden = hidden,
             }; 
@@ -501,7 +501,7 @@ namespace SalesManagement_SysDev
                 ScID = int.Parse(txbScID.Text),
                 PrModelNumber = txbModelNumber.Text,
                 PrColor = txbColor.Text,
-                PrReleaseDate = DateTime.Parse(txbReleaseDate.Text),
+                PrReleaseDate = DateTime.Parse(txbDate.Text),
                 PrFlag = int.Parse(txbFlag.Text),
                 PrHidden = hidden,
             };

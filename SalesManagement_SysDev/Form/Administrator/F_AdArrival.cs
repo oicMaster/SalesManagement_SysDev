@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Security.Authentication.ExtendedProtection;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,52 +38,22 @@ namespace SalesManagement_SysDev
 
         private void F_Arrival_Load(object sender, EventArgs e)
         {
-            //labelLoginName.Text = FormMenu.LoginName;
+            //lblLoginNameData.Text = "管理者："+FormMenu.lblLoginName;
+            //lblLoginIDData.Text = FormMenu.lblLoginID;
             SetFormDataGridView();
             SetFormDetailDataGridView();
             fncButtonEnable(0);
             fncButtonEnable(4);
-            txbFlag.ReadOnly = true;
-            txbStateFlag.ReadOnly = true;
+
             dtpDate.Value = DateTime.Now;
-            dtpDate.Checked = false;
+
+
 
             cmbHint.Items.Add("検索");
             cmbHint.Items.Add("非表示");
             cmbHint.Items.Add("確定");
             cmbHint.Items.Add("詳細検索");
             cmbHint.SelectedIndex = 0;
-
-
-            //コード追加部分
-            txbArID.TabIndex = 0;
-            txbSoID.TabIndex = 1;
-            txbEmID.TabIndex = 2;
-            txbClID.TabIndex = 3;
-            txbOrID.TabIndex = 4;
-            dtpDate.TabIndex = 5;
-            txbHidden.TabIndex = 6;
-            btnSearch.TabIndex = 7;
-            btnUpdate.TabIndex = 8;
-            btnDisplay.TabIndex = 9;
-            btnConfirm.TabIndex = 10;
-            btnClear.TabIndex = 11;
-            txbArDetailID.TabIndex = 12;
-            txbArIDsub.TabIndex = 13;
-            txbPrID.TabIndex = 14;
-            txbQuantity.TabIndex = 15;
-            btnDetailSearch.TabIndex = 16;
-            txbPageSize.TabIndex = 17;
-            txbPageNo.TabIndex = 18;
-            btnFirstPage.TabIndex = 19;
-            btnPreviousPage.TabIndex = 20;
-            btnNextPage.TabIndex = 21;
-            btnLastPage.TabIndex = 22;
-            btnClose.TabIndex = 23;
-            txbFlag.TabStop = false;
-            txbStateFlag.TabStop = false;
-            dataGridViewDsp.TabStop = false;
-            dataGridViewDetailDsp.TabStop = false;
 
         }
 
@@ -106,31 +77,35 @@ namespace SalesManagement_SysDev
             }
         }
 
-        private void fncTextBoxColor(int chk)
+        private void fncTextColor(int chk)
         {
             switch (chk)
             {
                 case 2:
-                    lblArID.ForeColor = Color.Green;
-                    lblSoID.ForeColor = Color.Green;
-                    lblEmID.ForeColor = Color.Green;
-                    lblClID.ForeColor = Color.Green;
-                    lblOrID.ForeColor = Color.Green;
+                    lblArID.ForeColor = Color.Blue;
+                    lblSoID.ForeColor = Color.Blue;
+                    lblEmID.ForeColor = Color.Blue;
+                    lblClID.ForeColor = Color.Blue;
+                    lblOrID.ForeColor = Color.Blue;
                     lblHidden.ForeColor = Color.Black;
                     lblArDetailID.ForeColor = Color.Black;
                     lblArIDsub.ForeColor = Color.Black;
                     lblPrID.ForeColor = Color.Black;
+                    cbxConfirm.ForeColor = Color.Blue;
+                    cbxHidden.ForeColor = Color.Blue;
                     break;
                 case 4:
                     lblArID.ForeColor = Color.Red;
                     lblSoID.ForeColor = Color.Black;
-                    lblEmID.ForeColor = Color.Green;
+                    lblEmID.ForeColor = Color.Black;
                     lblClID.ForeColor = Color.Black;
                     lblOrID.ForeColor = Color.Black;
                     lblHidden.ForeColor= Color.Red;
                     lblArDetailID.ForeColor = Color.Black;
                     lblArIDsub.ForeColor = Color.Black;
                     lblPrID.ForeColor = Color.Black;
+                    cbxConfirm.ForeColor = Color.Black;
+                    cbxHidden.ForeColor = Color.Black;
                     break;
                 case 5:
                     lblArID.ForeColor = Color.Red;
@@ -142,6 +117,8 @@ namespace SalesManagement_SysDev
                     lblArDetailID.ForeColor = Color.Black;
                     lblArIDsub.ForeColor = Color.Black;
                     lblPrID.ForeColor = Color.Black;
+                    cbxConfirm.ForeColor = Color.Black;
+                    cbxHidden.ForeColor = Color.Black;
                     break;
                 case 7:
                     lblArID.ForeColor = Color.Black;
@@ -150,9 +127,11 @@ namespace SalesManagement_SysDev
                     lblClID.ForeColor = Color.Black;
                     lblOrID.ForeColor = Color.Black;
                     lblHidden.ForeColor = Color.Black;
-                    lblArDetailID.ForeColor = Color.Green;
-                    lblArIDsub.ForeColor = Color.Green;
-                    lblPrID.ForeColor = Color.Green;
+                    lblArDetailID.ForeColor = Color.Blue;
+                    lblArIDsub.ForeColor = Color.Blue;
+                    lblPrID.ForeColor = Color.Blue;
+                    cbxConfirm.ForeColor = Color.Black;
+                    cbxHidden.ForeColor = Color.Black;
                     break;
 
             }
@@ -166,7 +145,7 @@ namespace SalesManagement_SysDev
 
         private void GetDataGridView()
         {
-            Arrival = arrivalDataAccess.GetArrivalData();
+            Arrival = arrivalDataAccess.GetArrivalData(1,2);
             SetDataGridView();
         }
         private void SetDataGridView()
@@ -175,23 +154,28 @@ namespace SalesManagement_SysDev
             int pageSize = int.Parse(txbPageSize.Text);
 
             dataGridViewDsp.DataSource = Arrival;
-            lblPage.Text = "/" + ((int)Math.Ceiling(Arrival.Count / (double)pageSize)) + "ページ";
+            lblPageNo.Text = "/" + ((int)Math.Ceiling(Arrival.Count / (double)pageSize)) + "ページ";
 
-            dataGridViewDsp.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.False;
-            dataGridViewDsp.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewDsp.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            dataGridViewDsp.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            dataGridViewDsp.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+
+            dataGridViewDsp.RowHeadersVisible = false;
             dataGridViewDsp.Font = new Font("MS UI Gothic", 18);
-            //dataGridViewDsp.Columns[0].Width = 120;
-            //dataGridViewDsp.Columns[1].Width = 130;
-            //dataGridViewDsp.Columns[2].Width = 150;
-            //dataGridViewDsp.Columns[3].Width = 340;
-            //dataGridViewDsp.Columns[4].Width = 140;
-            //dataGridViewDsp.Columns[5].Width = 120;
-            //dataGridViewDsp.Columns[6].Width = 140;
-            //dataGridViewDsp.Columns[7].Width = 160;
-            //dataGridViewDsp.Columns[8].Width = 550;
+
+            //dataGridViewDsp.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.False;
+            //dataGridViewDsp.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            //dataGridViewDsp.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            //dataGridViewDsp.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            //dataGridViewDsp.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+
+
+            dataGridViewDsp.Columns[0].Width = 140;
+            dataGridViewDsp.Columns[1].Width = 140;
+            dataGridViewDsp.Columns[2].Width = 140;
+            dataGridViewDsp.Columns[3].Width = 140;
+            dataGridViewDsp.Columns[4].Width = 140;
+            dataGridViewDsp.Columns[5].Width = 200;
+            dataGridViewDsp.Columns[6].Width = 200;
+            dataGridViewDsp.Columns[7].Width = 200;
+            dataGridViewDsp.Columns[8].Width = 577;
 
 
             dataGridViewDsp.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -211,7 +195,7 @@ namespace SalesManagement_SysDev
             dataGridViewDsp.Columns[4].HeaderText = "受付ID";
             dataGridViewDsp.Columns[5].HeaderText = "入荷年月日";
             dataGridViewDsp.Columns[6].HeaderText = "入荷状態フラグ";
-            dataGridViewDsp.Columns[7].HeaderText = "入荷管理グラフ";
+            dataGridViewDsp.Columns[7].HeaderText = "入荷管理フラグ";
             dataGridViewDsp.Columns[8].HeaderText = "非表示理由";
 
 
@@ -226,6 +210,8 @@ namespace SalesManagement_SysDev
 
         private void dataGridViewDsp_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (dataGridViewDsp.SelectedCells.Count == 0)
+                return;
             txbClID.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[0].Value.ToString();
             txbSoID.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[1].Value.ToString();
             if (dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[2].Value != null)
@@ -260,19 +246,16 @@ namespace SalesManagement_SysDev
             txbPageNo.Text = "1";
             int pageSize = int.Parse(txbPageSize.Text.Trim());
             dataGridViewDetailDsp.DataSource = ArrivalDetail;
-            lblDetailPage.Text = "/" + ((int)Math.Ceiling(ArrivalDetail.Count / (double)pageSize)) + "ページ";
+            lblDetailPageNo.Text = "/" + ((int)Math.Ceiling(ArrivalDetail.Count / (double)pageSize)) + "ページ";
 
 
-            dataGridViewDetailDsp.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.False;
-            dataGridViewDetailDsp.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewDetailDsp.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            dataGridViewDetailDsp.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            dataGridViewDetailDsp.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+
+            dataGridViewDetailDsp.RowHeadersVisible = false;
             dataGridViewDetailDsp.Font = new Font("MS UI Gothic", 18);
-            //dataGridViewDetailDsp.Columns[0].Width = 100;
-            //dataGridViewDetailDsp.Columns[1].Width = 100;
-            //dataGridViewDetailDsp.Columns[2].Width = 100;
-            //dataGridViewDetailDsp.Columns[3].Width = 100;
+            dataGridViewDetailDsp.Columns[0].Width = 250;
+            dataGridViewDetailDsp.Columns[1].Width = 250;
+            dataGridViewDetailDsp.Columns[2].Width = 250;
+            dataGridViewDetailDsp.Columns[3].Width = 237;
 
 
             dataGridViewDetailDsp.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -289,11 +272,13 @@ namespace SalesManagement_SysDev
             dataGridViewDetailDsp.Columns[4].Visible = false;
             dataGridViewDetailDsp.Columns[5].Visible = false;
 
-            dataGridViewDsp.Refresh();
+            dataGridViewDetailDsp.Refresh();
         }
 
         private void dataGridViewDetailDsp_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (dataGridViewDetailDsp.SelectedCells.Count == 0)
+                return;
             txbArDetailID.Text = dataGridViewDetailDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[0].Value.ToString();
             txbArIDsub.Text = dataGridViewDetailDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[1].Value.ToString();
             txbPrID.Text = dataGridViewDetailDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[2].Value.ToString();
@@ -516,6 +501,22 @@ namespace SalesManagement_SysDev
         }
         private void btnDisplay_Click(object sender, EventArgs e)
         {
+            if (cbxConfirm.Checked && cbxHidden.Checked)
+            {
+                Arrival = arrivalDataAccess.GetArrivalData(3, 3);
+            }
+            else if (!cbxConfirm.Checked && cbxHidden.Checked)
+            {
+                Arrival = arrivalDataAccess.GetArrivalData(1, 3);
+            }
+            else if (cbxConfirm.Checked && !cbxHidden.Checked)
+            {
+                Arrival = arrivalDataAccess.GetArrivalData(3, 2);
+            }
+            else if (!cbxConfirm.Checked && !cbxHidden.Checked)
+            {
+                Arrival = arrivalDataAccess.GetArrivalData(1, 2);
+            }
             SetDataGridView();
         }
         private void btnClose_Click(object sender, EventArgs e)
@@ -535,6 +536,8 @@ namespace SalesManagement_SysDev
         }
         private void GenereteDataAdSelect()
         {
+            int Flag = 0;
+            int StateFlag = 0;
             //文字列型以外はif文を付ける　FlagとHiddenはいらない
             if (!int.TryParse(txbArID.Text, out int arID))
                 arID = 0;
@@ -546,6 +549,12 @@ namespace SalesManagement_SysDev
                 clID = 0;
             if (!int.TryParse(txbOrID.Text, out int orID))
                 orID = 0;
+            if(!cbxConfirm.Checked)
+                StateFlag = 1;
+            if(!cbxHidden.Checked)
+                Flag = 2;
+
+                
             //検索に使用するデータ
             T_Arrival selectCondition = new T_Arrival()
             {//検索に使用するデータ　全て変数で行う
@@ -553,7 +562,9 @@ namespace SalesManagement_SysDev
                 SoID = soID,
                 EmID = emID,
                 ClID = clID,
-                OrID = orID
+                OrID = orID,
+                ArFlag = Flag,
+                ArStateFlag = StateFlag
             };
             //arデータの抽出
             Arrival = arrivalDataAccess.GetArrivalData(selectCondition);
@@ -564,7 +575,7 @@ namespace SalesManagement_SysDev
             txbPageNo.Text = "1";
             int pageSize = int.Parse(txbPageSize.Text.Trim());
             dataGridViewDsp.DataSource = Arrival ;
-            lblPage.Text = "/" + ((int)Math.Ceiling(Arrival.Count / (double)pageSize)) + "ページ";
+            lblPageNo.Text = "/" + ((int)Math.Ceiling(Arrival.Count / (double)pageSize)) + "ページ";
         }
 
 
@@ -679,12 +690,15 @@ namespace SalesManagement_SysDev
             txbDetailPageNo.Text = "1";
             int pageSize = int.Parse(txbPageSize.Text.Trim());
             dataGridViewDetailDsp.DataSource = ArrivalDetail;
-            lblPage.Text = "/" + ((int)Math.Ceiling(ArrivalDetail.Count / (double)pageSize)) + "ページ";
+            lblPageNo.Text = "/" + ((int)Math.Ceiling(ArrivalDetail.Count / (double)pageSize)) + "ページ";
         }
 
         private void cmbHint_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            int chk = commonModule.ComboBoxHint(sender);
+            fncTextColor(chk);
         }
+
+ 
     }
 }

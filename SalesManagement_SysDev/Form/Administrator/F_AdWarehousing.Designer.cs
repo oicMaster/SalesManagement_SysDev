@@ -157,7 +157,7 @@
             // txbWaID
             // 
             this.txbWaID.Location = new System.Drawing.Point(28, 138);
-            this.txbWaID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbWaID.Margin = new System.Windows.Forms.Padding(2);
             this.txbWaID.Name = "txbWaID";
             this.txbWaID.Size = new System.Drawing.Size(76, 19);
             this.txbWaID.TabIndex = 7;
@@ -167,7 +167,7 @@
             // txbHaID
             // 
             this.txbHaID.Location = new System.Drawing.Point(122, 138);
-            this.txbHaID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbHaID.Margin = new System.Windows.Forms.Padding(2);
             this.txbHaID.Name = "txbHaID";
             this.txbHaID.Size = new System.Drawing.Size(76, 19);
             this.txbHaID.TabIndex = 8;
@@ -176,7 +176,7 @@
             // txbEmID
             // 
             this.txbEmID.Location = new System.Drawing.Point(212, 138);
-            this.txbEmID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbEmID.Margin = new System.Windows.Forms.Padding(2);
             this.txbEmID.Name = "txbEmID";
             this.txbEmID.Size = new System.Drawing.Size(76, 19);
             this.txbEmID.TabIndex = 9;
@@ -185,7 +185,7 @@
             // txbStateFlag
             // 
             this.txbStateFlag.Location = new System.Drawing.Point(393, 138);
-            this.txbStateFlag.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbStateFlag.Margin = new System.Windows.Forms.Padding(2);
             this.txbStateFlag.Name = "txbStateFlag";
             this.txbStateFlag.Size = new System.Drawing.Size(76, 19);
             this.txbStateFlag.TabIndex = 11;
@@ -193,7 +193,7 @@
             // txbHidden
             // 
             this.txbHidden.Location = new System.Drawing.Point(28, 220);
-            this.txbHidden.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbHidden.Margin = new System.Windows.Forms.Padding(2);
             this.txbHidden.Name = "txbHidden";
             this.txbHidden.Size = new System.Drawing.Size(76, 19);
             this.txbHidden.TabIndex = 12;
@@ -201,7 +201,7 @@
             // txbFlag
             // 
             this.txbFlag.Location = new System.Drawing.Point(127, 220);
-            this.txbFlag.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbFlag.Margin = new System.Windows.Forms.Padding(2);
             this.txbFlag.Name = "txbFlag";
             this.txbFlag.Size = new System.Drawing.Size(76, 19);
             this.txbFlag.TabIndex = 13;
@@ -210,7 +210,7 @@
             // 
             this.dataGridViewDsp.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewDsp.Location = new System.Drawing.Point(20, 242);
-            this.dataGridViewDsp.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridViewDsp.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridViewDsp.Name = "dataGridViewDsp";
             this.dataGridViewDsp.RowHeadersWidth = 51;
             this.dataGridViewDsp.RowTemplate.Height = 24;
@@ -230,7 +230,7 @@
             // txbPageNo
             // 
             this.txbPageNo.Location = new System.Drawing.Point(157, 556);
-            this.txbPageNo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbPageNo.Margin = new System.Windows.Forms.Padding(2);
             this.txbPageNo.Name = "txbPageNo";
             this.txbPageNo.Size = new System.Drawing.Size(76, 19);
             this.txbPageNo.TabIndex = 44;
@@ -238,7 +238,7 @@
             // btnLastPage
             // 
             this.btnLastPage.Location = new System.Drawing.Point(500, 551);
-            this.btnLastPage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnLastPage.Margin = new System.Windows.Forms.Padding(2);
             this.btnLastPage.Name = "btnLastPage";
             this.btnLastPage.Size = new System.Drawing.Size(56, 18);
             this.btnLastPage.TabIndex = 43;
@@ -250,7 +250,7 @@
             // btnNextPage
             // 
             this.btnNextPage.Location = new System.Drawing.Point(439, 551);
-            this.btnNextPage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnNextPage.Margin = new System.Windows.Forms.Padding(2);
             this.btnNextPage.Name = "btnNextPage";
             this.btnNextPage.Size = new System.Drawing.Size(56, 18);
             this.btnNextPage.TabIndex = 42;
@@ -262,7 +262,7 @@
             // btnPreviousPage
             // 
             this.btnPreviousPage.Location = new System.Drawing.Point(378, 551);
-            this.btnPreviousPage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnPreviousPage.Margin = new System.Windows.Forms.Padding(2);
             this.btnPreviousPage.Name = "btnPreviousPage";
             this.btnPreviousPage.Size = new System.Drawing.Size(56, 18);
             this.btnPreviousPage.TabIndex = 41;
@@ -274,7 +274,7 @@
             // btnFirstPage
             // 
             this.btnFirstPage.Location = new System.Drawing.Point(317, 551);
-            this.btnFirstPage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnFirstPage.Margin = new System.Windows.Forms.Padding(2);
             this.btnFirstPage.Name = "btnFirstPage";
             this.btnFirstPage.Size = new System.Drawing.Size(56, 18);
             this.btnFirstPage.TabIndex = 40;
@@ -286,7 +286,7 @@
             // txbPageSize
             // 
             this.txbPageSize.Location = new System.Drawing.Point(74, 555);
-            this.txbPageSize.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbPageSize.Margin = new System.Windows.Forms.Padding(2);
             this.txbPageSize.Name = "txbPageSize";
             this.txbPageSize.Size = new System.Drawing.Size(76, 19);
             this.txbPageSize.TabIndex = 39;
@@ -304,7 +304,7 @@
             // btnClose
             // 
             this.btnClose.Location = new System.Drawing.Point(795, 30);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(2);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(56, 18);
             this.btnClose.TabIndex = 56;
@@ -335,7 +335,7 @@
             // btnConfirm
             // 
             this.btnConfirm.Location = new System.Drawing.Point(274, 30);
-            this.btnConfirm.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnConfirm.Margin = new System.Windows.Forms.Padding(2);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Size = new System.Drawing.Size(56, 18);
             this.btnConfirm.TabIndex = 61;
@@ -346,7 +346,7 @@
             // btnDisplay
             // 
             this.btnDisplay.Location = new System.Drawing.Point(479, 30);
-            this.btnDisplay.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnDisplay.Margin = new System.Windows.Forms.Padding(2);
             this.btnDisplay.Name = "btnDisplay";
             this.btnDisplay.Size = new System.Drawing.Size(56, 18);
             this.btnDisplay.TabIndex = 60;
@@ -357,7 +357,7 @@
             // btnSearch
             // 
             this.btnSearch.Location = new System.Drawing.Point(418, 30);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(2);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(56, 18);
             this.btnSearch.TabIndex = 57;
@@ -368,7 +368,7 @@
             // txbWaDetailID
             // 
             this.txbWaDetailID.Location = new System.Drawing.Point(628, 254);
-            this.txbWaDetailID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbWaDetailID.Margin = new System.Windows.Forms.Padding(2);
             this.txbWaDetailID.Name = "txbWaDetailID";
             this.txbWaDetailID.Size = new System.Drawing.Size(76, 19);
             this.txbWaDetailID.TabIndex = 64;
@@ -388,7 +388,7 @@
             // 
             this.dataGridViewDetailDsp.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewDetailDsp.Location = new System.Drawing.Point(622, 296);
-            this.dataGridViewDetailDsp.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridViewDetailDsp.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridViewDetailDsp.Name = "dataGridViewDetailDsp";
             this.dataGridViewDetailDsp.RowHeadersWidth = 51;
             this.dataGridViewDetailDsp.RowTemplate.Height = 24;
@@ -398,7 +398,7 @@
             // btnDetailSearch
             // 
             this.btnDetailSearch.Location = new System.Drawing.Point(824, 253);
-            this.btnDetailSearch.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnDetailSearch.Margin = new System.Windows.Forms.Padding(2);
             this.btnDetailSearch.Name = "btnDetailSearch";
             this.btnDetailSearch.Size = new System.Drawing.Size(56, 18);
             this.btnDetailSearch.TabIndex = 65;
@@ -409,7 +409,7 @@
             // txbPrID
             // 
             this.txbPrID.Location = new System.Drawing.Point(710, 253);
-            this.txbPrID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbPrID.Margin = new System.Windows.Forms.Padding(2);
             this.txbPrID.Name = "txbPrID";
             this.txbPrID.Size = new System.Drawing.Size(76, 19);
             this.txbPrID.TabIndex = 104;
@@ -428,7 +428,7 @@
             // btnUpdate
             // 
             this.btnUpdate.Location = new System.Drawing.Point(201, 30);
-            this.btnUpdate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnUpdate.Margin = new System.Windows.Forms.Padding(2);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(69, 18);
             this.btnUpdate.TabIndex = 105;
@@ -439,7 +439,7 @@
             // txbQuantity
             // 
             this.txbQuantity.Location = new System.Drawing.Point(710, 186);
-            this.txbQuantity.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbQuantity.Margin = new System.Windows.Forms.Padding(2);
             this.txbQuantity.Name = "txbQuantity";
             this.txbQuantity.Size = new System.Drawing.Size(76, 19);
             this.txbQuantity.TabIndex = 107;
@@ -458,7 +458,7 @@
             // txbWaIDsub
             // 
             this.txbWaIDsub.Location = new System.Drawing.Point(628, 185);
-            this.txbWaIDsub.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbWaIDsub.Margin = new System.Windows.Forms.Padding(2);
             this.txbWaIDsub.Name = "txbWaIDsub";
             this.txbWaIDsub.Size = new System.Drawing.Size(76, 19);
             this.txbWaIDsub.TabIndex = 109;
@@ -477,7 +477,7 @@
             // btnClear
             // 
             this.btnClear.Location = new System.Drawing.Point(548, 30);
-            this.btnClear.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnClear.Margin = new System.Windows.Forms.Padding(2);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(56, 18);
             this.btnClear.TabIndex = 176;
@@ -498,7 +498,7 @@
             // txbDetailPageNo
             // 
             this.txbDetailPageNo.Location = new System.Drawing.Point(795, 507);
-            this.txbDetailPageNo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbDetailPageNo.Margin = new System.Windows.Forms.Padding(2);
             this.txbDetailPageNo.Name = "txbDetailPageNo";
             this.txbDetailPageNo.Size = new System.Drawing.Size(76, 19);
             this.txbDetailPageNo.TabIndex = 183;
@@ -506,7 +506,7 @@
             // btnDetailLastPage
             // 
             this.btnDetailLastPage.Location = new System.Drawing.Point(844, 543);
-            this.btnDetailLastPage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnDetailLastPage.Margin = new System.Windows.Forms.Padding(2);
             this.btnDetailLastPage.Name = "btnDetailLastPage";
             this.btnDetailLastPage.Size = new System.Drawing.Size(56, 18);
             this.btnDetailLastPage.TabIndex = 182;
@@ -518,7 +518,7 @@
             // btnDetailNextPage
             // 
             this.btnDetailNextPage.Location = new System.Drawing.Point(784, 543);
-            this.btnDetailNextPage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnDetailNextPage.Margin = new System.Windows.Forms.Padding(2);
             this.btnDetailNextPage.Name = "btnDetailNextPage";
             this.btnDetailNextPage.Size = new System.Drawing.Size(56, 18);
             this.btnDetailNextPage.TabIndex = 181;
@@ -530,7 +530,7 @@
             // btnDetailPreviousPage
             // 
             this.btnDetailPreviousPage.Location = new System.Drawing.Point(723, 543);
-            this.btnDetailPreviousPage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnDetailPreviousPage.Margin = new System.Windows.Forms.Padding(2);
             this.btnDetailPreviousPage.Name = "btnDetailPreviousPage";
             this.btnDetailPreviousPage.Size = new System.Drawing.Size(56, 18);
             this.btnDetailPreviousPage.TabIndex = 180;
@@ -542,7 +542,7 @@
             // btnDetailFirstPage
             // 
             this.btnDetailFirstPage.Location = new System.Drawing.Point(662, 543);
-            this.btnDetailFirstPage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnDetailFirstPage.Margin = new System.Windows.Forms.Padding(2);
             this.btnDetailFirstPage.Name = "btnDetailFirstPage";
             this.btnDetailFirstPage.Size = new System.Drawing.Size(56, 18);
             this.btnDetailFirstPage.TabIndex = 179;
@@ -554,7 +554,7 @@
             // txbDetailPageSize
             // 
             this.txbDetailPageSize.Location = new System.Drawing.Point(686, 506);
-            this.txbDetailPageSize.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbDetailPageSize.Margin = new System.Windows.Forms.Padding(2);
             this.txbDetailPageSize.Name = "txbDetailPageSize";
             this.txbDetailPageSize.Size = new System.Drawing.Size(76, 19);
             this.txbDetailPageSize.TabIndex = 178;
@@ -609,6 +609,7 @@
             this.dtpDate.ShowCheckBox = true;
             this.dtpDate.Size = new System.Drawing.Size(186, 29);
             this.dtpDate.TabIndex = 189;
+            this.dtpDate.ValueChanged += new System.EventHandler(this.dtpDate_ValueChanged);
             // 
             // F_AdWarehousing
             // 
@@ -667,7 +668,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "F_AdWarehousing";
             this.Text = "入庫管理";
             this.Load += new System.EventHandler(this.F_WareHousing_Load);

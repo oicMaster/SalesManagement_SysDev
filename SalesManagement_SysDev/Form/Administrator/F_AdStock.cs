@@ -55,8 +55,8 @@ namespace SalesManagement_SysDev
             {
                 StID = int.Parse(txbStID.Text.Trim()),
                 PrID = int.Parse(txbPrID.Text.Trim()),
-                StQuantity = int.Parse(txbStQuantity.Text),
-                StFlag = int.Parse(txbStFlag.Text.Trim())//要確認
+                StQuantity = int.Parse(txbQuantity.Text),
+                StFlag = int.Parse(txbFlag.Text.Trim())//要確認
             };
         }
 
@@ -125,7 +125,7 @@ namespace SalesManagement_SysDev
             dataGridViewDsp.Columns[3].HeaderText = "在庫管理フラグ";
             
 
-            lblPage.Text = "/" + ((int)Math.Ceiling(Stock.Count / (double)pageSize)) + "ページ";
+            lblPageNo.Text = "/" + ((int)Math.Ceiling(Stock.Count / (double)pageSize)) + "ページ";
             dataGridViewDsp.Refresh();
         }
 
@@ -142,7 +142,7 @@ namespace SalesManagement_SysDev
                 stID = 0;
             if (!int.TryParse(txbPrID.Text, out int prID))
                 prID = 0;
-            if (!int.TryParse(txbStQuantity.Text, out int stQuantity))
+            if (!int.TryParse(txbQuantity.Text, out int stQuantity))
                 stQuantity = 0;
 
             T_Stock selectCondition = new T_Stock()
@@ -160,7 +160,7 @@ namespace SalesManagement_SysDev
 
             dataGridViewDsp.DataSource = Stock;
 
-            lblPage.Text = "/" + ((int)Math.Ceiling(Stock.Count / (double)pageSize)) + "ページ";
+            lblPageNo.Text = "/" + ((int)Math.Ceiling(Stock.Count / (double)pageSize)) + "ページ";
         }
     }
 }

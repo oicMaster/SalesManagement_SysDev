@@ -18,14 +18,12 @@ namespace SalesManagement_SysDev
 {
     public partial class F_AdEmployee : Form
     {
-        //メッセージ表示用のインスタンス化
+
         MessageDsp messageDsp = new MessageDsp();
-        //データベース社員テーブルアクセス用のクラスのインスタンス化
         EmployeeDataAccess employeeDateAccess = new EmployeeDataAccess();
         SalesOfficeDataAccess salesOfficeIDataAccess = new SalesOfficeDataAccess();
         PositionDataAccess positionDataAccess = new PositionDataAccess();
-        //入力形式チェック用クラスのインスタンス化
-        //データグリッドビュー用の社員データ
+        CommonModule commonModule = new CommonModule();
         private static List<M_Employee> Employees;
 
 
@@ -39,33 +37,74 @@ namespace SalesManagement_SysDev
         {
             //labelLoginName.Text = FormMenu.LoginName;
             SetFormDataGridView();
-
-            fncButtonEnable(0);
+            fncButtonEnable(2);
+            fncButtonEnable(4);
             txbFlag.ReadOnly = true;
 
 
-            //コード追加部分
-            //※
+            dtpDate.Value = DateTime.Now;
+
+
+
+            cmbHint.Items.Add("検索");
+            cmbHint.Items.Add("登録");
+            cmbHint.Items.Add("更新");
+            cmbHint.SelectedIndex = 0;
 
         }
 
         private void fncButtonEnable(int chk)
         {
             switch (chk)
-            { //IDが空であれば0、でなければ1として、ボタンの使用を制限する
-                case 0:
-
+            {
+                case 2:
+                    btnRegist.Enabled = false;
+                    break;
+                case 3:
+                    btnRegist.Enabled = true;
+                    break;
+                case 4:
                     btnUpdate.Enabled = false;
                     break;
-                case 1:
-
-                    break;
-                //非表示理由とIDが入力されているか
-                case 2:
+                case 5:
                     btnUpdate.Enabled = true;
                     break;
 
             }
+
+        }
+        private void fncTextBoxColor(int chk)
+        {
+            switch (chk)
+            {
+                case 1: 
+                    lblEmID.ForeColor = Color.Red;
+                    lblName.ForeColor = Color.Red;
+                    lblPoID.ForeColor = Color.Red;
+                    lblSoID.ForeColor = Color.Red;
+                    lblPhone.ForeColor = Color.Red;
+                    lblPassword.ForeColor = Color.Red;
+                    lblHidden.ForeColor = Color.Black;
+                    break;
+                case 2:
+                    lblEmID.ForeColor = Color.Blue;
+                    lblName.ForeColor = Color.Blue;
+                    lblPoID.ForeColor = Color.Blue;
+                    lblSoID.ForeColor = Color.Blue;
+                    lblPhone.ForeColor = Color.Black;
+                    lblPassword.ForeColor = Color.Black;
+                    lblHidden.ForeColor = Color.Black;
+                    break;
+                case 3:
+                    lblEmID.ForeColor = Color.Red;
+                    lblName.ForeColor = Color.Red;
+                    lblPoID.ForeColor = Color.Red;
+                    lblSoID.ForeColor = Color.Red;
+                    lblPhone.ForeColor = Color.Red;
+                    lblPassword.ForeColor = Color.Black;
+                    lblHidden.ForeColor = Color.Blue;
+                    break;
+        }
         }
 
         private void SetFormDataGridView()
@@ -114,7 +153,7 @@ namespace SalesManagement_SysDev
             dataGridViewDsp.Columns[9].HeaderText = "非表示理由";
 
 
-            lblPage.Text = "/" + ((int)Math.Ceiling(Employees.Count / (double)pageSize)) + "ページ";
+            lblPageNo.Text = "/" + ((int)Math.Ceiling(Employees.Count / (double)pageSize)) + "ページ";
 
             dataGridViewDsp.Refresh();
         }
@@ -127,34 +166,6 @@ namespace SalesManagement_SysDev
 
 
 
-        private void txbPageSize_TextChanged(object sender, EventArgs e)
-        {
-            if (!String.IsNullOrEmpty((sender as TextBox).Text))
-            {
-                if (int.Parse((sender as TextBox).Text) > 10)
-                {
-                    (sender as TextBox).Text = "10";
-                    return;
-                }
-                if (int.Parse((sender as TextBox).Text) == 0)
-                {
-                    (sender as TextBox).Text = "1";
-                    return;
-                }
-            }
-        }
-
-        private void txbPageNo_TextChanged(object sender, EventArgs e)
-        {
-            if (!String.IsNullOrEmpty((sender as TextBox).Text.Trim()))
-            {
-                if (int.Parse((sender as TextBox).Text) == 0)
-                {
-                    (sender as TextBox).Text = "1";
-                }
-            }
-        }
-
         private void txbKeyID_TextChanged(object sender, EventArgs e)
         {
             if (String.IsNullOrEmpty((sender as TextBox).Text))
@@ -165,8 +176,6 @@ namespace SalesManagement_SysDev
             else
             {
                 fncButtonEnable(1);
-                txbFlag.Text = "0";
-                txbFlag.Text = "0";
             }
 
         }
@@ -180,15 +189,6 @@ namespace SalesManagement_SysDev
         }
 
         //メイングリッドビュー,サブグリッドビューで使用する主キーのテキストボックスの文字を連動させる。
-
-        //PageSize,Noのテキストボックスに連結させる。
-        private void txbPage_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')
-            {
-                e.Handled = true;
-            }
-        }
         //IDがつく全てのテキストボックスに連結させる。
         private void txbID_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -233,54 +233,6 @@ namespace SalesManagement_SysDev
             txbPageNo.Text = "1";
         }
 
-        private void btnPreviousPage_Click(object sender, EventArgs e)
-        {
-            int pageSize = int.Parse(txbPageSize.Text);
-            int pageNo = int.Parse(txbPageNo.Text) - 2;
-            dataGridViewDsp.DataSource = Employees.Skip(pageSize * pageNo).Take(pageSize).ToList();
-
-            // DataGridViewを更新
-            dataGridViewDsp.Refresh();
-            //ページ番号の設定
-            if (pageNo + 1 > 1)
-                txbPageNo.Text = (pageNo + 1).ToString();
-            else
-                txbPageNo.Text = "1";
-        }
-
-        private void btnNextPage_Click(object sender, EventArgs e)
-        {
-            int pageSize = int.Parse(txbPageSize.Text);
-            int pageNo = int.Parse(txbPageNo.Text);
-            //最終ページの計算
-            int lastNo = (int)Math.Ceiling(Employees.Count / (double)pageSize) - 1;
-            //最終ページでなければ
-            if (pageNo <= lastNo)
-                dataGridViewDsp.DataSource = Employees.Skip(pageSize * pageNo).Take(pageSize).ToList();
-
-            // DataGridViewを更新
-            dataGridViewDsp.Refresh();
-            //ページ番号の設定
-            int lastPage = (int)Math.Ceiling(Employees.Count / (double)pageSize);
-            if (pageNo >= lastPage)
-                txbPageNo.Text = lastPage.ToString();
-            else
-                txbPageNo.Text = (pageNo + 1).ToString();
-        }
-
-        private void btnLastPage_Click(object sender, EventArgs e)
-        {
-            int pageSize = int.Parse(txbPageSize.Text);
-            //最終ページの計算
-            int pageNo = (int)Math.Ceiling(Employees.Count / (double)pageSize) - 1;
-            dataGridViewDsp.DataSource = Employees.Skip(pageSize * pageNo).Take(pageSize).ToList();
-
-            // DataGridViewを更新
-            dataGridViewDsp.Refresh();
-            //ページ番号の設定
-            txbPageNo.Text = (pageNo + 1).ToString();
-        }
-
 
         private void btnClear_Click(object sender, EventArgs e)
         {
@@ -290,7 +242,7 @@ namespace SalesManagement_SysDev
         {//全てのテキストボックスを空白にする
             txbEmID.Text = String.Empty;
             txbName.Text = String.Empty;
-            txbHiredate.Text = String.Empty;
+            dtpDate.Value = DateTime.Now;
             txbSoID.Text = String.Empty;
             txbPoID.Text = String.Empty;
             txbPhone.Text = String.Empty;
@@ -359,7 +311,7 @@ namespace SalesManagement_SysDev
 
             dataGridViewDsp.DataSource = Employees;
 
-            lblPage.Text = "/" + ((int)Math.Ceiling(Employees.Count / (double)pageSize)) + "ページ ";
+            lblPageNo.Text = "/" + ((int)Math.Ceiling(Employees.Count / (double)pageSize)) + "ページ ";
             dataGridViewDsp.Refresh();
         }
 
@@ -391,7 +343,7 @@ namespace SalesManagement_SysDev
                 EmName = txbName.Text.Trim(),
                 SoID = int.Parse((txbSoID.Text.Trim())),
                 PoID = int.Parse((txbPoID.Text.Trim())),
-                EmHiredate = DateTime.Parse(txbHiredate.Text.Trim()),
+                EmHiredate = dtpDate.Value,
                 EmPhone = txbPhone.Text.Trim(),
                 EmFlag = int.Parse(txbFlag.Text.Trim()),
                 EmHidden = txbHiddin.Text.Trim(),
@@ -450,7 +402,7 @@ namespace SalesManagement_SysDev
                 EmName = txbName.Text.Trim(),
                 SoID = int.Parse((txbSoID.Text.Trim())),
                 PoID = int.Parse((txbPoID.Text.Trim())),
-                EmHiredate = DateTime.Parse(txbHiredate.Text.Trim()),
+                EmHiredate = dtpDate.Value,
                 EmPhone = txbPhone.Text.Trim(),
                 EmFlag = int.Parse(txbFlag.Text.Trim()),
                 EmHidden = txbHiddin.Text.Trim(),
@@ -475,7 +427,11 @@ namespace SalesManagement_SysDev
             GetDataGridView();
         }
 
-       
+        private void cmbHint_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int chk = commonModule.ComboBoxHint(sender);
+            fncTextBoxColor(chk);
+        }
     }
 }
 
