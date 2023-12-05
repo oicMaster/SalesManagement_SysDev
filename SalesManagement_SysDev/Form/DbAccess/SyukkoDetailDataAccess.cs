@@ -45,29 +45,6 @@ namespace SalesManagement_SysDev
             }
         }
 
-        public bool UpdateSyukkoDetailData(T_SyukkoDetail updSyD)
-        {
-            try
-            {
-                var context = new SalesManagement_DevContext();
-                var syukkoDetail = context.T_SyukkoDetails.Single(x => x.SyDetailID == updSyD.SyDetailID);
-
-                syukkoDetail.SyDetailID = updSyD.SyDetailID;
-                syukkoDetail.SyID = updSyD.SyID;
-                syukkoDetail.PrID = updSyD.PrID;
-                syukkoDetail.SyQuantity = updSyD.SyQuantity;
-                context.SaveChanges();
-                context.Dispose();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-        }
-
-
         public List<T_SyukkoDetail> GetSyukkoDetailData()
         {
             List<T_SyukkoDetail> syukkoDetail = new List<T_SyukkoDetail>();
@@ -84,15 +61,21 @@ namespace SalesManagement_SysDev
             return syukkoDetail;
         }
 
-
-
-        public List<T_SyukkoDetail> GetSyukkoDetailData(T_SyukkoDetail selectCondition)
+        public List<T_SyukkoDetail> GetSyukkoDetailData(T_SyukkoDetail selectCondition,int quantityCondition)
         {
             List<T_SyukkoDetail> syukkoDetail = new List<T_SyukkoDetail>();
             try
             {
                 var context = new SalesManagement_DevContext();
-                syukkoDetail = context.T_SyukkoDetails.Where(x => x.SyDetailID == selectCondition.SyDetailID).ToList();
+                syukkoDetail = context.T_SyukkoDetails.Where(x =>
+                  (selectCondition.SyDetailID == 0 || x.SyDetailID == selectCondition.SyDetailID) &&
+                  (selectCondition.SyID == 0 || x.SyID == selectCondition.SyID) &&
+                  (selectCondition.PrID == 0 || x.PrID == selectCondition.PrID) &&
+                  (selectCondition.SyQuantity == 0 ||
+                  (quantityCondition == 0 && x.SyQuantity == selectCondition.SyQuantity) ||
+                  (quantityCondition == 1 && x.SyQuantity >= selectCondition.SyQuantity) ||
+                  (quantityCondition == 2 && x.SyQuantity <= selectCondition.SyQuantity))
+                ).ToList();
                 context.Dispose();
             }
             catch (Exception ex)

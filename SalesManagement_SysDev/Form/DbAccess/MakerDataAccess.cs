@@ -53,8 +53,14 @@ namespace SalesManagement_SysDev
                 var context = new SalesManagement_DevContext();
                 var maker = context.M_Makers.Single(x => x.MaID == updMa.MaID);
 
-                //maker.MaID = updMa.MaID;
-                //↑のように書いてください。
+                maker.MaID = updMa.MaID;
+                maker.MaName = updMa.MaName;
+                maker.MaAddress = updMa.MaAddress;
+                maker.MaPhone = updMa.MaPhone;
+                maker.MaPostal = updMa.MaPostal;
+                maker.MaFAX = updMa.MaFAX;
+                maker.MaFlag = updMa.MaFlag;
+                maker.MaHidden = updMa.MaHidden;
 
                 context.Dispose();
                 return true;
@@ -65,15 +71,13 @@ namespace SalesManagement_SysDev
                 return false;
             }
         }
-
-
         public List<M_Maker> GetMakerData()
         {
             List<M_Maker> maker = new List<M_Maker>();
             try
             {
                 var context = new SalesManagement_DevContext();
-                maker = context.M_Makers.ToList();
+                maker = context.M_Makers.Where(x => x.MaFlag == 0).ToList();
                 context.Dispose();
             }
             catch (Exception ex)
@@ -84,14 +88,21 @@ namespace SalesManagement_SysDev
         }
 
 
-
         public List<M_Maker> GetMakerData(M_Maker selectCondition)
         {
             List<M_Maker> maker = new List<M_Maker>();
             try
             {
                 var context = new SalesManagement_DevContext();
-                maker = context.M_Makers.Where(x => x.MaID == selectCondition.MaID).ToList();
+                maker = context.M_Makers.Where(x =>
+                        (selectCondition.MaID == 0 || x.MaID == selectCondition.MaID) &&
+                        (selectCondition.MaName == null || x.MaName.Contains(selectCondition.MaName)) &&
+                        (selectCondition.MaAddress == null || x.MaAddress.Contains(selectCondition.MaAddress)) &&
+                        (selectCondition.MaPhone == null || x.MaPhone.Contains(selectCondition.MaPhone)) &&
+                        (selectCondition.MaPostal == null || x.MaPostal.Contains(selectCondition.MaPostal)) &&
+                        (selectCondition.MaFAX == null || x.MaFAX.Contains(selectCondition.MaFAX)) &&
+                        (selectCondition.MaFlag == 3 || x.MaFlag == selectCondition.MaFlag)
+                ).ToList();
                 context.Dispose();
             }
             catch (Exception ex)

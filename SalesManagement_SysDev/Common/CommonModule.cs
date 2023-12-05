@@ -163,6 +163,8 @@ namespace SalesManagement_SysDev.Common
         {
             switch ((sender as ComboBox).Text)
             {
+                case "一覧表示":
+                    return 0;
                 case "登録":
                     return 1;
                 case "検索":
@@ -179,6 +181,28 @@ namespace SalesManagement_SysDev.Common
                     return 7;
                 case "詳細更新":
                     return 8;
+            }
+            return 0;
+        }
+
+        public int ComboBoxCondition(string cmbText)
+        {
+            switch (cmbText)
+            {
+                case "完全一致":
+                    return 0;
+                case "部分一致":
+                    return 0;
+                case "不一致":
+                    return 3;
+                case "以降":
+                    return 1;
+                case "以前":
+                    return 2;
+                case "以上":
+                    return 1;
+                case "以下":
+                    return 2;
             }
             return 0;
         }

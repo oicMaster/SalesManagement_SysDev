@@ -42,12 +42,16 @@ namespace SalesManagement_SysDev
             dtpDate.Value = DateTime.Now;
             dtpDate.Checked = false;
 
-
+            cmbHint.Items.Add("一覧表示");
             cmbHint.Items.Add("検索");
+            cmbHint.Items.Add("非表示");
+            cmbHint.Items.Add("確定");
+            cmbHint.Items.Add("詳細検索");
             cmbHint.SelectedIndex = 0;
 
             //※
         }
+
 
         private void fncButtonEnable(int chk)
         {
@@ -68,6 +72,89 @@ namespace SalesManagement_SysDev
             }
         }
 
+        private void fncTextColor(int chk)
+        {
+            switch (chk)
+            {
+                case 0:
+                    lblChID.ForeColor = Color.Black;
+                    lblSoID.ForeColor = Color.Black;
+                    lblEmID.ForeColor = Color.Black;
+                    lblClID.ForeColor = Color.Black;
+                    lblOrID.ForeColor = Color.Black;
+                    lblDate.ForeColor = Color.Black;
+                    lblHidden.ForeColor = Color.Black;
+                    lblChDetailID.ForeColor = Color.Black;
+                    lblChIDsub.ForeColor = Color.Black;
+                    lblPrID.ForeColor = Color.Black;
+                    lblQuantity.ForeColor = Color.Black;
+                    cbxConfirm.ForeColor = Color.Blue;
+                    cbxHidden.ForeColor = Color.Blue;
+                    break;
+                case 2:
+                    lblChID.ForeColor = Color.Blue;
+                    lblSoID.ForeColor = Color.Blue;
+                    lblEmID.ForeColor = Color.Blue;
+                    lblClID.ForeColor = Color.Blue;
+                    lblOrID.ForeColor = Color.Blue;
+                    lblDate.ForeColor = Color.Blue;
+                    lblHidden.ForeColor = Color.Black;
+                    lblChDetailID.ForeColor = Color.Black;
+                    lblChIDsub.ForeColor = Color.Black;
+                    lblPrID.ForeColor = Color.Black;
+                    lblQuantity.ForeColor = Color.Black;
+                    cbxConfirm.ForeColor = Color.Blue;
+                    cbxHidden.ForeColor = Color.Blue;
+                    break;
+                case 4:
+                    lblChID.ForeColor = Color.Red;
+                    lblSoID.ForeColor = Color.Black;
+                    lblEmID.ForeColor = Color.Black;
+                    lblClID.ForeColor = Color.Black;
+                    lblOrID.ForeColor = Color.Black;
+                    lblHidden.ForeColor = Color.Red;
+                    lblDate.ForeColor = Color.Black;
+                    lblChDetailID.ForeColor = Color.Black;
+                    lblChIDsub.ForeColor = Color.Black;
+                    lblPrID.ForeColor = Color.Black;
+                    lblQuantity.ForeColor = Color.Black;
+                    cbxConfirm.ForeColor = Color.Black;
+                    cbxHidden.ForeColor = Color.Black;
+                    break;
+                case 5:
+                    lblChID.ForeColor = Color.Red;
+                    lblSoID.ForeColor = Color.Black;
+                    lblEmID.ForeColor = Color.Black;
+                    lblClID.ForeColor = Color.Black;
+                    lblOrID.ForeColor = Color.Black;
+                    lblDate.ForeColor = Color.Black;
+                    lblHidden.ForeColor = Color.Black;
+                    lblChDetailID.ForeColor = Color.Black;
+                    lblChIDsub.ForeColor = Color.Black;
+                    lblPrID.ForeColor = Color.Black;
+                    lblQuantity.ForeColor = Color.Black;
+                    cbxConfirm.ForeColor = Color.Black;
+                    cbxHidden.ForeColor = Color.Black;
+                    break;
+                case 7:
+                    lblChID.ForeColor = Color.Black;
+                    lblSoID.ForeColor = Color.Black;
+                    lblEmID.ForeColor = Color.Black;
+                    lblClID.ForeColor = Color.Black;
+                    lblOrID.ForeColor = Color.Black;
+                    lblDate.ForeColor = Color.Black;
+                    lblHidden.ForeColor = Color.Black;
+                    lblChDetailID.ForeColor = Color.Blue;
+                    lblChIDsub.ForeColor = Color.Blue;
+                    lblPrID.ForeColor = Color.Blue;
+                    lblQuantity.ForeColor = Color.Blue;
+                    cbxConfirm.ForeColor = Color.Black;
+                    cbxHidden.ForeColor = Color.Black;
+                    break;
+
+            }
+        }
+
         private void SetFormDataGridView()
         {
             txbPageSize.Text = "10";
@@ -81,7 +168,7 @@ namespace SalesManagement_SysDev
 
         private void GetDataGridView()
         {
-            Chumon = chumonDataAccess.GetChumonData(1,2);
+            Chumon = chumonDataAccess.GetChumonData();
             SetDataGridView();
         }
         private void SetDataGridView()
@@ -274,42 +361,120 @@ namespace SalesManagement_SysDev
 
         private void btnFirstPage_Click(object sender, EventArgs e)
         {
-            commonModule.FirstPageClick(txbPageSize, txbPageNo, dataGridViewDsp, new List<object>(Chumon));
+            int pageSize = int.Parse(txbPageSize.Text);
+            dataGridViewDsp.DataSource = Chumon.Take(pageSize).ToList();
+
+            // DataGridViewを更新
+            dataGridViewDsp.Refresh();
+            //ページ番号の設定
+            txbPageNo.Text = "1";
         }
 
         private void btnPreviousPage_Click(object sender, EventArgs e)
         {
-            commonModule.PreviousPageClick(txbPageSize, txbPageNo, dataGridViewDsp, new List<object>(Chumon));
+            int pageSize = int.Parse(txbPageSize.Text);
+            int pageNo = int.Parse(txbPageNo.Text) - 2;
+            dataGridViewDsp.DataSource = Chumon.Skip(pageSize * pageNo).Take(pageSize).ToList();
+
+            // DataGridViewを更新
+            dataGridViewDsp.Refresh();
+            //ページ番号の設定
+            if (pageNo + 1 > 1)
+                txbPageNo.Text = (pageNo + 1).ToString();
+            else
+                txbPageNo.Text = "1";
         }
 
         private void btnNextPage_Click(object sender, EventArgs e)
         {
-            commonModule.NextPageClick(txbPageSize, txbPageNo, dataGridViewDsp, new List<object>(Chumon));
+            int pageSize = int.Parse(txbPageSize.Text);
+            int pageNo = int.Parse(txbPageNo.Text);
+            //最終ページの計算
+            int lastNo = (int)Math.Ceiling(Chumon.Count / (double)pageSize) - 1;
+            //最終ページでなければ
+            if (pageNo <= lastNo)
+                dataGridViewDsp.DataSource = Chumon.Skip(pageSize * pageNo).Take(pageSize).ToList();
+
+            // DataGridViewを更新
+            dataGridViewDsp.Refresh();
+            //ページ番号の設定
+            int lastPage = (int)Math.Ceiling(Chumon.Count / (double)pageSize);
+            if (pageNo >= lastPage)
+                txbPageNo.Text = lastPage.ToString();
+            else
+                txbPageNo.Text = (pageNo + 1).ToString();
         }
 
         private void btnLastPage_Click(object sender, EventArgs e)
         {
-            commonModule.LastPageClick(txbPageSize, txbPageNo, dataGridViewDsp, new List<object>(Chumon));
+            int pageSize = int.Parse(txbPageSize.Text);
+            //最終ページの計算
+            int pageNo = (int)Math.Ceiling(Chumon.Count / (double)pageSize) - 1;
+            dataGridViewDsp.DataSource = Chumon.Skip(pageSize * pageNo).Take(pageSize).ToList();
+
+            // DataGridViewを更新
+            dataGridViewDsp.Refresh();
+            //ページ番号の設定
+            txbPageNo.Text = (pageNo + 1).ToString();
         }
 
         private void btnDetailFirstPage_Click(object sender, EventArgs e)
         {
-            commonModule.FirstPageClick(txbDetailPageSize, txbDetailPageNo, dataGridViewDetailDsp, new List<object>(ChumonDetail));
+            int pageSize = int.Parse(txbDetailPageSize.Text);
+            dataGridViewDetailDsp.DataSource = ChumonDetail.Take(pageSize).ToList();
+
+            // DataGridViewを更新
+            dataGridViewDetailDsp.Refresh();
+            //ページ番号の設定
+            txbDetailPageNo.Text = "1";
         }
 
         private void btnDetailPreviousPage_Click(object sender, EventArgs e)
         {
-            commonModule.PreviousPageClick(txbDetailPageSize, txbDetailPageNo, dataGridViewDetailDsp, new List<object>(ChumonDetail));
+            int pageSize = int.Parse(txbDetailPageSize.Text);
+            int pageNo = int.Parse(txbDetailPageNo.Text) - 2;
+            dataGridViewDetailDsp.DataSource = ChumonDetail.Skip(pageSize * pageNo).Take(pageSize).ToList();
+
+            // DataGridViewを更新
+            dataGridViewDetailDsp.Refresh();
+            //ページ番号の設定
+            if (pageNo + 1 > 1)
+                txbDetailPageNo.Text = (pageNo + 1).ToString();
+            else
+                txbDetailPageNo.Text = "1";
         }
 
         private void btnDetailNextPage_Click(object sender, EventArgs e)
         {
-            commonModule.NextPageClick(txbDetailPageSize, txbDetailPageNo, dataGridViewDetailDsp, new List<object>(ChumonDetail));
+            int pageSize = int.Parse(txbDetailPageSize.Text);
+            int pageNo = int.Parse(txbDetailPageNo.Text);
+            //最終ページの計算
+            int lastNo = (int)Math.Ceiling(ChumonDetail.Count / (double)pageSize) - 1;
+            //最終ページでなければ
+            if (pageNo <= lastNo)
+                dataGridViewDetailDsp.DataSource = ChumonDetail.Skip(pageSize * pageNo).Take(pageSize).ToList();
+
+            // DataGridViewを更新
+            dataGridViewDetailDsp.Refresh();
+            //ページ番号の設定
+            int lastPage = (int)Math.Ceiling(ChumonDetail.Count / (double)pageSize);
+            if (pageNo >= lastPage)
+                txbDetailPageNo.Text = lastPage.ToString();
+            else
+                txbDetailPageNo.Text = (pageNo + 1).ToString();
         }
 
         private void btnDetailLastPage_Click(object sender, EventArgs e)
         {
-            commonModule.LastPageClick(txbDetailPageSize, txbDetailPageNo, dataGridViewDetailDsp, new List<object>(ChumonDetail));
+            int pageSize = int.Parse(txbDetailPageSize.Text);
+            //最終ページの計算
+            int pageNo = (int)Math.Ceiling(ChumonDetail.Count / (double)pageSize) - 1;
+            dataGridViewDetailDsp.DataSource = ChumonDetail.Skip(pageSize * pageNo).Take(pageSize).ToList();
+
+            // DataGridViewを更新
+            dataGridViewDetailDsp.Refresh();
+            //ページ番号の設定
+            txbDetailPageNo.Text = (pageNo + 1).ToString();
         }
         private void btnClear_Click(object sender, EventArgs e)
         {
@@ -329,22 +494,7 @@ namespace SalesManagement_SysDev
         }
         private void btnDisplay_Click(object sender, EventArgs e)
         {
-            if (cbxConfirm.Checked && cbxHidden.Checked)
-            {
-                Chumon = chumonDataAccess.GetChumonData(3, 3);
-            }
-            else if (!cbxConfirm.Checked && cbxHidden.Checked)
-            {
-                Chumon = chumonDataAccess.GetChumonData(1, 3);
-            }
-            else if (cbxConfirm.Checked && !cbxHidden.Checked)
-            {
-                Chumon = chumonDataAccess.GetChumonData(3, 2);
-            }
-            else if (!cbxConfirm.Checked && !cbxHidden.Checked)
-            {
-                Chumon = chumonDataAccess.GetChumonData(1, 2);
-            }
+ 
             SetDataGridView();
         }
         private void btnClose_Click(object sender, EventArgs e)
@@ -383,7 +533,8 @@ namespace SalesManagement_SysDev
                 OrID = orID
             };
             //chデータの抽出
-            Chumon = chumonDataAccess.GetChumonData(selectCondition);
+            int dateCondition = commonModule.ComboBoxCondition(cmbDate.Text);
+            Chumon = chumonDataAccess.GetChumonData(selectCondition,dateCondition);
         }
 
         private void SetSelectData()
@@ -489,6 +640,7 @@ namespace SalesManagement_SysDev
                 chID = 0;
             if (!int.TryParse(txbPrID.Text, out int prID))
                 prID = 0;
+
             //検索に使用するデータ
             T_ChumonDetail selectCondition = new T_ChumonDetail()
             {//検索に使用するデータ　全て変数で行う
@@ -497,7 +649,8 @@ namespace SalesManagement_SysDev
                 PrID = prID,
             };
             //arデータの抽出
-            ChumonDetail = chumonDetailDataAccess.GetChumonDetailData(selectCondition);
+            int quantityCondition = commonModule.ComboBoxCondition(cmbQuantity.Text);
+            ChumonDetail = chumonDetailDataAccess.GetChumonDetailData(selectCondition,quantityCondition);
         }
         private void SetSelectDetailData()
         {//ページ数の表示
@@ -510,6 +663,12 @@ namespace SalesManagement_SysDev
         private void dtpDate_ValueChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void cmbHint_SelectedIndexChanged(object sender, EventArgs e)
+        {
+                int chk = commonModule.ComboBoxHint(sender);
+                fncTextColor(chk);
         }
     }
 }

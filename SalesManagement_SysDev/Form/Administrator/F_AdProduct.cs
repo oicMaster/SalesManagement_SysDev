@@ -20,6 +20,7 @@ namespace SalesManagement_SysDev
         ProductDataAccess productDataAccess = new ProductDataAccess();
         MakerDataAccess makerDataAccess = new MakerDataAccess();
         SmallClassification smallClassification = new SmallClassification();
+        CommonModule commonModule = new CommonModule();
 
         private static List<M_Product> Product;
 
@@ -361,7 +362,7 @@ namespace SalesManagement_SysDev
 
 
             };
-            Product = productDataAccess.GetProductData(selectCondition);
+            //Product = productDataAccess.GetProductData(selectCondition);
 
         }
 

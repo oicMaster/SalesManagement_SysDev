@@ -293,11 +293,21 @@ namespace SalesManagement_SysDev
                 clID = 0;
             if (!int.TryParse(txbSoID.Text, out int soID))
                 soID = 0;
+            string clName = txbName.Text.Trim();
+            string clAddress = txbAddress.Text.Trim();
+            string clPhone = txbPhone.Text.Trim();
+            string clPostal = txbPostal.Text.Trim();
+            string clFAX = txbFAX.Text.Trim();
 
             M_Client selectCondition = new M_Client()
             {//検索に使用するデータ
                 ClID = clID,
                 SoID = soID,
+                ClName = clName,
+                ClAddress = clAddress,
+                ClPhone = clPhone,
+                ClPostal = clPostal,
+                ClFAX = clFAX
             };
             //顧客データの抽出
             Client = clientDataAccess.GetClientData(selectCondition);

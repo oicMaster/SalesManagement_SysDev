@@ -72,7 +72,6 @@ namespace SalesManagement_SysDev
             }
 
         }
-
         public List<M_Employee> GetEmployeeData()
         {
             List<M_Employee> employee = new List<M_Employee>();
@@ -89,14 +88,24 @@ namespace SalesManagement_SysDev
             }
             return employee;
         }
-
-        public List<M_Employee> GetEmployeeData(M_Employee selectCondition)
+        public List<M_Employee> GetEmployeeData(M_Employee selectCondition,int dateCondition)
         {
             List<M_Employee> employee = new List<M_Employee>();
             try
             {
                 var context = new SalesManagement_DevContext();
-                employee = context.M_Employees.Where(x => x.EmID == selectCondition.EmID).ToList();
+                employee = context.M_Employees.Where(x =>
+                        (selectCondition.EmID == 0 || x.EmID == selectCondition.EmID) &&
+                        (selectCondition.EmName == null || x.EmName.Contains(selectCondition.EmName)) &&
+                        (selectCondition.SoID == 0 || x.SoID == selectCondition.SoID) &&
+                        (selectCondition.PoID == 0 || x.PoID == selectCondition.PoID) &&
+                        (selectCondition.EmHiredate == DateTime.Parse("0001/01/01") ||
+                        (dateCondition == 0 && x.EmHiredate == selectCondition.EmHiredate) ||
+                        (dateCondition == 1 && x.EmHiredate >= selectCondition.EmHiredate) ||
+                        (dateCondition == 2 && x.EmHiredate <= selectCondition.EmHiredate)) &&
+                        (selectCondition.EmPhone == null || x.EmPhone.Contains(selectCondition.EmPhone)) &&
+                        (selectCondition.EmFlag == 3 || x.EmFlag == selectCondition.EmFlag)
+                ).ToList();
                 context.Dispose();
 
             }

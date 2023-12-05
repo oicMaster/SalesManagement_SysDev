@@ -27,7 +27,7 @@ namespace SalesManagement_SysDev
             return flg;
         }
 
-        public bool AddShipmentData(T_ShipmentDetail regShD)
+        public bool AddShipmentDetailData(T_ShipmentDetail regShD)
         {
             try
             {
@@ -44,30 +44,6 @@ namespace SalesManagement_SysDev
                 return false;
             }
         }
-
-        public bool UpdateShipmentDetailData(T_ShipmentDetail updShD)
-        {
-            try
-            {
-                var context = new SalesManagement_DevContext();
-                var shipmentDetail = context.T_ShipmentDetails.Single(x => x.ShDetailID == updShD.ShDetailID);
-
-                shipmentDetail.ShDetailID = updShD.ShDetailID;
-                shipmentDetail.ShID = updShD.ShID;
-                shipmentDetail.PrID = updShD.PrID;
-                shipmentDetail.ShQuantity = updShD.ShQuantity;
-                context.SaveChanges();
-                context.Dispose();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-        }
-
-
         public List<T_ShipmentDetail> GetShipmentDetailData()
         {
             List<T_ShipmentDetail> shipmentDetail = new List<T_ShipmentDetail>();
@@ -85,14 +61,21 @@ namespace SalesManagement_SysDev
         }
 
 
-
-        public List<T_ShipmentDetail> GetShipmentDetailData(T_ShipmentDetail selectCondition)
+        public List<T_ShipmentDetail> GetShipmentDetailData(T_ShipmentDetail selectCondition,int quantityCondition)
         {
             List<T_ShipmentDetail> shipmentDetail = new List<T_ShipmentDetail>();
             try
             {
                 var context = new SalesManagement_DevContext();
-                shipmentDetail = context.T_ShipmentDetails.Where(x => x.ShDetailID == selectCondition.ShDetailID).ToList();
+                shipmentDetail = context.T_ShipmentDetails.Where(x =>
+                  (selectCondition.ShDetailID == 0 || x.ShDetailID == selectCondition.ShDetailID) &&
+                  (selectCondition.ShID == 0 || x.ShID == selectCondition.ShID) &&
+                  (selectCondition.PrID == 0 || x.PrID == selectCondition.PrID) &&
+                  (selectCondition.ShQuantity == 0 ||
+                  (quantityCondition == 0 && x.ShQuantity == selectCondition.ShQuantity) ||
+                  (quantityCondition == 1 && x.ShQuantity >= selectCondition.ShQuantity) ||
+                  (quantityCondition == 2 && x.ShQuantity <= selectCondition.ShQuantity))
+                ).ToList();
                 context.Dispose();
             }
             catch (Exception ex)

@@ -28,19 +28,16 @@ namespace SalesManagement_SysDev
             return flg;
         }
 
-        public bool UpdateChumonDetailData(T_ChumonDetail updChD)
+
+        public bool AddChumonDetailData(T_ChumonDetail regChD)
         {
             try
             {
                 var context = new SalesManagement_DevContext();
-                var chumonDetail = context.T_ChumonDetails.Single(x => x.ChDetailID == updChD.ChDetailID);
-
-                chumonDetail.ChDetailID = updChD.ChDetailID;
-                chumonDetail.ChID = updChD.ChID;
-                chumonDetail.PrID = updChD.PrID;
-                chumonDetail.ChQuantity = updChD.ChQuantity;
+                context.T_ChumonDetails.Add(regChD);
                 context.SaveChanges();
                 context.Dispose();
+
                 return true;
             }
             catch (Exception ex)
@@ -49,7 +46,6 @@ namespace SalesManagement_SysDev
                 return false;
             }
         }
-
 
         public List<T_ChumonDetail> GetChumonDetailData()
         {
@@ -68,14 +64,21 @@ namespace SalesManagement_SysDev
         }
 
 
-
-        public List<T_ChumonDetail> GetChumonDetailData(T_ChumonDetail selectCondition)
+        public List<T_ChumonDetail> GetChumonDetailData(T_ChumonDetail selectCondition,int quantityCondition)
         {
             List<T_ChumonDetail> chumonDetail = new List<T_ChumonDetail>();
             try
             {
                 var context = new SalesManagement_DevContext();
-                chumonDetail = context.T_ChumonDetails.Where(x => x.ChDetailID == selectCondition.ChDetailID).ToList();
+                chumonDetail = context.T_ChumonDetails.Where(x =>
+                  (selectCondition.ChDetailID == 0 || x.ChDetailID == selectCondition.ChDetailID) &&
+                  (selectCondition.ChID == 0 || x.ChID == selectCondition.ChID) &&
+                  (selectCondition.PrID == 0 || x.PrID == selectCondition.PrID) &&
+                  (selectCondition.ChQuantity == 0 ||
+                  (quantityCondition == 0 && x.ChQuantity == selectCondition.ChQuantity) ||
+                  (quantityCondition == 1 && x.ChQuantity >= selectCondition.ChQuantity) ||
+                  (quantityCondition == 2 && x.ChQuantity <= selectCondition.ChQuantity))
+                ).ToList();
                 context.Dispose();
             }
             catch (Exception ex)

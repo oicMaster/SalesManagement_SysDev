@@ -72,14 +72,13 @@ namespace SalesManagement_SysDev
             }
         }
 
-
         public List<T_Warehousing> GetWarehousingData()
         {
             List<T_Warehousing> warehousing = new List<T_Warehousing>();
             try
             {
                 var context = new SalesManagement_DevContext();
-                warehousing = context.T_Warehousings.ToList();
+                warehousing = context.T_Warehousings.Where(x => x.WaShelfFlag == 0 && x.WaFlag == 0).ToList();
                 context.Dispose();
             }
             catch (Exception ex)
@@ -91,13 +90,23 @@ namespace SalesManagement_SysDev
 
 
 
-        public List<T_Warehousing> GetWarehousingData(T_Warehousing selectCondition)
+        public List<T_Warehousing> GetWarehousingData(T_Warehousing selectCondition,int dateCondition)
         {
             List<T_Warehousing> warehousing = new List<T_Warehousing>();
             try
             {
                 var context = new SalesManagement_DevContext();
-                warehousing = context.T_Warehousings.Where(x => x.WaID == selectCondition.WaID).ToList();
+                warehousing = context.T_Warehousings.Where(x =>
+                  (selectCondition.WaID == 0 || x.WaID == selectCondition.WaID) &&
+                  (selectCondition.HaID == 0 || x.HaID == selectCondition.HaID) &&
+                  (selectCondition.EmID == 0 || x.EmID == selectCondition.EmID) &&
+                  (selectCondition.WaDate == DateTime.Parse("0001/01/01") ||
+                  (dateCondition == 0 && x.WaDate == selectCondition.WaDate) ||
+                  (dateCondition == 1 && x.WaDate >= selectCondition.WaDate) ||
+                  (dateCondition == 2 && x.WaDate <= selectCondition.WaDate)) &&
+                  (selectCondition.WaShelfFlag == 3 || x.WaShelfFlag == selectCondition.WaShelfFlag) &&
+                  (selectCondition.WaFlag == 3 || x.WaFlag == selectCondition.WaFlag)
+                ).ToList();
                 context.Dispose();
             }
             catch (Exception ex)

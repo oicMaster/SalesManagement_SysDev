@@ -28,7 +28,7 @@ namespace SalesManagement_SysDev
             return flg;
         }
 
-        public bool AddHattyuData(T_HattyuDetail regHaD)
+        public bool AddHattyuDetailData(T_HattyuDetail regHaD)
         {
             try
             {
@@ -85,15 +85,21 @@ namespace SalesManagement_SysDev
             return hattyuDetail;
         }
 
-
-
-        public List<T_HattyuDetail> GetHattyuDetailData(T_HattyuDetail selectCondition)
+        public List<T_HattyuDetail> GetHattyuDetailData(T_HattyuDetail selectCondition,int quantityCondition)
         {
             List<T_HattyuDetail> hattyuDetail = new List<T_HattyuDetail>();
             try
             {
                 var context = new SalesManagement_DevContext();
-                hattyuDetail = context.T_HattyuDetails.Where(x => x.HaDetailID == selectCondition.HaDetailID).ToList();
+                hattyuDetail = context.T_HattyuDetails.Where(x =>
+                  (selectCondition.HaDetailID == 0 || x.HaDetailID == selectCondition.HaDetailID) &&
+                  (selectCondition.HaID == 0 || x.HaID == selectCondition.HaID) &&
+                  (selectCondition.PrID == 0 || x.PrID == selectCondition.PrID) &&
+                  (selectCondition.HaQuantity == 0 ||
+                  (quantityCondition == 0 && x.HaQuantity == selectCondition.HaQuantity) ||
+                  (quantityCondition == 1 && x.HaQuantity >= selectCondition.HaQuantity) ||
+                  (quantityCondition == 2 && x.HaQuantity <= selectCondition.HaQuantity))
+                ).ToList();
                 context.Dispose();
             }
             catch (Exception ex)

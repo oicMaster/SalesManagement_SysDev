@@ -81,14 +81,14 @@ namespace SalesManagement_SysDev
             }
 
         }
-        //データの取得
+
         public List<M_Product> GetProductData()
         {
-            List<M_Product> product= new List<M_Product>();
+            List<M_Product> product = new List<M_Product>();
             try
             {
                 var context = new SalesManagement_DevContext();
-                product = context.M_Products.Where(x=> x.PrFlag ==0).ToList();
+                product = context.M_Products.Where(x => x.PrFlag == 0).ToList();
                 context.Dispose();
             }
             catch (Exception ex)
@@ -99,13 +99,26 @@ namespace SalesManagement_SysDev
         }
 
         //オーバーロード
-        public List<M_Product> GetProductData(M_Product selectCondition)
+        public List<M_Product> GetProductData(M_Product selectCondition,int dateCondition)
         {
             List<M_Product> product = new List<M_Product>();
             try
             {
                 var context = new SalesManagement_DevContext();
-                product = context.M_Products.Where(x => x.PrID == selectCondition.PrID).ToList();
+                product = context.M_Products.Where(x =>
+                  (selectCondition.PrID == 0 || x.PrID == selectCondition.PrID) &&
+                  (selectCondition.MaID == 0 || x.MaID == selectCondition.MaID) &&
+                  (selectCondition.PrName == null || x.PrName.Contains(selectCondition.PrName)) &&
+                  (selectCondition.Price == 0 || x.Price == selectCondition.Price) &&
+                  (selectCondition.ScID == 0 || x.ScID == selectCondition.ScID) &&
+                  (selectCondition.PrModelNumber == null || x.PrModelNumber.Contains(selectCondition.PrModelNumber)) &&
+                  (selectCondition.PrColor == null || x.PrColor.Contains(selectCondition.PrColor)) &&
+                  (selectCondition.PrReleaseDate == DateTime.Parse("0001/01/01") ||
+                  (dateCondition == 0 && x.PrReleaseDate == selectCondition.PrReleaseDate) ||
+                  (dateCondition == 1 && x.PrReleaseDate >= selectCondition.PrReleaseDate) ||
+                  (dateCondition == 2 && x.PrReleaseDate <= selectCondition.PrReleaseDate))&&
+                  (selectCondition.PrFlag == 3 || x.PrFlag == selectCondition.PrFlag)
+                ).ToList();
                 context.Dispose();
             }
             catch(Exception ex)

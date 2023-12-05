@@ -21,6 +21,7 @@ namespace SalesManagement_SysDev
         EmployeeDataAccess employeeDataAccess = new EmployeeDataAccess();
         SalesOfficeDataAccess salesOfficeDataAccess = new SalesOfficeDataAccess();
         OrderDataAccess orderDataAccess = new OrderDataAccess();
+        CommonModule commonModule = new CommonModule();
 
         private static List<T_Shipment> Shipment;
         private static List<T_ShipmentDetail> ShipmentDetail;
@@ -475,7 +476,8 @@ namespace SalesManagement_SysDev
                 SoID = soID,               
                 OrID = orID,
             };
-            Shipment = shipmentDataAccess.GetShipmentData(selectCondition);
+            int dateCondition = commonModule.ComboBoxCondition(cmbDate.Text);
+            Shipment = shipmentDataAccess.GetShipmentData(selectCondition,dateCondition);
         }
         private void SetSelectData()
         {
@@ -544,11 +546,6 @@ namespace SalesManagement_SysDev
         }
 
         private void btnDetailSearch_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dtpDate_ValueChanged(object sender, EventArgs e)
         {
 
         }

@@ -66,13 +66,23 @@ namespace SalesManagement_SysDev
             return stock;
         }
 
-        public List<T_Stock> GetStockData(T_Stock SelectCondition)//検索
+
+        public List<T_Stock> GetStockData(T_Stock selectCondition,int quantityCondition)
         {
             List<T_Stock> stock = new List<T_Stock>();
             try
             {
                 var context = new SalesManagement_DevContext();
-                stock = context.T_Stocks.Where(x => x.StID == SelectCondition.StID).ToList();
+                stock = context.T_Stocks.Where(x =>
+                  (selectCondition.StID == 0 || x.StID == selectCondition.StID) &&
+                  (selectCondition.PrID == 0 || x.PrID == selectCondition.PrID) &&
+                  (selectCondition.StQuantity == 0 ||
+                  (quantityCondition == 0 && x.StQuantity == selectCondition.StQuantity) ||
+                  (quantityCondition == 1 && x.StQuantity >= selectCondition.StQuantity) ||
+                  (quantityCondition == 2 && x.StQuantity <= selectCondition.StQuantity))&&
+                  (selectCondition.StFlag == 3 || x.StFlag == selectCondition.StFlag)
+
+                ).ToList();
                 context.Dispose();
             }
             catch (Exception ex)

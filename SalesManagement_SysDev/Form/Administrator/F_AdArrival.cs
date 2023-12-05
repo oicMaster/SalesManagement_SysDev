@@ -40,27 +40,39 @@ namespace SalesManagement_SysDev
         {
             //lblLoginNameData.Text = "管理者："+FormMenu.lblLoginName;
             //lblLoginIDData.Text = FormMenu.lblLoginID;
+            dtpDate.Value = DateTime.Now;
             SetFormDataGridView();
             SetFormDetailDataGridView();
             fncButtonEnable(0);
             fncButtonEnable(4);
 
-            dtpDate.Value = DateTime.Now;
 
 
 
+
+            cmbHint.Items.Add("一覧表示");
             cmbHint.Items.Add("検索");
             cmbHint.Items.Add("非表示");
             cmbHint.Items.Add("確定");
             cmbHint.Items.Add("詳細検索");
             cmbHint.SelectedIndex = 0;
 
+
+            cmbDate.Items.Add("完全一致");
+            cmbDate.Items.Add("以降");
+            cmbDate.Items.Add("以前");
+            cmbDate.SelectedIndex = 0;
+
+            cmbQuantity.Items.Add("完全一致");
+            cmbQuantity.Items.Add("以上");
+            cmbQuantity.Items.Add("以下");
+            cmbQuantity.SelectedIndex = 0;
         }
 
         private void fncButtonEnable(int chk)
         {
             switch (chk)
-            { 
+            {
                 case 0:
                     btnConfirm.Enabled = false;
                     break;
@@ -81,16 +93,33 @@ namespace SalesManagement_SysDev
         {
             switch (chk)
             {
+                case 0:
+                    lblArID.ForeColor = Color.Black;
+                    lblSoID.ForeColor = Color.Black;
+                    lblEmID.ForeColor = Color.Black;
+                    lblClID.ForeColor = Color.Black;
+                    lblOrID.ForeColor = Color.Black;
+                    lblDate.ForeColor = Color.Black;
+                    lblHidden.ForeColor = Color.Black;
+                    lblArDetailID.ForeColor = Color.Black;
+                    lblArIDsub.ForeColor = Color.Black;
+                    lblPrID.ForeColor = Color.Black;
+                    lblQuantity.ForeColor = Color.Black;
+                    cbxConfirm.ForeColor = Color.Blue;
+                    cbxHidden.ForeColor = Color.Blue;
+                    break;
                 case 2:
                     lblArID.ForeColor = Color.Blue;
                     lblSoID.ForeColor = Color.Blue;
                     lblEmID.ForeColor = Color.Blue;
                     lblClID.ForeColor = Color.Blue;
                     lblOrID.ForeColor = Color.Blue;
+                    lblDate.ForeColor = Color.Blue;
                     lblHidden.ForeColor = Color.Black;
                     lblArDetailID.ForeColor = Color.Black;
                     lblArIDsub.ForeColor = Color.Black;
                     lblPrID.ForeColor = Color.Black;
+                    lblQuantity.ForeColor = Color.Black;
                     cbxConfirm.ForeColor = Color.Blue;
                     cbxHidden.ForeColor = Color.Blue;
                     break;
@@ -100,10 +129,12 @@ namespace SalesManagement_SysDev
                     lblEmID.ForeColor = Color.Black;
                     lblClID.ForeColor = Color.Black;
                     lblOrID.ForeColor = Color.Black;
-                    lblHidden.ForeColor= Color.Red;
+                    lblHidden.ForeColor = Color.Red;
+                    lblDate.ForeColor = Color.Black;
                     lblArDetailID.ForeColor = Color.Black;
                     lblArIDsub.ForeColor = Color.Black;
                     lblPrID.ForeColor = Color.Black;
+                    lblQuantity.ForeColor = Color.Black;
                     cbxConfirm.ForeColor = Color.Black;
                     cbxHidden.ForeColor = Color.Black;
                     break;
@@ -113,10 +144,12 @@ namespace SalesManagement_SysDev
                     lblEmID.ForeColor = Color.Black;
                     lblClID.ForeColor = Color.Black;
                     lblOrID.ForeColor = Color.Black;
+                    lblDate.ForeColor = Color.Black;
                     lblHidden.ForeColor = Color.Black;
                     lblArDetailID.ForeColor = Color.Black;
                     lblArIDsub.ForeColor = Color.Black;
                     lblPrID.ForeColor = Color.Black;
+                    lblQuantity.ForeColor = Color.Black;
                     cbxConfirm.ForeColor = Color.Black;
                     cbxHidden.ForeColor = Color.Black;
                     break;
@@ -126,10 +159,12 @@ namespace SalesManagement_SysDev
                     lblEmID.ForeColor = Color.Black;
                     lblClID.ForeColor = Color.Black;
                     lblOrID.ForeColor = Color.Black;
+                    lblDate.ForeColor = Color.Black;
                     lblHidden.ForeColor = Color.Black;
                     lblArDetailID.ForeColor = Color.Blue;
                     lblArIDsub.ForeColor = Color.Blue;
                     lblPrID.ForeColor = Color.Blue;
+                    lblQuantity.ForeColor = Color.Blue;
                     cbxConfirm.ForeColor = Color.Black;
                     cbxHidden.ForeColor = Color.Black;
                     break;
@@ -139,13 +174,13 @@ namespace SalesManagement_SysDev
 
         private void SetFormDataGridView()
         {
-            commonModule.SetFormDataGridView(txbPageSize, txbPageNo, dataGridViewDsp,10);
+            commonModule.SetFormDataGridView(txbPageSize, txbPageNo, dataGridViewDsp, 10);
             GetDataGridView();
         }
 
         private void GetDataGridView()
         {
-            Arrival = arrivalDataAccess.GetArrivalData(1,2);
+            Arrival = arrivalDataAccess.GetArrivalData();
             SetDataGridView();
         }
         private void SetDataGridView()
@@ -231,7 +266,7 @@ namespace SalesManagement_SysDev
 
         private void SetFormDetailDataGridView()
         {
-            commonModule.SetFormDataGridView(txbDetailPageSize, txbDetailPageNo, dataGridViewDetailDsp,10);
+            commonModule.SetFormDataGridView(txbDetailPageSize, txbDetailPageNo, dataGridViewDetailDsp, 10);
             GetDetailDataGridView();
         }
         private void GetDetailDataGridView()
@@ -309,7 +344,7 @@ namespace SalesManagement_SysDev
 
         private void txbPageSize_TextChanged(object sender, EventArgs e)
         {
-            commonModule.PageSizeTextChanged(sender,10);
+            commonModule.PageSizeTextChanged(sender, 10);
         }
 
         private void txbPageNo_TextChanged(object sender, EventArgs e)
@@ -483,7 +518,6 @@ namespace SalesManagement_SysDev
             txbDetailPageNo.Text = (pageNo + 1).ToString();
         }
 
-
         private void btnClear_Click(object sender, EventArgs e)
         {
             ClearInput();
@@ -501,25 +535,29 @@ namespace SalesManagement_SysDev
         }
         private void btnDisplay_Click(object sender, EventArgs e)
         {
-            if (cbxConfirm.Checked && cbxHidden.Checked)
-            {
-                Arrival = arrivalDataAccess.GetArrivalData(3, 3);
-            }
-            else if (!cbxConfirm.Checked && cbxHidden.Checked)
-            {
-                Arrival = arrivalDataAccess.GetArrivalData(1, 3);
-            }
-            else if (cbxConfirm.Checked && !cbxHidden.Checked)
-            {
-                Arrival = arrivalDataAccess.GetArrivalData(3, 2);
-            }
-            else if (!cbxConfirm.Checked && !cbxHidden.Checked)
-            {
-                Arrival = arrivalDataAccess.GetArrivalData(1, 2);
-            }
+            GenerateDataAdDisplay();
             SetDataGridView();
+            GetDetailDataGridView();
         }
-        private void btnClose_Click(object sender, EventArgs e)
+        private void GenerateDataAdDisplay()
+        {
+            int Flag = 0;
+            int StateFlag = 0;
+            if (cbxConfirm.Checked)
+                StateFlag = 3;
+            if (cbxHidden.Checked)
+                Flag = 3;
+
+            T_Arrival selectCondition = new T_Arrival()
+            {
+                ArFlag = Flag,
+                ArStateFlag = StateFlag
+            };
+
+            int dateCondition = commonModule.ComboBoxCondition(cmbDate.Text);
+             Arrival = arrivalDataAccess.GetArrivalData(selectCondition, dateCondition);
+        }
+            private void btnClose_Click(object sender, EventArgs e)
         {
             Dispose();
         }
@@ -538,7 +576,8 @@ namespace SalesManagement_SysDev
         {
             int Flag = 0;
             int StateFlag = 0;
-            //文字列型以外はif文を付ける　FlagとHiddenはいらない
+            DateTime date = DateTime.Parse("0001/01/01");
+
             if (!int.TryParse(txbArID.Text, out int arID))
                 arID = 0;
             if (!int.TryParse(txbSoID.Text, out int soID))
@@ -549,12 +588,14 @@ namespace SalesManagement_SysDev
                 clID = 0;
             if (!int.TryParse(txbOrID.Text, out int orID))
                 orID = 0;
-            if(!cbxConfirm.Checked)
-                StateFlag = 1;
-            if(!cbxHidden.Checked)
-                Flag = 2;
+            if (dtpDate.Checked)
+                date = dtpDate.Value;
+            if (cbxConfirm.Checked)
+                StateFlag = 3;
+            if (cbxHidden.Checked)
+                Flag = 3;
 
-                
+
             //検索に使用するデータ
             T_Arrival selectCondition = new T_Arrival()
             {//検索に使用するデータ　全て変数で行う
@@ -563,18 +604,20 @@ namespace SalesManagement_SysDev
                 EmID = emID,
                 ClID = clID,
                 OrID = orID,
+                ArDate = date,
                 ArFlag = Flag,
                 ArStateFlag = StateFlag
             };
             //arデータの抽出
-            Arrival = arrivalDataAccess.GetArrivalData(selectCondition);
+            int dateCondition = commonModule.ComboBoxCondition(cmbDate.Text);
+            Arrival = arrivalDataAccess.GetArrivalData(selectCondition, dateCondition);
 
         }
         private void SetSelectData()
         {
             txbPageNo.Text = "1";
             int pageSize = int.Parse(txbPageSize.Text.Trim());
-            dataGridViewDsp.DataSource = Arrival ;
+            dataGridViewDsp.DataSource = Arrival;
             lblPageNo.Text = "/" + ((int)Math.Ceiling(Arrival.Count / (double)pageSize)) + "ページ";
         }
 
@@ -606,7 +649,7 @@ namespace SalesManagement_SysDev
                 txbSoID.Focus();
                 return false;
             }
-            if(String.IsNullOrEmpty(txbEmID.Text))
+            if (String.IsNullOrEmpty(txbEmID.Text))
             {
                 if (!employeeDataAccess.CheckEmIDExistence(int.Parse(txbEmID.Text)))
                 {
@@ -677,13 +720,17 @@ namespace SalesManagement_SysDev
                 arID = 0;
             if (!int.TryParse(txbPrID.Text, out int prID))
                 prID = 0;
+            if(!int.TryParse(txbPrID.Text,out int arQuantity))
+                arQuantity = 0;
             T_ArrivalDetail selectCondition = new T_ArrivalDetail()
             {
                 ArDetailID = arDetailID,
                 ArID = arID,
                 PrID = prID,
+                ArQuantity = arQuantity,
             };
-            ArrivalDetail = arrivalDetailDataAccess.GetArrivalDetailData(selectCondition);
+            int quantityCondition = commonModule.ComboBoxCondition(cmbQuantity.Text);
+            ArrivalDetail = arrivalDetailDataAccess.GetArrivalDetailData(selectCondition, quantityCondition);
         }
         private void SetSelectDetailData()
         {
@@ -698,7 +745,5 @@ namespace SalesManagement_SysDev
             int chk = commonModule.ComboBoxHint(sender);
             fncTextColor(chk);
         }
-
- 
     }
 }

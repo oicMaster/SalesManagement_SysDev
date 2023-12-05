@@ -69,7 +69,6 @@ namespace SalesManagement_SysDev
                 return false;
             }
         }
-
         //データの取得
         public List<T_Hattyu> GetHattyuData()
         {
@@ -77,7 +76,7 @@ namespace SalesManagement_SysDev
             try
             {
                 var context = new SalesManagement_DevContext();
-                hattyu = context.T_Hattyus.ToList();
+                hattyu = context.T_Hattyus.Where(x => x.WaWarehouseFlag == 0 && x.HaFlag == 0).ToList();
                 context.Dispose();
             }
             catch (Exception ex)
@@ -88,13 +87,23 @@ namespace SalesManagement_SysDev
         }
 
         //条件一致したデータの取得　オーバーロード
-        public List<T_Hattyu> GetHattyuData(T_Hattyu selectCondition)
+        public List<T_Hattyu> GetHattyuData(T_Hattyu selectCondition,int dateCondition)
         {
             List<T_Hattyu> hattyu = new List<T_Hattyu>();
             try
             {
                 var context = new SalesManagement_DevContext();
-                hattyu = context.T_Hattyus.Where(x => x.HaID == selectCondition.HaID).ToList();
+                hattyu = context.T_Hattyus.Where(x =>
+                  (selectCondition.HaID == 0 || x.HaID == selectCondition.HaID) &&
+                  (selectCondition.MaID == 0 || x.MaID == selectCondition.MaID) &&
+                  (selectCondition.EmID == 0 || x.EmID == selectCondition.EmID) &&
+                  (selectCondition.HaDate == DateTime.Parse("0001/01/01") ||
+                  (dateCondition == 0 && x.HaDate == selectCondition.HaDate) ||
+                  (dateCondition == 1 && x.HaDate >= selectCondition.HaDate) ||
+                  (dateCondition == 2 && x.HaDate <= selectCondition.HaDate)) &&
+                  (selectCondition.WaWarehouseFlag == 3 || x.WaWarehouseFlag == selectCondition.WaWarehouseFlag) &&
+                  (selectCondition.HaFlag == 3 || x.HaFlag == selectCondition.HaFlag)
+                  ).ToList();
                 context.Dispose();
             }
             catch (Exception ex)

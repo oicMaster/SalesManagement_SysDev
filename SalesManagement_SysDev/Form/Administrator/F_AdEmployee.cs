@@ -300,7 +300,7 @@ namespace SalesManagement_SysDev
 
             };
             //社員データの抽出
-            Employees = employeeDateAccess.GetEmployeeData(selectCondition);
+            //Employees = employeeDateAccess.GetEmployeeData(selectCondition);
         }
 
         private void SetSelectData()
