@@ -22,6 +22,7 @@ namespace SalesManagement_SysDev
         HattyuDataAccess hattyuDataAccess = new HattyuDataAccess();
         EmployeeDataAccess employeeDataAccess = new EmployeeDataAccess();
         ProductDataAccess productDataAccess = new ProductDataAccess();
+        CommonModule commonModule = new CommonModule();
 
         private static List<T_Warehousing> Warehousing;
         private static List<T_WarehousingDetail> WarehousingDetail;
@@ -31,7 +32,7 @@ namespace SalesManagement_SysDev
             InitializeComponent();
         }
 
-        private void F_WareHousing_Load(object sender, EventArgs e)
+        private void F_Warehousing_Load(object sender, EventArgs e)
         {
             //labelLoginName.Text = FormMenu.LoginName;
             SetFormDataGridView();
@@ -117,7 +118,7 @@ namespace SalesManagement_SysDev
             dataGridViewDetailDsp.Columns[9].Visible = false;
             
 
-            lblPage.Text = "/" + ((int)Math.Ceiling(Warehousing.Count / (double)pageSize)) + "ページ";
+            lblPageNo.Text = "/" + ((int)Math.Ceiling(Warehousing.Count / (double)pageSize)) + "ページ";
 
             dataGridViewDsp.Refresh();
         }
@@ -180,7 +181,7 @@ namespace SalesManagement_SysDev
             dataGridViewDetailDsp.Columns[4].Visible = false;
             dataGridViewDetailDsp.Columns[5].Visible = false;
 
-            lblDetailPage.Text = "/" + ((int)Math.Ceiling(WarehousingDetail.Count / (double)pageSize)) + "ページ";
+            lblDetailPageNo.Text = "/" + ((int)Math.Ceiling(WarehousingDetail.Count / (double)pageSize)) + "ページ";
 
             dataGridViewDsp.Refresh();
         }
@@ -439,7 +440,7 @@ namespace SalesManagement_SysDev
             int pageSize = int.Parse(txbPageSize.Text.Trim());
             dataGridViewDsp.DataSource = Warehousing;
 
-            lblPage.Text = "/" + ((int)Math.Ceiling(Warehousing.Count / (double)pageSize)) + "ページ";
+            lblPageNo.Text = "/" + ((int)Math.Ceiling(Warehousing.Count / (double)pageSize)) + "ページ";
         }
         private void GenereteDataAdSelect()
         {
@@ -457,7 +458,8 @@ namespace SalesManagement_SysDev
                 EmID = emID,
             };
             //入庫データの抽出
-            Warehousing = warehousingDataAccess.GetWarehousingData(selectCondition);
+            int dateCondition = commonModule.ComboBoxCondition(cmbDate.Text);
+            Warehousing = warehousingDataAccess.GetWarehousingData(selectCondition,dateCondition);
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -522,9 +524,6 @@ namespace SalesManagement_SysDev
 
         }
 
-        private void dtpDate_ValueChanged(object sender, EventArgs e)
-        {
 
-        }
     }
 }

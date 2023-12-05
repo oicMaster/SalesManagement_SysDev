@@ -15,11 +15,9 @@ namespace SalesManagement_SysDev
     public partial class F_AdStock : Form
     {
         MessageDsp messageDsp = new MessageDsp();
-        //メッセージの表示用のクラスのインスタンス化
         StockDataAccess stockDataAccess = new StockDataAccess();
-        //データベーステーブル用のインスタンス化
-        CommonModule dataInputFormCheck = new CommonModule();
-        //dataグリッドビュー用のテーブルデータインスタンス化
+        CommonModule commonModule = new CommonModule();
+
         private static List<T_Stock> Stock;
         
         
@@ -151,7 +149,7 @@ namespace SalesManagement_SysDev
                 PrID = prID,
                 StQuantity = stQuantity,
             };
-            Stock = stockDataAccess.GetStockData(selectCondition);
+            //Stock = stockDataAccess.GetStockData(selectCondition);
         }
         private void SetSelectData()
         {

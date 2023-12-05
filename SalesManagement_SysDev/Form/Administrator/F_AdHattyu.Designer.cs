@@ -82,6 +82,7 @@
             this.lblTitle = new System.Windows.Forms.Label();
             this.cmbHint = new System.Windows.Forms.ComboBox();
             this.pnlDataGridView = new System.Windows.Forms.Panel();
+            this.cbxDisplay = new System.Windows.Forms.CheckBox();
             this.cbxConfirm = new System.Windows.Forms.CheckBox();
             this.cbxHidden = new System.Windows.Forms.CheckBox();
             this.pnlDetailDataGridView = new System.Windows.Forms.Panel();
@@ -91,12 +92,18 @@
             this.dtpDate = new System.Windows.Forms.DateTimePicker();
             this.btnRegist = new System.Windows.Forms.Button();
             this.btnDetailRegist = new System.Windows.Forms.Button();
-            this.cbxDisplay = new System.Windows.Forms.CheckBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.cmbQuantity = new System.Windows.Forms.ComboBox();
+            this.cmbDate = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDsp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDetailDsp)).BeginInit();
             this.pnlTitle.SuspendLayout();
             this.pnlDataGridView.SuspendLayout();
             this.pnlDetailDataGridView.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnConfirm
@@ -744,6 +751,19 @@
             this.pnlDataGridView.Size = new System.Drawing.Size(1900, 370);
             this.pnlDataGridView.TabIndex = 123;
             // 
+            // cbxDisplay
+            // 
+            this.cbxDisplay.AutoSize = true;
+            this.cbxDisplay.Checked = true;
+            this.cbxDisplay.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbxDisplay.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.cbxDisplay.Location = new System.Drawing.Point(700, 340);
+            this.cbxDisplay.Name = "cbxDisplay";
+            this.cbxDisplay.Size = new System.Drawing.Size(77, 20);
+            this.cbxDisplay.TabIndex = 94;
+            this.cbxDisplay.Text = "未処理";
+            this.cbxDisplay.UseVisualStyleBackColor = true;
+            // 
             // cbxConfirm
             // 
             this.cbxConfirm.AutoSize = true;
@@ -853,18 +873,71 @@
             this.btnDetailRegist.Text = "発注詳細登録";
             this.btnDetailRegist.UseVisualStyleBackColor = false;
             // 
-            // cbxDisplay
+            // panel1
             // 
-            this.cbxDisplay.AutoSize = true;
-            this.cbxDisplay.Checked = true;
-            this.cbxDisplay.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbxDisplay.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.cbxDisplay.Location = new System.Drawing.Point(700, 340);
-            this.cbxDisplay.Name = "cbxDisplay";
-            this.cbxDisplay.Size = new System.Drawing.Size(77, 20);
-            this.cbxDisplay.TabIndex = 94;
-            this.cbxDisplay.Text = "未処理";
-            this.cbxDisplay.UseVisualStyleBackColor = true;
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.cmbQuantity);
+            this.panel1.Controls.Add(this.cmbDate);
+            this.panel1.Location = new System.Drawing.Point(1520, 670);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(380, 370);
+            this.panel1.TabIndex = 162;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("MS UI Gothic", 15.75F, System.Drawing.FontStyle.Bold);
+            this.label2.Location = new System.Drawing.Point(80, 180);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(54, 21);
+            this.label2.TabIndex = 162;
+            this.label2.Text = "数量";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("MS UI Gothic", 15.75F, System.Drawing.FontStyle.Bold);
+            this.label1.Location = new System.Drawing.Point(80, 100);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(76, 21);
+            this.label1.TabIndex = 161;
+            this.label1.Text = "年月日";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("MS UI Gothic", 15.75F, System.Drawing.FontStyle.Bold);
+            this.label4.Location = new System.Drawing.Point(140, 33);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(98, 21);
+            this.label4.TabIndex = 87;
+            this.label4.Text = "検索条件";
+            // 
+            // cmbQuantity
+            // 
+            this.cmbQuantity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbQuantity.Font = new System.Drawing.Font("MS UI Gothic", 13.75F, System.Drawing.FontStyle.Bold);
+            this.cmbQuantity.FormattingEnabled = true;
+            this.cmbQuantity.Location = new System.Drawing.Point(200, 178);
+            this.cmbQuantity.Name = "cmbQuantity";
+            this.cmbQuantity.Size = new System.Drawing.Size(121, 26);
+            this.cmbQuantity.TabIndex = 160;
+            // 
+            // cmbDate
+            // 
+            this.cmbDate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbDate.Font = new System.Drawing.Font("MS UI Gothic", 13.75F, System.Drawing.FontStyle.Bold);
+            this.cmbDate.FormattingEnabled = true;
+            this.cmbDate.Location = new System.Drawing.Point(200, 98);
+            this.cmbDate.Name = "cmbDate";
+            this.cmbDate.Size = new System.Drawing.Size(121, 26);
+            this.cmbDate.TabIndex = 159;
             // 
             // F_AdHattyu
             // 
@@ -872,6 +945,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(1904, 1041);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnDetailRegist);
             this.Controls.Add(this.btnRegist);
             this.Controls.Add(this.dtpDate);
@@ -919,6 +993,8 @@
             this.pnlDataGridView.PerformLayout();
             this.pnlDetailDataGridView.ResumeLayout(false);
             this.pnlDetailDataGridView.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -990,5 +1066,11 @@
         private System.Windows.Forms.Button btnRegist;
         private System.Windows.Forms.Button btnDetailRegist;
         private System.Windows.Forms.CheckBox cbxDisplay;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox cmbQuantity;
+        private System.Windows.Forms.ComboBox cmbDate;
     }
 }

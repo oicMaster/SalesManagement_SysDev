@@ -72,6 +72,7 @@ namespace SalesManagement_SysDev
             }
         }
 
+
         //データの取得
         public List<T_Sale> GetSaleData()
         {
@@ -79,7 +80,7 @@ namespace SalesManagement_SysDev
             try
             {
                 var context = new SalesManagement_DevContext();
-                sale = context.T_Sales.ToList();
+                sale = context.T_Sales.Where(x => x.SaFlag == 0).ToList();
                 context.Dispose();
             }
             catch (Exception ex)
@@ -89,14 +90,26 @@ namespace SalesManagement_SysDev
             return sale;
         }
 
+
         //条件一致したデータの取得　オーバーロード
-        public List<T_Sale> GetSaleData(T_Sale selectCondition)
+        public List<T_Sale> GetSaleData(T_Sale selectCondition,int dateCondition)
         {
             List<T_Sale> sale = new List<T_Sale>();
             try
             {
                 var context = new SalesManagement_DevContext();
-                sale = context.T_Sales.Where(x => x.SaID == selectCondition.SaID).ToList();
+                sale = context.T_Sales.Where(x =>
+                  (selectCondition.SaID == 0 || x.SaID == selectCondition.SaID) &&
+                  (selectCondition.ChID == 0 || x.ChID == selectCondition.ChID) &&
+                  (selectCondition.SoID == 0 || x.SoID == selectCondition.SoID) &&
+                  (selectCondition.EmID == 0 || x.EmID == selectCondition.EmID) &&
+                  (selectCondition.ClID == 0 || x.ClID == selectCondition.ClID) &&
+                  (selectCondition.SaDate == DateTime.Parse("0001/01/01") ||
+                  (dateCondition == 0 && x.SaDate == selectCondition.SaDate) ||
+                  (dateCondition == 1 && x.SaDate >= selectCondition.SaDate) ||
+                  (dateCondition == 2 && x.SaDate <= selectCondition.SaDate)) &&
+                  (selectCondition.SaFlag == 3 || x.SaFlag == selectCondition.SaFlag)
+                ).ToList();
                 context.Dispose();
             }
             catch (Exception ex)

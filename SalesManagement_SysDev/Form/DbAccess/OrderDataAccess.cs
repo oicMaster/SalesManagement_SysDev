@@ -80,7 +80,7 @@ namespace SalesManagement_SysDev
             try
             {
                 var context = new SalesManagement_DevContext();
-                order = context.T_Orders.ToList();
+                order = context.T_Orders.Where(x => x.OrStateFlag == 0 && x.OrFlag == 0).ToList();
                 context.Dispose();
             }
             catch (Exception ex)
@@ -91,13 +91,25 @@ namespace SalesManagement_SysDev
         }
 
         //条件一致したデータの取得　オーバーロード
-        public List<T_Order> GetOrderData(T_Order selectCondition)
+        public List<T_Order> GetOrderData(T_Order selectCondition,int dateCondition)
         {
             List<T_Order> order = new List<T_Order>();
             try
             {
                 var context = new SalesManagement_DevContext();
-                order = context.T_Orders.Where(x => x.OrID == selectCondition.OrID).ToList();
+                order = context.T_Orders.Where(x =>
+                  (selectCondition.OrID == 0 || x.OrID == selectCondition.OrID) &&
+                  (selectCondition.SoID == 0 || x.SoID == selectCondition.SoID) &&
+                  (selectCondition.EmID == 0 || x.EmID == selectCondition.EmID) &&
+                  (selectCondition.ClID == 0 || x.ClID == selectCondition.ClID) &&
+                  (selectCondition.ClCharge == null|| x.ClCharge == selectCondition.ClCharge)&&
+                  (selectCondition.OrDate == DateTime.Parse("0001/01/01") ||
+                  (dateCondition == 0 && x.OrDate == selectCondition.OrDate) ||
+                  (dateCondition == 1 && x.OrDate >= selectCondition.OrDate) ||
+                  (dateCondition == 2 && x.OrDate <= selectCondition.OrDate)) &&
+                  (selectCondition.OrStateFlag == 3 || x.OrStateFlag == selectCondition.OrStateFlag) &&
+                  (selectCondition.OrFlag == 3 || x.OrFlag == selectCondition.OrFlag)
+                ).ToList();
                 context.Dispose();
             }
             catch (Exception ex)

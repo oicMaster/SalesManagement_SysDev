@@ -17,6 +17,7 @@ namespace SalesManagement_SysDev
         MessageDsp messageDsp = new MessageDsp();
         SyukkoDataAccess syukkoDataAccess = new SyukkoDataAccess();
         SyukkoDetailDataAccess syukkoDetailDataAccess = new SyukkoDetailDataAccess();
+        CommonModule commonModule = new CommonModule();
 
         private static List<T_Syukko> Syukko;
         private static List<T_SyukkoDetail> SyukkoDetail;
@@ -471,7 +472,8 @@ namespace SalesManagement_SysDev
                 OrID = orID
             };
             //出庫データの抽出
-            Syukko = syukkoDataAccess.GetSyukkoData(selectCondition);
+            int dateCondition = commonModule.ComboBoxCondition(cmbDate.Text);
+            Syukko = syukkoDataAccess.GetSyukkoData(selectCondition,dateCondition);
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -579,7 +581,8 @@ namespace SalesManagement_SysDev
                 PrID = prID,
             };
             //syデータの抽出
-            SyukkoDetail = syukkoDetailDataAccess.GetSyukkoDetailData(selectCondition);
+            int quantityCondition = commonModule.ComboBoxCondition(cmbQuantity.Text);
+            SyukkoDetail = syukkoDetailDataAccess.GetSyukkoDetailData(selectCondition,quantityCondition);
         }
         private void SetSelectDetailData()
         {

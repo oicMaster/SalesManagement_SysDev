@@ -20,11 +20,10 @@ namespace SalesManagement_SysDev
         MakerDataAccess makerDataAccess = new MakerDataAccess();
         EmployeeDataAccess employeeDataAccess = new EmployeeDataAccess();
         ProductDataAccess productDataAccess = new ProductDataAccess();
+        CommonModule commonModule = new CommonModule();
 
         private static List<T_Hattyu> Hattyu;
         private static List<T_HattyuDetail> HattyuDetail;
-
-        //登録のボタンEnable条件がまだ
 
         public F_AdHattyu()
         {
@@ -39,7 +38,25 @@ namespace SalesManagement_SysDev
             txbFlag.ReadOnly = true;
             txbStateFlag.ReadOnly = true;
 
-            //※
+            cmbHint.Items.Add("一覧表示");
+            cmbHint.Items.Add("登録");
+            cmbHint.Items.Add("検索");
+            cmbHint.Items.Add("非表示");
+            cmbHint.Items.Add("確定");
+            cmbHint.Items.Add("詳細登録");
+            cmbHint.Items.Add("詳細検索");
+            cmbHint.SelectedIndex = 0;
+
+
+            cmbDate.Items.Add("完全一致");
+            cmbDate.Items.Add("以降");
+            cmbDate.Items.Add("以前");
+            cmbDate.SelectedIndex = 0;
+
+            cmbQuantity.Items.Add("完全一致");
+            cmbQuantity.Items.Add("以上");
+            cmbQuantity.Items.Add("以下");
+            cmbQuantity.SelectedIndex = 0;
 
         }
 
@@ -48,20 +65,106 @@ namespace SalesManagement_SysDev
             switch (chk)
             { //IDが空であれば0、でなければ1として、ボタンの使用を制限する
                 case 0:
-                    btnConfirm.Enabled = false;
-                    btnUpdate.Enabled = false;
-                    btnRegist.Enabled = false;
+
+                    break;
+
+            }
+        }
+
+        private void fncTextColor(int chk)
+        {
+            switch (chk)
+            {
+                case 0:
+                    lblHaID.ForeColor = Color.Black;
+                    lblMaID.ForeColor = Color.Black;
+                    lblEmID.ForeColor = Color.Black;
+                    lblDate.ForeColor = Color.Black;
+                    lblHidden.ForeColor = Color.Black;
+                    lblHaDetailID.ForeColor = Color.Black;
+                    lblHaIDsub.ForeColor = Color.Black;
+                    lblPrID.ForeColor = Color.Black;
+                    lblQuantity.ForeColor = Color.Black;
+                    cbxConfirm.ForeColor = Color.Blue;
+                    cbxHidden.ForeColor = Color.Blue;
                     break;
                 case 1:
-                    btnConfirm.Enabled = true;
+                    lblHaID.ForeColor = Color.Black;
+                    lblMaID.ForeColor = Color.Red;
+                    lblEmID.ForeColor = Color.Red;
+                    lblDate.ForeColor = Color.Black;
+                    lblHidden.ForeColor = Color.Black;
+                    lblHaDetailID.ForeColor = Color.Black;
+                    lblHaIDsub.ForeColor = Color.Red;
+                    lblPrID.ForeColor = Color.Red;
+                    lblQuantity.ForeColor = Color.Red;
+                    cbxConfirm.ForeColor = Color.Black;
+                    cbxHidden.ForeColor = Color.Black;
                     break;
-                //非表示理由とIDが入力されているか
                 case 2:
-                    btnUpdate.Enabled = true;
+                    lblHaID.ForeColor = Color.Blue;
+                    lblMaID.ForeColor = Color.Blue;
+                    lblEmID.ForeColor = Color.Blue;
+                    lblDate.ForeColor = Color.Blue;
+                    lblHidden.ForeColor = Color.Black;
+                    lblHaDetailID.ForeColor = Color.Black;
+                    lblHaIDsub.ForeColor = Color.Black;
+                    lblPrID.ForeColor = Color.Black;
+                    lblQuantity.ForeColor = Color.Black;
+                    cbxConfirm.ForeColor = Color.Blue;
+                    cbxHidden.ForeColor = Color.Blue;
                     break;
-                    //全部入力されているか
-                case 3:
-                    btnRegist.Enabled = true;
+                case 4:
+                    lblHaID.ForeColor = Color.Red;
+                    lblMaID.ForeColor = Color.Black;
+                    lblEmID.ForeColor = Color.Black;
+                    lblHidden.ForeColor = Color.Red;
+                    lblDate.ForeColor = Color.Black;
+                    lblHaDetailID.ForeColor = Color.Black;
+                    lblHaIDsub.ForeColor = Color.Black;
+                    lblPrID.ForeColor = Color.Black;
+                    lblQuantity.ForeColor = Color.Black;
+                    cbxConfirm.ForeColor = Color.Black;
+                    cbxHidden.ForeColor = Color.Black;
+                    break;
+                case 5:
+                    lblHaID.ForeColor = Color.Red;
+                    lblMaID.ForeColor = Color.Black;
+                    lblEmID.ForeColor = Color.Black;
+                    lblDate.ForeColor = Color.Black;
+                    lblHidden.ForeColor = Color.Black;
+                    lblHaDetailID.ForeColor = Color.Black;
+                    lblHaIDsub.ForeColor = Color.Black;
+                    lblPrID.ForeColor = Color.Black;
+                    lblQuantity.ForeColor = Color.Black;
+                    cbxConfirm.ForeColor = Color.Black;
+                    cbxHidden.ForeColor = Color.Black;
+                    break;
+                case 6:
+                    lblHaID.ForeColor = Color.Black;
+                    lblMaID.ForeColor = Color.Black;
+                    lblEmID.ForeColor = Color.Black;
+                    lblDate.ForeColor = Color.Black;
+                    lblHidden.ForeColor = Color.Black;
+                    lblHaDetailID.ForeColor = Color.Black;
+                    lblHaIDsub.ForeColor = Color.Red;
+                    lblPrID.ForeColor = Color.Red;
+                    lblQuantity.ForeColor = Color.Red;
+                    cbxConfirm.ForeColor = Color.Black;
+                    cbxHidden.ForeColor = Color.Black;
+                    break;
+                case 7:
+                    lblHaID.ForeColor = Color.Black;
+                    lblMaID.ForeColor = Color.Black;
+                    lblEmID.ForeColor = Color.Black;
+                    lblDate.ForeColor = Color.Black;
+                    lblHidden.ForeColor = Color.Black;
+                    lblHaDetailID.ForeColor = Color.Blue;
+                    lblHaIDsub.ForeColor = Color.Blue;
+                    lblPrID.ForeColor = Color.Blue;
+                    lblQuantity.ForeColor = Color.Blue;
+                    cbxConfirm.ForeColor = Color.Black;
+                    cbxHidden.ForeColor = Color.Black;
                     break;
 
             }
@@ -461,7 +564,8 @@ namespace SalesManagement_SysDev
                
             };
             //arデータの抽出
-            Hattyu = hattyuDataAccess.GetHattyuData(selectCondition);
+            int dateCondition = commonModule.ComboBoxCondition(cmbDate.Text);
+            Hattyu = hattyuDataAccess.GetHattyuData(selectCondition,dateCondition);
         }
 
         private void SetSelectData()
@@ -615,7 +719,8 @@ namespace SalesManagement_SysDev
                 PrID = prID,
             };
             //haデータの抽出
-            HattyuDetail = hattyuDetailDataAccess.GetHattyuDetailData(selectCondition);
+            int quantityCondition = commonModule.ComboBoxCondition(cmbQuantity.Text);
+            HattyuDetail = hattyuDetailDataAccess.GetHattyuDetailData(selectCondition,quantityCondition);
         }
         private void SetSelectDetailData()
         {//ページ数の表示

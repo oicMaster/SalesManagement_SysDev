@@ -80,7 +80,7 @@ namespace SalesManagement_SysDev
             try
             {
                 var context = new SalesManagement_DevContext();
-                syukko = context.T_Syukkos.ToList();
+                syukko = context.T_Syukkos.Where(x => x.SyStateFlag == 0 && x.SyFlag == 0).ToList();
                 context.Dispose();
             }
             catch (Exception ex)
@@ -91,13 +91,25 @@ namespace SalesManagement_SysDev
         }
 
         //条件一致したデータの取得　オーバーロード
-        public List<T_Syukko> GetSyukkoData(T_Syukko selectCondition)
+        public List<T_Syukko> GetSyukkoData(T_Syukko selectCondition,int dateCondition)
         {
             List<T_Syukko> syukko = new List<T_Syukko>();
             try
             {
                 var context = new SalesManagement_DevContext();
-                syukko = context.T_Syukkos.Where(x => x.SyID == selectCondition.SyID).ToList();
+                syukko = context.T_Syukkos.Where(x =>
+                  (selectCondition.SyID == 0 || x.SyID == selectCondition.SyID) &&
+                  (selectCondition.SoID == 0 || x.SoID == selectCondition.SoID) &&
+                  (selectCondition.EmID == 0 || x.EmID == selectCondition.EmID) &&
+                  (selectCondition.ClID == 0 || x.ClID == selectCondition.ClID) &&
+                  (selectCondition.OrID == 0 || x.OrID == selectCondition.OrID) &&
+                  (selectCondition.SyDate == DateTime.Parse("0001/01/01") ||
+                  (dateCondition == 0 && x.SyDate == selectCondition.SyDate) ||
+                  (dateCondition == 1 && x.SyDate >= selectCondition.SyDate) ||
+                  (dateCondition == 2 && x.SyDate <= selectCondition.SyDate)) &&
+                  (selectCondition.SyStateFlag == 3 || x.SyStateFlag == selectCondition.SyStateFlag) &&
+                  (selectCondition.SyFlag == 3 || x.SyFlag == selectCondition.SyFlag)
+                ).ToList();
                 context.Dispose();
             }
             catch (Exception ex)

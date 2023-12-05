@@ -204,3 +204,4 @@ C:\Users\retro\Desktop\SM1127\SalesManagement_SysDev\SalesManagement_SysDev\obj\
 C:\Users\retro\Desktop\SM1127\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.exe
 C:\Users\retro\Desktop\SM1127\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.pdb
 C:\Users\retro\Desktop\SM1127\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.F_OperationManegement.resources
+C:\Users\retro\Desktop\SM1127\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.F_AdMenu.resources

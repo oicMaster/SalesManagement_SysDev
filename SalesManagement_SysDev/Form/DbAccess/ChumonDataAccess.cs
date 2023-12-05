@@ -73,14 +73,13 @@ namespace SalesManagement_SysDev
             }
         }
 
-        //データの取得
-        public List<T_Chumon> GetChumonData(int confirm, int hidden)
+        public List<T_Chumon> GetChumonData()
         {
             List<T_Chumon> chumon = new List<T_Chumon>();
             try
             {
                 var context = new SalesManagement_DevContext();
-                chumon = context.T_Chumons.Where(x => x.ChStateFlag != confirm && x.ChFlag != hidden).ToList();
+                chumon = context.T_Chumons.Where(x => x.ChStateFlag == 0 && x.ChFlag == 0).ToList();
                 context.Dispose();
             }
             catch (Exception ex)
@@ -91,13 +90,25 @@ namespace SalesManagement_SysDev
         }
 
         //条件一致したデータの取得　オーバーロード
-        public List<T_Chumon> GetChumonData(T_Chumon selectCondition)
+        public List<T_Chumon> GetChumonData(T_Chumon selectCondition,int dateCondition)
         {
             List<T_Chumon> chumon = new List<T_Chumon>();
             try
             {
                 var context = new SalesManagement_DevContext();
-                chumon = context.T_Chumons.Where(x => x.ChID == selectCondition.ChID).ToList();
+                chumon = context.T_Chumons.Where(x =>
+                  (selectCondition.ChID == 0 || x.ChID == selectCondition.ChID) &&
+                  (selectCondition.SoID == 0 || x.SoID == selectCondition.SoID) &&
+                  (selectCondition.EmID == 0 || x.EmID == selectCondition.EmID) &&
+                  (selectCondition.ClID == 0 || x.ClID == selectCondition.ClID) &&
+                  (selectCondition.OrID == 0 || x.OrID == selectCondition.OrID) &&
+                  (selectCondition.ChDate == DateTime.Parse("0001/01/01") ||
+                  (dateCondition == 0 && x.ChDate == selectCondition.ChDate) ||
+                  (dateCondition == 1 && x.ChDate >= selectCondition.ChDate) ||
+                  (dateCondition == 2 && x.ChDate <= selectCondition.ChDate)) &&
+                  (selectCondition.ChStateFlag == 3 || x.ChStateFlag == selectCondition.ChStateFlag) &&
+                  (selectCondition.ChFlag == 3 || x.ChFlag == selectCondition.ChFlag)
+                  ).ToList();
                 context.Dispose();
             }
             catch (Exception ex)

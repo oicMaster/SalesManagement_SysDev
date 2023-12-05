@@ -46,28 +46,6 @@ namespace SalesManagement_SysDev
             }
         }
 
-        public bool UpdateWarehousingDetailData(T_WarehousingDetail updWaD)
-        {
-            try
-            {
-                var context = new SalesManagement_DevContext();
-                var hattyuDetail = context.T_WarehousingDetails.Single(x => x.WaDetailID == updWaD.WaDetailID);
-
-                hattyuDetail.WaDetailID = updWaD.WaDetailID;
-                hattyuDetail.WaID = updWaD.WaID;
-                hattyuDetail.PrID = updWaD.PrID;
-                hattyuDetail.WaQuantity = updWaD.WaQuantity;
-                context.SaveChanges();
-                context.Dispose();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-        }
-
 
         public List<T_WarehousingDetail> GetWarehousingDetailData()
         {
@@ -86,14 +64,21 @@ namespace SalesManagement_SysDev
         }
 
 
-
-        public List<T_WarehousingDetail> GetWarehousingDetailData(T_WarehousingDetail selectCondition)
+        public List<T_WarehousingDetail> GetWarehousingDetailData(T_WarehousingDetail selectCondition,int quantityCondition)
         {
             List<T_WarehousingDetail> warehousingDetail = new List<T_WarehousingDetail>();
             try
             {
                 var context = new SalesManagement_DevContext();
-                warehousingDetail = context.T_WarehousingDetails.Where(x => x.WaDetailID == selectCondition.WaDetailID).ToList();
+                warehousingDetail = context.T_WarehousingDetails.Where(x =>
+                  (selectCondition.WaDetailID == 0 || x.WaDetailID == selectCondition.WaDetailID) &&
+                  (selectCondition.WaID == 0 || x.WaID == selectCondition.WaID) &&
+                  (selectCondition.PrID == 0 || x.PrID == selectCondition.PrID) &&
+                  (selectCondition.WaQuantity == 0 ||
+                  (quantityCondition == 0 && x.WaQuantity == selectCondition.WaQuantity) ||
+                  (quantityCondition == 1 && x.WaQuantity >= selectCondition.WaQuantity) ||
+                  (quantityCondition == 2 && x.WaQuantity <= selectCondition.WaQuantity))
+                ).ToList();
                 context.Dispose();
             }
             catch (Exception ex)

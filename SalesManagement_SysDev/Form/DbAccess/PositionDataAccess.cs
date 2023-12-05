@@ -27,10 +27,5 @@ namespace SalesManagement_SysDev
             }
             return flg;
         }
-
-        //public bool AddPositionData(M_Position regPo)
-        //public bool UpdatePositionData(M_Position updPo)
-        //public List<M_Position> GetPositionData()
-        //public List<M_Position> GetPositionData(M_Position selectCondition)
     }
 }

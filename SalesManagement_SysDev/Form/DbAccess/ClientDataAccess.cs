@@ -79,11 +79,11 @@ namespace SalesManagement_SysDev
         //データの取得
         public List<M_Client> GetClientData()
         {
-            List<M_Client> client = new List<M_Client> ();
+            List<M_Client> client = new List<M_Client>();
             try
             {
                 var context = new SalesManagement_DevContext();
-                client = context.M_Clients.ToList();
+                client = context.M_Clients.Where(x => x.ClFlag == 0).ToList();
                 context.Dispose();
             }
             catch (Exception ex)
@@ -100,8 +100,16 @@ namespace SalesManagement_SysDev
             try
             {
                 var context = new SalesManagement_DevContext();
-                client = context.M_Clients.Where(x => (selectCondition.ClID == 0 || x.ClID == selectCondition.ClID) &&
-                        (selectCondition.SoID == 0 || x.SoID == selectCondition.SoID)).ToList();
+                client = context.M_Clients.Where(x =>
+                        (selectCondition.ClID == 0 || x.ClID == selectCondition.ClID) &&
+                        (selectCondition.SoID == 0 || x.SoID == selectCondition.SoID) &&
+                        (selectCondition.ClName == null || x.ClName.Contains(selectCondition.ClName)) &&
+                        (selectCondition.ClAddress == null || x.ClAddress.Contains(selectCondition.ClAddress)) &&
+                        (selectCondition.ClPhone == null || x.ClPhone.Contains(selectCondition.ClPhone)) &&
+                        (selectCondition.ClPostal == null || x.ClPostal.Contains(selectCondition.ClPostal)) &&
+                        (selectCondition.ClFAX == null || x.ClFAX.Contains(selectCondition.ClFAX)) &&
+                        (selectCondition.ClFlag == 3 || x.ClFlag == selectCondition.ClFlag)
+                        ).ToList();
                 context.Dispose();
             }
             catch(Exception ex)

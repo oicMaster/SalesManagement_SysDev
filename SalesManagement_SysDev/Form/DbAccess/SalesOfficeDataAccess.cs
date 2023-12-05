@@ -89,6 +89,7 @@ namespace SalesManagement_SysDev
             }
         }
 
+
         //データの取得
         public List<M_SalesOffice> GetSaleData()
         {
@@ -96,7 +97,7 @@ namespace SalesManagement_SysDev
             try
             {
                 var context = new SalesManagement_DevContext();
-                salesOffice = context.M_SalesOffices.ToList();
+                salesOffice = context.M_SalesOffices.Where(x => x.SoFlag == 0).ToList();
                 context.Dispose();
             }
             catch (Exception ex)
@@ -113,7 +114,15 @@ namespace SalesManagement_SysDev
             try
             {
                 var context = new SalesManagement_DevContext();
-                salesOffices = context.M_SalesOffices.Where(x => x.SoID == selectCondition.SoID).ToList();
+                salesOffices = context.M_SalesOffices.Where(x =>
+                        (selectCondition.SoID == 0 || x.SoID == selectCondition.SoID) &&
+                        (selectCondition.SoName == null || x.SoName.Contains(selectCondition.SoName)) &&
+                        (selectCondition.SoAddress == null || x.SoAddress.Contains(selectCondition.SoAddress)) &&
+                        (selectCondition.SoPhone == null || x.SoPhone.Contains(selectCondition.SoPhone)) &&
+                        (selectCondition.SoPostal == null || x.SoPostal.Contains(selectCondition.SoPostal)) &&
+                        (selectCondition.SoFAX == null || x.SoFAX.Contains(selectCondition.SoFAX)) &&
+                        (selectCondition.SoFlag == 3 || x.SoFlag == selectCondition.SoFlag)
+                ).ToList();
                 context.Dispose();
             }
             catch (Exception ex)

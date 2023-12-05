@@ -87,13 +87,25 @@ namespace SalesManagement_SysDev
 
 
 
-        public List<T_OrderDetail> GetOrderDetailData(T_OrderDetail selectCondition)
+        public List<T_OrderDetail> GetOrderDetailData(T_OrderDetail selectCondition, int quantityCondition,int sumCondition)
         {
             List<T_OrderDetail> orderDetail = new List<T_OrderDetail>();
             try
             {
                 var context = new SalesManagement_DevContext();
-                orderDetail = context.T_OrderDetails.Where(x => x.OrDetailID == selectCondition.OrDetailID).ToList();
+                orderDetail = context.T_OrderDetails.Where(x =>
+                  (selectCondition.OrDetailID == 0 || x.OrDetailID == selectCondition.OrDetailID) &&
+                  (selectCondition.OrID == 0 || x.OrID == selectCondition.OrID) &&
+                  (selectCondition.PrID == 0 || x.PrID == selectCondition.PrID) &&
+                  (selectCondition.OrQuantity == 0 ||
+                  (quantityCondition == 0 && x.OrQuantity == selectCondition.OrQuantity) ||
+                  (quantityCondition == 1 && x.OrQuantity >= selectCondition.OrQuantity) ||
+                  (quantityCondition == 2 && x.OrQuantity <= selectCondition.OrQuantity))&&
+                  (selectCondition.OrTotalPrice == 0 ||
+                  (sumCondition == 0 && x.OrTotalPrice == selectCondition.OrTotalPrice) ||
+                  (sumCondition == 1 && x.OrTotalPrice >= selectCondition.OrTotalPrice) ||
+                  (sumCondition == 2 && x.OrTotalPrice <= selectCondition.OrTotalPrice))
+                ).ToList();
                 context.Dispose();
             }
             catch (Exception ex)

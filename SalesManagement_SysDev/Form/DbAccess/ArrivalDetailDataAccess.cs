@@ -28,19 +28,16 @@ namespace SalesManagement_SysDev
             return flg;
         }
 
-        public bool UpdateArrivalDetailData(T_ArrivalDetail updArD)
+
+        public bool AddArrivalDetailData(T_ArrivalDetail regArD)
         {
             try
             {
                 var context = new SalesManagement_DevContext();
-                var arrivalDetail = context.T_ArrivalDetails.Single(x => x.ArDetailID == updArD.ArDetailID);
-
-                arrivalDetail.ArDetailID = updArD.ArDetailID;
-                arrivalDetail.ArID = updArD.ArID;
-                arrivalDetail.PrID = updArD.PrID;
-                arrivalDetail.ArQuantity = updArD.ArQuantity;
+                context.T_ArrivalDetails.Add(regArD);
                 context.SaveChanges();
                 context.Dispose();
+
                 return true;
             }
             catch (Exception ex)
@@ -49,7 +46,6 @@ namespace SalesManagement_SysDev
                 return false;
             }
         }
-
 
         public List<T_ArrivalDetail> GetArrivalDetailData()
         {
@@ -68,14 +64,21 @@ namespace SalesManagement_SysDev
         }
 
 
-
-        public List<T_ArrivalDetail> GetArrivalDetailData(T_ArrivalDetail selectCondition)
+        public List<T_ArrivalDetail> GetArrivalDetailData(T_ArrivalDetail selectCondition,int quantityCondition)
         {
             List<T_ArrivalDetail> arrivalDetail = new List<T_ArrivalDetail>();
             try
             {
                 var context = new SalesManagement_DevContext();
-                arrivalDetail = context.T_ArrivalDetails.Where(x => x.ArDetailID == selectCondition.ArDetailID).ToList();
+                arrivalDetail = context.T_ArrivalDetails.Where(x =>
+                  (selectCondition.ArDetailID == 0 || x.ArDetailID == selectCondition.ArDetailID) &&
+                  (selectCondition.ArID == 0 || x.ArID == selectCondition.ArID) &&
+                  (selectCondition.PrID == 0 || x.PrID == selectCondition.PrID) &&
+                  (selectCondition.ArQuantity == 0 ||
+                  (quantityCondition == 0 && x.ArQuantity == selectCondition.ArQuantity) ||
+                  (quantityCondition == 1 && x.ArQuantity >= selectCondition.ArQuantity) ||
+                  (quantityCondition == 2 && x.ArQuantity <= selectCondition.ArQuantity))
+                ).ToList();
                 context.Dispose();
             }
             catch (Exception ex)

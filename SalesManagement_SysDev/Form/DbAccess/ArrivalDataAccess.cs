@@ -73,14 +73,13 @@ namespace SalesManagement_SysDev
             }
         }
 
-        //データの取得
-        public List<T_Arrival> GetArrivalData(int confirm, int hidden)
+        public List<T_Arrival> GetArrivalData()
         {
             List<T_Arrival> arrival = new List<T_Arrival>();
             try
             {
                 var context = new SalesManagement_DevContext();
-                arrival = context.T_Arrivals.Where(x =>x.ArStateFlag != confirm && x.ArFlag != hidden).ToList();
+                arrival = context.T_Arrivals.Where(x => x.ArStateFlag == 0 && x.ArFlag == 0).ToList();
                 context.Dispose();
             }
             catch (Exception ex)
@@ -91,7 +90,7 @@ namespace SalesManagement_SysDev
         }
 
         //条件一致したデータの取得　オーバーロード
-        public List<T_Arrival> GetArrivalData(T_Arrival selectCondition)
+        public List<T_Arrival> GetArrivalData(T_Arrival selectCondition,int dateCondition)
         {
             List<T_Arrival> arrival = new List<T_Arrival>();
             try
@@ -103,10 +102,13 @@ namespace SalesManagement_SysDev
                   (selectCondition.EmID == 0 || x.EmID == selectCondition.EmID) && 
                   (selectCondition.ClID == 0 || x.ClID == selectCondition.ClID) && 
                   (selectCondition.OrID == 0 || x.OrID == selectCondition.OrID) &&
-                  (selectCondition.ArDate == DateTime.Parse(("2000/01/01")) || x.ArDate == selectCondition.ArDate) &&
-                  (selectCondition.ArDate == DateTime.Parse(("2000/01/01")) || x.ArDate == selectCondition.ArDate) &&
-                  (selectCondition.ArStateFlag == 1 || x.ArStateFlag == selectCondition.ArStateFlag) && 
-                  (selectCondition.ArFlag == 2 || x.ArFlag == selectCondition.ArFlag)).ToList();
+                  (selectCondition.ArDate == DateTime.Parse("0001/01/01")||
+                  (dateCondition == 0 && x.ArDate == selectCondition.ArDate) || 
+                  (dateCondition == 1 && x.ArDate >= selectCondition.ArDate)||
+                  (dateCondition == 2 && x.ArDate <= selectCondition.ArDate)) &&
+                  (selectCondition.ArStateFlag == 3 || x.ArStateFlag == selectCondition.ArStateFlag) && 
+                  (selectCondition.ArFlag == 3 || x.ArFlag == selectCondition.ArFlag)
+                  ).ToList();
                 context.Dispose();
 
             }

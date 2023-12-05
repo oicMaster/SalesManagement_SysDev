@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,6 +22,7 @@ namespace SalesManagement_SysDev
         SalesOfficeDataAccess salesOfficeDataAccess = new SalesOfficeDataAccess();
         EmployeeDataAccess employeeDataAccess = new EmployeeDataAccess();
         ChumonDataAccess chumonDataAccess = new ChumonDataAccess();
+        CommonModule commonModule = new CommonModule();
 
         private static List<T_Sale> Sale;
         private static List<T_SaleDetail> SaleDetail;
@@ -111,7 +113,7 @@ namespace SalesManagement_SysDev
             dataGridViewDsp.Columns[12].Visible = false;
             dataGridViewDsp.Columns[13].Visible = false;
 
-            lblPage.Text = "/" + ((int)Math.Ceiling(Sale.Count / (double)pageSize)) + "ページ";
+            lblPageNo.Text = "/" + ((int)Math.Ceiling(Sale.Count / (double)pageSize)) + "ページ";
 
             dataGridViewDsp.Refresh();
         }
@@ -173,7 +175,7 @@ namespace SalesManagement_SysDev
             dataGridViewDetailDsp.Columns[4].Visible = false;
             dataGridViewDetailDsp.Columns[5].Visible = false;
 
-            lblDetailPage.Text = "/" + ((int)Math.Ceiling(SaleDetail.Count / (double)pageSize)) + "ページ";
+            lblDetailPageNo.Text = "/" + ((int)Math.Ceiling(SaleDetail.Count / (double)pageSize)) + "ページ";
 
             dataGridViewDsp.Refresh();
         }
@@ -464,7 +466,8 @@ namespace SalesManagement_SysDev
                 ChID = chID,
             };
             //顧客データの抽出
-            Sale = saleDataAccess.GetSaleData(selectCondition);
+            int dateCondition = commonModule.ComboBoxCondition(cmbDate.Text);
+            Sale = saleDataAccess.GetSaleData(selectCondition,dateCondition);
         }
 
         private void SetSelectData()
@@ -473,7 +476,7 @@ namespace SalesManagement_SysDev
             int pageSize = int.Parse(txbPageSize.Text.Trim());
             dataGridViewDsp.DataSource = Sale;
 
-            lblPage.Text = "/" + ((int)Math.Ceiling(Sale.Count / (double)pageSize)) + "ページ";
+            lblPageNo.Text = "/" + ((int)Math.Ceiling(Sale.Count / (double)pageSize)) + "ページ";
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -551,7 +554,9 @@ namespace SalesManagement_SysDev
                 PrID = prID,
             };
             //saデータの抽出
-            SaleDetail = saleDetailDataAccess.GetSaleDetailData(selectCondition);
+            int quantityCondition = commonModule.ComboBoxCondition(cmbQuantity.Text);
+            int totalPriceCondition = commonModule.ComboBoxCondition(cmbTotalPrice.Text);
+            SaleDetail = saleDetailDataAccess.GetSaleDetailData(selectCondition,quantityCondition,totalPriceCondition);
         }
         private void SetSelectDetailData()
         {
@@ -559,7 +564,7 @@ namespace SalesManagement_SysDev
             txbDetailPageNo.Text = "1";
             int pageSize = int.Parse(txbDetailPageSize.Text.Trim());
             dataGridViewDetailDsp.DataSource = SaleDetail;
-            lblDetailPage.Text = "/" + ((int)Math.Ceiling(SaleDetail.Count / (double)pageSize)) + "ページ";
+            lblDetailPageNo.Text = "/" + ((int)Math.Ceiling(SaleDetail.Count / (double)pageSize)) + "ページ";
         }
 
         private void dtpDate_ValueChanged(object sender, EventArgs e)

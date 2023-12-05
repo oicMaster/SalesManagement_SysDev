@@ -80,7 +80,7 @@ namespace SalesManagement_SysDev
             try
             {
                 var context = new SalesManagement_DevContext();
-                shipment = context.T_Shipments.ToList();
+                shipment = context.T_Shipments.Where(x => x.ShStateFlag == 0 && x.ShFlag == 0).ToList();
                 context.Dispose();
             }
             catch (Exception ex)
@@ -91,13 +91,25 @@ namespace SalesManagement_SysDev
         }
 
         //条件一致したデータの取得　オーバーロード
-        public List<T_Shipment> GetShipmentData(T_Shipment selectCondition)
+        public List<T_Shipment> GetShipmentData(T_Shipment selectCondition,int dateCondition)
         {
             List<T_Shipment> shipment = new List<T_Shipment>();
             try
             {
                 var context = new SalesManagement_DevContext();
-                shipment = context.T_Shipments.Where(x => x.ShID == selectCondition.ShID).ToList();
+                shipment = context.T_Shipments.Where(x =>
+                  (selectCondition.ShID == 0 || x.ShID == selectCondition.ShID) &&
+                  (selectCondition.SoID == 0 || x.SoID == selectCondition.SoID) &&
+                  (selectCondition.EmID == 0 || x.EmID == selectCondition.EmID) &&
+                  (selectCondition.ClID == 0 || x.ClID == selectCondition.ClID) &&
+                  (selectCondition.OrID == 0 || x.OrID == selectCondition.OrID) &&
+                  (selectCondition.ShFinishDate == DateTime.Parse("0001/01/01") ||
+                  (dateCondition == 0 && x.ShFinishDate == selectCondition.ShFinishDate) ||
+                  (dateCondition == 1 && x.ShFinishDate >= selectCondition.ShFinishDate) ||
+                  (dateCondition == 2 && x.ShFinishDate <= selectCondition.ShFinishDate)) &&
+                  (selectCondition.ShStateFlag == 3 || x.ShStateFlag == selectCondition.ShStateFlag) &&
+                  (selectCondition.ShFlag == 3 || x.ShFlag == selectCondition.ShFlag)
+                ).ToList();
                 context.Dispose();
             }
             catch (Exception ex)
