@@ -325,6 +325,7 @@
             this.btnUpdate.TabIndex = 46;
             this.btnUpdate.Text = "更新";
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnRegist
             // 

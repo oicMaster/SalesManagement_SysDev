@@ -72,11 +72,11 @@ namespace SalesManagement_SysDev
             }
         }
 
-        private void fncTextColor(int chk)
+        private void fncTextColor(string Item)
         {
-            switch (chk)
+            switch (Item)
             {
-                case 0:
+                case "一覧表示":
                     lblChID.ForeColor = Color.Black;
                     lblSoID.ForeColor = Color.Black;
                     lblEmID.ForeColor = Color.Black;
@@ -90,8 +90,9 @@ namespace SalesManagement_SysDev
                     lblQuantity.ForeColor = Color.Black;
                     cbxConfirm.ForeColor = Color.Blue;
                     cbxHidden.ForeColor = Color.Blue;
+                    cbxDisplay.ForeColor = Color.Blue;
                     break;
-                case 2:
+                case "検索":
                     lblChID.ForeColor = Color.Blue;
                     lblSoID.ForeColor = Color.Blue;
                     lblEmID.ForeColor = Color.Blue;
@@ -105,8 +106,9 @@ namespace SalesManagement_SysDev
                     lblQuantity.ForeColor = Color.Black;
                     cbxConfirm.ForeColor = Color.Blue;
                     cbxHidden.ForeColor = Color.Blue;
+                    cbxDisplay.ForeColor = Color.Blue;
                     break;
-                case 4:
+                case "非表示更新":
                     lblChID.ForeColor = Color.Red;
                     lblSoID.ForeColor = Color.Black;
                     lblEmID.ForeColor = Color.Black;
@@ -120,8 +122,9 @@ namespace SalesManagement_SysDev
                     lblQuantity.ForeColor = Color.Black;
                     cbxConfirm.ForeColor = Color.Black;
                     cbxHidden.ForeColor = Color.Black;
+                    cbxDisplay.ForeColor = Color.Black;
                     break;
-                case 5:
+                case "確定":
                     lblChID.ForeColor = Color.Red;
                     lblSoID.ForeColor = Color.Black;
                     lblEmID.ForeColor = Color.Black;
@@ -135,8 +138,9 @@ namespace SalesManagement_SysDev
                     lblQuantity.ForeColor = Color.Black;
                     cbxConfirm.ForeColor = Color.Black;
                     cbxHidden.ForeColor = Color.Black;
+                    cbxDisplay.ForeColor = Color.Black;
                     break;
-                case 7:
+                case "詳細検索":
                     lblChID.ForeColor = Color.Black;
                     lblSoID.ForeColor = Color.Black;
                     lblEmID.ForeColor = Color.Black;
@@ -150,6 +154,7 @@ namespace SalesManagement_SysDev
                     lblQuantity.ForeColor = Color.Blue;
                     cbxConfirm.ForeColor = Color.Black;
                     cbxHidden.ForeColor = Color.Black;
+                    cbxDisplay.ForeColor = Color.Black;
                     break;
 
             }
@@ -304,13 +309,13 @@ namespace SalesManagement_SysDev
 
         private void txbPageSize_Leave(object sender, EventArgs e)
         {
-            commonModule.PageLeave(txbPageSize);
+            commonModule.PageLeave(txbPageSize,10);
             SetDataGridView();
         }
 
         private void txbDetailPageSize_Leave(object sender, EventArgs e)
         {
-            commonModule.PageLeave(txbDetailPageSize);
+            commonModule.PageLeave(txbDetailPageSize,10);
             SetDataGridView();
         }
         private void txbPageSize_TextChanged(object sender, EventArgs e)
@@ -667,8 +672,7 @@ namespace SalesManagement_SysDev
 
         private void cmbHint_SelectedIndexChanged(object sender, EventArgs e)
         {
-                int chk = commonModule.ComboBoxHint(sender);
-                fncTextColor(chk);
+                fncTextColor((sender as ComboBox).Text);
         }
     }
 }

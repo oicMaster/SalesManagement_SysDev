@@ -344,7 +344,7 @@ namespace SalesManagement_SysDev
                 SoFAX = soFAX,
 
             };
-            SalesOffice = salesOfficeDataAccess.GetSaleData(selectCondition);
+            SalesOffice = salesOfficeDataAccess.GetSalesOfficeData(selectCondition);
         }
         private void SetSelectData()
         {
@@ -426,7 +426,7 @@ namespace SalesManagement_SysDev
             //顧客情報作成
             var updSo = GenerateDataAtUpdate();
             //顧客情報更新
-            UpdateProduct(updSo);
+            UpdateSalesOffice(updSo);
         }
         private bool GetValidDataAtUpdate()
         {
@@ -453,19 +453,18 @@ namespace SalesManagement_SysDev
                 SoHidden = hidden,
             };
         }
-        private void UpdateProduct(M_SalesOffice updSo)
+        private void UpdateSalesOffice(M_SalesOffice updSo)
         {
             DialogResult result = messageDsp.MsgDsp("");
             if (result == DialogResult.Cancel)
                 return;
 
-            /*
+            
             bool flg = salesOfficeDataAccess.UpdateSalesOfficeData(updSo);
             if (flg == true)
                 messageDsp.MsgDsp("");
             else
                 messageDsp.MsgDsp("");
-            */
             ClearInput();
             txbSoID.Focus();
 

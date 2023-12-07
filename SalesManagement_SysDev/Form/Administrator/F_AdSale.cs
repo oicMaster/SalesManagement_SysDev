@@ -107,11 +107,11 @@ namespace SalesManagement_SysDev
             dataGridViewDsp.Columns[6].HeaderText = "非表示理由";
             dataGridViewDsp.Columns[7].HeaderText = "売上管理フラグ";
 
+            dataGridViewDsp.Columns[8].Visible = false;
             dataGridViewDsp.Columns[9].Visible = false;
             dataGridViewDsp.Columns[10].Visible = false;
             dataGridViewDsp.Columns[11].Visible = false;
             dataGridViewDsp.Columns[12].Visible = false;
-            dataGridViewDsp.Columns[13].Visible = false;
 
             lblPageNo.Text = "/" + ((int)Math.Ceiling(Sale.Count / (double)pageSize)) + "ページ";
 
@@ -159,12 +159,14 @@ namespace SalesManagement_SysDev
             dataGridViewDetailDsp.Columns[1].Width = 100;
             dataGridViewDetailDsp.Columns[2].Width = 100;
             dataGridViewDetailDsp.Columns[3].Width = 100;
+            dataGridViewDetailDsp.Columns[4].Width = 100;
 
 
             dataGridViewDetailDsp.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewDetailDsp.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewDetailDsp.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewDetailDsp.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewDetailDsp.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             dataGridViewDetailDsp.Columns[0].HeaderText = "売上詳細ID";
             dataGridViewDetailDsp.Columns[1].HeaderText = "売上ID";
@@ -172,8 +174,8 @@ namespace SalesManagement_SysDev
             dataGridViewDetailDsp.Columns[3].HeaderText = "個数";
             dataGridViewDetailDsp.Columns[4].HeaderText = "合計金額";
 
-            dataGridViewDetailDsp.Columns[4].Visible = false;
             dataGridViewDetailDsp.Columns[5].Visible = false;
+            dataGridViewDetailDsp.Columns[6].Visible = false;
 
             lblDetailPageNo.Text = "/" + ((int)Math.Ceiling(SaleDetail.Count / (double)pageSize)) + "ページ";
 

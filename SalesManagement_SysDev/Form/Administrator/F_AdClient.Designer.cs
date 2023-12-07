@@ -435,7 +435,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1920, 100);
             this.panel1.TabIndex = 40;
-            this.panel1.Visible = false;
             // 
             // cmbHint
             // 
@@ -444,6 +443,7 @@
             this.cmbHint.Name = "cmbHint";
             this.cmbHint.Size = new System.Drawing.Size(121, 20);
             this.cmbHint.TabIndex = 126;
+            this.cmbHint.SelectedIndexChanged += new System.EventHandler(this.cmbHint_SelectedIndexChanged);
             // 
             // label12
             // 

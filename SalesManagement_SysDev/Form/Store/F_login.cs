@@ -68,6 +68,8 @@ namespace SalesManagement_SysDev
             List<M_SmallClassification> sc = new List<M_SmallClassification>();
             List<M_Product> pr = new List<M_Product>();
 
+
+
             {
                 ma.Add(new M_Maker()
                 {
@@ -623,6 +625,16 @@ namespace SalesManagement_SysDev
                     OrStateFlag = 0,
                     OrFlag = 0,
                 });
+                or.Add(new T_Order
+                {
+                    M_SalesOffice = so[0],
+                    M_Employee = em[310],
+                    M_Client = cl[1],
+                    ClCharge = "萬田銀次郎",
+                    OrDate = new DateTime(2020, 12, 10),
+                    OrStateFlag = 0,
+                    OrFlag = 2,
+                });
                 context.T_Orders.AddRange(or);
                 context.SaveChanges();
             }
@@ -663,6 +675,20 @@ namespace SalesManagement_SysDev
                     OrQuantity = 15,
                     OrTotalPrice = 2250000,
                 });
+                ord.Add(new T_OrderDetail()
+                {
+                    T_Order = or[2],
+                    M_Product = pr[2],
+                    OrQuantity = 40,
+                    OrTotalPrice = 200000,
+                });
+                ord.Add(new T_OrderDetail()
+                {
+                    T_Order = or[2],
+                    M_Product = pr[9],
+                    OrQuantity = 30,
+                    OrTotalPrice = 900000,
+                });
                 context.T_OrderDetails.AddRange(ord);
                 context.SaveChanges();
             }
@@ -677,6 +703,16 @@ namespace SalesManagement_SysDev
                     ChDate = new DateTime(2020, 12, 11),
                     ChStateFlag = 1,
                     ChFlag = 0,
+                });
+                ch.Add(new T_Chumon()
+                {
+                    M_SalesOffice = so[0],
+                    M_Employee = em[1002],
+                    M_Client = cl[1],
+                    T_Order = or[0],
+                    ChDate = new DateTime(2020, 12, 11),
+                    ChStateFlag = 0,
+                    ChFlag = 2,
                 });
                 context.T_Chumons.AddRange(ch);
                 context.SaveChanges();
@@ -695,6 +731,18 @@ namespace SalesManagement_SysDev
                     M_Product = pr[9],
                     ChQuantity = 30,
                 });
+                chd.Add(new T_ChumonDetail()
+                {
+                    T_Chumon = ch[1],
+                    M_Product = pr[2],
+                    ChQuantity = 40,
+                });
+                chd.Add(new T_ChumonDetail()
+                {
+                    T_Chumon = ch[1],
+                    M_Product = pr[9],
+                    ChQuantity = 30,
+                });
                 context.T_ChumonDetails.AddRange(chd);
                 context.SaveChanges();
             }
@@ -705,8 +753,17 @@ namespace SalesManagement_SysDev
                     M_Client = cl[1],
                     M_SalesOffice = so[0],
                     T_Order = or[0],
-                    SyStateFlag = 0,
+                    SyDate = new DateTime(2020, 12, 11),
+                    SyStateFlag = 1,
                     SyFlag = 0,
+                });
+                sy.Add(new T_Syukko()
+                {
+                    M_Client = cl[1],
+                    M_SalesOffice = so[0],
+                    T_Order = or[0],
+                    SyStateFlag = 0,
+                    SyFlag = 2,
                 });
                 context.T_Syukkos.AddRange(sy);
                 context.SaveChanges();
@@ -725,10 +782,144 @@ namespace SalesManagement_SysDev
                     M_Product = pr[9],
                     SyQuantity = 30,
                 });
+                syd.Add(new T_SyukkoDetail()
+                {
+                    T_Syukko = sy[1],
+                    M_Product = pr[2],
+                    SyQuantity = 40,
+                });
+                syd.Add(new T_SyukkoDetail()
+                {
+                    T_Syukko = sy[1],
+                    M_Product = pr[9],
+                    SyQuantity = 30,
+                });
                 context.T_SyukkoDetails.AddRange(syd);
                 context.SaveChanges();
             }
 
+            List<T_Arrival> ar = new List<T_Arrival>();
+            {
+                ar.Add(new T_Arrival()
+                {
+                    M_Client = cl[1],
+                    M_SalesOffice = so[0],
+                    T_Order = or[0],
+                    ArDate = new DateTime(2020, 12, 11),
+                    ArStateFlag = 1,
+                    ArFlag = 0,
+                });
+                ar.Add(new T_Arrival()
+                {
+                    M_Client = cl[1],
+                    M_SalesOffice = so[0],
+                    T_Order = or[0],
+                    ArStateFlag = 0,
+                    ArFlag = 2,
+                });
+                context.T_Arrivals.AddRange(ar);
+                context.SaveChanges();
+            }
+
+            List<T_ArrivalDetail> ard = new List<T_ArrivalDetail>();
+            {
+                ard.Add(new T_ArrivalDetail()
+                {
+                    T_Arrival = ar[0],
+                    M_Product = pr[2],
+                    ArQuantity = 40,
+                });
+                ard.Add(new T_ArrivalDetail()
+                {
+                    T_Arrival = ar[0],
+                    M_Product = pr[9],
+                    ArQuantity = 30,
+                });
+                ard.Add(new T_ArrivalDetail()
+                {
+                    T_Arrival = ar[1],
+                    M_Product = pr[2],
+                    ArQuantity = 40,
+                });
+                ard.Add(new T_ArrivalDetail()
+                {
+                    T_Arrival = ar[1],
+                    M_Product = pr[9],
+                    ArQuantity = 30,
+                });
+                context.T_ArrivalDetails.AddRange(ard);
+                context.SaveChanges();
+            }
+
+            List<T_Shipment> sh = new List<T_Shipment>();
+            {
+                sh.Add(new T_Shipment()
+                {
+                    M_Client = cl[1],
+                    M_SalesOffice = so[0],
+                    M_Employee = em[116],
+                    T_Order = or[0],
+                    ShFinishDate = new DateTime(2020, 12, 11),
+                    ShStateFlag = 1,
+                    ShFlag = 0,
+                });
+                sh.Add(new T_Shipment()
+                {
+                    M_Client = cl[1],
+                    M_SalesOffice = so[0],
+                    M_Employee = em[116],
+                    T_Order = or[0],
+                    ShStateFlag = 0,
+                    ShFlag = 2,
+                });
+                context.T_Shipments.AddRange(sh);
+                context.SaveChanges();
+            }
+
+            List<T_ShipmentDetail> shd = new List<T_ShipmentDetail>();
+            {
+                shd.Add(new T_ShipmentDetail()
+                {
+                    T_Shipment = sh[0],
+                    M_Product = pr[2],
+                    ShQuantity = 40,
+                });
+                shd.Add(new T_ShipmentDetail()
+                {
+                    T_Shipment = sh[0],
+                    M_Product = pr[9],
+                    ShQuantity = 30,
+                });
+                shd.Add(new T_ShipmentDetail()
+                {
+                    T_Shipment = sh[1],
+                    M_Product = pr[2],
+                    ShQuantity = 40,
+                });
+                shd.Add(new T_ShipmentDetail()
+                {
+                    T_Shipment = sh[1],
+                    M_Product = pr[9],
+                    ShQuantity = 30,
+                });
+                context.T_ShipmentDetails.AddRange(shd);
+                context.SaveChanges();
+            }
+
+
+
+
+
+            List<T_Sale> sa = new List<T_Sale>();
+            List<T_SaleDetail> sad = new List<T_SaleDetail>();
+
+
+            List<T_Hattyu> ha = new List<T_Hattyu>();
+            List<T_HattyuDetail> had = new List<T_HattyuDetail>();
+
+
+            List<T_Warehousing> wa = new List<T_Warehousing>();
+            List<T_WarehousingDetail> wad = new List<T_WarehousingDetail>();
 
             context.Dispose();
 
