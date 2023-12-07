@@ -27,7 +27,7 @@ namespace SalesManagement_SysDev
             return flg;
         }
 
-         public bool AddSaleDetailData(M_SalesOffice regSo)
+        public bool AddSalesOfficeData(M_SalesOffice regSo)
         {
             try
             {
@@ -45,31 +45,13 @@ namespace SalesManagement_SysDev
             }
         }
 
-        public bool AddSaleData(M_SalesOffice regSo)
-        {
-            try
-            {
-                var context = new SalesManagement_DevContext();
-                context.M_SalesOffices.Add(regSo);
-                context.SaveChanges();
-                context.Dispose();
-
-                return true;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-        }
-
-        public bool UpdateSaleData(M_SalesOffice updSo)
+        public bool UpdateSalesOfficeData(M_SalesOffice updSo)
         {
             try
             {
                 var context = new SalesManagement_DevContext();
                 var sale = context.M_SalesOffices.Single(x => x.SoID == updSo.SoID);
-
+                
                 sale.SoName = updSo.SoName;
                 sale.SoAddress = updSo.SoAddress;
                 sale.SoPhone = updSo.SoPhone;
@@ -91,7 +73,7 @@ namespace SalesManagement_SysDev
 
 
         //データの取得
-        public List<M_SalesOffice> GetSaleData()
+        public List<M_SalesOffice> GetSalesOfficeData()
         {
             List<M_SalesOffice> salesOffice = new List<M_SalesOffice>();
             try
@@ -108,13 +90,13 @@ namespace SalesManagement_SysDev
         }
 
         //条件一致したデータの取得　オーバーロード
-        public List<M_SalesOffice> GetSaleData(M_SalesOffice selectCondition)
+        public List<M_SalesOffice> GetSalesOfficeData(M_SalesOffice selectCondition)
         {
-            List<M_SalesOffice> salesOffices = new List<M_SalesOffice>();
+            List<M_SalesOffice> salesOffice = new List<M_SalesOffice>();
             try
             {
                 var context = new SalesManagement_DevContext();
-                salesOffices = context.M_SalesOffices.Where(x =>
+                salesOffice = context.M_SalesOffices.Where(x =>
                         (selectCondition.SoID == 0 || x.SoID == selectCondition.SoID) &&
                         (selectCondition.SoName == null || x.SoName.Contains(selectCondition.SoName)) &&
                         (selectCondition.SoAddress == null || x.SoAddress.Contains(selectCondition.SoAddress)) &&
@@ -129,11 +111,23 @@ namespace SalesManagement_SysDev
             {
                 MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            return salesOffices;
+            return salesOffice;
         }
-        //public bool AddSalesOfficeData(M_SalesOffice regSo)
-        //public bool UpdateSalesOfficeData(M_SalesOffice updSo)
-        //public List<M_SalesOffice> GetSalesOfficeData()
-        //public List<M_SalesOffice> GetSalesOfficeData(M_SalesOffice selectCondition)
+
+        public void GetSalesOfficeNameData(object sender, Label lblName)
+        {
+            List<M_SalesOffice> salesOffice = new List<M_SalesOffice>();
+            if (!String.IsNullOrEmpty((sender as TextBox).Text))
+            {
+                if (CheckSoIDExistence(int.Parse((sender as TextBox).Text)))
+                {
+                    salesOffice = GetSalesOfficeData();
+                    var data = salesOffice.Single(x => x.SoID == int.Parse((sender as TextBox).Text));
+                    lblName.Text = data.SoName;
+                    return;
+                }
+            }
+            lblName.Text = "----";
+        }
     }
 }

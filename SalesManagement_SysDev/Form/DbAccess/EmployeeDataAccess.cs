@@ -116,6 +116,22 @@ namespace SalesManagement_SysDev
             }
             return employee;
         }
+
+        public void GetEmployeeNameData(object sender, Label lblName)
+        {
+            List<M_Employee> employee = new List<M_Employee>();
+            if (!String.IsNullOrEmpty((sender as TextBox).Text))
+            {
+                if (CheckEmIDExistence(int.Parse((sender as TextBox).Text)))
+                {
+                    employee = GetEmployeeData();
+                    var data = employee.Single(x => x.EmID == int.Parse((sender as TextBox).Text));
+                    lblName.Text = data.EmName;
+                    return;
+                }
+            }
+            lblName.Text = "----";
+        }
     }
 }
 

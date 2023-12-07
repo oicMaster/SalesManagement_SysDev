@@ -549,5 +549,10 @@ namespace SalesManagement_SysDev
         {
 
         }
+
+        private void dtpDate_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -118,6 +118,22 @@ namespace SalesManagement_SysDev
             }
             return client;
         }
-        
+
+        public void GetClientNameData(object sender, Label lblName)
+        {
+            List<M_Client> client = new List<M_Client>();
+            if (!String.IsNullOrEmpty((sender as TextBox).Text))
+            {
+                if (CheckClIDExistence(int.Parse((sender as TextBox).Text)))
+                {
+                    client = GetClientData();
+                    var data = client.Single(x => x.ClID == int.Parse((sender as TextBox).Text));
+                    lblName.Text = data.ClName;
+                    return;
+                }
+            }
+            lblName.Text = "----";
+        }
+
     }
 }

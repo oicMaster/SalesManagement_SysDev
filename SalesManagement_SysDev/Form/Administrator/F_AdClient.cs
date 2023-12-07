@@ -39,6 +39,15 @@ namespace SalesManagement_SysDev
             txbFlag.ReadOnly = true;
 
             //※
+            cmbHint.Items.Add("一覧表示");
+            cmbHint.Items.Add("登録");
+            cmbHint.Items.Add("検索");
+            cmbHint.Items.Add("更新");
+            cmbHint.SelectedIndex = 0;
+
+            txbAddress.TabIndex = 0;
+            txbClID.TabIndex = 1;
+            panel1.TabStop = true;
 
         }
 
@@ -55,6 +64,63 @@ namespace SalesManagement_SysDev
                 case 2:
                     btnUpdate.Enabled = true;
                     break;
+
+            }
+        }
+
+        private void fncTextColor(int chk)
+        {
+            switch (chk)
+            {
+                case 0:
+                    lblClID.ForeColor = Color.Black;
+                    lblSoID.ForeColor = Color.Black;
+                    lblName.ForeColor = Color.Black;
+                    lblAddress.ForeColor = Color.Black;
+                    lblPhone.ForeColor = Color.Black;
+                    lblPortal.ForeColor = Color.Black;
+                    lblFAX.ForeColor = Color.Black;
+                    lblFlag.ForeColor = Color.Black;
+                    lblHidden.ForeColor = Color.Black;
+                    cbxHidden.ForeColor = Color.Blue;
+                    break;
+                case 1:
+                    lblClID.ForeColor = Color.Red;
+                    lblSoID.ForeColor = Color.Blue;
+                    lblName.ForeColor = Color.Blue;
+                    lblAddress.ForeColor = Color.Blue;
+                    lblPhone.ForeColor = Color.Blue;
+                    lblPortal.ForeColor = Color.Blue;
+                    lblFAX.ForeColor = Color.Blue;
+                    lblFlag.ForeColor = Color.Black;
+                    lblHidden.ForeColor = Color.Black;
+                    cbxHidden.ForeColor = Color.Black;
+                    break;
+                case 2:
+                    lblClID.ForeColor = Color.Blue;
+                    lblSoID.ForeColor = Color.Blue;
+                    lblName.ForeColor = Color.Blue;
+                    lblAddress.ForeColor = Color.Blue;
+                    lblPhone.ForeColor = Color.Blue;
+                    lblPortal.ForeColor = Color.Blue;
+                    lblFAX.ForeColor = Color.Blue;
+                    lblFlag.ForeColor = Color.Black;
+                    lblHidden.ForeColor = Color.Black;
+                    cbxHidden.ForeColor = Color.Blue;
+                    break;
+                case 3:
+                    lblClID.ForeColor = Color.Red;
+                    lblSoID.ForeColor = Color.Red;
+                    lblName.ForeColor = Color.Red;
+                    lblAddress.ForeColor = Color.Red;
+                    lblPhone.ForeColor = Color.Red;
+                    lblPortal.ForeColor = Color.Red;
+                    lblFAX.ForeColor = Color.Red;
+                    lblFlag.ForeColor = Color.Black;
+                    lblHidden.ForeColor = Color.Blue;
+                    cbxHidden.ForeColor = Color.Black;
+                    break;
+
 
             }
         }
@@ -152,7 +218,7 @@ namespace SalesManagement_SysDev
 
         private void txbPageSize_Leave(object sender, EventArgs e)
         {
-            commonModule.PageLeave(txbPageSize);
+            commonModule.PageLeave(txbPageSize,10);
             SetDataGridView();
         }
         private void txbPageSize_TextChanged(object sender, EventArgs e)
@@ -470,6 +536,11 @@ namespace SalesManagement_SysDev
         private void label3_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void cmbHint_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            fncTextColor(0);
         }
     }
 }

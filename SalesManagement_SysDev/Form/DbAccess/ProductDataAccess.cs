@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Channels;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
@@ -126,6 +127,22 @@ namespace SalesManagement_SysDev
                 MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return product;
+        }
+
+        public void GetProductNameData(object sender, Label lblName)
+        {
+            List<M_Product> product = new List<M_Product>();
+            if (!String.IsNullOrEmpty((sender as TextBox).Text))
+            {
+                if (CheckPrIDExistence(int.Parse((sender as TextBox).Text)))
+                {
+                    product = GetProductData();
+                    var data = product.Single(x => x.PrID == int.Parse((sender as TextBox).Text));
+                    lblName.Text = data.PrName;
+                    return;
+                }
+            }
+            lblName.Text = "----";
         }
     }
 }

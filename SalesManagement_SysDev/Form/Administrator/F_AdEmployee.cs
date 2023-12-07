@@ -429,8 +429,7 @@ namespace SalesManagement_SysDev
 
         private void cmbHint_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int chk = commonModule.ComboBoxHint(sender);
-            fncTextBoxColor(chk);
+            fncTextBoxColor(0);
         }
     }
 }

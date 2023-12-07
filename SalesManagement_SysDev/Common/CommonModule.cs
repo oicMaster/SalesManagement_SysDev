@@ -12,6 +12,19 @@ namespace SalesManagement_SysDev.Common
 {
     public class CommonModule
     {
+        ClientDataAccess clientDataAccess = new ClientDataAccess();
+        ProductDataAccess productDataAccess = new ProductDataAccess();
+        EmployeeDataAccess employeeDataAccess = new EmployeeDataAccess();
+        MakerDataAccess makerDataAccess = new MakerDataAccess();
+        SalesOfficeDataAccess SalesOfficeDataAccess = new SalesOfficeDataAccess();
+
+        private static List<M_Product> Product = new List<M_Product>();
+        private static List<M_Client>  Client = new List<M_Client>();
+        private static List<M_Employee> Employeet = new List<M_Employee>();
+        private static List<M_Maker> Maker = new List<M_Maker>();
+        private static List<M_SalesOffice> SalesOfficet = new List<M_SalesOffice>();
+
+
         public void FirstPageClick(TextBox Size, TextBox No, DataGridView dgv, List<object> dataList)
         {
             int pageSize = int.Parse(Size.Text);
@@ -102,11 +115,11 @@ namespace SalesManagement_SysDev.Common
             }
         }
 
-        public void PageLeave(TextBox Page)
+        public void PageLeave(TextBox Page,int value)
         {
             if (String.IsNullOrEmpty(Page.Text))
             {
-                Page.Text = "1";
+                Page.Text = value.ToString();
             }
         }
 
@@ -158,31 +171,8 @@ namespace SalesManagement_SysDev.Common
             dgv.ReadOnly = true;
             dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgv.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-        }
-        public int ComboBoxHint(object sender)
-        {
-            switch ((sender as ComboBox).Text)
-            {
-                case "一覧表示":
-                    return 0;
-                case "登録":
-                    return 1;
-                case "検索":
-                    return 2;
-                case "更新":
-                    return 3;
-                case "非表示":
-                    return 4;
-                case "確定":
-                    return 5;
-                case "詳細登録":
-                    return 6;
-                case "詳細検索":
-                    return 7;
-                case "詳細更新":
-                    return 8;
-            }
-            return 0;
+            dgv.AllowUserToResizeColumns = false;
+            dgv.AllowUserToResizeRows = false;
         }
 
         public int ComboBoxCondition(string cmbText)

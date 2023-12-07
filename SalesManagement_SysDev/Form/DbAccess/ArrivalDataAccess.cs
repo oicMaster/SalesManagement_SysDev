@@ -102,7 +102,7 @@ namespace SalesManagement_SysDev
                   (selectCondition.EmID == 0 || x.EmID == selectCondition.EmID) && 
                   (selectCondition.ClID == 0 || x.ClID == selectCondition.ClID) && 
                   (selectCondition.OrID == 0 || x.OrID == selectCondition.OrID) &&
-                  (selectCondition.ArDate == DateTime.Parse("0001/01/01")||
+                  (selectCondition.ArDate == null||
                   (dateCondition == 0 && x.ArDate == selectCondition.ArDate) || 
                   (dateCondition == 1 && x.ArDate >= selectCondition.ArDate)||
                   (dateCondition == 2 && x.ArDate <= selectCondition.ArDate)) &&

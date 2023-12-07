@@ -23,8 +23,8 @@ namespace SalesManagement_SysDev
         SalesOfficeDataAccess salesOfficeDataAccess = new SalesOfficeDataAccess();
         EmployeeDataAccess employeeDataAccess = new EmployeeDataAccess();
         OrderDataAccess orderDataAccess = new OrderDataAccess();
-        ProductDataAccess productDataAccess = new ProductDataAccess();
         ClientDataAccess clientDataAccess = new ClientDataAccess();
+        ProductDataAccess productDataAccess = new ProductDataAccess();
         CommonModule commonModule = new CommonModule();
 
         private static List<T_Arrival> Arrival;
@@ -41,10 +41,12 @@ namespace SalesManagement_SysDev
             //lblLoginNameData.Text = "管理者："+FormMenu.lblLoginName;
             //lblLoginIDData.Text = FormMenu.lblLoginID;
             dtpDate.Value = DateTime.Now;
+            dtpDate.Checked = false;
             SetFormDataGridView();
             SetFormDetailDataGridView();
             fncButtonEnable(0);
-            fncButtonEnable(4);
+            fncButtonEnable(2);
+
 
 
 
@@ -79,21 +81,20 @@ namespace SalesManagement_SysDev
                 case 1:
                     btnConfirm.Enabled = true;
                     break;
-                case 4:
+                case 2:
                     btnUpdate.Enabled = false;
                     break;
-                case 5:
+                case 3:
                     btnUpdate.Enabled = true;
                     break;
-
             }
         }
 
-        private void fncTextColor(int chk)
+        private void fncTextColor(string Item)
         {
-            switch (chk)
+            switch (Item)
             {
-                case 0:
+                case "一覧表示":
                     lblArID.ForeColor = Color.Black;
                     lblSoID.ForeColor = Color.Black;
                     lblEmID.ForeColor = Color.Black;
@@ -107,8 +108,9 @@ namespace SalesManagement_SysDev
                     lblQuantity.ForeColor = Color.Black;
                     cbxConfirm.ForeColor = Color.Blue;
                     cbxHidden.ForeColor = Color.Blue;
+                    cbxDisplay.ForeColor = Color.Blue;
                     break;
-                case 2:
+                case "検索":
                     lblArID.ForeColor = Color.Blue;
                     lblSoID.ForeColor = Color.Blue;
                     lblEmID.ForeColor = Color.Blue;
@@ -122,8 +124,9 @@ namespace SalesManagement_SysDev
                     lblQuantity.ForeColor = Color.Black;
                     cbxConfirm.ForeColor = Color.Blue;
                     cbxHidden.ForeColor = Color.Blue;
+                    cbxDisplay.ForeColor = Color.Blue;
                     break;
-                case 4:
+                case "非表示更新":
                     lblArID.ForeColor = Color.Red;
                     lblSoID.ForeColor = Color.Black;
                     lblEmID.ForeColor = Color.Black;
@@ -137,8 +140,9 @@ namespace SalesManagement_SysDev
                     lblQuantity.ForeColor = Color.Black;
                     cbxConfirm.ForeColor = Color.Black;
                     cbxHidden.ForeColor = Color.Black;
+                    cbxDisplay.ForeColor = Color.Black;
                     break;
-                case 5:
+                case "確定":
                     lblArID.ForeColor = Color.Red;
                     lblSoID.ForeColor = Color.Black;
                     lblEmID.ForeColor = Color.Black;
@@ -152,8 +156,9 @@ namespace SalesManagement_SysDev
                     lblQuantity.ForeColor = Color.Black;
                     cbxConfirm.ForeColor = Color.Black;
                     cbxHidden.ForeColor = Color.Black;
+                    cbxDisplay.ForeColor = Color.Black;
                     break;
-                case 7:
+                case "詳細検索":
                     lblArID.ForeColor = Color.Black;
                     lblSoID.ForeColor = Color.Black;
                     lblEmID.ForeColor = Color.Black;
@@ -167,6 +172,7 @@ namespace SalesManagement_SysDev
                     lblQuantity.ForeColor = Color.Blue;
                     cbxConfirm.ForeColor = Color.Black;
                     cbxHidden.ForeColor = Color.Black;
+                    cbxDisplay.ForeColor = Color.Black;
                     break;
 
             }
@@ -185,10 +191,10 @@ namespace SalesManagement_SysDev
         }
         private void SetDataGridView()
         {
-            txbPageNo.Text = "1";
+            int pageNo = int.Parse(txbPageNo.Text) - 1;
             int pageSize = int.Parse(txbPageSize.Text);
 
-            dataGridViewDsp.DataSource = Arrival;
+            dataGridViewDsp.DataSource = Arrival.Skip(pageSize * pageNo).Take(pageSize).ToList();
             lblPageNo.Text = "/" + ((int)Math.Ceiling(Arrival.Count / (double)pageSize)) + "ページ";
 
 
@@ -247,7 +253,7 @@ namespace SalesManagement_SysDev
         {
             if (dataGridViewDsp.SelectedCells.Count == 0)
                 return;
-            txbClID.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[0].Value.ToString();
+            txbArID.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[0].Value.ToString();
             txbSoID.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[1].Value.ToString();
             if (dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[2].Value != null)
                 txbEmID.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[2].Value.ToString();
@@ -262,6 +268,8 @@ namespace SalesManagement_SysDev
                 txbHidden.Text = dataGridViewDsp.Rows[dataGridViewDsp.CurrentRow.Index].Cells[8].Value.ToString();
             else
                 txbHidden.Text = String.Empty;
+
+
         }
 
         private void SetFormDetailDataGridView()
@@ -278,9 +286,10 @@ namespace SalesManagement_SysDev
 
         private void SetDetailDataGridView()
         {
-            txbPageNo.Text = "1";
-            int pageSize = int.Parse(txbPageSize.Text.Trim());
-            dataGridViewDetailDsp.DataSource = ArrivalDetail;
+            int pageNo = int.Parse(txbDetailPageNo.Text) - 1;
+
+            int pageSize = int.Parse(txbDetailPageSize.Text);
+            dataGridViewDetailDsp.DataSource = ArrivalDetail.Skip(pageSize * pageNo).Take(pageSize).ToList();
             lblDetailPageNo.Text = "/" + ((int)Math.Ceiling(ArrivalDetail.Count / (double)pageSize)) + "ページ";
 
 
@@ -323,8 +332,8 @@ namespace SalesManagement_SysDev
 
         private void txbPageSize_Leave(object sender, EventArgs e)
         {
-            commonModule.PageLeave(txbPageSize);
-            SetDataGridView();
+            commonModule.PageLeave(txbPageSize, 10);
+            SetSelectData();
         }
 
         private void txbPageNo_Leave(object sender, EventArgs e)
@@ -334,12 +343,12 @@ namespace SalesManagement_SysDev
 
         private void txbDetailPageSize_Leave(object sender, EventArgs e)
         {
-            commonModule.PageLeave(txbDetailPageSize);
-            SetDataGridView();
+            commonModule.PageLeave(txbDetailPageSize, 10);
+            SetSelectDetailData();
         }
         private void txbDetailPageNo_Leave(object sender, EventArgs e)
         {
-            SetDataGridView();
+            SetDetailDataGridView();
         }
 
         private void txbPageSize_TextChanged(object sender, EventArgs e)
@@ -357,13 +366,13 @@ namespace SalesManagement_SysDev
             if (String.IsNullOrEmpty((sender as TextBox).Text))
             {
                 fncButtonEnable(0);
-                fncButtonEnable(4);
+                fncButtonEnable(2);
             }
             else
             {
                 fncButtonEnable(1);
                 if (!String.IsNullOrEmpty(txbHidden.Text))
-                    fncButtonEnable(5);
+                    fncButtonEnable(3);
             }
             commonModule.KeyIDKeyPress(sender, txbArIDsub);
         }
@@ -372,10 +381,10 @@ namespace SalesManagement_SysDev
             if (!String.IsNullOrEmpty(txbHidden.Text))
             {
                 if (!String.IsNullOrEmpty(txbArID.Text))
-                    fncButtonEnable(5);
+                    fncButtonEnable(3);
             }
             else
-                fncButtonEnable(4);
+                fncButtonEnable(2);
 
         }
 
@@ -409,6 +418,7 @@ namespace SalesManagement_SysDev
             dataGridViewDsp.Refresh();
             //ページ番号の設定
             txbPageNo.Text = "1";
+            lblDetailPageNo.Text = "/" + ((int)Math.Ceiling(ArrivalDetail.Count / (double)pageSize)) + "ページ";
         }
 
         private void btnPreviousPage_Click(object sender, EventArgs e)
@@ -424,6 +434,7 @@ namespace SalesManagement_SysDev
                 txbPageNo.Text = (pageNo + 1).ToString();
             else
                 txbPageNo.Text = "1";
+            lblDetailPageNo.Text = "/" + ((int)Math.Ceiling(ArrivalDetail.Count / (double)pageSize)) + "ページ";
         }
 
         private void btnNextPage_Click(object sender, EventArgs e)
@@ -444,6 +455,7 @@ namespace SalesManagement_SysDev
                 txbPageNo.Text = lastPage.ToString();
             else
                 txbPageNo.Text = (pageNo + 1).ToString();
+            lblDetailPageNo.Text = "/" + ((int)Math.Ceiling(ArrivalDetail.Count / (double)pageSize)) + "ページ";
         }
 
         private void btnLastPage_Click(object sender, EventArgs e)
@@ -457,6 +469,7 @@ namespace SalesManagement_SysDev
             dataGridViewDsp.Refresh();
             //ページ番号の設定
             txbPageNo.Text = (pageNo + 1).ToString();
+            lblDetailPageNo.Text = "/" + ((int)Math.Ceiling(ArrivalDetail.Count / (double)pageSize)) + "ページ";
         }
 
         private void btnDetailFirstPage_Click(object sender, EventArgs e)
@@ -468,6 +481,7 @@ namespace SalesManagement_SysDev
             dataGridViewDetailDsp.Refresh();
             //ページ番号の設定
             txbDetailPageNo.Text = "1";
+            lblDetailPageNo.Text = "/" + ((int)Math.Ceiling(ArrivalDetail.Count / (double)pageSize)) + "ページ";
         }
 
         private void btnDetailPreviousPage_Click(object sender, EventArgs e)
@@ -483,6 +497,7 @@ namespace SalesManagement_SysDev
                 txbDetailPageNo.Text = (pageNo + 1).ToString();
             else
                 txbDetailPageNo.Text = "1";
+            lblDetailPageNo.Text = "/" + ((int)Math.Ceiling(ArrivalDetail.Count / (double)pageSize)) + "ページ";
         }
 
         private void btnDetailNextPage_Click(object sender, EventArgs e)
@@ -503,6 +518,7 @@ namespace SalesManagement_SysDev
                 txbDetailPageNo.Text = lastPage.ToString();
             else
                 txbDetailPageNo.Text = (pageNo + 1).ToString();
+            lblDetailPageNo.Text = "/" + ((int)Math.Ceiling(ArrivalDetail.Count / (double)pageSize)) + "ページ";
         }
 
         private void btnDetailLastPage_Click(object sender, EventArgs e)
@@ -516,6 +532,7 @@ namespace SalesManagement_SysDev
             dataGridViewDetailDsp.Refresh();
             //ページ番号の設定
             txbDetailPageNo.Text = (pageNo + 1).ToString();
+            lblDetailPageNo.Text = "/" + ((int)Math.Ceiling(ArrivalDetail.Count / (double)pageSize)) + "ページ";
         }
 
         private void btnClear_Click(object sender, EventArgs e)
@@ -535,9 +552,11 @@ namespace SalesManagement_SysDev
         }
         private void btnDisplay_Click(object sender, EventArgs e)
         {
+            txbPageNo.Text = "1";
+            txbDetailPageNo.Text = "1";
             GenerateDataAdDisplay();
             SetDataGridView();
-            GetDetailDataGridView();
+            SetDetailDataGridView();
         }
         private void GenerateDataAdDisplay()
         {
@@ -554,10 +573,9 @@ namespace SalesManagement_SysDev
                 ArStateFlag = StateFlag
             };
 
-            int dateCondition = commonModule.ComboBoxCondition(cmbDate.Text);
-             Arrival = arrivalDataAccess.GetArrivalData(selectCondition, dateCondition);
+            Arrival = arrivalDataAccess.GetArrivalData(selectCondition, 0);
         }
-            private void btnClose_Click(object sender, EventArgs e)
+        private void btnClose_Click(object sender, EventArgs e)
         {
             Dispose();
         }
@@ -576,7 +594,7 @@ namespace SalesManagement_SysDev
         {
             int Flag = 0;
             int StateFlag = 0;
-            DateTime date = DateTime.Parse("0001/01/01");
+            DateTime? date = null;
 
             if (!int.TryParse(txbArID.Text, out int arID))
                 arID = 0;
@@ -617,7 +635,7 @@ namespace SalesManagement_SysDev
         {
             txbPageNo.Text = "1";
             int pageSize = int.Parse(txbPageSize.Text.Trim());
-            dataGridViewDsp.DataSource = Arrival;
+            dataGridViewDsp.DataSource = Arrival.Take(pageSize).ToList();
             lblPageNo.Text = "/" + ((int)Math.Ceiling(Arrival.Count / (double)pageSize)) + "ページ";
         }
 
@@ -720,7 +738,7 @@ namespace SalesManagement_SysDev
                 arID = 0;
             if (!int.TryParse(txbPrID.Text, out int prID))
                 prID = 0;
-            if(!int.TryParse(txbPrID.Text,out int arQuantity))
+            if (!int.TryParse(txbPrID.Text, out int arQuantity))
                 arQuantity = 0;
             T_ArrivalDetail selectCondition = new T_ArrivalDetail()
             {
@@ -735,15 +753,34 @@ namespace SalesManagement_SysDev
         private void SetSelectDetailData()
         {
             txbDetailPageNo.Text = "1";
-            int pageSize = int.Parse(txbPageSize.Text.Trim());
-            dataGridViewDetailDsp.DataSource = ArrivalDetail;
-            lblPageNo.Text = "/" + ((int)Math.Ceiling(ArrivalDetail.Count / (double)pageSize)) + "ページ";
+            int pageSize = int.Parse(txbDetailPageSize.Text.Trim());
+            dataGridViewDetailDsp.DataSource = ArrivalDetail.Take(pageSize).ToList();
+            lblDetailPageNo.Text = "/" + ((int)Math.Ceiling(ArrivalDetail.Count / (double)pageSize)) + "ページ";
         }
 
         private void cmbHint_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int chk = commonModule.ComboBoxHint(sender);
-            fncTextColor(chk);
+            fncTextColor((sender as ComboBox).Text);
+        }
+
+        private void txbPrID_TextChanged(object sender, EventArgs e)
+        {
+            productDataAccess.GetProductNameData(sender, lblPrName);
+        }
+
+        private void txbClID_TextChanged(object sender, EventArgs e)
+        {
+            clientDataAccess.GetClientNameData(sender, lblClName);
+        }
+
+        private void txbEmID_TextChanged(object sender, EventArgs e)
+        {
+            employeeDataAccess.GetEmployeeNameData(sender, lblEmName);
+        }
+
+        private void txbSoID_TextChanged(object sender, EventArgs e)
+        {
+            salesOfficeDataAccess.GetSalesOfficeNameData(sender, lblSoName);
         }
     }
 }

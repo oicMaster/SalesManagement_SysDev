@@ -41,7 +41,7 @@ namespace SalesManagement_SysDev
             cmbHint.Items.Add("一覧表示");
             cmbHint.Items.Add("登録");
             cmbHint.Items.Add("検索");
-            cmbHint.Items.Add("非表示");
+            cmbHint.Items.Add("非表示更新");
             cmbHint.Items.Add("確定");
             cmbHint.Items.Add("詳細登録");
             cmbHint.Items.Add("詳細検索");
@@ -71,11 +71,11 @@ namespace SalesManagement_SysDev
             }
         }
 
-        private void fncTextColor(int chk)
+        private void fncTextColor(string Item)
         {
-            switch (chk)
+            switch (Item)
             {
-                case 0:
+                case "一覧表示":
                     lblHaID.ForeColor = Color.Black;
                     lblMaID.ForeColor = Color.Black;
                     lblEmID.ForeColor = Color.Black;
@@ -87,9 +87,10 @@ namespace SalesManagement_SysDev
                     lblQuantity.ForeColor = Color.Black;
                     cbxConfirm.ForeColor = Color.Blue;
                     cbxHidden.ForeColor = Color.Blue;
+                    cbxDisplay.ForeColor = Color.Blue;
                     break;
-                case 1:
-                    lblHaID.ForeColor = Color.Black;
+                case "登録":
+                    lblHaID.ForeColor = Color.Fuchsia;
                     lblMaID.ForeColor = Color.Red;
                     lblEmID.ForeColor = Color.Red;
                     lblDate.ForeColor = Color.Black;
@@ -100,8 +101,9 @@ namespace SalesManagement_SysDev
                     lblQuantity.ForeColor = Color.Red;
                     cbxConfirm.ForeColor = Color.Black;
                     cbxHidden.ForeColor = Color.Black;
+                    cbxDisplay.ForeColor = Color.Black;
                     break;
-                case 2:
+                case "検索":
                     lblHaID.ForeColor = Color.Blue;
                     lblMaID.ForeColor = Color.Blue;
                     lblEmID.ForeColor = Color.Blue;
@@ -113,8 +115,9 @@ namespace SalesManagement_SysDev
                     lblQuantity.ForeColor = Color.Black;
                     cbxConfirm.ForeColor = Color.Blue;
                     cbxHidden.ForeColor = Color.Blue;
+                    cbxDisplay.ForeColor = Color.Blue;
                     break;
-                case 4:
+                case "非表示更新":
                     lblHaID.ForeColor = Color.Red;
                     lblMaID.ForeColor = Color.Black;
                     lblEmID.ForeColor = Color.Black;
@@ -126,8 +129,9 @@ namespace SalesManagement_SysDev
                     lblQuantity.ForeColor = Color.Black;
                     cbxConfirm.ForeColor = Color.Black;
                     cbxHidden.ForeColor = Color.Black;
+                    cbxDisplay.ForeColor = Color.Black;
                     break;
-                case 5:
+                case "確定":
                     lblHaID.ForeColor = Color.Red;
                     lblMaID.ForeColor = Color.Black;
                     lblEmID.ForeColor = Color.Black;
@@ -139,21 +143,23 @@ namespace SalesManagement_SysDev
                     lblQuantity.ForeColor = Color.Black;
                     cbxConfirm.ForeColor = Color.Black;
                     cbxHidden.ForeColor = Color.Black;
+                    cbxDisplay.ForeColor = Color.Black;
                     break;
-                case 6:
-                    lblHaID.ForeColor = Color.Black;
+                case "詳細登録":
+                    lblHaID.ForeColor = Color.Red;
                     lblMaID.ForeColor = Color.Black;
                     lblEmID.ForeColor = Color.Black;
                     lblDate.ForeColor = Color.Black;
                     lblHidden.ForeColor = Color.Black;
-                    lblHaDetailID.ForeColor = Color.Black;
+                    lblHaDetailID.ForeColor = Color.Fuchsia;
                     lblHaIDsub.ForeColor = Color.Red;
                     lblPrID.ForeColor = Color.Red;
                     lblQuantity.ForeColor = Color.Red;
                     cbxConfirm.ForeColor = Color.Black;
                     cbxHidden.ForeColor = Color.Black;
+                    cbxDisplay.ForeColor = Color.Black;
                     break;
-                case 7:
+                case "詳細検索":
                     lblHaID.ForeColor = Color.Black;
                     lblMaID.ForeColor = Color.Black;
                     lblEmID.ForeColor = Color.Black;
@@ -165,6 +171,7 @@ namespace SalesManagement_SysDev
                     lblQuantity.ForeColor = Color.Blue;
                     cbxConfirm.ForeColor = Color.Black;
                     cbxHidden.ForeColor = Color.Black;
+                    cbxDisplay.ForeColor = Color.Black;
                     break;
 
             }
@@ -750,6 +757,11 @@ namespace SalesManagement_SysDev
         private void dtpDate_ValueChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void cmbHint_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            fncTextColor((sender as ComboBox).Text);
         }
     }
 }
