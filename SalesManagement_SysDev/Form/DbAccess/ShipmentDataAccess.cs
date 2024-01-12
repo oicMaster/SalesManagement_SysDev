@@ -53,12 +53,17 @@ namespace SalesManagement_SysDev
                 var context = new SalesManagement_DevContext();
                 var shipment= context.T_Shipments.Single(x => x.ShID == updSh.ShID);
 
-                shipment.ClID = updSh.ClID;
-                shipment.EmID = updSh.EmID;
-                shipment.SoID = updSh.SoID;
-                shipment.OrID = updSh.OrID;
+                if (updSh.ClID != 0)
+                    shipment.ClID = updSh.ClID;
+                if (updSh.EmID != 0)
+                    shipment.EmID = updSh.EmID;
+                if (updSh.SoID != 0)
+                    shipment.SoID = updSh.SoID;
+                if (updSh.OrID != 0)
+                    shipment.OrID = updSh.OrID;
+                if (updSh.ShFinishDate != null)
+                    shipment.ShFinishDate = updSh.ShFinishDate;
                 shipment.ShStateFlag = updSh.ShStateFlag;
-                shipment.ShFinishDate = updSh.ShFinishDate;
                 shipment.ShFlag = updSh.ShFlag;
                 shipment.ShHidden = updSh.ShHidden;
 
@@ -72,6 +77,26 @@ namespace SalesManagement_SysDev
                 return false;
             }
         }
+
+        public T_Shipment GenerateDataAdError()
+        {
+            var context = new SalesManagement_DevContext();
+            var shipment = context.T_Shipments.Max(x => x.ShID);
+
+            return new T_Shipment
+            {
+                ShID = shipment,
+                SoID = 0,
+                EmID = 0,
+                ClID = 0,
+                OrID = 0,
+                ShFinishDate = null,
+                ShFlag = 2,
+                ShStateFlag = 0,
+                ShHidden = "SystemError"
+            };
+        }
+
 
         //データの取得
         public List<T_Shipment> GetShipmentData()
@@ -103,7 +128,7 @@ namespace SalesManagement_SysDev
                   (selectCondition.EmID == 0 || x.EmID == selectCondition.EmID) &&
                   (selectCondition.ClID == 0 || x.ClID == selectCondition.ClID) &&
                   (selectCondition.OrID == 0 || x.OrID == selectCondition.OrID) &&
-                  (selectCondition.ShFinishDate == DateTime.Parse("0001/01/01") ||
+                  (selectCondition.ShFinishDate == null ||
                   (dateCondition == 0 && x.ShFinishDate == selectCondition.ShFinishDate) ||
                   (dateCondition == 1 && x.ShFinishDate >= selectCondition.ShFinishDate) ||
                   (dateCondition == 2 && x.ShFinishDate <= selectCondition.ShFinishDate)) &&
@@ -117,6 +142,59 @@ namespace SalesManagement_SysDev
                 MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return shipment;
+        }
+
+        public void GetShipmentFlagData(object sender, TextBox confirm, TextBox hidden)
+        {
+            List<T_Shipment> shipment = new List<T_Shipment>();
+
+
+            if (CheckShIDExistence(int.Parse((sender as TextBox).Text)))
+            {
+
+                var context = new SalesManagement_DevContext();
+                shipment = context.T_Shipments.ToList();
+                var data = shipment.Single(x => x.ShID == int.Parse((sender as TextBox).Text));
+                confirm.Text = data.ShStateFlag.ToString();
+                hidden.Text = data.ShFlag.ToString();
+                context.Dispose();
+                return;
+            }
+            confirm.Text = "------";
+            hidden.Text = "------";
+        }
+
+
+
+     
+        public bool ConfirmShipmentToSale(int shID, int emID)
+        {
+            try
+            {
+                using (var context = new SalesManagement_DevContext())
+                {
+                    var shipment = context.T_Shipments.Single(x => x.ShID == shID);
+
+                    var sale = new T_Sale
+                    {
+                        ClID = shipment.ClID,
+                        SoID = shipment.SoID,
+                        EmID = emID,
+                        ChID = shipment.OrID,
+                        SaDate = DateTime.Now,
+                        SaFlag = 0,
+                        SaHidden = null
+                    };
+                    context.T_Sales.Add(sale);
+                    context.SaveChanges();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
         }
     }
 }

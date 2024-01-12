@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
+using System.Runtime.Remoting.Contexts;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -46,21 +49,29 @@ namespace SalesManagement_SysDev
             }
         }
 
+
+
         public bool UpdateArrivalData(T_Arrival updAr)
         {
             try
             {
                 var context = new SalesManagement_DevContext();
                 var arrival = context.T_Arrivals.Single(x => x.ArID == updAr.ArID);
+                if (updAr.SoID != 0)
+                    arrival.SoID = updAr.SoID;
+                if (updAr.EmID != 0)
+                    arrival.EmID = updAr.EmID;
+                if (updAr.ClID != 0)
+                    arrival.ClID = updAr.ClID;
+                if (updAr.OrID != 0)
+                    arrival.OrID = updAr.OrID;
 
-                arrival.SoID = updAr.SoID;
-                arrival.EmID = updAr.EmID;
-                arrival.ClID = updAr.ClID;
-                arrival.OrID = updAr.OrID;
-                arrival.ArDate = updAr.ArDate;
-                arrival.ArStateFlag = updAr.ArStateFlag;
-                arrival.ArFlag = updAr.ArFlag;
-                arrival.ArHidden = updAr.ArHidden;
+                if (updAr.ArDate != null)
+                    arrival.ArDate = updAr.ArDate;
+
+                    arrival.ArStateFlag = updAr.ArStateFlag;
+                    arrival.ArFlag = updAr.ArFlag;
+                    arrival.ArHidden = updAr.ArHidden;
 
                 context.SaveChanges();
                 context.Dispose();
@@ -71,6 +82,25 @@ namespace SalesManagement_SysDev
                 MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
+        }
+
+        public T_Arrival GenerateDataAdError()
+        {
+            var context = new SalesManagement_DevContext();
+            var arrival = context.T_Arrivals.Max(x => x.ArID);
+
+            return new T_Arrival
+            {
+                ArID = arrival,
+                SoID = 0,
+                EmID = 0,
+                ClID = 0,
+                OrID = 0,
+                ArDate = null,
+                ArFlag = 2,
+                ArStateFlag = 0,
+                ArHidden = "SystemError"
+            };
         }
 
         public List<T_Arrival> GetArrivalData()
@@ -117,6 +147,58 @@ namespace SalesManagement_SysDev
                 MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return arrival;
+        }
+
+        public void GetArrivalFlagData(object sender, TextBox confirm,TextBox hidden)
+        {
+           List<T_Arrival> arrival = new List<T_Arrival>();
+
+
+            if (CheckArIDExistence(int.Parse((sender as TextBox).Text)))
+            {
+                var context = new SalesManagement_DevContext();
+                arrival = context.T_Arrivals.ToList();
+                var data = arrival.Single(x => x.ArID == int.Parse((sender as TextBox).Text));
+                confirm.Text = data.ArStateFlag.ToString();
+                hidden.Text = data.ArFlag.ToString();
+                context.Dispose();
+                return;
+            }
+            confirm.Text = "------";
+            hidden.Text = "------";
+        }
+
+
+
+        public bool ConfirmArrivalToShipment(int arID,int emID)
+        {
+            try
+            {
+                using (var context = new SalesManagement_DevContext())
+                {
+                    var arrival = context.T_Arrivals.Single(x => x.ArID == arID);
+
+                    var shipment = new T_Shipment
+                    {
+                        ClID = arrival.ClID,
+                        SoID = arrival.SoID,
+                        EmID = emID,
+                        OrID = arrival.OrID,
+                        ShFinishDate = null,
+                        ShStateFlag = 0,
+                        ShFlag = 0,
+                        ShHidden = null
+                    };
+                    context.T_Shipments.Add(shipment);
+                    context.SaveChanges();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
         }
     }
 

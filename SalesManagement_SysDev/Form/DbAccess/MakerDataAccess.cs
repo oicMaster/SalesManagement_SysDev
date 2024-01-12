@@ -16,7 +16,7 @@ namespace SalesManagement_SysDev
             {
                 var context = new SalesManagement_DevContext();
                 //顧客IDと一致するデータがあるかどうか
-                flg = context.M_Makers.Any(x => x.MaID == MaID);
+                flg = context.M_Makers.Any(x => x.MaID == MaID && x.MaFlag == 0);
                 //DB更新
                 context.Dispose();
             }
@@ -52,13 +52,18 @@ namespace SalesManagement_SysDev
             {
                 var context = new SalesManagement_DevContext();
                 var maker = context.M_Makers.Single(x => x.MaID == updMa.MaID);
-
+                if(maker.MaID != 0)
                 maker.MaID = updMa.MaID;
-                maker.MaName = updMa.MaName;
-                maker.MaAddress = updMa.MaAddress;
-                maker.MaPhone = updMa.MaPhone;
-                maker.MaPostal = updMa.MaPostal;
-                maker.MaFAX = updMa.MaFAX;
+                if (updMa.MaName != String.Empty)
+                    maker.MaName = updMa.MaName;
+                if (updMa.MaAddress != String.Empty)
+                    maker.MaAddress = updMa.MaAddress;
+                if (updMa.MaPhone != String.Empty)
+                    maker.MaPhone = updMa.MaPhone;
+                if (updMa.MaPostal != String.Empty)
+                    maker.MaPostal = updMa.MaPostal;
+                if (updMa.MaFAX != String.Empty)
+                    maker.MaFAX = updMa.MaFAX;
                 maker.MaFlag = updMa.MaFlag;
                 maker.MaHidden = updMa.MaHidden;
 
@@ -111,5 +116,42 @@ namespace SalesManagement_SysDev
             }
             return maker;
         }
+
+        public void GetMakerNameData(object sender, Label lblName)
+        {
+            List<M_Maker> maker = new List<M_Maker>();
+            if (!String.IsNullOrEmpty((sender as TextBox).Text))
+            {
+                if (CheckMaIDExistence(int.Parse((sender as TextBox).Text)))
+                {
+                    maker = GetMakerData();
+                    var data = maker.Single(x => x.MaID == int.Parse((sender as TextBox).Text));
+                    lblName.Text = data.MaName;
+                    return;
+                }
+            }
+            lblName.Text = "----";
+        }
+
+
+        public void GetMakerFlagData(object sender, TextBox hidden)
+        {
+            List<M_Maker> maker = new List<M_Maker>();
+
+
+            if (CheckMaIDExistence(int.Parse((sender as TextBox).Text)))
+            {
+
+                var context = new SalesManagement_DevContext();
+                maker = context.M_Makers.ToList();
+                var data = maker.Single(x => x.MaID == int.Parse((sender as TextBox).Text));
+                hidden.Text = data.MaFlag.ToString();
+                context.Dispose();
+                return;
+            }
+            hidden.Text = "------";
+        }
+
+
     }
 }

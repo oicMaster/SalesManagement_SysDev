@@ -243,11 +243,11 @@
     <Compile Include="Form\Logistics\F_LoWereHousing.Designer.cs">
       <DependentUpon>F_LoWereHousing.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\Store\F_OperationManegement.cs">
+    <Compile Include="Form\Administrator\F_AdOperationManegement.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Store\F_OperationManegement.Designer.cs">
-      <DependentUpon>F_OperationManegement.cs</DependentUpon>
+    <Compile Include="Form\Administrator\F_AdOperationManegement.Designer.cs">
+      <DependentUpon>F_AdOperationManegement.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\DbAccess\ProductDataAccess.cs" />
     <Compile Include="Form\DbAccess\HattyuDataAccess.cs" />
@@ -270,7 +270,30 @@
     <Compile Include="Form\DbAccess\HattyuDetailDataAccess.cs" />
     <Compile Include="Form\DbAccess\MajorClassificationDataAccess.cs" />
     <Compile Include="Form\DbAccess\OrderDetailDataAccess.cs" />
-    <Compile Include="Form\DbAccess\LoginHistoryDataAccess.cs" />
+    <Compile Include="Form\Store\F_Start.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Store\F_Start.Designer.cs">
+      <DependentUpon>F_Start.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Logistics\F_LoOperationManegement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Logistics\F_LoOperationManegement.Designer.cs">
+      <DependentUpon>F_LoOperationManegement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Sales\F_SaOperationManegement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Sales\F_SaOperationManegement.Designer.cs">
+      <DependentUpon>F_SaOperationManegement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Store\F_Success.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Store\F_Success.Designer.cs">
+      <DependentUpon>F_Success.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Entity\T_Arrival.cs" />
@@ -325,6 +348,15 @@
     <EmbeddedResource Include="Form\Administrator\F_AdClient.resx">
       <DependentUpon>F_AdClient.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\Logistics\F_LoMenu.resx">
+      <DependentUpon>F_LoMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Sales\F_SaArrival.resx">
+      <DependentUpon>F_SaArrival.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Sales\F_SaMenu.resx">
+      <DependentUpon>F_SaMenu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Store\F_login.resx">
       <DependentUpon>F_login.cs</DependentUpon>
     </EmbeddedResource>
@@ -355,8 +387,14 @@
     <EmbeddedResource Include="Form\Administrator\F_AdSalesOffice.resx">
       <DependentUpon>F_AdSalesOffice.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Store\F_OperationManegement.resx">
-      <DependentUpon>F_OperationManegement.cs</DependentUpon>
+    <EmbeddedResource Include="Form\Administrator\F_AdOperationManegement.resx">
+      <DependentUpon>F_AdOperationManegement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Store\F_Start.resx">
+      <DependentUpon>F_Start.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Store\F_Success.resx">
+      <DependentUpon>F_Success.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -382,7 +420,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\SMfirst.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

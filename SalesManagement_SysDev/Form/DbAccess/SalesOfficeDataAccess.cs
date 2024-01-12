@@ -9,14 +9,14 @@ namespace SalesManagement_SysDev
 {
     internal class SalesOfficeDataAccess
     {
-        public bool CheckSoIDExistence(int SoID)
+        public bool CheckSoIDExistence(int soID)
         {
             bool flg = false;
             try
             {
                 var context = new SalesManagement_DevContext();
 
-                flg = context.M_SalesOffices.Any(x => x.SoID == SoID);
+                flg = context.M_SalesOffices.Any(x => x.SoID == soID && x.SoFlag == 0);
                 context.Dispose();
             }
             catch (Exception ex)
@@ -31,10 +31,11 @@ namespace SalesManagement_SysDev
         {
             try
             {
-                var context = new SalesManagement_DevContext();
-                context.M_SalesOffices.Add(regSo);
-                context.SaveChanges();
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    context.M_SalesOffices.Add(regSo);
+                    context.SaveChanges();
+                }
 
                 return true;
             }
@@ -50,15 +51,20 @@ namespace SalesManagement_SysDev
             try
             {
                 var context = new SalesManagement_DevContext();
-                var sale = context.M_SalesOffices.Single(x => x.SoID == updSo.SoID);
-                
-                sale.SoName = updSo.SoName;
-                sale.SoAddress = updSo.SoAddress;
-                sale.SoPhone = updSo.SoPhone;
-                sale.SoPostal = updSo.SoPostal;
-                sale.SoFAX = updSo.SoFAX;
-                sale.SoFlag = updSo.SoFlag;
-                sale.SoHidden = updSo.SoHidden;
+                var salesoffice = context.M_SalesOffices.Single(x => x.SoID == updSo.SoID);
+
+                if (updSo.SoName != String.Empty)
+                    salesoffice.SoName = updSo.SoName;
+                if (updSo.SoAddress != String.Empty)
+                    salesoffice.SoAddress = updSo.SoAddress;
+                if (updSo.SoPhone != String.Empty)
+                    salesoffice.SoPhone = updSo.SoPhone;
+                if (updSo.SoPostal != String.Empty)
+                    salesoffice.SoPostal = updSo.SoPostal;
+                if (updSo.SoFAX != String.Empty)
+                    salesoffice.SoFAX = updSo.SoFAX;
+                salesoffice.SoFlag = updSo.SoFlag;
+                salesoffice.SoHidden = updSo.SoHidden;
 
                 context.SaveChanges();
                 context.Dispose();
@@ -128,6 +134,24 @@ namespace SalesManagement_SysDev
                 }
             }
             lblName.Text = "----";
+        }
+
+        public void GetSalesOfficeFlagData(object sender, TextBox hidden)
+        {
+            List<M_SalesOffice> salesoffice = new List<M_SalesOffice>();
+
+
+            if (CheckSoIDExistence(int.Parse((sender as TextBox).Text)))
+            {
+
+                var context = new SalesManagement_DevContext();
+                salesoffice = context.M_SalesOffices.ToList();
+                var data = salesoffice.Single(x => x.SoID == int.Parse((sender as TextBox).Text));
+                hidden.Text = data.SoFlag.ToString();
+                context.Dispose();
+                return;
+            }
+            hidden.Text = "------";
         }
     }
 }

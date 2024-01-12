@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace SalesManagement_SysDev
 {
@@ -28,7 +29,7 @@ namespace SalesManagement_SysDev
             return flg;
         }
 
-        public bool AddOrderData(T_OrderDetail regOrD)
+        public bool AddOrderDetailData(T_OrderDetail regOrD)
         {
             try
             {
@@ -46,27 +47,6 @@ namespace SalesManagement_SysDev
             }
         }
 
-        public bool UpdateOrderDetailData(T_OrderDetail updOrD)
-        {
-            try
-            {
-                var context = new SalesManagement_DevContext();
-                var orderDetail = context.T_OrderDetails.Single(x => x.OrDetailID == updOrD.OrDetailID);
-
-                orderDetail.OrDetailID = updOrD.OrDetailID;
-                orderDetail.OrID = updOrD.OrID;
-                orderDetail.PrID = updOrD.PrID;
-                orderDetail.OrQuantity = updOrD.OrQuantity;
-                context.SaveChanges();
-                context.Dispose();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-        }
 
 
         public List<T_OrderDetail> GetOrderDetailData()
@@ -114,5 +94,123 @@ namespace SalesManagement_SysDev
             }
             return orderDetail;
         }
+
+        public bool ConfirmOrderDetailToChumonDetail(int orID)
+        {
+            try
+            {
+                using (var context = new SalesManagement_DevContext())
+                {
+                    List<T_OrderDetail> orderDetail = context.T_OrderDetails.Where(x => x.OrID == orID).ToList();
+
+                    foreach (var orDetail in orderDetail)
+                    {
+                        var chumonDetail = new T_ChumonDetail
+                        {
+                            ChID = orID,
+                            PrID = orDetail.PrID,
+                            ChQuantity = orDetail.OrQuantity,
+                        };
+                        context.T_ChumonDetails.Add(chumonDetail);
+
+                    }
+                    context.SaveChanges();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+
+        public bool ConfirmOrderAndUpdateStock(int orID)
+        {
+            try
+            {
+                using (var context = new SalesManagement_DevContext())
+                {
+                    List<T_OrderDetail> orderDetail = context.T_OrderDetails.Where(x => x.OrID == orID).ToList();
+
+                    foreach (var orDetail in orderDetail)
+                    {
+                        var product = context.M_Products.Single(x => x.PrID == orDetail.PrID);
+                        var stock = context.T_Stocks.Single(x => x.PrID == orDetail.PrID);
+                        stock.StQuantity -= orDetail.OrQuantity;
+                        if (product.PrSafetyStock > stock.StQuantity)
+                            stock.StState = 1;
+                        context.SaveChanges();
+                    }
+                    context.SaveChanges();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+        public bool CheckDuplicateOrderDetail(int orID, int PrID)
+        {
+            try
+            {
+                using (var context = new SalesManagement_DevContext())
+                {
+                    List<T_OrderDetail> orderDetail = context.T_OrderDetails.Where(x => x.OrID == orID).ToList();
+
+                    foreach (var orDetail in orderDetail)
+                    {
+                        if (orDetail.PrID == PrID)
+                            return false;
+                    }
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+
+        public bool CheckStock(int orID)
+        {
+            try
+            {
+                using (var context = new SalesManagement_DevContext())
+                {
+                    List<T_OrderDetail> orderDetail = context.T_OrderDetails.Where(x => x.OrID == orID).ToList();
+
+                    foreach (var orDetail in orderDetail)
+                    {
+                        var stock = context.T_Stocks.Single(x => x.PrID == orDetail.PrID);
+                        if (orDetail.OrQuantity > stock.StQuantity)
+                            return false;
+                    }
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+
+
     }
 }

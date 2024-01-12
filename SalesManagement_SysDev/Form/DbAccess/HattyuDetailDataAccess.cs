@@ -108,5 +108,39 @@ namespace SalesManagement_SysDev
             }
             return hattyuDetail;
         }
+
+        public bool ConfirmHattyuDetailToWarehousingDetail(int haID)
+        {
+
+            try
+            {
+                using (var context = new SalesManagement_DevContext())
+                {
+                    List<T_HattyuDetail> hattyuDetail = context.T_HattyuDetails.Where(x => x.HaID == haID).ToList();
+
+                    foreach (var haDetail in hattyuDetail)
+                    {
+                        var warehousingDetail = new T_WarehousingDetail
+                        {
+                            WaID = haID,
+                            PrID = haDetail.PrID,
+                            WaQuantity = haDetail.HaQuantity
+                        };
+                        context.T_WarehousingDetails.Add(warehousingDetail);
+                      
+                    }
+                    context.SaveChanges();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+
+        
+      
     }
 }

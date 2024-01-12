@@ -52,12 +52,16 @@ namespace SalesManagement_SysDev
             {
                 var context = new SalesManagement_DevContext();
                 var syukko = context.T_Syukkos.Single(x => x.SyID == updSy.SyID);
-
-                syukko.EmID = updSy.EmID;
-                syukko.ClID = updSy.ClID;
-                syukko.SoID = updSy.SoID;
-                syukko.OrID = updSy.OrID;
-                syukko.SyDate = updSy.SyDate;
+                if (updSy.EmID != 0)
+                    syukko.EmID = updSy.EmID;
+                if (updSy.ClID != 0)
+                    syukko.ClID = updSy.ClID;
+                if (updSy.SoID != 0)
+                    syukko.SoID = updSy.SoID;
+                if (updSy.OrID != 0)
+                    syukko.OrID = updSy.OrID;
+                if (updSy.SyDate != null)
+                    syukko.SyDate = updSy.SyDate;
                 syukko.SyStateFlag = updSy.SyStateFlag;
                 syukko.SyFlag = updSy.SyFlag;
                 syukko.SyHidden = updSy.SyHidden;
@@ -71,6 +75,25 @@ namespace SalesManagement_SysDev
                 MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
+        }
+
+        public T_Syukko GenerateDataAdError()
+        {
+            var context = new SalesManagement_DevContext();
+            var syukko = context.T_Syukkos.Max(x => x.SyID);
+
+            return new T_Syukko
+            {
+                SyID = syukko,
+                SoID = 0,
+                EmID = 0,
+                ClID = 0,
+                OrID = 0,
+                SyDate = null,
+                SyFlag = 2,
+                SyStateFlag = 0,
+                SyHidden = "SystemError"
+            };
         }
 
         //データの取得
@@ -103,7 +126,7 @@ namespace SalesManagement_SysDev
                   (selectCondition.EmID == 0 || x.EmID == selectCondition.EmID) &&
                   (selectCondition.ClID == 0 || x.ClID == selectCondition.ClID) &&
                   (selectCondition.OrID == 0 || x.OrID == selectCondition.OrID) &&
-                  (selectCondition.SyDate == DateTime.Parse("0001/01/01") ||
+                  (selectCondition.SyDate == null ||
                   (dateCondition == 0 && x.SyDate == selectCondition.SyDate) ||
                   (dateCondition == 1 && x.SyDate >= selectCondition.SyDate) ||
                   (dateCondition == 2 && x.SyDate <= selectCondition.SyDate)) &&
@@ -117,6 +140,60 @@ namespace SalesManagement_SysDev
                 MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return syukko;
+        }
+
+        public void GetSyukkoFlagData(object sender, TextBox confirm, TextBox hidden)
+        {
+            List<T_Syukko> syukko = new List<T_Syukko>();
+
+
+            if (CheckSyIDExistence(int.Parse((sender as TextBox).Text)))
+            {
+
+                var context = new SalesManagement_DevContext();
+                syukko = context.T_Syukkos.ToList();
+                var data = syukko.Single(x => x.SyID == int.Parse((sender as TextBox).Text));
+                confirm.Text = data.SyStateFlag.ToString();
+                hidden.Text = data.SyFlag.ToString();
+                context.Dispose();
+                return;
+            }
+            confirm.Text = "------";
+            hidden.Text = "------";
+        }
+
+
+
+
+        public bool ConfirmSyukkoToArrival(int syID, int emID)
+        {
+            try
+            {
+                using (var context = new SalesManagement_DevContext())
+                {
+                    var syukko = context.T_Syukkos.Single(x => x.SyID == syID);
+
+                    var arrival = new T_Arrival
+                    {
+                        ClID = syukko.ClID,
+                        SoID = syukko.SoID,
+                        EmID = emID,
+                        OrID = syukko.OrID,
+                        ArDate = null,
+                        ArStateFlag = 0,
+                        ArFlag = 0,
+                        ArHidden = null
+                    };
+                    context.T_Arrivals.Add(arrival);
+                    context.SaveChanges();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
         }
     }
 }

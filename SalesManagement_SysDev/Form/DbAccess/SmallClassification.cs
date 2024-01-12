@@ -26,5 +26,37 @@ namespace SalesManagement_SysDev
             }
             return flg;
         }
+
+        public List<M_SmallClassification> GetScData()
+        {
+            List<M_SmallClassification> smallClassifications = new List<M_SmallClassification>();
+            try
+            {
+                var context = new SalesManagement_DevContext();
+                smallClassifications = context.M_SmallClassifications.Where(x => x.ScFlag == 0).ToList();
+                context.Dispose();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return smallClassifications;
+        }
+
+        public void GetScNameData(object sender, Label lblName)
+        {
+            List<M_SmallClassification> smallClassification = new List<M_SmallClassification>();
+            if (!String.IsNullOrEmpty((sender as TextBox).Text))
+            {
+                if (CheckScIDExistence(int.Parse((sender as TextBox).Text)))
+                {
+                    smallClassification = GetScData();
+                    var data = smallClassification.Single(x => x.ScID == int.Parse((sender as TextBox).Text));
+                    lblName.Text = data.ScName;
+                    return;
+                }
+            }
+            lblName.Text = "----";
+        }
     }
 }

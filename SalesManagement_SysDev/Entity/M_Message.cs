@@ -24,21 +24,5 @@ namespace SalesManagement_SysDev
         [Column("MsgComments",TypeName = "nvarchar", Order = 1)]
         [DisplayName("メッセージ内容")]
         public string MsgComments { get; set; }
-
-        [Required]
-        [MaxLength(20)]
-        [Column("MsgTitle",TypeName ="nvarchar",Order = 2)]
-        [DisplayName("メッセージタイトル")]
-        public string MsgTitle { get; set; }
-
-        [Required]
-        [Column("MsgButton",TypeName = "int" , Order =3)]
-        [DisplayName("メッセージボタン")]
-        public int MsgButton { get; set; }
-
-        [Required]
-        [Column("MsgIcon",TypeName ="int",Order =4)]
-        [DisplayName("メッセージアイコン")]
-        public int MsgIcon { get; set; }
     }
 }

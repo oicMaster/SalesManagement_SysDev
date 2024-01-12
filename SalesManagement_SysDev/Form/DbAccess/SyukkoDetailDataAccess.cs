@@ -84,5 +84,35 @@ namespace SalesManagement_SysDev
             }
             return syukkoDetail;
         }
+
+        public bool ConfirmSyukkoDetailToArrivalDetail(int syID)
+        {
+
+            try
+            {
+                using (var context = new SalesManagement_DevContext())
+                {
+                    List<T_SyukkoDetail> syukkoDetail = context.T_SyukkoDetails.Where(x => x.SyID == syID).ToList();
+
+                    foreach (var syDetail in syukkoDetail)
+                    {
+                        var arrivalDetail = new T_ArrivalDetail
+                        {
+                            ArID = syID,
+                            PrID = syDetail.PrID,
+                            ArQuantity = syDetail.SyQuantity,
+                        };
+                        context.T_ArrivalDetails.Add(arrivalDetail);
+                        context.SaveChanges();
+                    }
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
     }
 }

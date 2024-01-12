@@ -32,11 +32,11 @@ namespace SalesManagement_SysDev
         {
             try
             {
-                var context = new SalesManagement_DevContext();
-                context.T_Hattyus.Add(regHa);
-                context.SaveChanges();
-                context.Dispose();
-
+                using (var context = new SalesManagement_DevContext())
+                {
+                    context.T_Hattyus.Add(regHa);
+                    context.SaveChanges();
+                }
                 return true;
             }
             catch (Exception ex)
@@ -52,9 +52,10 @@ namespace SalesManagement_SysDev
             {
                 var context = new SalesManagement_DevContext();
                 var hattyu = context.T_Hattyus.Single(x => x.HaID == updHa.HaID);
-
-                hattyu.MaID = updHa.MaID;
-                hattyu.EmID = updHa.EmID;
+                if (updHa.MaID != 0)
+                    hattyu.MaID = updHa.MaID;
+                if (updHa.EmID != 0)
+                    hattyu.EmID = updHa.EmID;
                 hattyu.WaWarehouseFlag = updHa.WaWarehouseFlag;
                 hattyu.HaFlag = updHa.HaFlag;
                 hattyu.HaHidden = updHa.HaHidden;
@@ -69,6 +70,24 @@ namespace SalesManagement_SysDev
                 return false;
             }
         }
+
+        public T_Hattyu GenerateDataAdError()
+        {
+            var context = new SalesManagement_DevContext();
+            var hattyu = context.T_Hattyus.Max(x => x.HaID);
+
+            return new T_Hattyu
+            {
+                HaID = hattyu,
+                MaID = 0,
+                EmID = 0,
+                HaDate = null,
+                WaWarehouseFlag = 0,
+                HaFlag = 2,
+                HaHidden = "SystemError"
+            };
+        }
+
         //データの取得
         public List<T_Hattyu> GetHattyuData()
         {
@@ -97,7 +116,7 @@ namespace SalesManagement_SysDev
                   (selectCondition.HaID == 0 || x.HaID == selectCondition.HaID) &&
                   (selectCondition.MaID == 0 || x.MaID == selectCondition.MaID) &&
                   (selectCondition.EmID == 0 || x.EmID == selectCondition.EmID) &&
-                  (selectCondition.HaDate == DateTime.Parse("0001/01/01") ||
+                  (selectCondition.HaDate == null ||
                   (dateCondition == 0 && x.HaDate == selectCondition.HaDate) ||
                   (dateCondition == 1 && x.HaDate >= selectCondition.HaDate) ||
                   (dateCondition == 2 && x.HaDate <= selectCondition.HaDate)) &&
@@ -111,6 +130,76 @@ namespace SalesManagement_SysDev
                 MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return hattyu;
+        }
+
+        public int GetHattyuIDData()
+        {
+            int HaID = 0;
+            try
+            {
+                var context = new SalesManagement_DevContext();
+                var hattyu = context.T_Hattyus.Max(x => x.HaID);
+                HaID = hattyu;
+                context.Dispose();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return HaID;
+        }
+
+        public void GetHattyuFlagData(object sender, TextBox confirm, TextBox hidden)
+        {
+            List<T_Hattyu> hattyu = new List<T_Hattyu>();
+
+
+            if (CheckHaIDExistence(int.Parse((sender as TextBox).Text)))
+            {
+
+                var context = new SalesManagement_DevContext();
+                hattyu = context.T_Hattyus.ToList();
+                var data = hattyu.Single(x => x.HaID == int.Parse((sender as TextBox).Text));
+                confirm.Text = data.WaWarehouseFlag.ToString();
+                hidden.Text = data.HaFlag.ToString();
+                context.Dispose();
+                return;
+            }
+            confirm.Text = "------";
+            hidden.Text = "------";
+        }
+
+
+ 
+
+
+        public bool ConfirmHattyuToWarehousing(int haID, int emID)
+        {
+            try
+            {
+                using (var context = new SalesManagement_DevContext())
+                {
+                    var hattyu = context.T_Hattyus.Single(x => x.HaID == haID);
+
+                    var warehousing = new T_Warehousing
+                    {
+                        HaID = haID,
+                        EmID = emID,
+                        WaDate = null,
+                        WaShelfFlag = 0,
+                        WaFlag = 0,
+                        WaHidden = null
+                    };
+                    context.T_Warehousings.Add(warehousing);
+                    context.SaveChanges();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
         }
     }
 }
