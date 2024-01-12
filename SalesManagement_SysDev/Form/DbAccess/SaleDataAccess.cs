@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Data.Entity.Infrastructure.Design.Executor;
 
 namespace SalesManagement_SysDev
 {
@@ -32,10 +33,11 @@ namespace SalesManagement_SysDev
         {
             try
             {
-                var context = new SalesManagement_DevContext();
-                context.T_Sales.Add(regSa);
-                context.SaveChanges();
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    context.T_Sales.Add(regSa);
+                    context.SaveChanges();
+                }
 
                 return true;
             }
@@ -45,6 +47,25 @@ namespace SalesManagement_SysDev
                 return false;
             }
         }
+        public T_Sale GenerateDataAdError()
+        {
+            var context = new SalesManagement_DevContext();
+            var sale = context.T_Sales.Max(x => x.SaID);
+
+            return new T_Sale
+            {
+                SaID = sale,
+                SoID = 0,
+                EmID = 0,
+                ClID = 0,
+                ChID = 0,
+                SaDate = null,
+                SaFlag = 2,
+                SaHidden = "SystemError"
+            };
+        }
+
+
 
         public bool UpdateSaleData(T_Sale updSa)
         {
@@ -52,12 +73,16 @@ namespace SalesManagement_SysDev
             {
                 var context = new SalesManagement_DevContext();
                 var sale = context.T_Sales.Single(x => x.SaID == updSa.SaID);
-
-                sale.ClID = updSa.ClID;
-                sale.SoID = updSa.SoID;
-                sale.EmID = updSa.EmID;
-                sale.ChID = updSa.ChID;
-                sale.SaDate = updSa.SaDate;
+                if (updSa.SoID != 0)
+                    sale.SoID = updSa.SoID;
+                if (updSa.EmID != 0)
+                    sale.EmID = updSa.EmID;
+                if (updSa.ClID != 0)
+                    sale.ClID = updSa.ClID;
+                if(updSa.ChID != 0)
+                    sale.ChID = updSa.ChID;
+                if (updSa.SaDate != null)
+                    sale.SaDate = updSa.SaDate;
                 sale.SaHidden = updSa.SaHidden;
                 sale.SaFlag = updSa.SaFlag;
 
@@ -104,7 +129,7 @@ namespace SalesManagement_SysDev
                   (selectCondition.SoID == 0 || x.SoID == selectCondition.SoID) &&
                   (selectCondition.EmID == 0 || x.EmID == selectCondition.EmID) &&
                   (selectCondition.ClID == 0 || x.ClID == selectCondition.ClID) &&
-                  (selectCondition.SaDate == DateTime.Parse("0001/01/01") ||
+                  (selectCondition.SaDate == null||
                   (dateCondition == 0 && x.SaDate == selectCondition.SaDate) ||
                   (dateCondition == 1 && x.SaDate >= selectCondition.SaDate) ||
                   (dateCondition == 2 && x.SaDate <= selectCondition.SaDate)) &&
@@ -117,6 +142,24 @@ namespace SalesManagement_SysDev
                 MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return sale;
+        }
+
+        public void GetSaleFlagData(object sender, TextBox hidden)
+        {
+            List<T_Sale> sale = new List<T_Sale>();
+
+
+            if (CheckSaIDExistence(int.Parse((sender as TextBox).Text)))
+            {
+
+                var context = new SalesManagement_DevContext();
+                sale = context.T_Sales.ToList();
+                var data = sale.Single(x => x.SaID == int.Parse((sender as TextBox).Text));
+                hidden.Text = data.SaFlag.ToString();
+                context.Dispose();
+                return;
+            }
+            hidden.Text = "------";
         }
     }
 }

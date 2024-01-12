@@ -17,7 +17,7 @@ namespace SalesManagement_SysDev
             try
             {
                 var context = new SalesManagement_DevContext();
-                flg = context.M_Employees.Any(x => x.EmID == emID);
+                flg = context.M_Employees.Any(x => x.EmID == emID && x.EmFlag == 0);
                 context.Dispose();
 
             }
@@ -31,9 +31,11 @@ namespace SalesManagement_SysDev
         {
             try
             {
-                var context = new SalesManagement_DevContext();
-                context.M_Employees.Add(regEm);
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    context.M_Employees.Add(regEm);
+                    context.SaveChanges();
+                }
 
                 return true;
 
@@ -45,19 +47,23 @@ namespace SalesManagement_SysDev
             }
         }
 
-        public bool UpadateEmployeeData(M_Employee updEm)
+        public bool UpdateEmployeeData(M_Employee updEm)
         {
             try
             {
                 var context = new SalesManagement_DevContext();
                 var employee = context.M_Employees.Single(x => x.EmID == updEm.EmID);
 
-                employee.EmName = updEm.EmName;
-                employee.SoID = updEm.SoID;
-                employee.PoID = updEm.PoID;
-                employee.EmHiredate = updEm.EmHiredate;
-                employee.EmPassword = updEm.EmPassword;
-                employee.EmPhone = updEm.EmPhone;
+                if (updEm.EmName != String.Empty)
+                    employee.EmName = updEm.EmName;
+                if (updEm.SoID != 0)
+                    employee.SoID = updEm.SoID;
+                if (updEm.PoID != 0)
+                    employee.PoID = updEm.PoID;
+                if (updEm.EmPassword != String.Empty)
+                    employee.EmPassword = updEm.EmPassword;
+                if (updEm.EmPhone != String.Empty)
+                    employee.EmPhone = updEm.EmPhone;
                 employee.EmFlag = updEm.EmFlag;
                 employee.EmHidden = updEm.EmHidden;
 
@@ -99,7 +105,7 @@ namespace SalesManagement_SysDev
                         (selectCondition.EmName == null || x.EmName.Contains(selectCondition.EmName)) &&
                         (selectCondition.SoID == 0 || x.SoID == selectCondition.SoID) &&
                         (selectCondition.PoID == 0 || x.PoID == selectCondition.PoID) &&
-                        (selectCondition.EmHiredate == DateTime.Parse("0001/01/01") ||
+                        (selectCondition.EmHiredate == null||
                         (dateCondition == 0 && x.EmHiredate == selectCondition.EmHiredate) ||
                         (dateCondition == 1 && x.EmHiredate >= selectCondition.EmHiredate) ||
                         (dateCondition == 2 && x.EmHiredate <= selectCondition.EmHiredate)) &&
@@ -117,20 +123,65 @@ namespace SalesManagement_SysDev
             return employee;
         }
 
-        public void GetEmployeeNameData(object sender, Label lblName)
+        public void GetEmployeeNameData(string emID, Label lblName)
         {
             List<M_Employee> employee = new List<M_Employee>();
-            if (!String.IsNullOrEmpty((sender as TextBox).Text))
+            if (!String.IsNullOrEmpty(emID))
             {
-                if (CheckEmIDExistence(int.Parse((sender as TextBox).Text)))
+                if (CheckEmIDExistence(int.Parse(emID)))
                 {
                     employee = GetEmployeeData();
-                    var data = employee.Single(x => x.EmID == int.Parse((sender as TextBox).Text));
+                    var data = employee.Single(x => x.EmID == int.Parse(emID));
                     lblName.Text = data.EmName;
                     return;
                 }
             }
             lblName.Text = "----";
+        }
+
+        public void GetEmployeeFlagData(object sender, TextBox hidden)
+        {
+            List<M_Employee> employee = new List<M_Employee>();
+
+
+            if (CheckEmIDExistence(int.Parse((sender as TextBox).Text)))
+            {
+
+                var context = new SalesManagement_DevContext();
+                employee = context.M_Employees.ToList();
+                var data = employee.Single(x => x.EmID == int.Parse((sender as TextBox).Text));
+                hidden.Text = data.EmFlag.ToString();
+                context.Dispose();
+                return;
+            }
+            hidden.Text = "------";
+        }
+
+        public bool GetEmployeePassData(string emID , string Pass)
+        {
+            List<M_Employee> employee = new List<M_Employee>();
+            if (!String.IsNullOrEmpty(emID))
+            {
+                if (CheckEmIDExistence(int.Parse(emID)))
+                {
+                    employee = GetEmployeeData();
+                    var data = employee.Single(x => x.EmID == int.Parse(emID));
+
+                    if(data.EmPassword == Pass)
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public int GetEmployeePoIDData(string emID)
+        {
+
+            List<M_Employee> employee = new List<M_Employee>();
+            employee = GetEmployeeData();
+            var data = employee.Single(x => x.EmID == int.Parse(emID));
+            return data.PoID;
+
         }
     }
 }

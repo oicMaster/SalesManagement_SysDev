@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace SalesManagement_SysDev
 {
@@ -86,6 +87,53 @@ namespace SalesManagement_SysDev
                 MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return warehousingDetail;
+        }
+
+
+        public bool ConfirmWarehousingDetailToStock(int waID)
+        {
+            try
+            {
+                var context = new SalesManagement_DevContext();
+                List<T_WarehousingDetail> warehousingDetail = context.T_WarehousingDetails.Where(x => x.WaID == waID).ToList();
+                foreach (var waDetail in warehousingDetail)
+                {
+                    var product = context.M_Products.Single(x => x.PrID == waDetail.PrID);
+                    var stock = context.T_Stocks.Single(x => x.PrID == waDetail.PrID);
+                    stock.StQuantity += waDetail.WaQuantity;
+                    if (product.PrSafetyStock <= stock.StQuantity)
+                        stock.StState = 0;
+                    context.SaveChanges();
+                }
+                context.Dispose();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+
+        public void GetWaQuantityData(object sender, Label Quantity)
+        {
+
+            if (!String.IsNullOrEmpty((sender as TextBox).Text))
+            {
+                int sum = 0;
+                int prID = int.Parse((sender as TextBox).Text);
+                var context = new SalesManagement_DevContext();
+                List<T_WarehousingDetail> warehousingDetail = context.T_WarehousingDetails.Where(x => x.PrID == prID).ToList();
+                foreach (var waDetail in warehousingDetail)
+                {
+                    var stock = context.T_Stocks.Single(x => x.PrID == waDetail.PrID);
+                    sum += waDetail.WaQuantity;
+                }
+                context.Dispose();
+                Quantity.Text = sum.ToString();
+            }
+            else
+                Quantity.Text = "----";
         }
     }
 }

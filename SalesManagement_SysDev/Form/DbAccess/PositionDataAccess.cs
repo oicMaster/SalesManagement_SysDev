@@ -27,5 +27,38 @@ namespace SalesManagement_SysDev
             }
             return flg;
         }
+
+        public List<M_Position> GetPositionData()
+        {
+            List<M_Position> position = new List<M_Position>();
+            try
+            {
+                var context = new SalesManagement_DevContext();
+                position = context.M_Positions.Where(x => x.PoFlag == 0).ToList();
+                context.Dispose();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+            return position;
+        }
+
+        public void GetPositionNameData(object sender, Label lblName)
+        {
+            List<M_Position> position = new List<M_Position>();
+            if (!String.IsNullOrEmpty((sender as TextBox).Text))
+            {
+                if (CheckPoIDExistence(int.Parse((sender as TextBox).Text)))
+                {
+                    position = GetPositionData();
+                    var data = position.Single(x => x.PoID == int.Parse((sender as TextBox).Text));
+                    lblName.Text = data.PoName;
+                    return;
+                }
+            }
+            lblName.Text = "----";
+        }
     }
 }

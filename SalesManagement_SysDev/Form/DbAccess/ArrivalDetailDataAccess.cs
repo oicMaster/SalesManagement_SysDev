@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SalesManagement_SysDev.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -86,6 +87,37 @@ namespace SalesManagement_SysDev
                 MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return arrivalDetail;
+        }
+
+        public bool ConfirmArrialDetailToShipmentDetail(int arID)
+        {
+            try
+            {
+                using (var context = new SalesManagement_DevContext())
+                {
+                    List<T_ArrivalDetail> arrivalDetail = context.T_ArrivalDetails.Where(x => x.ArID == arID).ToList();
+
+                    foreach (var arDetail in arrivalDetail)
+                    {
+                        var shipmentDetail = new T_ShipmentDetail
+                        {
+                            ShID = arID,
+                            PrID = arDetail.PrID,
+                            ShQuantity = arDetail.ArQuantity,
+                        };
+                        context.T_ShipmentDetails.Add(shipmentDetail);
+                 
+                    }
+                    context.SaveChanges();
+                    return true;
+                }
+           
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
         }
     }
 }

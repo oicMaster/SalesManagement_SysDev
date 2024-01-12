@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Data.Entity.Infrastructure.Design.Executor;
 
 namespace SalesManagement_SysDev
 {
@@ -52,12 +53,16 @@ namespace SalesManagement_SysDev
             {
                 var context = new SalesManagement_DevContext();
                 var chumon = context.T_Chumons.Single(x => x.ChID == updCh.ChID);
-
-                chumon.SoID = updCh.SoID;
-                chumon.EmID = updCh.EmID;
-                chumon.ClID = updCh.ClID;
-                chumon.OrID = updCh.OrID;
-                chumon.ChDate = updCh.ChDate;
+                if (updCh.SoID != 0)
+                    chumon.SoID = updCh.SoID;
+                if (updCh.EmID != 0)
+                    chumon.EmID = updCh.EmID;
+                if (updCh.ClID != 0)
+                    chumon.ClID = updCh.ClID;
+                if (updCh.OrID != 0)
+                    chumon.OrID = updCh.OrID;
+                if (updCh.ChDate != null)
+                    chumon.ChDate = updCh.ChDate;
                 chumon.ChStateFlag = updCh.ChStateFlag;
                 chumon.ChFlag = updCh.ChFlag;
                 chumon.ChHidden = updCh.ChHidden;
@@ -71,6 +76,25 @@ namespace SalesManagement_SysDev
                 MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
+        }
+
+        public T_Chumon GenerateDataAdError()
+        {
+            var context = new SalesManagement_DevContext();
+            var chumon = context.T_Chumons.Max(x => x.ChID);
+
+            return new T_Chumon
+            {
+                ChID = chumon,
+                SoID = 0,
+                EmID = 0,
+                ClID = 0,
+                OrID = 0,
+                ChDate = null,
+                ChFlag = 2,
+                ChStateFlag = 0,
+                ChHidden = "SystemError"
+            };
         }
 
         public List<T_Chumon> GetChumonData()
@@ -102,7 +126,7 @@ namespace SalesManagement_SysDev
                   (selectCondition.EmID == 0 || x.EmID == selectCondition.EmID) &&
                   (selectCondition.ClID == 0 || x.ClID == selectCondition.ClID) &&
                   (selectCondition.OrID == 0 || x.OrID == selectCondition.OrID) &&
-                  (selectCondition.ChDate == DateTime.Parse("0001/01/01") ||
+                  (selectCondition.ChDate == null||
                   (dateCondition == 0 && x.ChDate == selectCondition.ChDate) ||
                   (dateCondition == 1 && x.ChDate >= selectCondition.ChDate) ||
                   (dateCondition == 2 && x.ChDate <= selectCondition.ChDate)) &&
@@ -117,5 +141,59 @@ namespace SalesManagement_SysDev
             }
             return chumon;
         }
+
+        public void GetChumonFlagData(object sender, TextBox confirm, TextBox hidden)
+        {
+            List<T_Chumon> chumon = new List<T_Chumon>();
+
+
+            if (CheckChIDExistence(int.Parse((sender as TextBox).Text)))
+            {
+
+                var context = new SalesManagement_DevContext();
+                chumon = context.T_Chumons.ToList();
+                var data = chumon.Single(x => x.ChID == int.Parse((sender as TextBox).Text));
+                confirm.Text = data.ChStateFlag.ToString();
+                hidden.Text = data.ChFlag.ToString();
+                context.Dispose();
+                return;
+            }
+            confirm.Text = "------";
+            hidden.Text = "------";
+        }
+
+
+
+        public bool ConfirmChumonToSyukko(int chID, int emID)
+        {
+            try
+            {
+                using (var context = new SalesManagement_DevContext())
+                {
+                    var chumon = context.T_Chumons.Single(x => x.ChID == chID);
+
+                    var syukko = new T_Syukko
+                    {
+                        ClID = chumon.ClID,
+                        SoID = chumon.SoID,
+                        EmID = emID,
+                        OrID = chumon.OrID,
+                        SyDate = null,
+                        SyStateFlag = 0,
+                        SyFlag = 0,
+                        SyHidden = null
+                    };
+                    context.T_Syukkos.Add(syukko);
+                    context.SaveChanges();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+
     }
 }

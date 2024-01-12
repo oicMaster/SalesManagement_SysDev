@@ -84,5 +84,37 @@ namespace SalesManagement_SysDev
             }
             return shipmentDetail;
         }
+
+        public bool ConfirmShipmentDetailToSaleDetail(int shID)
+        {
+
+            try
+            {
+                using (var context = new SalesManagement_DevContext())
+                {
+                    List<T_ShipmentDetail> shipmentDetail = context.T_ShipmentDetails.Where(x => x.ShID == shID).ToList();
+
+                    foreach (var shDetail in shipmentDetail)
+                    {
+                        var product = context.M_Products.SingleOrDefault(a => a.PrID == shDetail.PrID);
+                        var saleDetail = new T_SaleDetail
+                        {
+                            SaID = shDetail.ShID,
+                            PrID = shDetail.PrID,
+                            SaQuantity = shDetail.ShQuantity,
+                            SaTotalPrice = shDetail.ShQuantity * product.Price
+                        };
+                        context.T_SaleDetails.Add(saleDetail);
+                        context.SaveChanges();
+                    }
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
     }
 }
