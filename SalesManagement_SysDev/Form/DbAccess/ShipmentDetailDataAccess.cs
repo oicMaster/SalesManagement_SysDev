@@ -14,10 +14,12 @@ namespace SalesManagement_SysDev
             bool flg = false;
             try
             {
-                var context = new SalesManagement_DevContext();
-                flg = context.T_ShipmentDetails.Any(x => x.ShDetailID == ShDetailID);
-                //DB更新
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    flg = context.T_ShipmentDetails.Any(x => x.ShDetailID == ShDetailID);
+                    //DB更新
+                    context.Dispose();
+                }
             }
             catch (Exception ex)
             {
@@ -31,11 +33,12 @@ namespace SalesManagement_SysDev
         {
             try
             {
-                var context = new SalesManagement_DevContext();
-                context.T_ShipmentDetails.Add(regShD);
-                context.SaveChanges();
-                context.Dispose();
-
+                using (var context = new SalesManagement_DevContext())
+                {
+                    context.T_ShipmentDetails.Add(regShD);
+                    context.SaveChanges();
+                    context.Dispose();
+                }
                 return true;
             }
             catch (Exception ex)
@@ -49,9 +52,11 @@ namespace SalesManagement_SysDev
             List<T_ShipmentDetail> shipmentDetail = new List<T_ShipmentDetail>();
             try
             {
-                var context = new SalesManagement_DevContext();
-                shipmentDetail = context.T_ShipmentDetails.ToList();
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    shipmentDetail = context.T_ShipmentDetails.ToList();
+                    context.Dispose();
+                }
             }
             catch (Exception ex)
             {
@@ -66,17 +71,19 @@ namespace SalesManagement_SysDev
             List<T_ShipmentDetail> shipmentDetail = new List<T_ShipmentDetail>();
             try
             {
-                var context = new SalesManagement_DevContext();
-                shipmentDetail = context.T_ShipmentDetails.Where(x =>
-                  (selectCondition.ShDetailID == 0 || x.ShDetailID == selectCondition.ShDetailID) &&
-                  (selectCondition.ShID == 0 || x.ShID == selectCondition.ShID) &&
-                  (selectCondition.PrID == 0 || x.PrID == selectCondition.PrID) &&
-                  (selectCondition.ShQuantity == 0 ||
-                  (quantityCondition == 0 && x.ShQuantity == selectCondition.ShQuantity) ||
-                  (quantityCondition == 1 && x.ShQuantity >= selectCondition.ShQuantity) ||
-                  (quantityCondition == 2 && x.ShQuantity <= selectCondition.ShQuantity))
-                ).ToList();
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    shipmentDetail = context.T_ShipmentDetails.Where(x =>
+                      (selectCondition.ShDetailID == 0 || x.ShDetailID == selectCondition.ShDetailID) &&
+                      (selectCondition.ShID == 0 || x.ShID == selectCondition.ShID) &&
+                      (selectCondition.PrID == 0 || x.PrID == selectCondition.PrID) &&
+                      (selectCondition.ShQuantity == 0 ||
+                      (quantityCondition == 0 && x.ShQuantity == selectCondition.ShQuantity) ||
+                      (quantityCondition == 1 && x.ShQuantity >= selectCondition.ShQuantity) ||
+                      (quantityCondition == 2 && x.ShQuantity <= selectCondition.ShQuantity))
+                    ).ToList();
+                    context.Dispose();
+                }
             }
             catch (Exception ex)
             {

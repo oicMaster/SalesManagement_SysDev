@@ -18,11 +18,13 @@ namespace SalesManagement_SysDev
             bool flg = false;
             try
             {
-                var context = new SalesManagement_DevContext();
-                //商品IDと一致するデータがあるかどうか
-                flg = context.M_Products.Any(x => x.PrID == prID && x.PrFlag == 0);
-                //DB更新
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    //商品IDと一致するデータがあるかどうか
+                    flg = context.M_Products.Any(x => x.PrID == prID && x.PrFlag == 0);
+                    //DB更新
+                    context.Dispose();
+                }
             }
             catch (Exception ex)
             {
@@ -57,31 +59,32 @@ namespace SalesManagement_SysDev
         {
             try
             {
-                var context = new SalesManagement_DevContext();
-                var product = context.M_Products.Single(x => x.PrID == updPr.PrID);
+                using (var context = new SalesManagement_DevContext())
+                {
+                    var product = context.M_Products.Single(x => x.PrID == updPr.PrID);
 
-                if(updPr.MaID != 0)
-                product.MaID = updPr.MaID;
-                if (updPr.PrName != String.Empty)
-                    product.PrName = updPr.PrName;
-                if(updPr.Price != 0)
-                product.Price = updPr.Price;
-                if(updPr.PrSafetyStock != 0)
-                product.PrSafetyStock = updPr.PrSafetyStock;
-                if(updPr.ScID != 0)
-                product.ScID = updPr.ScID;
-                if (updPr.PrModelNumber != String.Empty)
-                    product.PrModelNumber = updPr.PrModelNumber;
-                if (updPr.PrColor != String.Empty)
-                    product.PrColor = updPr.PrColor;
-                if(updPr.PrReleaseDate != null)
-                product.PrReleaseDate = updPr.PrReleaseDate;
-                product.PrFlag = updPr.PrFlag;
-                product.PrHidden = updPr.PrHidden;
+                    if (updPr.MaID != 0)
+                        product.MaID = updPr.MaID;
+                    if (updPr.PrName != String.Empty)
+                        product.PrName = updPr.PrName;
+                    if (updPr.Price != 0)
+                        product.Price = updPr.Price;
+                    if (updPr.PrSafetyStock != 0)
+                        product.PrSafetyStock = updPr.PrSafetyStock;
+                    if (updPr.ScID != 0)
+                        product.ScID = updPr.ScID;
+                    if (updPr.PrModelNumber != String.Empty)
+                        product.PrModelNumber = updPr.PrModelNumber;
+                    if (updPr.PrColor != String.Empty)
+                        product.PrColor = updPr.PrColor;
+                    if (updPr.PrReleaseDate != null)
+                        product.PrReleaseDate = updPr.PrReleaseDate;
+                    product.PrFlag = updPr.PrFlag;
+                    product.PrHidden = updPr.PrHidden;
 
-                context.SaveChanges();
-                context.Dispose();
-
+                    context.SaveChanges();
+                    context.Dispose();
+                }
                 return true;
             }
             catch (Exception ex)
@@ -97,9 +100,11 @@ namespace SalesManagement_SysDev
             List<M_Product> product = new List<M_Product>();
             try
             {
-                var context = new SalesManagement_DevContext();
-                product = context.M_Products.Where(x => x.PrFlag == 0).ToList();
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    product = context.M_Products.Where(x => x.PrFlag == 0).ToList();
+                    context.Dispose();
+                }
             }
             catch (Exception ex)
             {
@@ -114,26 +119,28 @@ namespace SalesManagement_SysDev
             List<M_Product> product = new List<M_Product>();
             try
             {
-                var context = new SalesManagement_DevContext();
-                product = context.M_Products.Where(x =>
-                  (selectCondition.PrID == 0 || x.PrID == selectCondition.PrID) &&
-                  (selectCondition.MaID == 0 || x.MaID == selectCondition.MaID) &&
-                  (selectCondition.PrName == null || x.PrName.Contains(selectCondition.PrName)) &&
-                  (selectCondition.Price == 0 ||
-                  (priceCondition == 0 && x.Price == selectCondition.Price) ||
-                  (priceCondition == 1 && x.Price >= selectCondition.Price) ||
-                  (priceCondition == 2 && x.Price <= selectCondition.Price)) &&
-                   (selectCondition.PrSafetyStock == 0 || x.PrSafetyStock == selectCondition.PrSafetyStock) &&
-                  (selectCondition.ScID == 0 || x.ScID == selectCondition.ScID) &&
-                  (selectCondition.PrModelNumber == null || x.PrModelNumber.Contains(selectCondition.PrModelNumber)) &&
-                  (selectCondition.PrColor == null || x.PrColor.Contains(selectCondition.PrColor)) &&
-                  (selectCondition.PrReleaseDate == null ||
-                  (dateCondition == 0 && x.PrReleaseDate == selectCondition.PrReleaseDate) ||
-                  (dateCondition == 1 && x.PrReleaseDate >= selectCondition.PrReleaseDate) ||
-                  (dateCondition == 2 && x.PrReleaseDate <= selectCondition.PrReleaseDate))&&
-                  (selectCondition.PrFlag == 3 || x.PrFlag == selectCondition.PrFlag)
-                ).ToList();
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    product = context.M_Products.Where(x =>
+                      (selectCondition.PrID == 0 || x.PrID == selectCondition.PrID) &&
+                      (selectCondition.MaID == 0 || x.MaID == selectCondition.MaID) &&
+                      (selectCondition.PrName == null || x.PrName.Contains(selectCondition.PrName)) &&
+                      (selectCondition.Price == 0 ||
+                      (priceCondition == 0 && x.Price == selectCondition.Price) ||
+                      (priceCondition == 1 && x.Price >= selectCondition.Price) ||
+                      (priceCondition == 2 && x.Price <= selectCondition.Price)) &&
+                       (selectCondition.PrSafetyStock == 0 || x.PrSafetyStock == selectCondition.PrSafetyStock) &&
+                      (selectCondition.ScID == 0 || x.ScID == selectCondition.ScID) &&
+                      (selectCondition.PrModelNumber == null || x.PrModelNumber.Contains(selectCondition.PrModelNumber)) &&
+                      (selectCondition.PrColor == null || x.PrColor.Contains(selectCondition.PrColor)) &&
+                      (selectCondition.PrReleaseDate == null ||
+                      (dateCondition == 0 && x.PrReleaseDate == selectCondition.PrReleaseDate) ||
+                      (dateCondition == 1 && x.PrReleaseDate >= selectCondition.PrReleaseDate) ||
+                      (dateCondition == 2 && x.PrReleaseDate <= selectCondition.PrReleaseDate)) &&
+                      (selectCondition.PrFlag == 3 || x.PrFlag == selectCondition.PrFlag)
+                    ).ToList();
+                    context.Dispose();
+                }
             }
             catch(Exception ex)
             {
@@ -203,11 +210,13 @@ namespace SalesManagement_SysDev
             if (CheckPrIDExistence(int.Parse((sender as TextBox).Text)))
             {
 
-                var context = new SalesManagement_DevContext();
-                product = context.M_Products.ToList();
-                var data = product.Single(x => x.PrID == int.Parse((sender as TextBox).Text));
-                hidden.Text = data.PrFlag.ToString();
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    product = context.M_Products.ToList();
+                    var data = product.Single(x => x.PrID == int.Parse((sender as TextBox).Text));
+                    hidden.Text = data.PrFlag.ToString();
+                    context.Dispose();
+                }
                 return;
             }
             hidden.Text = "------";
@@ -218,13 +227,16 @@ namespace SalesManagement_SysDev
         public decimal GetProductTotalPriceData(TextBox prID, TextBox Quantity)
         {
             List<M_Product> product = new List<M_Product>();
-            var context = new SalesManagement_DevContext();
-            product = context.M_Products.ToList();
-               
-            var data = product.Single(x => x.PrID == int.Parse(prID.Text));
-            decimal totalPrice = data.Price * int.Parse(Quantity.Text);
-            context.Dispose();
-            return totalPrice;
+            using (var context = new SalesManagement_DevContext())
+            {
+                product = context.M_Products.ToList();
+
+                var data = product.Single(x => x.PrID == int.Parse(prID.Text));
+                decimal totalPrice = data.Price * int.Parse(Quantity.Text);
+                context.Dispose();
+
+                return totalPrice;
+            }
         }
     }
 }

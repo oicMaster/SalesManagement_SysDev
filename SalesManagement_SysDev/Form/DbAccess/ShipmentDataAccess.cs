@@ -14,11 +14,13 @@ namespace SalesManagement_SysDev
             bool flg = false;
             try
             {
-                var context = new SalesManagement_DevContext();
-                //顧客IDと一致するデータがあるかどうか
-                flg = context.T_Shipments.Any(x => x.ShID == ShID);
-                //DB更新
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    //顧客IDと一致するデータがあるかどうか
+                    flg = context.T_Shipments.Any(x => x.ShID == ShID);
+                    //DB更新
+                    context.Dispose();
+                }
             }
             catch (Exception ex)
             {
@@ -32,11 +34,12 @@ namespace SalesManagement_SysDev
         {
             try
             {
-                var context = new SalesManagement_DevContext();
-                context.T_Shipments.Add(regSh);
-                context.SaveChanges();
-                context.Dispose();
-
+                using (var context = new SalesManagement_DevContext())
+                {
+                    context.T_Shipments.Add(regSh);
+                    context.SaveChanges();
+                    context.Dispose();
+                }
                 return true;
             }
             catch (Exception ex)
@@ -50,25 +53,27 @@ namespace SalesManagement_SysDev
         {
             try
             {
-                var context = new SalesManagement_DevContext();
-                var shipment= context.T_Shipments.Single(x => x.ShID == updSh.ShID);
+                using (var context = new SalesManagement_DevContext())
+                {
+                    var shipment = context.T_Shipments.Single(x => x.ShID == updSh.ShID);
 
-                if (updSh.ClID != 0)
-                    shipment.ClID = updSh.ClID;
-                if (updSh.EmID != 0)
-                    shipment.EmID = updSh.EmID;
-                if (updSh.SoID != 0)
-                    shipment.SoID = updSh.SoID;
-                if (updSh.OrID != 0)
-                    shipment.OrID = updSh.OrID;
-                if (updSh.ShFinishDate != null)
-                    shipment.ShFinishDate = updSh.ShFinishDate;
-                shipment.ShStateFlag = updSh.ShStateFlag;
-                shipment.ShFlag = updSh.ShFlag;
-                shipment.ShHidden = updSh.ShHidden;
+                    if (updSh.ClID != 0)
+                        shipment.ClID = updSh.ClID;
+                    if (updSh.EmID != 0)
+                        shipment.EmID = updSh.EmID;
+                    if (updSh.SoID != 0)
+                        shipment.SoID = updSh.SoID;
+                    if (updSh.OrID != 0)
+                        shipment.OrID = updSh.OrID;
+                    if (updSh.ShFinishDate != null)
+                        shipment.ShFinishDate = updSh.ShFinishDate;
+                    shipment.ShStateFlag = updSh.ShStateFlag;
+                    shipment.ShFlag = updSh.ShFlag;
+                    shipment.ShHidden = updSh.ShHidden;
 
-                context.SaveChanges();
-                context.Dispose();
+                    context.SaveChanges();
+                    context.Dispose();
+                }
                 return true;
             }
             catch (Exception ex)
@@ -80,21 +85,23 @@ namespace SalesManagement_SysDev
 
         public T_Shipment GenerateDataAdError()
         {
-            var context = new SalesManagement_DevContext();
-            var shipment = context.T_Shipments.Max(x => x.ShID);
-
-            return new T_Shipment
+            using (var context = new SalesManagement_DevContext())
             {
-                ShID = shipment,
-                SoID = 0,
-                EmID = 0,
-                ClID = 0,
-                OrID = 0,
-                ShFinishDate = null,
-                ShFlag = 2,
-                ShStateFlag = 0,
-                ShHidden = "SystemError"
-            };
+                var shipment = context.T_Shipments.Max(x => x.ShID);
+
+                return new T_Shipment
+                {
+                    ShID = shipment,
+                    SoID = 0,
+                    EmID = 0,
+                    ClID = 0,
+                    OrID = 0,
+                    ShFinishDate = null,
+                    ShFlag = 2,
+                    ShStateFlag = 0,
+                    ShHidden = "SystemError"
+                };
+            }
         }
 
 
@@ -104,9 +111,11 @@ namespace SalesManagement_SysDev
             List<T_Shipment> shipment = new List<T_Shipment>();
             try
             {
-                var context = new SalesManagement_DevContext();
-                shipment = context.T_Shipments.Where(x => x.ShStateFlag == 0 && x.ShFlag == 0).ToList();
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    shipment = context.T_Shipments.Where(x => x.ShStateFlag == 0 && x.ShFlag == 0).ToList();
+                    context.Dispose();
+                }
             }
             catch (Exception ex)
             {
@@ -121,21 +130,23 @@ namespace SalesManagement_SysDev
             List<T_Shipment> shipment = new List<T_Shipment>();
             try
             {
-                var context = new SalesManagement_DevContext();
-                shipment = context.T_Shipments.Where(x =>
-                  (selectCondition.ShID == 0 || x.ShID == selectCondition.ShID) &&
-                  (selectCondition.SoID == 0 || x.SoID == selectCondition.SoID) &&
-                  (selectCondition.EmID == 0 || x.EmID == selectCondition.EmID) &&
-                  (selectCondition.ClID == 0 || x.ClID == selectCondition.ClID) &&
-                  (selectCondition.OrID == 0 || x.OrID == selectCondition.OrID) &&
-                  (selectCondition.ShFinishDate == null ||
-                  (dateCondition == 0 && x.ShFinishDate == selectCondition.ShFinishDate) ||
-                  (dateCondition == 1 && x.ShFinishDate >= selectCondition.ShFinishDate) ||
-                  (dateCondition == 2 && x.ShFinishDate <= selectCondition.ShFinishDate)) &&
-                  (selectCondition.ShStateFlag == 3 || x.ShStateFlag == selectCondition.ShStateFlag) &&
-                  (selectCondition.ShFlag == 3 || x.ShFlag == selectCondition.ShFlag)
-                ).ToList();
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    shipment = context.T_Shipments.Where(x =>
+                      (selectCondition.ShID == 0 || x.ShID == selectCondition.ShID) &&
+                      (selectCondition.SoID == 0 || x.SoID == selectCondition.SoID) &&
+                      (selectCondition.EmID == 0 || x.EmID == selectCondition.EmID) &&
+                      (selectCondition.ClID == 0 || x.ClID == selectCondition.ClID) &&
+                      (selectCondition.OrID == 0 || x.OrID == selectCondition.OrID) &&
+                      (selectCondition.ShFinishDate == null ||
+                      (dateCondition == 0 && x.ShFinishDate == selectCondition.ShFinishDate) ||
+                      (dateCondition == 1 && x.ShFinishDate >= selectCondition.ShFinishDate) ||
+                      (dateCondition == 2 && x.ShFinishDate <= selectCondition.ShFinishDate)) &&
+                      (selectCondition.ShStateFlag == 3 || x.ShStateFlag == selectCondition.ShStateFlag) &&
+                      (selectCondition.ShFlag == 3 || x.ShFlag == selectCondition.ShFlag)
+                    ).ToList();
+                    context.Dispose();
+                }
             }
             catch (Exception ex)
             {
@@ -152,12 +163,14 @@ namespace SalesManagement_SysDev
             if (CheckShIDExistence(int.Parse((sender as TextBox).Text)))
             {
 
-                var context = new SalesManagement_DevContext();
-                shipment = context.T_Shipments.ToList();
-                var data = shipment.Single(x => x.ShID == int.Parse((sender as TextBox).Text));
-                confirm.Text = data.ShStateFlag.ToString();
-                hidden.Text = data.ShFlag.ToString();
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    shipment = context.T_Shipments.ToList();
+                    var data = shipment.Single(x => x.ShID == int.Parse((sender as TextBox).Text));
+                    confirm.Text = data.ShStateFlag.ToString();
+                    hidden.Text = data.ShFlag.ToString();
+                    context.Dispose();
+                }
                 return;
             }
             confirm.Text = "------";

@@ -15,11 +15,13 @@ namespace SalesManagement_SysDev
             bool flg = false;
             try
             {
-                var context = new SalesManagement_DevContext();
-                //顧客IDと一致するデータがあるかどうか
-                flg = context.T_WarehousingDetails.Any(x => x.WaDetailID == WaDetailID);
-                //DB更新
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    //顧客IDと一致するデータがあるかどうか
+                    flg = context.T_WarehousingDetails.Any(x => x.WaDetailID == WaDetailID);
+                    //DB更新
+                    context.Dispose();
+                }
             }
             catch (Exception ex)
             {
@@ -33,11 +35,12 @@ namespace SalesManagement_SysDev
         {
             try
             {
-                var context = new SalesManagement_DevContext();
-                context.T_WarehousingDetails.Add(regWaD);
-                context.SaveChanges();
-                context.Dispose();
-
+                using (var context = new SalesManagement_DevContext())
+                {
+                    context.T_WarehousingDetails.Add(regWaD);
+                    context.SaveChanges();
+                    context.Dispose();
+                }
                 return true;
             }
             catch (Exception ex)
@@ -53,9 +56,11 @@ namespace SalesManagement_SysDev
             List<T_WarehousingDetail> warehousingDetail = new List<T_WarehousingDetail>();
             try
             {
-                var context = new SalesManagement_DevContext();
-                warehousingDetail = context.T_WarehousingDetails.ToList();
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    warehousingDetail = context.T_WarehousingDetails.ToList();
+                    context.Dispose();
+                }
             }
             catch (Exception ex)
             {
@@ -70,17 +75,19 @@ namespace SalesManagement_SysDev
             List<T_WarehousingDetail> warehousingDetail = new List<T_WarehousingDetail>();
             try
             {
-                var context = new SalesManagement_DevContext();
-                warehousingDetail = context.T_WarehousingDetails.Where(x =>
-                  (selectCondition.WaDetailID == 0 || x.WaDetailID == selectCondition.WaDetailID) &&
-                  (selectCondition.WaID == 0 || x.WaID == selectCondition.WaID) &&
-                  (selectCondition.PrID == 0 || x.PrID == selectCondition.PrID) &&
-                  (selectCondition.WaQuantity == 0 ||
-                  (quantityCondition == 0 && x.WaQuantity == selectCondition.WaQuantity) ||
-                  (quantityCondition == 1 && x.WaQuantity >= selectCondition.WaQuantity) ||
-                  (quantityCondition == 2 && x.WaQuantity <= selectCondition.WaQuantity))
-                ).ToList();
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    warehousingDetail = context.T_WarehousingDetails.Where(x =>
+                      (selectCondition.WaDetailID == 0 || x.WaDetailID == selectCondition.WaDetailID) &&
+                      (selectCondition.WaID == 0 || x.WaID == selectCondition.WaID) &&
+                      (selectCondition.PrID == 0 || x.PrID == selectCondition.PrID) &&
+                      (selectCondition.WaQuantity == 0 ||
+                      (quantityCondition == 0 && x.WaQuantity == selectCondition.WaQuantity) ||
+                      (quantityCondition == 1 && x.WaQuantity >= selectCondition.WaQuantity) ||
+                      (quantityCondition == 2 && x.WaQuantity <= selectCondition.WaQuantity))
+                    ).ToList();
+                    context.Dispose();
+                }
             }
             catch (Exception ex)
             {
@@ -94,18 +101,20 @@ namespace SalesManagement_SysDev
         {
             try
             {
-                var context = new SalesManagement_DevContext();
-                List<T_WarehousingDetail> warehousingDetail = context.T_WarehousingDetails.Where(x => x.WaID == waID).ToList();
-                foreach (var waDetail in warehousingDetail)
+                using (var context = new SalesManagement_DevContext())
                 {
-                    var product = context.M_Products.Single(x => x.PrID == waDetail.PrID);
-                    var stock = context.T_Stocks.Single(x => x.PrID == waDetail.PrID);
-                    stock.StQuantity += waDetail.WaQuantity;
-                    if (product.PrSafetyStock <= stock.StQuantity)
-                        stock.StState = 0;
-                    context.SaveChanges();
+                    List<T_WarehousingDetail> warehousingDetail = context.T_WarehousingDetails.Where(x => x.WaID == waID).ToList();
+                    foreach (var waDetail in warehousingDetail)
+                    {
+                        var product = context.M_Products.Single(x => x.PrID == waDetail.PrID);
+                        var stock = context.T_Stocks.Single(x => x.PrID == waDetail.PrID);
+                        stock.StQuantity += waDetail.WaQuantity;
+                        if (product.PrSafetyStock <= stock.StQuantity)
+                            stock.StState = 0;
+                        context.SaveChanges();
+                    }
+                    context.Dispose();
                 }
-                context.Dispose();
                 return true;
             }
             catch (Exception ex)
@@ -122,17 +131,19 @@ namespace SalesManagement_SysDev
             {
                 int sum = 0;
                 int prID = int.Parse((sender as TextBox).Text);
-                var context = new SalesManagement_DevContext();
-                if (context.M_Products.Any(x => x.PrID == prID))
+                using (var context = new SalesManagement_DevContext()) 
                 {
-                    List<T_WarehousingDetail> warehousingDetail = context.T_WarehousingDetails.Where(x => x.PrID == prID).ToList();
-                    foreach (var waDetail in warehousingDetail)
+                    if (context.M_Products.Any(x => x.PrID == prID))
                     {
-                        sum += waDetail.WaQuantity;
+                        List<T_WarehousingDetail> warehousingDetail = context.T_WarehousingDetails.Where(x => x.PrID == prID).ToList();
+                        foreach (var waDetail in warehousingDetail)
+                        {
+                            sum += waDetail.WaQuantity;
+                        }
+                        context.Dispose();
+                        Quantity.Text = sum.ToString();
+                        return;
                     }
-                    context.Dispose();
-                    Quantity.Text = sum.ToString();
-                    return;
                 }
             }
             Quantity.Text = "----";

@@ -14,11 +14,13 @@ namespace SalesManagement_SysDev
             bool flg = false;
             try
             {
-                var context = new SalesManagement_DevContext();
-                //顧客IDと一致するデータがあるかどうか
-                flg = context.T_HattyuDetails.Any(x => x.HaDetailID == HaDetailID);
-                //DB更新
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    //顧客IDと一致するデータがあるかどうか
+                    flg = context.T_HattyuDetails.Any(x => x.HaDetailID == HaDetailID);
+                    //DB更新
+                    context.Dispose();
+                }
             }
             catch (Exception ex)
             {
@@ -32,11 +34,12 @@ namespace SalesManagement_SysDev
         {
             try
             {
-                var context = new SalesManagement_DevContext();
-                context.T_HattyuDetails.Add(regHaD);
-                context.SaveChanges();
-                context.Dispose();
-
+                using (var context = new SalesManagement_DevContext())
+                {
+                    context.T_HattyuDetails.Add(regHaD);
+                    context.SaveChanges();
+                    context.Dispose();
+                }
                 return true;
             }
             catch (Exception ex)
@@ -50,15 +53,17 @@ namespace SalesManagement_SysDev
         {
             try
             {
-                var context = new SalesManagement_DevContext();
-                var hattyuDetail = context.T_HattyuDetails.Single(x => x.HaDetailID == updHaD.HaDetailID);
+                using (var context = new SalesManagement_DevContext())
+                {
+                    var hattyuDetail = context.T_HattyuDetails.Single(x => x.HaDetailID == updHaD.HaDetailID);
 
-                hattyuDetail.HaDetailID = updHaD.HaDetailID;
-                hattyuDetail.HaID = updHaD.HaID;
-                hattyuDetail.PrID = updHaD.PrID;
-                hattyuDetail.HaQuantity = updHaD.HaQuantity;
-                context.SaveChanges();
-                context.Dispose();
+                    hattyuDetail.HaDetailID = updHaD.HaDetailID;
+                    hattyuDetail.HaID = updHaD.HaID;
+                    hattyuDetail.PrID = updHaD.PrID;
+                    hattyuDetail.HaQuantity = updHaD.HaQuantity;
+                    context.SaveChanges();
+                    context.Dispose();
+                }
                 return true;
             }
             catch (Exception ex)
@@ -74,9 +79,11 @@ namespace SalesManagement_SysDev
             List<T_HattyuDetail> hattyuDetail = new List<T_HattyuDetail>();
             try
             {
-                var context = new SalesManagement_DevContext();
-                hattyuDetail = context.T_HattyuDetails.ToList();
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    hattyuDetail = context.T_HattyuDetails.ToList();
+                    context.Dispose();
+                }
             }
             catch (Exception ex)
             {
@@ -90,17 +97,19 @@ namespace SalesManagement_SysDev
             List<T_HattyuDetail> hattyuDetail = new List<T_HattyuDetail>();
             try
             {
-                var context = new SalesManagement_DevContext();
-                hattyuDetail = context.T_HattyuDetails.Where(x =>
-                  (selectCondition.HaDetailID == 0 || x.HaDetailID == selectCondition.HaDetailID) &&
-                  (selectCondition.HaID == 0 || x.HaID == selectCondition.HaID) &&
-                  (selectCondition.PrID == 0 || x.PrID == selectCondition.PrID) &&
-                  (selectCondition.HaQuantity == 0 ||
-                  (quantityCondition == 0 && x.HaQuantity == selectCondition.HaQuantity) ||
-                  (quantityCondition == 1 && x.HaQuantity >= selectCondition.HaQuantity) ||
-                  (quantityCondition == 2 && x.HaQuantity <= selectCondition.HaQuantity))
-                ).ToList();
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    hattyuDetail = context.T_HattyuDetails.Where(x =>
+                      (selectCondition.HaDetailID == 0 || x.HaDetailID == selectCondition.HaDetailID) &&
+                      (selectCondition.HaID == 0 || x.HaID == selectCondition.HaID) &&
+                      (selectCondition.PrID == 0 || x.PrID == selectCondition.PrID) &&
+                      (selectCondition.HaQuantity == 0 ||
+                      (quantityCondition == 0 && x.HaQuantity == selectCondition.HaQuantity) ||
+                      (quantityCondition == 1 && x.HaQuantity >= selectCondition.HaQuantity) ||
+                      (quantityCondition == 2 && x.HaQuantity <= selectCondition.HaQuantity))
+                    ).ToList();
+                    context.Dispose();
+                }
             }
             catch (Exception ex)
             {

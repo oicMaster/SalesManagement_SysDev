@@ -14,10 +14,12 @@ namespace SalesManagement_SysDev
             bool flg = false;
             try
             {
-                var context = new SalesManagement_DevContext();
-                flg = context.T_SyukkoDetails.Any(x => x.SyDetailID == SyDetailID);
-                //DB更新
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    flg = context.T_SyukkoDetails.Any(x => x.SyDetailID == SyDetailID);
+                    //DB更新
+                    context.Dispose();
+                }
             }
             catch (Exception ex)
             {
@@ -31,11 +33,12 @@ namespace SalesManagement_SysDev
         {
             try
             {
-                var context = new SalesManagement_DevContext();
-                context.T_SyukkoDetails.Add(regSyD);
-                context.SaveChanges();
-                context.Dispose();
-
+                using (var context = new SalesManagement_DevContext())
+                {
+                    context.T_SyukkoDetails.Add(regSyD);
+                    context.SaveChanges();
+                    context.Dispose();
+                }
                 return true;
             }
             catch (Exception ex)
@@ -50,9 +53,11 @@ namespace SalesManagement_SysDev
             List<T_SyukkoDetail> syukkoDetail = new List<T_SyukkoDetail>();
             try
             {
-                var context = new SalesManagement_DevContext();
-                syukkoDetail = context.T_SyukkoDetails.ToList();
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    syukkoDetail = context.T_SyukkoDetails.ToList();
+                    context.Dispose();
+                }
             }
             catch (Exception ex)
             {
@@ -66,17 +71,19 @@ namespace SalesManagement_SysDev
             List<T_SyukkoDetail> syukkoDetail = new List<T_SyukkoDetail>();
             try
             {
-                var context = new SalesManagement_DevContext();
-                syukkoDetail = context.T_SyukkoDetails.Where(x =>
-                  (selectCondition.SyDetailID == 0 || x.SyDetailID == selectCondition.SyDetailID) &&
-                  (selectCondition.SyID == 0 || x.SyID == selectCondition.SyID) &&
-                  (selectCondition.PrID == 0 || x.PrID == selectCondition.PrID) &&
-                  (selectCondition.SyQuantity == 0 ||
-                  (quantityCondition == 0 && x.SyQuantity == selectCondition.SyQuantity) ||
-                  (quantityCondition == 1 && x.SyQuantity >= selectCondition.SyQuantity) ||
-                  (quantityCondition == 2 && x.SyQuantity <= selectCondition.SyQuantity))
-                ).ToList();
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    syukkoDetail = context.T_SyukkoDetails.Where(x =>
+                      (selectCondition.SyDetailID == 0 || x.SyDetailID == selectCondition.SyDetailID) &&
+                      (selectCondition.SyID == 0 || x.SyID == selectCondition.SyID) &&
+                      (selectCondition.PrID == 0 || x.PrID == selectCondition.PrID) &&
+                      (selectCondition.SyQuantity == 0 ||
+                      (quantityCondition == 0 && x.SyQuantity == selectCondition.SyQuantity) ||
+                      (quantityCondition == 1 && x.SyQuantity >= selectCondition.SyQuantity) ||
+                      (quantityCondition == 2 && x.SyQuantity <= selectCondition.SyQuantity))
+                    ).ToList();
+                    context.Dispose();
+                }
             }
             catch (Exception ex)
             {

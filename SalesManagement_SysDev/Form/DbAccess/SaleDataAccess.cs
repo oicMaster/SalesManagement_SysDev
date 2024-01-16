@@ -15,11 +15,13 @@ namespace SalesManagement_SysDev
             bool flg = false;
             try
             {
-                var context = new SalesManagement_DevContext();
-                //顧客IDと一致するデータがあるかどうか
-                flg = context.T_Sales.Any(x => x.SaID ==SaID);
-                //DB更新
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    //顧客IDと一致するデータがあるかどうか
+                    flg = context.T_Sales.Any(x => x.SaID == SaID);
+                    //DB更新
+                    context.Dispose();
+                }
             }
             catch (Exception ex)
             {
@@ -49,20 +51,22 @@ namespace SalesManagement_SysDev
         }
         public T_Sale GenerateDataAdError()
         {
-            var context = new SalesManagement_DevContext();
-            var sale = context.T_Sales.Max(x => x.SaID);
-
-            return new T_Sale
+            using (var context = new SalesManagement_DevContext())
             {
-                SaID = sale,
-                SoID = 0,
-                EmID = 0,
-                ClID = 0,
-                ChID = 0,
-                SaDate = null,
-                SaFlag = 2,
-                SaHidden = "SystemError"
-            };
+                var sale = context.T_Sales.Max(x => x.SaID);
+
+                return new T_Sale
+                {
+                    SaID = sale,
+                    SoID = 0,
+                    EmID = 0,
+                    ClID = 0,
+                    ChID = 0,
+                    SaDate = null,
+                    SaFlag = 2,
+                    SaHidden = "SystemError"
+                };
+            }
         }
 
 
@@ -71,23 +75,25 @@ namespace SalesManagement_SysDev
         {
             try
             {
-                var context = new SalesManagement_DevContext();
-                var sale = context.T_Sales.Single(x => x.SaID == updSa.SaID);
-                if (updSa.SoID != 0)
-                    sale.SoID = updSa.SoID;
-                if (updSa.EmID != 0)
-                    sale.EmID = updSa.EmID;
-                if (updSa.ClID != 0)
-                    sale.ClID = updSa.ClID;
-                if(updSa.ChID != 0)
-                    sale.ChID = updSa.ChID;
-                if (updSa.SaDate != null)
-                    sale.SaDate = updSa.SaDate;
-                sale.SaHidden = updSa.SaHidden;
-                sale.SaFlag = updSa.SaFlag;
+                using (var context = new SalesManagement_DevContext())
+                {
+                    var sale = context.T_Sales.Single(x => x.SaID == updSa.SaID);
+                    if (updSa.SoID != 0)
+                        sale.SoID = updSa.SoID;
+                    if (updSa.EmID != 0)
+                        sale.EmID = updSa.EmID;
+                    if (updSa.ClID != 0)
+                        sale.ClID = updSa.ClID;
+                    if (updSa.ChID != 0)
+                        sale.ChID = updSa.ChID;
+                    if (updSa.SaDate != null)
+                        sale.SaDate = updSa.SaDate;
+                    sale.SaHidden = updSa.SaHidden;
+                    sale.SaFlag = updSa.SaFlag;
 
-                context.SaveChanges();
-                context.Dispose();
+                    context.SaveChanges();
+                    context.Dispose();
+                }
                 return true;
             }
             catch (Exception ex)
@@ -104,9 +110,11 @@ namespace SalesManagement_SysDev
             List<T_Sale> sale = new List<T_Sale>();
             try
             {
-                var context = new SalesManagement_DevContext();
-                sale = context.T_Sales.Where(x => x.SaFlag == 0).ToList();
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    sale = context.T_Sales.Where(x => x.SaFlag == 0).ToList();
+                    context.Dispose();
+                }
             }
             catch (Exception ex)
             {
@@ -122,20 +130,22 @@ namespace SalesManagement_SysDev
             List<T_Sale> sale = new List<T_Sale>();
             try
             {
-                var context = new SalesManagement_DevContext();
-                sale = context.T_Sales.Where(x =>
-                  (selectCondition.SaID == 0 || x.SaID == selectCondition.SaID) &&
-                  (selectCondition.ChID == 0 || x.ChID == selectCondition.ChID) &&
-                  (selectCondition.SoID == 0 || x.SoID == selectCondition.SoID) &&
-                  (selectCondition.EmID == 0 || x.EmID == selectCondition.EmID) &&
-                  (selectCondition.ClID == 0 || x.ClID == selectCondition.ClID) &&
-                  (selectCondition.SaDate == null||
-                  (dateCondition == 0 && x.SaDate == selectCondition.SaDate) ||
-                  (dateCondition == 1 && x.SaDate >= selectCondition.SaDate) ||
-                  (dateCondition == 2 && x.SaDate <= selectCondition.SaDate)) &&
-                  (selectCondition.SaFlag == 3 || x.SaFlag == selectCondition.SaFlag)
-                ).ToList();
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    sale = context.T_Sales.Where(x =>
+                      (selectCondition.SaID == 0 || x.SaID == selectCondition.SaID) &&
+                      (selectCondition.ChID == 0 || x.ChID == selectCondition.ChID) &&
+                      (selectCondition.SoID == 0 || x.SoID == selectCondition.SoID) &&
+                      (selectCondition.EmID == 0 || x.EmID == selectCondition.EmID) &&
+                      (selectCondition.ClID == 0 || x.ClID == selectCondition.ClID) &&
+                      (selectCondition.SaDate == null ||
+                      (dateCondition == 0 && x.SaDate == selectCondition.SaDate) ||
+                      (dateCondition == 1 && x.SaDate >= selectCondition.SaDate) ||
+                      (dateCondition == 2 && x.SaDate <= selectCondition.SaDate)) &&
+                      (selectCondition.SaFlag == 3 || x.SaFlag == selectCondition.SaFlag)
+                    ).ToList();
+                    context.Dispose();
+                }
             }
             catch (Exception ex)
             {
@@ -152,11 +162,13 @@ namespace SalesManagement_SysDev
             if (CheckSaIDExistence(int.Parse((sender as TextBox).Text)))
             {
 
-                var context = new SalesManagement_DevContext();
-                sale = context.T_Sales.ToList();
-                var data = sale.Single(x => x.SaID == int.Parse((sender as TextBox).Text));
-                hidden.Text = data.SaFlag.ToString();
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    sale = context.T_Sales.ToList();
+                    var data = sale.Single(x => x.SaID == int.Parse((sender as TextBox).Text));
+                    hidden.Text = data.SaFlag.ToString();
+                    context.Dispose();
+                }
                 return;
             }
             hidden.Text = "------";
