@@ -16,7 +16,7 @@ namespace SalesManagement_SysDev
 
 
         private F_Login login;
-
+        OperationHistoryDataAccess operationHistoryDataAccess = new OperationHistoryDataAccess();
 
         public F_AdMenu(F_Login login,string emID)
         {
@@ -25,7 +25,7 @@ namespace SalesManagement_SysDev
             lblLoginIDData.Text = emID;
             EmployeeDataAccess employeeDataAccess = new EmployeeDataAccess();
             employeeDataAccess.GetEmployeeNameData(emID, lblLoginNameData);
-
+           
         }
 
         private void OpenForm(string formName)
@@ -106,6 +106,8 @@ namespace SalesManagement_SysDev
 
         private void btnClose_Click(object sender, EventArgs e)
         {
+            var regOh = operationHistoryDataAccess.GenereteDataAdRegistration(int.Parse(lblLoginIDData.Text), this.Text, btnClose.Text);
+            operationHistoryDataAccess.AddOperationHistoryData(regOh);
             login.Show();
             this.Dispose();
         }

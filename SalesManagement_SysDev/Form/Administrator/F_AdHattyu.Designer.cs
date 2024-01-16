@@ -110,6 +110,8 @@
             this.lblSafetyStockValue = new System.Windows.Forms.Label();
             this.lblWaQuantityValue = new System.Windows.Forms.Label();
             this.lblWaQuantity = new System.Windows.Forms.Label();
+            this.lblOrQuantity = new System.Windows.Forms.Label();
+            this.lblOrQuantityValue = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDsp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDetailDsp)).BeginInit();
             this.pnlTitle.SuspendLayout();
@@ -137,7 +139,7 @@
             // 
             this.btnDisplay.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnDisplay.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
-            this.btnDisplay.Location = new System.Drawing.Point(1300, 140);
+            this.btnDisplay.Location = new System.Drawing.Point(1300, 132);
             this.btnDisplay.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnDisplay.Name = "btnDisplay";
             this.btnDisplay.Size = new System.Drawing.Size(135, 50);
@@ -218,6 +220,7 @@
             this.txbPageNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txbPageNo.TextChanged += new System.EventHandler(this.txbPageNo_TextChanged);
             this.txbPageNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbPageNo_KeyPress);
+            this.txbPageNo.Leave += new System.EventHandler(this.txbPageNo_Leave);
             // 
             // btnLastPage
             // 
@@ -283,6 +286,7 @@
             this.txbPageSize.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txbPageSize.TextChanged += new System.EventHandler(this.txbPageSize_TextChanged);
             this.txbPageSize.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbPage_KeyPress);
+            this.txbPageSize.Leave += new System.EventHandler(this.txbPageSize_Leave);
             // 
             // llblPageSize
             // 
@@ -307,6 +311,7 @@
             this.dataGridViewDsp.Size = new System.Drawing.Size(1880, 274);
             this.dataGridViewDsp.TabIndex = 76;
             this.dataGridViewDsp.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewDsp_CellClick);
+            this.dataGridViewDsp.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridViewDsp_CellFormatting);
             // 
             // txbFlag
             // 
@@ -425,6 +430,7 @@
             // lblEmID
             // 
             this.lblEmID.AutoSize = true;
+            this.lblEmID.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
             this.lblEmID.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
             this.lblEmID.Location = new System.Drawing.Point(550, 145);
             this.lblEmID.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -534,7 +540,7 @@
             // 
             this.btnClear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnClear.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
-            this.btnClear.Location = new System.Drawing.Point(1300, 210);
+            this.btnClear.Location = new System.Drawing.Point(1300, 200);
             this.btnClear.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(135, 50);
@@ -627,7 +633,9 @@
             this.txbDetailPageNo.Size = new System.Drawing.Size(130, 30);
             this.txbDetailPageNo.TabIndex = 119;
             this.txbDetailPageNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txbDetailPageNo.TextChanged += new System.EventHandler(this.txbPageNo_TextChanged);
             this.txbDetailPageNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbPage_KeyPress);
+            this.txbDetailPageNo.Leave += new System.EventHandler(this.txbDetailPageNo_Leave);
             // 
             // btnDetailLastPage
             // 
@@ -691,7 +699,9 @@
             this.txbDetailPageSize.Size = new System.Drawing.Size(50, 30);
             this.txbDetailPageSize.TabIndex = 114;
             this.txbDetailPageSize.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txbDetailPageSize.TextChanged += new System.EventHandler(this.txbPageSize_TextChanged);
             this.txbDetailPageSize.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbPage_KeyPress);
+            this.txbDetailPageSize.Leave += new System.EventHandler(this.txbDetailPageSize_Leave);
             // 
             // lblDetailPageSize
             // 
@@ -756,7 +766,7 @@
             this.cmbHint.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbHint.Font = new System.Drawing.Font("MS UI Gothic", 15F, System.Drawing.FontStyle.Bold);
             this.cmbHint.FormattingEnabled = true;
-            this.cmbHint.Location = new System.Drawing.Point(1472, 162);
+            this.cmbHint.Location = new System.Drawing.Point(1490, 154);
             this.cmbHint.Name = "cmbHint";
             this.cmbHint.Size = new System.Drawing.Size(140, 28);
             this.cmbHint.TabIndex = 125;
@@ -769,18 +779,21 @@
             this.cbxDisplay.Checked = true;
             this.cbxDisplay.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbxDisplay.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
+            this.cbxDisplay.ForeColor = System.Drawing.Color.Blue;
             this.cbxDisplay.Location = new System.Drawing.Point(445, 654);
             this.cbxDisplay.Name = "cbxDisplay";
             this.cbxDisplay.Size = new System.Drawing.Size(98, 26);
             this.cbxDisplay.TabIndex = 94;
             this.cbxDisplay.Text = "未処理";
             this.cbxDisplay.UseVisualStyleBackColor = false;
+            this.cbxDisplay.CheckedChanged += new System.EventHandler(this.cbxFlag_CheckedChanged);
             // 
             // cbxConfirm
             // 
             this.cbxConfirm.AutoSize = true;
             this.cbxConfirm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
             this.cbxConfirm.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
+            this.cbxConfirm.ForeColor = System.Drawing.Color.Blue;
             this.cbxConfirm.Location = new System.Drawing.Point(549, 654);
             this.cbxConfirm.Name = "cbxConfirm";
             this.cbxConfirm.Size = new System.Drawing.Size(98, 26);
@@ -794,6 +807,7 @@
             this.cbxHidden.AutoSize = true;
             this.cbxHidden.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
             this.cbxHidden.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
+            this.cbxHidden.ForeColor = System.Drawing.Color.Blue;
             this.cbxHidden.Location = new System.Drawing.Point(653, 654);
             this.cbxHidden.Name = "cbxHidden";
             this.cbxHidden.Size = new System.Drawing.Size(121, 26);
@@ -895,7 +909,7 @@
             this.lblDateCondition.AutoSize = true;
             this.lblDateCondition.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
             this.lblDateCondition.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
-            this.lblDateCondition.Location = new System.Drawing.Point(225, 314);
+            this.lblDateCondition.Location = new System.Drawing.Point(198, 313);
             this.lblDateCondition.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblDateCondition.Name = "lblDateCondition";
             this.lblDateCondition.Size = new System.Drawing.Size(125, 22);
@@ -931,7 +945,7 @@
             this.cmbDate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbDate.Font = new System.Drawing.Font("MS UI Gothic", 15F, System.Drawing.FontStyle.Bold);
             this.cmbDate.FormattingEnabled = true;
-            this.cmbDate.Location = new System.Drawing.Point(402, 303);
+            this.cmbDate.Location = new System.Drawing.Point(328, 311);
             this.cmbDate.Name = "cmbDate";
             this.cmbDate.Size = new System.Drawing.Size(121, 28);
             this.cmbDate.TabIndex = 159;
@@ -989,7 +1003,7 @@
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.label2.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
-            this.label2.Location = new System.Drawing.Point(1468, 140);
+            this.label2.Location = new System.Drawing.Point(1486, 132);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(102, 22);
@@ -1001,13 +1015,14 @@
             this.btnDetailSort.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnDetailSort.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
             this.btnDetailSort.ForeColor = System.Drawing.Color.Black;
-            this.btnDetailSort.Location = new System.Drawing.Point(1071, 1022);
+            this.btnDetailSort.Location = new System.Drawing.Point(1071, 1020);
             this.btnDetailSort.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnDetailSort.Name = "btnDetailSort";
             this.btnDetailSort.Size = new System.Drawing.Size(69, 32);
             this.btnDetailSort.TabIndex = 411;
             this.btnDetailSort.Text = "昇順";
             this.btnDetailSort.UseVisualStyleBackColor = false;
+            this.btnDetailSort.Click += new System.EventHandler(this.btnDetailSort_Click);
             // 
             // btnSort
             // 
@@ -1021,6 +1036,7 @@
             this.btnSort.TabIndex = 410;
             this.btnSort.Text = "昇順";
             this.btnSort.UseVisualStyleBackColor = false;
+            this.btnSort.Click += new System.EventHandler(this.btnSort_Click);
             // 
             // cbxLink
             // 
@@ -1089,7 +1105,7 @@
             this.lblWaQuantityValue.AutoSize = true;
             this.lblWaQuantityValue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
             this.lblWaQuantityValue.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.lblWaQuantityValue.Location = new System.Drawing.Point(371, 785);
+            this.lblWaQuantityValue.Location = new System.Drawing.Point(553, 810);
             this.lblWaQuantityValue.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblWaQuantityValue.Name = "lblWaQuantityValue";
             this.lblWaQuantityValue.Size = new System.Drawing.Size(43, 16);
@@ -1101,12 +1117,36 @@
             this.lblWaQuantity.AutoSize = true;
             this.lblWaQuantity.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
             this.lblWaQuantity.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.lblWaQuantity.Location = new System.Drawing.Point(236, 785);
+            this.lblWaQuantity.Location = new System.Drawing.Point(418, 810);
             this.lblWaQuantity.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblWaQuantity.Name = "lblWaQuantity";
             this.lblWaQuantity.Size = new System.Drawing.Size(131, 16);
             this.lblWaQuantity.TabIndex = 418;
             this.lblWaQuantity.Text = "入庫待ち総数量：";
+            // 
+            // lblOrQuantity
+            // 
+            this.lblOrQuantity.AutoSize = true;
+            this.lblOrQuantity.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
+            this.lblOrQuantity.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.lblOrQuantity.Location = new System.Drawing.Point(448, 835);
+            this.lblOrQuantity.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblOrQuantity.Name = "lblOrQuantity";
+            this.lblOrQuantity.Size = new System.Drawing.Size(101, 16);
+            this.lblOrQuantity.TabIndex = 420;
+            this.lblOrQuantity.Text = "受注総数量：";
+            // 
+            // lblOrQuantityValue
+            // 
+            this.lblOrQuantityValue.AutoSize = true;
+            this.lblOrQuantityValue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
+            this.lblOrQuantityValue.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.lblOrQuantityValue.Location = new System.Drawing.Point(553, 835);
+            this.lblOrQuantityValue.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblOrQuantityValue.Name = "lblOrQuantityValue";
+            this.lblOrQuantityValue.Size = new System.Drawing.Size(43, 16);
+            this.lblOrQuantityValue.TabIndex = 421;
+            this.lblOrQuantityValue.Text = "----";
             // 
             // F_AdHattyu
             // 
@@ -1114,6 +1154,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(1904, 1041);
+            this.Controls.Add(this.lblOrQuantityValue);
+            this.Controls.Add(this.lblOrQuantity);
             this.Controls.Add(this.lblWaQuantityValue);
             this.Controls.Add(this.lblWaQuantity);
             this.Controls.Add(this.lblSafetyStockValue);
@@ -1291,5 +1333,7 @@
         private System.Windows.Forms.Label lblSafetyStockValue;
         private System.Windows.Forms.Label lblWaQuantityValue;
         private System.Windows.Forms.Label lblWaQuantity;
+        private System.Windows.Forms.Label lblOrQuantity;
+        private System.Windows.Forms.Label lblOrQuantityValue;
     }
 }

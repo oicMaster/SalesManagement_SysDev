@@ -529,7 +529,7 @@ namespace SalesManagement_SysDev
         {
             return new M_SalesOffice
             {
-                SoID = int.Parse(txbSoID.Text),
+                SoID = 0,
                 SoName = txbName.Text.Trim(),
                 SoAddress = txbAddress.Text.Trim(),
                 SoPhone = txbPhone.Text.Trim(),

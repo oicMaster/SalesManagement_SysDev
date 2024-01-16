@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Core.Objects;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
@@ -10,6 +12,52 @@ namespace SalesManagement_SysDev
 {
     internal class OperationHistoryDataAccess
     {
+        public List<T_OperationHistory> GetOperationHistoryData()
+        {
+            List<T_OperationHistory> operationHistory = new List<T_OperationHistory>();
+            try
+            {
+                using (var context = new SalesManagement_DevContext())
+                {
+                    operationHistory = context.T_OperationHistorys.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return operationHistory;
+        }
+
+        public List<T_OperationHistory> GetOperationHistoryData(T_OperationHistory selectCondition, int dateCondition,int displayCondition)
+        {
+            List<T_OperationHistory> operationHistory = new List<T_OperationHistory>();
+            try
+            {
+ 
+                using (var context = new SalesManagement_DevContext())
+                {
+                    operationHistory = context.T_OperationHistorys.Where(x =>
+                    (selectCondition.EmID == 0||x.EmID == selectCondition.EmID)&&
+                  (selectCondition.OpForm == String.Empty || x.OpForm == selectCondition.OpForm) &&
+                 (
+                        (displayCondition == 0 && (selectCondition.OpButton == String.Empty || x.OpButton.Contains(selectCondition.OpButton))) ||
+                        (displayCondition == 1 && x.OpButton.Contains("ログ"))
+                    ) &&
+                   (selectCondition.OpTime == null ||
+                  (dateCondition == 0 && DbFunctions.TruncateTime(x.OpTime.Value) == DbFunctions.TruncateTime(selectCondition.OpTime) )||
+                  (dateCondition == 1 && DbFunctions.TruncateTime(x.OpTime.Value) >= DbFunctions.TruncateTime(selectCondition.OpTime)) ||
+                  (dateCondition == 2 && DbFunctions.TruncateTime(x.OpTime.Value) <= DbFunctions.TruncateTime(selectCondition.OpTime)))
+                  ).ToList();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return operationHistory;
+        }
 
         public T_OperationHistory GenereteDataAdRegistration(int emID, string form,string button)
         {

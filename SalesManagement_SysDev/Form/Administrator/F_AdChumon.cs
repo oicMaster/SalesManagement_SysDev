@@ -796,7 +796,7 @@ namespace SalesManagement_SysDev
         private void UpdateArrival(T_Chumon updCh)
         {
             DialogResult result = messageDsp.MsgDsp("M1001", lblChID, txbChID);
-            if (result == DialogResult.Cancel)
+            if (result != DialogResult.OK)
                 return;
 
             bool flg = chumonDataAccess.UpdateChumonData(updCh);
@@ -844,7 +844,7 @@ namespace SalesManagement_SysDev
         private void ConfirmChumon(T_Chumon updCh)
         {
             DialogResult result = messageDsp.MsgDspQ("M3001", lblChID, txbChID);
-            if (result == DialogResult.Cancel)
+            if (result != DialogResult.OK)
                 return;
 
 

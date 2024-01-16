@@ -686,6 +686,7 @@
             this.txbDetailPageNo.TabIndex = 33;
             this.txbDetailPageNo.TabStop = false;
             this.txbDetailPageNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txbDetailPageNo.TextChanged += new System.EventHandler(this.txbPageNo_TextChanged);
             this.txbDetailPageNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbPage_KeyPress);
             this.txbDetailPageNo.Leave += new System.EventHandler(this.txbDetailPageNo_Leave);
             // 
@@ -752,6 +753,7 @@
             this.txbDetailPageSize.TabIndex = 28;
             this.txbDetailPageSize.TabStop = false;
             this.txbDetailPageSize.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txbDetailPageSize.TextChanged += new System.EventHandler(this.txbPageSize_TextChanged);
             this.txbDetailPageSize.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbPage_KeyPress);
             this.txbDetailPageSize.Leave += new System.EventHandler(this.txbDetailPageSize_Leave);
             // 
@@ -839,6 +841,7 @@
             this.cbxDisplay.TabIndex = 122;
             this.cbxDisplay.Text = "未処理";
             this.cbxDisplay.UseVisualStyleBackColor = false;
+            this.cbxDisplay.CheckedChanged += new System.EventHandler(this.cbxFlag_CheckedChanged);
             // 
             // cbxConfirm
             // 
@@ -852,6 +855,7 @@
             this.cbxConfirm.TabIndex = 17;
             this.cbxConfirm.Text = "確定済";
             this.cbxConfirm.UseVisualStyleBackColor = false;
+            this.cbxConfirm.CheckedChanged += new System.EventHandler(this.cbxFlag_CheckedChanged);
             // 
             // cbxHidden
             // 
@@ -865,6 +869,7 @@
             this.cbxHidden.TabIndex = 18;
             this.cbxHidden.Text = "非表示済";
             this.cbxHidden.UseVisualStyleBackColor = false;
+            this.cbxHidden.CheckedChanged += new System.EventHandler(this.cbxFlag_CheckedChanged);
             // 
             // lblPrName
             // 

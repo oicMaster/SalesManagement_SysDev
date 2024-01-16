@@ -123,17 +123,19 @@ namespace SalesManagement_SysDev
                 int sum = 0;
                 int prID = int.Parse((sender as TextBox).Text);
                 var context = new SalesManagement_DevContext();
-                List<T_WarehousingDetail> warehousingDetail = context.T_WarehousingDetails.Where(x => x.PrID == prID).ToList();
-                foreach (var waDetail in warehousingDetail)
+                if (context.M_Products.Any(x => x.PrID == prID))
                 {
-                    var stock = context.T_Stocks.Single(x => x.PrID == waDetail.PrID);
-                    sum += waDetail.WaQuantity;
+                    List<T_WarehousingDetail> warehousingDetail = context.T_WarehousingDetails.Where(x => x.PrID == prID).ToList();
+                    foreach (var waDetail in warehousingDetail)
+                    {
+                        sum += waDetail.WaQuantity;
+                    }
+                    context.Dispose();
+                    Quantity.Text = sum.ToString();
+                    return;
                 }
-                context.Dispose();
-                Quantity.Text = sum.ToString();
             }
-            else
-                Quantity.Text = "----";
+            Quantity.Text = "----";
         }
     }
 }

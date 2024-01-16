@@ -669,6 +669,7 @@
             this.txbDetailPageNo.Size = new System.Drawing.Size(130, 30);
             this.txbDetailPageNo.TabIndex = 119;
             this.txbDetailPageNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txbDetailPageNo.TextChanged += new System.EventHandler(this.txbPageNo_TextChanged);
             this.txbDetailPageNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbPage_KeyPress);
             this.txbDetailPageNo.Leave += new System.EventHandler(this.txbDetailPageNo_Leave);
             // 
@@ -734,6 +735,7 @@
             this.txbDetailPageSize.Size = new System.Drawing.Size(50, 30);
             this.txbDetailPageSize.TabIndex = 114;
             this.txbDetailPageSize.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txbDetailPageSize.TextChanged += new System.EventHandler(this.txbPageSize_TextChanged);
             this.txbDetailPageSize.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbPage_KeyPress);
             this.txbDetailPageSize.Leave += new System.EventHandler(this.txbDetailPageSize_Leave);
             // 
@@ -1054,6 +1056,7 @@
             this.btnDetailSort.TabIndex = 175;
             this.btnDetailSort.Text = "昇順";
             this.btnDetailSort.UseVisualStyleBackColor = false;
+            this.btnDetailSort.Click += new System.EventHandler(this.btnDetailSort_Click);
             // 
             // btnSort
             // 

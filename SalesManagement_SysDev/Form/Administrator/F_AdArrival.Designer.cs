@@ -736,6 +736,7 @@
             this.cbxDisplay.Checked = true;
             this.cbxDisplay.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbxDisplay.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
+            this.cbxDisplay.ForeColor = System.Drawing.Color.Blue;
             this.cbxDisplay.Location = new System.Drawing.Point(319, 657);
             this.cbxDisplay.Name = "cbxDisplay";
             this.cbxDisplay.Size = new System.Drawing.Size(98, 26);
@@ -749,6 +750,7 @@
             this.cbxConfirm.AutoSize = true;
             this.cbxConfirm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
             this.cbxConfirm.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
+            this.cbxConfirm.ForeColor = System.Drawing.Color.Blue;
             this.cbxConfirm.Location = new System.Drawing.Point(423, 657);
             this.cbxConfirm.Name = "cbxConfirm";
             this.cbxConfirm.Size = new System.Drawing.Size(98, 26);
@@ -762,6 +764,7 @@
             this.cbxHidden.AutoSize = true;
             this.cbxHidden.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
             this.cbxHidden.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
+            this.cbxHidden.ForeColor = System.Drawing.Color.Blue;
             this.cbxHidden.Location = new System.Drawing.Point(527, 657);
             this.cbxHidden.Name = "cbxHidden";
             this.cbxHidden.Size = new System.Drawing.Size(121, 26);
@@ -1179,6 +1182,7 @@
             this.Controls.Add(this.pictureBox4);
             this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Name = "F_AdArrival";
+            this.Text = "入荷管理";
             this.Load += new System.EventHandler(this.F_Arrival_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDetailDsp)).EndInit();
             this.pnlTitle.ResumeLayout(false);

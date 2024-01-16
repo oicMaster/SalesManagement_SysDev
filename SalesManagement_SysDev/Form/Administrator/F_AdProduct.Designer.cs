@@ -98,6 +98,7 @@
             this.txbMaID.Size = new System.Drawing.Size(115, 28);
             this.txbMaID.TabIndex = 131;
             this.txbMaID.TextChanged += new System.EventHandler(this.txbMaID_TextChanged);
+            this.txbMaID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbID_KeyPress);
             // 
             // lblMaID
             // 
@@ -189,6 +190,7 @@
             this.txbScID.Size = new System.Drawing.Size(115, 28);
             this.txbScID.TabIndex = 105;
             this.txbScID.TextChanged += new System.EventHandler(this.txbScID_TextChanged);
+            this.txbScID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbID_KeyPress);
             // 
             // txbName
             // 
@@ -283,6 +285,7 @@
             this.txbPrice.Size = new System.Drawing.Size(203, 28);
             this.txbPrice.TabIndex = 134;
             this.txbPrice.TextChanged += new System.EventHandler(this.txbPrice_TextChanged);
+            this.txbPrice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbPrice_KeyPress);
             // 
             // lblPrice
             // 
@@ -544,6 +547,8 @@
             this.txbPageSize.TabIndex = 78;
             this.txbPageSize.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txbPageSize.TextChanged += new System.EventHandler(this.txbPageSize_TextChanged);
+            this.txbPageSize.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbPage_KeyPress);
+            this.txbPageSize.Leave += new System.EventHandler(this.txbPageSize_Leave);
             // 
             // llblPageSize
             // 
@@ -567,6 +572,9 @@
             this.txbPageNo.Size = new System.Drawing.Size(130, 30);
             this.txbPageNo.TabIndex = 83;
             this.txbPageNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txbPageNo.TextChanged += new System.EventHandler(this.txbPageNo_TextChanged);
+            this.txbPageNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbPageNo_KeyPress);
+            this.txbPageNo.Leave += new System.EventHandler(this.txbPageNo_Leave);
             // 
             // cbxHidden
             // 
@@ -580,6 +588,7 @@
             this.cbxHidden.TabIndex = 90;
             this.cbxHidden.Text = "非表示済";
             this.cbxHidden.UseVisualStyleBackColor = false;
+            this.cbxHidden.CheckedChanged += new System.EventHandler(this.cbxFlag_CheckedChanged);
             // 
             // cbxDisplay
             // 
@@ -595,6 +604,7 @@
             this.cbxDisplay.TabIndex = 165;
             this.cbxDisplay.Text = "未処理";
             this.cbxDisplay.UseVisualStyleBackColor = false;
+            this.cbxDisplay.CheckedChanged += new System.EventHandler(this.cbxFlag_CheckedChanged);
             // 
             // lblMaName
             // 
@@ -629,6 +639,7 @@
             this.txbSafetyStock.Size = new System.Drawing.Size(203, 28);
             this.txbSafetyStock.TabIndex = 168;
             this.txbSafetyStock.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
+            this.txbSafetyStock.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbSfetyStock_KeyPress);
             // 
             // lblSafetyStock
             // 
