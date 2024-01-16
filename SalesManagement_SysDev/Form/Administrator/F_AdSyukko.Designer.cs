@@ -539,6 +539,7 @@
             this.dataGridViewDetailDsp.RowTemplate.Height = 24;
             this.dataGridViewDetailDsp.Size = new System.Drawing.Size(1130, 314);
             this.dataGridViewDetailDsp.TabIndex = 97;
+            this.dataGridViewDetailDsp.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewDetailDsp_CellClick);
             // 
             // btnDetailSearch
             // 
@@ -1019,6 +1020,7 @@
             this.btnSort.TabIndex = 172;
             this.btnSort.Text = "昇順";
             this.btnSort.UseVisualStyleBackColor = false;
+            this.btnSort.Click += new System.EventHandler(this.btnSort_Click);
             // 
             // btnDetailSort
             // 
@@ -1032,6 +1034,7 @@
             this.btnDetailSort.TabIndex = 174;
             this.btnDetailSort.Text = "昇順";
             this.btnDetailSort.UseVisualStyleBackColor = false;
+            this.btnDetailSort.Click += new System.EventHandler(this.btnDetailSort_Click);
             // 
             // cbxLink
             // 

@@ -1088,7 +1088,7 @@ namespace SalesManagement_SysDev
             if (flg)
             {
                 messageDsp.MsgDsp("M0002");
-                var regOh = operationHistoryDataAccess.GenereteDataAdRegistration(int.Parse(lblLoginIDData.Text), Text, btnUpdate.Text);
+                var regOh = operationHistoryDataAccess.GenereteDataAdRegistration(int.Parse(lblLoginIDData.Text), Text, btnRegist.Text);
                 operationHistoryDataAccess.AddOperationHistoryData(regOh);
             }
             else
@@ -1201,7 +1201,7 @@ namespace SalesManagement_SysDev
         {
             DialogResult result = messageDsp.MsgDspQ("M3001", lblOrID, txbOrID);
             //●●ID:00の処理を確定しますか？
-            if (result == DialogResult.Cancel)
+            if (result != DialogResult.OK)
                 return;
 
 
@@ -1315,14 +1315,14 @@ namespace SalesManagement_SysDev
         private void RegistrationOrderDetail(T_OrderDetail regOrD)
         {
             DialogResult result = messageDsp.MsgDspQ("M0001");
-            if (result == DialogResult.Cancel)
+            if (result != DialogResult.OK)
                 return;
 
             bool flg = orderDetailDataAccess.AddOrderDetailData(regOrD);
             if (flg)
             {
                 messageDsp.MsgDsp("M0002");
-                var regOh = operationHistoryDataAccess.GenereteDataAdRegistration(int.Parse(lblLoginIDData.Text), Text, btnUpdate.Text);
+                var regOh = operationHistoryDataAccess.GenereteDataAdRegistration(int.Parse(lblLoginIDData.Text), Text, btnDetailRegist.Text);
                 operationHistoryDataAccess.AddOperationHistoryData(regOh);
             }
             else

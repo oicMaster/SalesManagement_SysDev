@@ -15,7 +15,7 @@ namespace SalesManagement_SysDev
 {
     public partial class F_AdOperationManegement : Form
     {
-
+        OperationHistoryDataAccess operationHistoryDataAccess = new OperationHistoryDataAccess();
         private F_AdMenu AdMenu;
         public F_AdOperationManegement(F_AdMenu adMenu,string ID,string Name)
         {
@@ -23,13 +23,12 @@ namespace SalesManagement_SysDev
             AdMenu = adMenu;
             Text = "パスワード更新";
             lblLoginIDData.Text = ID;
-            lblEmIDData.Text = ID;
+            txbEmID.Text = ID;
             lblLoginNameData.Text = Name;
-        }
 
-        private void txbEmID_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.Handled = true;
+            txbCurrentPassword.MaxLength = 10;
+            txbUpdatePassword.MaxLength = 10;
+            txbSecondUpdatePassword.MaxLength = 10;
         }
 
         private void F_OperationManegement_Load(object sender, EventArgs e)
@@ -47,9 +46,19 @@ namespace SalesManagement_SysDev
             Dispose();
         }
 
-        private void lblVisible_Click(object sender, EventArgs e)
+        private void ButtonEnabled()
         {
-
+            if (!String.IsNullOrEmpty(txbCurrentPassword.Text)
+                && !String.IsNullOrEmpty(txbUpdatePassword.Text)
+                && !String.IsNullOrEmpty(txbSecondUpdatePassword.Text))
+                if (txbUpdatePassword.Text == txbSecondUpdatePassword.Text)
+                {
+                    btnUpdate.Enabled = true;
+                    btnUpdate.ForeColor = Color.Red;
+                    return;
+                }
+            btnUpdate.Enabled = false;
+            btnUpdate.ForeColor = Color.Black;
         }
 
         private void lblVisible_MouseDown(object sender, MouseEventArgs e)
@@ -57,7 +66,7 @@ namespace SalesManagement_SysDev
             txbCurrentPassword.PasswordChar = '\0';
             txbUpdatePassword.PasswordChar = '\0';
             txbSecondUpdatePassword.PasswordChar = '\0';
-            lblVisible.Text = "(👀";
+            lblVisible.Text = "(꒪꒫꒪)";
         }
 
         private void lblVisible_MouseUp(object sender, MouseEventArgs e)
@@ -65,7 +74,7 @@ namespace SalesManagement_SysDev
             txbCurrentPassword.PasswordChar = '*';
             txbUpdatePassword.PasswordChar = '*';
             txbSecondUpdatePassword.PasswordChar = '*';
-            lblVisible.Text = "(--";
+            lblVisible.Text = "(-꒫-)";
         }
 
         EmployeeDataAccess employeeDataAccess = new EmployeeDataAccess();
@@ -73,12 +82,12 @@ namespace SalesManagement_SysDev
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-
-            bool flg = employeeDataAccess.GetEmployeePassData(lblEmIDData.Text, txbCurrentPassword.Text);
+            bool flg = employeeDataAccess.GetEmployeePassData(txbEmID.Text, txbCurrentPassword.Text);
             if (!flg)
+            {
+                messageDsp.MsgDsp("M4005");
                 return;
-            if (String.IsNullOrEmpty(txbUpdatePassword.Text.Trim())&&txbUpdatePassword.Text != txbSecondUpdatePassword.Text)
-                return;
+            }
 
             var updEm = GenerateDataAtUpdate();
             //顧客情報更新
@@ -86,42 +95,58 @@ namespace SalesManagement_SysDev
 
         }
 
+        private void ClearInput()
+        {
+            txbCurrentPassword.Text = String.Empty;
+            txbUpdatePassword.Text = String.Empty;
+            txbSecondUpdatePassword.Text = String.Empty;
+        }
+
+        private void txbPassword_TextChanged(object sender, EventArgs e)
+        {
+            ButtonEnabled();
+        }
+
         private M_Employee GenerateDataAtUpdate()
         {
 
             return new M_Employee
             {
-                EmID = int.Parse(lblEmIDData.Text),
-                EmName = null,
+                EmID = int.Parse(txbEmID.Text),
+                EmName = String.Empty,
                 SoID = 0,
                 PoID = 0,
+                EmHiredate = null,
                 EmPassword = txbUpdatePassword.Text.Trim(),
-                EmPhone = null,
+                EmPhone = String.Empty,
                 EmFlag = 0,
                 EmHidden = null,
             };
         }
         private void UpdatePassword(M_Employee updEm)
         {
-            DialogResult result = messageDsp.MsgDspQ("M0001");
+            DialogResult result = messageDsp.MsgDspQ("M4001");
             if (result != DialogResult.OK)
                 return;
 
             bool flg = employeeDataAccess.UpdateEmployeeData(updEm);
             if (flg == true)
-                messageDsp.MsgDsp("M0001");
+            {
+                var regOh = operationHistoryDataAccess.GenereteDataAdRegistration(int.Parse(lblLoginIDData.Text), Text, btnUpdate.Text);
+                //社員ID_管理フォーム名_使用ボタン
+                operationHistoryDataAccess.AddOperationHistoryData(regOh);
+                messageDsp.MsgDsp("M4002");
+            }
             else
-                messageDsp.MsgDsp("0001");
+                messageDsp.MsgDsp("M4003");
 
             ClearInput();
             txbCurrentPassword.Focus();
         }
 
-        private void ClearInput()
+        private void btnClear_Click(object sender, EventArgs e)
         {
-            txbCurrentPassword.Text = String.Empty;
-            txbUpdatePassword.Text = String.Empty;
-            txbSecondUpdatePassword.Text = String.Empty;
+            ClearInput();
         }
     }
 }

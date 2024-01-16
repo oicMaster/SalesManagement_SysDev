@@ -109,7 +109,7 @@
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(168, 74);
             this.btnClose.TabIndex = 7;
-            this.btnClose.Text = "閉じる";
+            this.btnClose.Text = "終了";
             this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
@@ -141,7 +141,7 @@
             this.Controls.Add(this.lblPassword);
             this.Controls.Add(this.lblLoginID);
             this.Name = "F_Login";
-            this.Text = "販売管理システムログイン画面";
+            this.Text = "ログイン画面";
             this.Load += new System.EventHandler(this.F_Login_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

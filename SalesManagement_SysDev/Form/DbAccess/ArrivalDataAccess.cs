@@ -17,11 +17,12 @@ namespace SalesManagement_SysDev
             bool flg = false;
             try
             {
-                var context = new SalesManagement_DevContext();
-                //顧客IDと一致するデータがあるかどうか
-                flg = context.T_Arrivals.Any(x => x.ArID == ArID);
-                //DB更新
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    //顧客IDと一致するデータがあるかどうか
+                    flg = context.T_Arrivals.Any(x => x.ArID == ArID);
+                    //DB更新
+                }
             }
             catch (Exception ex)
             {
@@ -35,11 +36,12 @@ namespace SalesManagement_SysDev
         {
             try
             {
-                var context = new SalesManagement_DevContext();
-                context.T_Arrivals.Add(regAr);
-                context.SaveChanges();
-                context.Dispose();
-
+                using (var context = new SalesManagement_DevContext())
+                {
+                    context.T_Arrivals.Add(regAr);
+                    context.SaveChanges();
+                    context.Dispose();
+                }
                 return true;
             }
             catch (Exception ex)
@@ -55,26 +57,27 @@ namespace SalesManagement_SysDev
         {
             try
             {
-                var context = new SalesManagement_DevContext();
-                var arrival = context.T_Arrivals.Single(x => x.ArID == updAr.ArID);
-                if (updAr.SoID != 0)
-                    arrival.SoID = updAr.SoID;
-                if (updAr.EmID != 0)
-                    arrival.EmID = updAr.EmID;
-                if (updAr.ClID != 0)
-                    arrival.ClID = updAr.ClID;
-                if (updAr.OrID != 0)
-                    arrival.OrID = updAr.OrID;
+                using (var context = new SalesManagement_DevContext())
+                {
+                    var arrival = context.T_Arrivals.Single(x => x.ArID == updAr.ArID);
+                    if (updAr.SoID != 0)
+                        arrival.SoID = updAr.SoID;
+                    if (updAr.EmID != 0)
+                        arrival.EmID = updAr.EmID;
+                    if (updAr.ClID != 0)
+                        arrival.ClID = updAr.ClID;
+                    if (updAr.OrID != 0)
+                        arrival.OrID = updAr.OrID;
 
-                if (updAr.ArDate != null)
-                    arrival.ArDate = updAr.ArDate;
+                    if (updAr.ArDate != null)
+                        arrival.ArDate = updAr.ArDate;
 
                     arrival.ArStateFlag = updAr.ArStateFlag;
                     arrival.ArFlag = updAr.ArFlag;
                     arrival.ArHidden = updAr.ArHidden;
 
-                context.SaveChanges();
-                context.Dispose();
+                    context.SaveChanges();
+                }
                 return true;
             }
             catch (Exception ex)
@@ -86,21 +89,26 @@ namespace SalesManagement_SysDev
 
         public T_Arrival GenerateDataAdError()
         {
-            var context = new SalesManagement_DevContext();
-            var arrival = context.T_Arrivals.Max(x => x.ArID);
 
-            return new T_Arrival
+            using (var context = new SalesManagement_DevContext())
             {
-                ArID = arrival,
-                SoID = 0,
-                EmID = 0,
-                ClID = 0,
-                OrID = 0,
-                ArDate = null,
-                ArFlag = 2,
-                ArStateFlag = 0,
-                ArHidden = "SystemError"
-            };
+                var arrival = context.T_Arrivals.Max(x => x.ArID);
+
+                return new T_Arrival
+                {
+                    ArID = arrival,
+                    SoID = 0,
+                    EmID = 0,
+                    ClID = 0,
+                    OrID = 0,
+                    ArDate = null,
+                    ArFlag = 2,
+                    ArStateFlag = 0,
+                    ArHidden = "SystemError"
+                };
+            }
+
+
         }
 
         public List<T_Arrival> GetArrivalData()
@@ -108,9 +116,10 @@ namespace SalesManagement_SysDev
             List<T_Arrival> arrival = new List<T_Arrival>();
             try
             {
-                var context = new SalesManagement_DevContext();
-                arrival = context.T_Arrivals.Where(x => x.ArStateFlag == 0 && x.ArFlag == 0).ToList();
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    arrival = context.T_Arrivals.Where(x => x.ArStateFlag == 0 && x.ArFlag == 0).ToList();
+                }
             }
             catch (Exception ex)
             {
@@ -125,21 +134,22 @@ namespace SalesManagement_SysDev
             List<T_Arrival> arrival = new List<T_Arrival>();
             try
             {
-                var context = new SalesManagement_DevContext();
-                arrival = context.T_Arrivals.Where(x =>
-                  (selectCondition.ArID == 0 || x.ArID == selectCondition.ArID) && 
-                  (selectCondition.SoID == 0 || x.SoID == selectCondition.SoID) && 
-                  (selectCondition.EmID == 0 || x.EmID == selectCondition.EmID) && 
-                  (selectCondition.ClID == 0 || x.ClID == selectCondition.ClID) && 
+                using (var context = new SalesManagement_DevContext())
+                {
+                    arrival = context.T_Arrivals.Where(x =>
+                  (selectCondition.ArID == 0 || x.ArID == selectCondition.ArID) &&
+                  (selectCondition.SoID == 0 || x.SoID == selectCondition.SoID) &&
+                  (selectCondition.EmID == 0 || x.EmID == selectCondition.EmID) &&
+                  (selectCondition.ClID == 0 || x.ClID == selectCondition.ClID) &&
                   (selectCondition.OrID == 0 || x.OrID == selectCondition.OrID) &&
-                  (selectCondition.ArDate == null||
-                  (dateCondition == 0 && x.ArDate == selectCondition.ArDate) || 
-                  (dateCondition == 1 && x.ArDate >= selectCondition.ArDate)||
+                  (selectCondition.ArDate == null ||
+                  (dateCondition == 0 && x.ArDate == selectCondition.ArDate) ||
+                  (dateCondition == 1 && x.ArDate >= selectCondition.ArDate) ||
                   (dateCondition == 2 && x.ArDate <= selectCondition.ArDate)) &&
-                  (selectCondition.ArStateFlag == 3 || x.ArStateFlag == selectCondition.ArStateFlag) && 
+                  (selectCondition.ArStateFlag == 3 || x.ArStateFlag == selectCondition.ArStateFlag) &&
                   (selectCondition.ArFlag == 3 || x.ArFlag == selectCondition.ArFlag)
                   ).ToList();
-                context.Dispose();
+                }
 
             }
             catch (Exception ex)
@@ -149,19 +159,19 @@ namespace SalesManagement_SysDev
             return arrival;
         }
 
-        public void GetArrivalFlagData(object sender, TextBox confirm,TextBox hidden)
+        public void GetArrivalFlagData(object sender, TextBox confirm, TextBox hidden)
         {
-           List<T_Arrival> arrival = new List<T_Arrival>();
-
+            List<T_Arrival> arrival = new List<T_Arrival>();
 
             if (CheckArIDExistence(int.Parse((sender as TextBox).Text)))
             {
-                var context = new SalesManagement_DevContext();
-                arrival = context.T_Arrivals.ToList();
-                var data = arrival.Single(x => x.ArID == int.Parse((sender as TextBox).Text));
-                confirm.Text = data.ArStateFlag.ToString();
-                hidden.Text = data.ArFlag.ToString();
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    arrival = context.T_Arrivals.ToList();
+                    var data = arrival.Single(x => x.ArID == int.Parse((sender as TextBox).Text));
+                    confirm.Text = data.ArStateFlag.ToString();
+                    hidden.Text = data.ArFlag.ToString();
+                }
                 return;
             }
             confirm.Text = "------";

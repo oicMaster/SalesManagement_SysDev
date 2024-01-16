@@ -35,10 +35,9 @@
             this.txbCurrentPassword = new System.Windows.Forms.TextBox();
             this.txbUpdatePassword = new System.Windows.Forms.TextBox();
             this.txbSecondUpdatePassword = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblVisible = new System.Windows.Forms.Label();
-            this.lblEmIDData = new System.Windows.Forms.Label();
             this.pnlTitle = new System.Windows.Forms.Panel();
             this.btnClose = new System.Windows.Forms.Button();
             this.lblLoginNameData = new System.Windows.Forms.Label();
@@ -47,6 +46,8 @@
             this.lblTitle = new System.Windows.Forms.Label();
             this.lblLoginName = new System.Windows.Forms.Label();
             this.lblLogin = new System.Windows.Forms.Label();
+            this.txbEmID = new System.Windows.Forms.TextBox();
+            this.btnClear = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pnlTitle.SuspendLayout();
             this.SuspendLayout();
@@ -107,6 +108,7 @@
             this.txbCurrentPassword.Name = "txbCurrentPassword";
             this.txbCurrentPassword.Size = new System.Drawing.Size(226, 34);
             this.txbCurrentPassword.TabIndex = 5;
+            this.txbCurrentPassword.TextChanged += new System.EventHandler(this.txbPassword_TextChanged);
             // 
             // txbUpdatePassword
             // 
@@ -116,6 +118,7 @@
             this.txbUpdatePassword.Name = "txbUpdatePassword";
             this.txbUpdatePassword.Size = new System.Drawing.Size(226, 34);
             this.txbUpdatePassword.TabIndex = 6;
+            this.txbUpdatePassword.TextChanged += new System.EventHandler(this.txbPassword_TextChanged);
             // 
             // txbSecondUpdatePassword
             // 
@@ -125,17 +128,20 @@
             this.txbSecondUpdatePassword.Name = "txbSecondUpdatePassword";
             this.txbSecondUpdatePassword.Size = new System.Drawing.Size(226, 34);
             this.txbSecondUpdatePassword.TabIndex = 7;
+            this.txbSecondUpdatePassword.TextChanged += new System.EventHandler(this.txbPassword_TextChanged);
             // 
-            // button1
+            // btnUpdate
             // 
-            this.button1.Font = new System.Drawing.Font("MS UI Gothic", 16F);
-            this.button1.Location = new System.Drawing.Point(868, 643);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(135, 50);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "更新";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.btnUpdate_Click);
+            this.btnUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnUpdate.Enabled = false;
+            this.btnUpdate.Font = new System.Drawing.Font("MS UI Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btnUpdate.Location = new System.Drawing.Point(868, 643);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(135, 50);
+            this.btnUpdate.TabIndex = 9;
+            this.btnUpdate.Text = "更新";
+            this.btnUpdate.UseVisualStyleBackColor = false;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // pictureBox1
             // 
@@ -151,26 +157,13 @@
             this.lblVisible.AutoSize = true;
             this.lblVisible.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
             this.lblVisible.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblVisible.Location = new System.Drawing.Point(1172, 574);
+            this.lblVisible.Location = new System.Drawing.Point(1162, 570);
             this.lblVisible.Name = "lblVisible";
-            this.lblVisible.Size = new System.Drawing.Size(67, 24);
+            this.lblVisible.Size = new System.Drawing.Size(64, 24);
             this.lblVisible.TabIndex = 12;
-            this.lblVisible.Text = "( ﾟДﾟ)";
-            this.lblVisible.Click += new System.EventHandler(this.lblVisible_Click);
+            this.lblVisible.Text = "(-꒫-)";
             this.lblVisible.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblVisible_MouseDown);
             this.lblVisible.MouseUp += new System.Windows.Forms.MouseEventHandler(this.lblVisible_MouseUp);
-            // 
-            // lblEmIDData
-            // 
-            this.lblEmIDData.AutoSize = true;
-            this.lblEmIDData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
-            this.lblEmIDData.Font = new System.Drawing.Font("MS UI Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblEmIDData.Location = new System.Drawing.Point(912, 339);
-            this.lblEmIDData.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblEmIDData.Name = "lblEmIDData";
-            this.lblEmIDData.Size = new System.Drawing.Size(52, 27);
-            this.lblEmIDData.TabIndex = 13;
-            this.lblEmIDData.Text = "_____";
             // 
             // pnlTitle
             // 
@@ -265,16 +258,39 @@
             this.lblLogin.TabIndex = 86;
             this.lblLogin.Text = "ログイン情報";
             // 
+            // txbEmID
+            // 
+            this.txbEmID.Enabled = false;
+            this.txbEmID.Font = new System.Drawing.Font("MS UI Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.txbEmID.Location = new System.Drawing.Point(912, 336);
+            this.txbEmID.Margin = new System.Windows.Forms.Padding(2);
+            this.txbEmID.Name = "txbEmID";
+            this.txbEmID.Size = new System.Drawing.Size(117, 34);
+            this.txbEmID.TabIndex = 164;
+            // 
+            // btnClear
+            // 
+            this.btnClear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnClear.Font = new System.Drawing.Font("MS UI Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btnClear.Location = new System.Drawing.Point(1243, 336);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(135, 50);
+            this.btnClear.TabIndex = 165;
+            this.btnClear.Text = "入力クリア";
+            this.btnClear.UseVisualStyleBackColor = false;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
             // F_AdOperationManegement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(1904, 1041);
+            this.Controls.Add(this.btnClear);
+            this.Controls.Add(this.txbEmID);
             this.Controls.Add(this.pnlTitle);
-            this.Controls.Add(this.lblEmIDData);
             this.Controls.Add(this.lblVisible);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.txbSecondUpdatePassword);
             this.Controls.Add(this.txbUpdatePassword);
             this.Controls.Add(this.txbCurrentPassword);
@@ -304,10 +320,9 @@
         private System.Windows.Forms.TextBox txbCurrentPassword;
         private System.Windows.Forms.TextBox txbUpdatePassword;
         private System.Windows.Forms.TextBox txbSecondUpdatePassword;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lblVisible;
-        private System.Windows.Forms.Label lblEmIDData;
         private System.Windows.Forms.Panel pnlTitle;
         private System.Windows.Forms.Label lblLoginNameData;
         private System.Windows.Forms.Label lblLoginID;
@@ -316,5 +331,7 @@
         private System.Windows.Forms.Label lblLoginName;
         private System.Windows.Forms.Label lblLogin;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.TextBox txbEmID;
+        private System.Windows.Forms.Button btnClear;
     }
 }

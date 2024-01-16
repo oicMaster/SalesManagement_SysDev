@@ -153,6 +153,7 @@
             // 
             // btnClose
             // 
+            this.btnClose.BackColor = System.Drawing.Color.OrangeRed;
             this.btnClose.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
             this.btnClose.Location = new System.Drawing.Point(1790, 15);
             this.btnClose.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
@@ -160,7 +161,7 @@
             this.btnClose.Size = new System.Drawing.Size(110, 45);
             this.btnClose.TabIndex = 88;
             this.btnClose.Text = "閉じる";
-            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // lblLoginNameData
@@ -209,6 +210,7 @@
             this.txbPageNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txbPageNo.TextChanged += new System.EventHandler(this.txbPageNo_TextChanged);
             this.txbPageNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbPage_KeyPress);
+            this.txbPageNo.Leave += new System.EventHandler(this.txbPageNo_Leave);
             // 
             // btnLastPage
             // 
@@ -274,6 +276,7 @@
             this.txbPageSize.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txbPageSize.TextChanged += new System.EventHandler(this.txbPageSize_TextChanged);
             this.txbPageSize.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbPage_KeyPress);
+            this.txbPageSize.Leave += new System.EventHandler(this.txbPageSize_Leave);
             // 
             // llblPageSize
             // 
@@ -344,6 +347,7 @@
             this.txbEmID.Name = "txbEmID";
             this.txbEmID.Size = new System.Drawing.Size(115, 25);
             this.txbEmID.TabIndex = 71;
+            this.txbEmID.TextChanged += new System.EventHandler(this.txbEmID_TextChanged);
             this.txbEmID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbID_KeyPress);
             // 
             // txbHaID
@@ -487,6 +491,7 @@
             this.dataGridViewDetailDsp.RowTemplate.Height = 24;
             this.dataGridViewDetailDsp.Size = new System.Drawing.Size(1130, 314);
             this.dataGridViewDetailDsp.TabIndex = 97;
+            this.dataGridViewDetailDsp.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewDetailDsp_CellClick);
             // 
             // btnDetailSearch
             // 
@@ -619,7 +624,9 @@
             this.txbDetailPageNo.Size = new System.Drawing.Size(130, 30);
             this.txbDetailPageNo.TabIndex = 119;
             this.txbDetailPageNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txbDetailPageNo.TextChanged += new System.EventHandler(this.txbPageNo_TextChanged);
             this.txbDetailPageNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbPage_KeyPress);
+            this.txbDetailPageNo.Leave += new System.EventHandler(this.txbDetailPageNo_Leave);
             // 
             // btnDetailLastPage
             // 
@@ -683,7 +690,9 @@
             this.txbDetailPageSize.Size = new System.Drawing.Size(50, 30);
             this.txbDetailPageSize.TabIndex = 114;
             this.txbDetailPageSize.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txbDetailPageSize.TextChanged += new System.EventHandler(this.txbPageSize_TextChanged);
             this.txbDetailPageSize.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbPage_KeyPress);
+            this.txbDetailPageSize.Leave += new System.EventHandler(this.txbDetailPageSize_Leave);
             // 
             // lblDetailPageSize
             // 
@@ -752,6 +761,7 @@
             this.cmbHint.Name = "cmbHint";
             this.cmbHint.Size = new System.Drawing.Size(140, 28);
             this.cmbHint.TabIndex = 125;
+            this.cmbHint.SelectedIndexChanged += new System.EventHandler(this.cmbHint_SelectedIndexChanged);
             // 
             // cbxDisplay
             // 
@@ -900,6 +910,7 @@
             this.btnDetailSort.TabIndex = 175;
             this.btnDetailSort.Text = "昇順";
             this.btnDetailSort.UseVisualStyleBackColor = false;
+            this.btnDetailSort.Click += new System.EventHandler(this.btnDetailSort_Click);
             // 
             // btnSort
             // 
@@ -913,6 +924,7 @@
             this.btnSort.TabIndex = 174;
             this.btnSort.Text = "昇順";
             this.btnSort.UseVisualStyleBackColor = false;
+            this.btnSort.Click += new System.EventHandler(this.btnSort_Click);
             // 
             // cbxLink
             // 

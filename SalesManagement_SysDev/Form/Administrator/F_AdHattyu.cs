@@ -31,6 +31,7 @@ namespace SalesManagement_SysDev
         MakerDataAccess makerDataAccess = new MakerDataAccess();
         EmployeeDataAccess employeeDataAccess = new EmployeeDataAccess();
         ProductDataAccess productDataAccess = new ProductDataAccess();
+        OrderDetailDataAccess orderDetailDataAccess = new OrderDetailDataAccess();
        
 
 
@@ -542,6 +543,7 @@ namespace SalesManagement_SysDev
             commonModule.PageNoTextChanged(sender);
         }
 
+
         private void txbKeyID_TextChanged(object sender, EventArgs e)
         {
             if (String.IsNullOrEmpty((sender as TextBox).Text))
@@ -632,6 +634,7 @@ namespace SalesManagement_SysDev
             stockDataAccess.GetStockValueData(txbPrID, txbQuantity, lblStockValue, 1);
             productDataAccess.GetSafetyStockData(sender, lblSafetyStockValue);
             warehousingDetailDataAccess.GetWaQuantityData(sender,lblWaQuantityValue);
+            orderDetailDataAccess.GetOrQuantityData(sender, lblOrQuantityValue);
 
             if (RegistrationCondition(0))
                 fncButtonEnable(5);
@@ -897,7 +900,7 @@ namespace SalesManagement_SysDev
             bool flg = hattyuDetailDataAccess.AddHattyuDetailData(regHaD);
             if (flg)
             {
-                var regOh = operationHistoryDataAccess.GenereteDataAdRegistration(int.Parse(lblLoginIDData.Text), Text, btnUpdate.Text);
+                var regOh = operationHistoryDataAccess.GenereteDataAdRegistration(int.Parse(lblLoginIDData.Text), Text, btnRegist.Text);
                 operationHistoryDataAccess.AddOperationHistoryData(regOh);
                 messageDsp.MsgDsp("M0002");
             }
@@ -975,12 +978,12 @@ namespace SalesManagement_SysDev
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            var updHa = GenerateDataAtConfirm();
+            var updHa = GenerateDataAdConfirm();
             ConfirmHattyu(updHa);
         }
 
 
-        private T_Hattyu GenerateDataAtConfirm()
+        private T_Hattyu GenerateDataAdConfirm()
         {
             return new T_Hattyu
             {
@@ -1098,14 +1101,14 @@ namespace SalesManagement_SysDev
         private void RegistrationHattyuDetail(T_HattyuDetail regHaD)
         {
             DialogResult result = messageDsp.MsgDsp("M0001");
-            if (result == DialogResult.Cancel)
+            if (result != DialogResult.OK)
                return;
 
             bool flg = hattyuDetailDataAccess.AddHattyuDetailData(regHaD);
             if (flg)
             {
                 messageDsp.MsgDsp("M0002");
-                var regOh = operationHistoryDataAccess.GenereteDataAdRegistration(int.Parse(lblLoginIDData.Text), Text, btnUpdate.Text);
+                var regOh = operationHistoryDataAccess.GenereteDataAdRegistration(int.Parse(lblLoginIDData.Text), Text, btnDetailRegist.Text);
                 operationHistoryDataAccess.AddOperationHistoryData(regOh);
             }
             else

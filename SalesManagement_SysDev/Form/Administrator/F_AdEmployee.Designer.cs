@@ -93,6 +93,8 @@
             this.txbPoID.Name = "txbPoID";
             this.txbPoID.Size = new System.Drawing.Size(115, 28);
             this.txbPoID.TabIndex = 131;
+            this.txbPoID.TextChanged += new System.EventHandler(this.txbPoID_TextChanged);
+            this.txbPoID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbID_KeyPress);
             // 
             // lblPoID
             // 
@@ -130,6 +132,7 @@
             this.btnRegist.TabIndex = 127;
             this.btnRegist.Text = "登録";
             this.btnRegist.UseVisualStyleBackColor = true;
+            this.btnRegist.Click += new System.EventHandler(this.btnRegist_Click);
             // 
             // btnDisplay
             // 
@@ -171,6 +174,8 @@
             this.txbEmID.Name = "txbEmID";
             this.txbEmID.Size = new System.Drawing.Size(115, 28);
             this.txbEmID.TabIndex = 106;
+            this.txbEmID.TextChanged += new System.EventHandler(this.txbKeyID_TextChanged);
+            this.txbEmID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbID_KeyPress);
             // 
             // txbSoID
             // 
@@ -180,6 +185,8 @@
             this.txbSoID.Name = "txbSoID";
             this.txbSoID.Size = new System.Drawing.Size(115, 28);
             this.txbSoID.TabIndex = 105;
+            this.txbSoID.TextChanged += new System.EventHandler(this.txbSoID_TextChanged);
+            this.txbSoID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbID_KeyPress);
             // 
             // txbName
             // 
@@ -189,6 +196,7 @@
             this.txbName.Name = "txbName";
             this.txbName.Size = new System.Drawing.Size(860, 28);
             this.txbName.TabIndex = 104;
+            this.txbName.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
             // 
             // lblHidden
             // 
@@ -272,6 +280,7 @@
             this.txbPhone.Name = "txbPhone";
             this.txbPhone.Size = new System.Drawing.Size(245, 28);
             this.txbPhone.TabIndex = 134;
+            this.txbPhone.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
             // 
             // lblPhone
             // 
@@ -295,6 +304,7 @@
             this.btnClear.TabIndex = 135;
             this.btnClear.Text = "入力クリア";
             this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // lblSoName
             // 
@@ -420,6 +430,7 @@
             this.txbPassword.Name = "txbPassword";
             this.txbPassword.Size = new System.Drawing.Size(354, 28);
             this.txbPassword.TabIndex = 162;
+            this.txbPassword.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
             // 
             // lblPassword
             // 
@@ -516,6 +527,7 @@
             this.btnLastPage.TabIndex = 82;
             this.btnLastPage.Text = "▶|";
             this.btnLastPage.UseVisualStyleBackColor = true;
+            this.btnLastPage.Click += new System.EventHandler(this.btnLastPage_Click);
             // 
             // btnNextPage
             // 
@@ -527,6 +539,7 @@
             this.btnNextPage.TabIndex = 81;
             this.btnNextPage.Text = "▶";
             this.btnNextPage.UseVisualStyleBackColor = true;
+            this.btnNextPage.Click += new System.EventHandler(this.btnNextPage_Click);
             // 
             // btnPreviousPage
             // 
@@ -538,6 +551,7 @@
             this.btnPreviousPage.TabIndex = 80;
             this.btnPreviousPage.Text = "◀";
             this.btnPreviousPage.UseVisualStyleBackColor = true;
+            this.btnPreviousPage.Click += new System.EventHandler(this.btnPreviousPage_Click);
             // 
             // btnFirstPage
             // 
@@ -583,6 +597,9 @@
             this.txbPageNo.Size = new System.Drawing.Size(130, 30);
             this.txbPageNo.TabIndex = 83;
             this.txbPageNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txbPageNo.TextChanged += new System.EventHandler(this.txbPageNo_TextChanged);
+            this.txbPageNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbPageNo_KeyPress);
+            this.txbPageNo.Leave += new System.EventHandler(this.txbPageNo_Leave);
             // 
             // cbxHidden
             // 
@@ -596,6 +613,7 @@
             this.cbxHidden.TabIndex = 90;
             this.cbxHidden.Text = "非表示済";
             this.cbxHidden.UseVisualStyleBackColor = false;
+            this.cbxHidden.CheckedChanged += new System.EventHandler(this.cbxFlag_CheckedChanged);
             // 
             // cbxDisplay
             // 
@@ -611,6 +629,7 @@
             this.cbxDisplay.TabIndex = 165;
             this.cbxDisplay.Text = "未処理";
             this.cbxDisplay.UseVisualStyleBackColor = false;
+            this.cbxDisplay.CheckedChanged += new System.EventHandler(this.cbxFlag_CheckedChanged);
             // 
             // lblPoName
             // 
@@ -655,6 +674,9 @@
             this.textBox1.Size = new System.Drawing.Size(50, 30);
             this.textBox1.TabIndex = 171;
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBox1.TextChanged += new System.EventHandler(this.txbPageSize_TextChanged);
+            this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbPage_KeyPress);
+            this.textBox1.Leave += new System.EventHandler(this.txbPageSize_Leave);
             // 
             // label2
             // 

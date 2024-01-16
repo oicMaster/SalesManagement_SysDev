@@ -180,6 +180,7 @@
             // lblPageNo
             // 
             this.lblPageNo.AutoSize = true;
+            this.lblPageNo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
             this.lblPageNo.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
             this.lblPageNo.Location = new System.Drawing.Point(1601, 665);
             this.lblPageNo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -271,6 +272,7 @@
             // llblPageSize
             // 
             this.llblPageSize.AutoSize = true;
+            this.llblPageSize.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
             this.llblPageSize.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
             this.llblPageSize.Location = new System.Drawing.Point(38, 666);
             this.llblPageSize.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -354,6 +356,7 @@
             // lblFlag
             // 
             this.lblFlag.AutoSize = true;
+            this.lblFlag.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
             this.lblFlag.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
             this.lblFlag.Location = new System.Drawing.Point(425, 195);
             this.lblFlag.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -365,6 +368,7 @@
             // lblHidden
             // 
             this.lblHidden.AutoSize = true;
+            this.lblHidden.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
             this.lblHidden.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
             this.lblHidden.Location = new System.Drawing.Point(50, 245);
             this.lblHidden.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -376,6 +380,7 @@
             // lblDate
             // 
             this.lblDate.AutoSize = true;
+            this.lblDate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
             this.lblDate.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
             this.lblDate.Location = new System.Drawing.Point(50, 195);
             this.lblDate.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -387,6 +392,7 @@
             // lblEmID
             // 
             this.lblEmID.AutoSize = true;
+            this.lblEmID.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
             this.lblEmID.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
             this.lblEmID.Location = new System.Drawing.Point(560, 145);
             this.lblEmID.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -398,6 +404,7 @@
             // lblChID
             // 
             this.lblChID.AutoSize = true;
+            this.lblChID.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
             this.lblChID.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
             this.lblChID.Location = new System.Drawing.Point(1040, 145);
             this.lblChID.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -409,6 +416,7 @@
             // lblSaID
             // 
             this.lblSaID.AutoSize = true;
+            this.lblSaID.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
             this.lblSaID.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
             this.lblSaID.Location = new System.Drawing.Point(55, 145);
             this.lblSaID.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -420,6 +428,7 @@
             // lblSoID
             // 
             this.lblSoID.AutoSize = true;
+            this.lblSoID.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
             this.lblSoID.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
             this.lblSoID.Location = new System.Drawing.Point(300, 145);
             this.lblSoID.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -431,6 +440,7 @@
             // lblClID
             // 
             this.lblClID.AutoSize = true;
+            this.lblClID.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
             this.lblClID.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
             this.lblClID.Location = new System.Drawing.Point(800, 145);
             this.lblClID.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -476,6 +486,7 @@
             // lblSaDetailID
             // 
             this.lblSaDetailID.AutoSize = true;
+            this.lblSaDetailID.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
             this.lblSaDetailID.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
             this.lblSaDetailID.Location = new System.Drawing.Point(38, 740);
             this.lblSaDetailID.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -524,6 +535,7 @@
             // lblPrID
             // 
             this.lblPrID.AutoSize = true;
+            this.lblPrID.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
             this.lblPrID.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
             this.lblPrID.Location = new System.Drawing.Point(526, 740);
             this.lblPrID.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -573,6 +585,7 @@
             // lblQuantity
             // 
             this.lblQuantity.AutoSize = true;
+            this.lblQuantity.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
             this.lblQuantity.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
             this.lblQuantity.Location = new System.Drawing.Point(107, 821);
             this.lblQuantity.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -596,6 +609,7 @@
             // lblSaIDsub
             // 
             this.lblSaIDsub.AutoSize = true;
+            this.lblSaIDsub.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
             this.lblSaIDsub.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
             this.lblSaIDsub.Location = new System.Drawing.Point(300, 740);
             this.lblSaIDsub.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -767,6 +781,7 @@
             // cbxDisplay
             // 
             this.cbxDisplay.AutoSize = true;
+            this.cbxDisplay.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
             this.cbxDisplay.Checked = true;
             this.cbxDisplay.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbxDisplay.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
@@ -776,12 +791,13 @@
             this.cbxDisplay.Size = new System.Drawing.Size(98, 26);
             this.cbxDisplay.TabIndex = 91;
             this.cbxDisplay.Text = "未処理";
-            this.cbxDisplay.UseVisualStyleBackColor = true;
+            this.cbxDisplay.UseVisualStyleBackColor = false;
             this.cbxDisplay.CheckedChanged += new System.EventHandler(this.cbxFlag_CheckedChanged);
             // 
             // cbxHidden
             // 
             this.cbxHidden.AutoSize = true;
+            this.cbxHidden.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
             this.cbxHidden.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
             this.cbxHidden.ForeColor = System.Drawing.Color.Blue;
             this.cbxHidden.Location = new System.Drawing.Point(634, 664);
@@ -789,12 +805,13 @@
             this.cbxHidden.Size = new System.Drawing.Size(121, 26);
             this.cbxHidden.TabIndex = 90;
             this.cbxHidden.Text = "非表示済";
-            this.cbxHidden.UseVisualStyleBackColor = true;
+            this.cbxHidden.UseVisualStyleBackColor = false;
             this.cbxHidden.CheckedChanged += new System.EventHandler(this.cbxFlag_CheckedChanged);
             // 
             // lblPrName
             // 
             this.lblPrName.AutoSize = true;
+            this.lblPrName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
             this.lblPrName.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.lblPrName.Location = new System.Drawing.Point(604, 721);
             this.lblPrName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -806,6 +823,7 @@
             // lblSoName
             // 
             this.lblSoName.AutoSize = true;
+            this.lblSoName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
             this.lblSoName.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.lblSoName.Location = new System.Drawing.Point(400, 125);
             this.lblSoName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -817,6 +835,7 @@
             // lblEmName
             // 
             this.lblEmName.AutoSize = true;
+            this.lblEmName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
             this.lblEmName.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.lblEmName.Location = new System.Drawing.Point(640, 125);
             this.lblEmName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -828,6 +847,7 @@
             // lblClName
             // 
             this.lblClName.AutoSize = true;
+            this.lblClName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
             this.lblClName.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.lblClName.Location = new System.Drawing.Point(880, 125);
             this.lblClName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -863,6 +883,7 @@
             // lblTotalPrice
             // 
             this.lblTotalPrice.AutoSize = true;
+            this.lblTotalPrice.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
             this.lblTotalPrice.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
             this.lblTotalPrice.Location = new System.Drawing.Point(300, 821);
             this.lblTotalPrice.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -874,6 +895,7 @@
             // lblTotalPriceCondition
             // 
             this.lblTotalPriceCondition.AutoSize = true;
+            this.lblTotalPriceCondition.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
             this.lblTotalPriceCondition.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
             this.lblTotalPriceCondition.Location = new System.Drawing.Point(362, 903);
             this.lblTotalPriceCondition.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -896,6 +918,7 @@
             // lblQuantityCondition
             // 
             this.lblQuantityCondition.AutoSize = true;
+            this.lblQuantityCondition.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
             this.lblQuantityCondition.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
             this.lblQuantityCondition.Location = new System.Drawing.Point(156, 902);
             this.lblQuantityCondition.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -907,6 +930,7 @@
             // lblDateCondition
             // 
             this.lblDateCondition.AutoSize = true;
+            this.lblDateCondition.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
             this.lblDateCondition.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
             this.lblDateCondition.Location = new System.Drawing.Point(182, 297);
             this.lblDateCondition.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -918,6 +942,7 @@
             // lblCondition
             // 
             this.lblCondition.AutoSize = true;
+            this.lblCondition.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
             this.lblCondition.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Bold);
             this.lblCondition.Location = new System.Drawing.Point(50, 295);
             this.lblCondition.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -969,6 +994,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
             this.label1.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Bold);
             this.label1.Location = new System.Drawing.Point(38, 900);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -1019,6 +1045,7 @@
             this.btnSort.TabIndex = 410;
             this.btnSort.Text = "昇順";
             this.btnSort.UseVisualStyleBackColor = false;
+            this.btnSort.Click += new System.EventHandler(this.btnSort_Click);
             // 
             // btnDetailSort
             // 
@@ -1032,6 +1059,7 @@
             this.btnDetailSort.TabIndex = 411;
             this.btnDetailSort.Text = "昇順";
             this.btnDetailSort.UseVisualStyleBackColor = false;
+            this.btnDetailSort.Click += new System.EventHandler(this.btnDetailSort_Click);
             // 
             // cbxLink
             // 

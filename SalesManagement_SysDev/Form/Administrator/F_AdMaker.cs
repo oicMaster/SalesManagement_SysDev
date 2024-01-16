@@ -531,7 +531,7 @@ namespace SalesManagement_SysDev
         {
             return new M_Maker
             {
-                MaID = int.Parse(txbMaID.Text),
+                MaID = 0,
                 MaName = txbName.Text.Trim(),
                 MaAddress = txbAddress.Text.Trim(),
                 MaPhone = txbPhone.Text.Trim(),

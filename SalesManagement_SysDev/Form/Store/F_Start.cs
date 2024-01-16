@@ -172,6 +172,32 @@ namespace SalesManagement_SysDev
                     MsgCD = "M3003",
                     MsgComments = "の確定に失敗しました。"
                 });
+                me.Add(new M_Message()
+                {
+                    MsgCD = "M4001",
+                    MsgComments = "パスワードを更新しますか？"
+                });
+                me.Add(new M_Message()
+                {
+                    MsgCD = "M4002",
+                    MsgComments = "パスワードを更新しました。"
+                });
+                me.Add(new M_Message()
+                {
+                    MsgCD = "M4003",
+                    MsgComments = "パスワードの更新に失敗しました。"
+                });
+                me.Add(new M_Message()
+                {
+                    MsgCD = "M4004",
+                    MsgComments = "IDかパスワードの入力内容が間違っています。"
+                });
+                me.Add(new M_Message()
+                {
+                    MsgCD = "M4005",
+                    MsgComments = "入力されたパスワードが間違っています。"
+                });
+
                 context.M_Messages.AddRange(me);
                 context.SaveChanges();
             }
@@ -2906,9 +2932,9 @@ namespace SalesManagement_SysDev
                 st.Add(new T_Stock()
                 {
                     M_Product = pr[0],
-                    StQuantity = 100,
+                    StQuantity = 10,
                     StFlag = 0,
-                    StState = 0,
+                    StState = 1,
                     StHidden = null
                 }); ;
                 st.Add(new T_Stock()

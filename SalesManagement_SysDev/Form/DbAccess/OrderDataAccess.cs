@@ -51,29 +51,31 @@ namespace SalesManagement_SysDev
         {
             try
             {
-                var context = new SalesManagement_DevContext();
-                var order = context.T_Orders.Single(x => x.OrID == updOr.OrID);
+                using (var context = new SalesManagement_DevContext())
+                {
+                    var order = context.T_Orders.Single(x => x.OrID == updOr.OrID);
 
-                if(updOr.SoID != 0)
-                    order.SoID = updOr.SoID;
-                if (updOr.EmID != 0)
-                    order.EmID = updOr.EmID;
-                if (updOr.ClID != 0)
-                    order.ClID = updOr.ClID;
+                    if (updOr.SoID != 0)
+                        order.SoID = updOr.SoID;
+                    if (updOr.EmID != 0)
+                        order.EmID = updOr.EmID;
+                    if (updOr.ClID != 0)
+                        order.ClID = updOr.ClID;
 
-                if (!String.IsNullOrEmpty(updOr.ClCharge))
-                    order.ClCharge = updOr.ClCharge;
+                    if (!String.IsNullOrEmpty(updOr.ClCharge))
+                        order.ClCharge = updOr.ClCharge;
 
-                if (updOr.OrDate != null)
-                    order.OrDate = updOr.OrDate;
+                    if (updOr.OrDate != null)
+                        order.OrDate = updOr.OrDate;
 
-                order.OrStateFlag = updOr.OrStateFlag;
-                order.OrFlag = updOr.OrFlag;
-                order.OrHidden = updOr.OrHidden;
+                    order.OrStateFlag = updOr.OrStateFlag;
+                    order.OrFlag = updOr.OrFlag;
+                    order.OrHidden = updOr.OrHidden;
 
-                context.SaveChanges();
-                context.Dispose();
-                return true;
+                    context.SaveChanges();
+
+                    return true;
+                }
             }
             catch (Exception ex)
             {
@@ -216,5 +218,7 @@ namespace SalesManagement_SysDev
                 return false;
             }
         }
+
+     
     }
 }

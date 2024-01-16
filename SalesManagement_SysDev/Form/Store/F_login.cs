@@ -32,6 +32,7 @@ namespace SalesManagement_SysDev
         EmployeeDataAccess employeeDataAccess = new EmployeeDataAccess();
         PasswordHash passwordHash = new PasswordHash();
         CommonModule commonModule = new CommonModule();
+        OperationHistoryDataAccess operationHistoryDataAccess = new OperationHistoryDataAccess();
 
 
         private void F_Login_Load(object sender, EventArgs e)
@@ -61,11 +62,11 @@ namespace SalesManagement_SysDev
             bool flg = employeeDataAccess.GetEmployeePassData(txbEmID.Text, txbPassword.Text);
             if (!flg)
             {
-                //messageDsp.MsgDsp("");
-                MessageBox.Show("IDかパスワードの入力内容が間違っています。");
+                messageDsp.MsgDsp("M4003");
                 return;
             }
-
+            var regOh = operationHistoryDataAccess.GenereteDataAdRegistration(int.Parse(txbEmID.Text), this.Text, btnLogin.Text);
+            operationHistoryDataAccess.AddOperationHistoryData(regOh);
             F_Success FSuccess = new F_Success();
             FSuccess.Show();
 

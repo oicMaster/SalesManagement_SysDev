@@ -392,6 +392,10 @@ namespace SalesManagement_SysDev
 
             }
         }
+        private void txbPoID_TextChanged(object sender, EventArgs e)
+        {
+            positionDataAccess.GetPositionNameData(sender, lblSoName);
+        }
         private void txbSoID_TextChanged(object sender, EventArgs e)
         {
             salesOfficeDataAccess.GetSalesOfficeNameData(sender, lblSoName);
@@ -545,9 +549,9 @@ namespace SalesManagement_SysDev
 
             M_Employee selectCondition = new M_Employee()
             {
-                EmID = 0,
-                SoID = 0,
-                PoID = 0,
+                EmID = emID,
+                SoID = poID,
+                PoID = soID,
                 EmName = Name,
                 EmHiredate = date,
                 EmPhone = Phone,
@@ -589,7 +593,7 @@ namespace SalesManagement_SysDev
         {
             return new M_Employee
             {
-                EmID = int.Parse(txbEmID.Text),
+                EmID = 0,
                 SoID = int.Parse(txbSoID.Text),
                 PoID = int.Parse(txbPoID.Text),
                 EmName = txbName.Text.Trim(),
@@ -641,8 +645,6 @@ namespace SalesManagement_SysDev
             string Name = String.Empty;
             string Phone = String.Empty;
 
-            if (!int.TryParse(txbEmID.Text, out int emID))
-                emID = 0;
             if (!int.TryParse(txbPoID.Text, out int poID))
                 poID = 0;
             if (!int.TryParse(txbSoID.Text, out int soID))
@@ -663,9 +665,9 @@ namespace SalesManagement_SysDev
 
             return new M_Employee
             {
-                EmID = 0,
-                SoID = 0,
-                PoID = 0,
+                EmID = int.Parse(txbEmID.Text),
+                SoID = poID,
+                PoID = soID,
                 EmName = Name,
                 EmHiredate = date,
                 EmPhone = Phone,
@@ -716,6 +718,8 @@ namespace SalesManagement_SysDev
             SetSelectData();
             //全件表示
         }
+
+
     }
 }
 

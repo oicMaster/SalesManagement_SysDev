@@ -146,20 +146,26 @@ namespace SalesManagement_SysDev
         {
             List<T_Chumon> chumon = new List<T_Chumon>();
 
-
-            if (CheckChIDExistence(int.Parse((sender as TextBox).Text)))
+            try
             {
+                if (CheckChIDExistence(int.Parse((sender as TextBox).Text)))
+                {
 
-                var context = new SalesManagement_DevContext();
-                chumon = context.T_Chumons.ToList();
-                var data = chumon.Single(x => x.ChID == int.Parse((sender as TextBox).Text));
-                confirm.Text = data.ChStateFlag.ToString();
-                hidden.Text = data.ChFlag.ToString();
-                context.Dispose();
-                return;
+                    var context = new SalesManagement_DevContext();
+                    chumon = context.T_Chumons.ToList();
+                    var data = chumon.Single(x => x.ChID == int.Parse((sender as TextBox).Text));
+                    confirm.Text = data.ChStateFlag.ToString();
+                    hidden.Text = data.ChFlag.ToString();
+                    context.Dispose();
+                    return;
+                }
+                confirm.Text = "------";
+                hidden.Text = "------";
             }
-            confirm.Text = "------";
-            hidden.Text = "------";
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
 

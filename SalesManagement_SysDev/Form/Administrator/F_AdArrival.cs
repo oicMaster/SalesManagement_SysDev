@@ -1052,5 +1052,6 @@ namespace SalesManagement_SysDev
             //Skipなし
             lblDetailPageNo.Text = "/" + ((int)Math.Ceiling(ArrivalDetail.Count / (double)pageSize)) + "ページ";
         }
+
     }
 }

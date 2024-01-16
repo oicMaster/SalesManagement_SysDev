@@ -23,7 +23,7 @@ namespace SalesManagement_SysDev
         public string OpButton { get; set; }        //ボタン名
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd HH:mm:ss}", ApplyFormatInEditMode = true)]
-        public DateTime OpTime { get; set; }  //操作時刻//	
+        public DateTime? OpTime { get; set; }  //操作時刻//	
 
 
         public virtual M_Employee M_Employee { get; set; }

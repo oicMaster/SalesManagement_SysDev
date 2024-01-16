@@ -211,6 +211,27 @@ namespace SalesManagement_SysDev
             }
         }
 
+        public void GetOrQuantityData(object sender, Label Quantity)
+        {
 
+            if (!String.IsNullOrEmpty((sender as TextBox).Text))
+            {
+                int sum = 0;
+                int prID = int.Parse((sender as TextBox).Text);
+                var context = new SalesManagement_DevContext();
+                if (context.M_Products.Any(x => x.PrID == prID))
+                {
+                    List<T_OrderDetail> orderDetail = context.T_OrderDetails.Where(x => x.PrID == prID).ToList();
+                    foreach (var orDetail in orderDetail)
+                    {
+                        sum += orDetail.OrQuantity;
+                    }
+                    context.Dispose();
+                    Quantity.Text = sum.ToString();
+                    return;
+                }
+            }
+            Quantity.Text = "----";
+        }
     }
 }

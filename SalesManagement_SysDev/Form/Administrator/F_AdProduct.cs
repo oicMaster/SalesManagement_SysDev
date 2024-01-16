@@ -692,7 +692,7 @@ namespace SalesManagement_SysDev
         {
             return new M_Product
             {
-                PrID = int.Parse(txbPrID.Text),
+                PrID = 0,
                 MaID = int.Parse(txbMaID.Text),
                 PrName = txbName.Text.Trim(),
                 Price = decimal.Parse(txbPrice.Text),

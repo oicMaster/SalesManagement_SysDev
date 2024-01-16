@@ -492,7 +492,6 @@
             this.txbMaID.Name = "txbMaID";
             this.txbMaID.Size = new System.Drawing.Size(115, 28);
             this.txbMaID.TabIndex = 106;
-            this.txbMaID.TextChanged += new System.EventHandler(this.txbKeyID_TextChanged);
             this.txbMaID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbID_KeyPress);
             // 
             // txbFlag
