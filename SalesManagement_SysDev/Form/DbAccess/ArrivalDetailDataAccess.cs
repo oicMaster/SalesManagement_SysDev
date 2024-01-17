@@ -15,11 +15,13 @@ namespace SalesManagement_SysDev
             bool flg = false;
             try
             {
-                var context = new SalesManagement_DevContext();
-                //顧客IDと一致するデータがあるかどうか
-                flg = context.T_ArrivalDetails.Any(x => x.ArDetailID == ArDetailID);
-                //DB更新
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    //顧客IDと一致するデータがあるかどうか
+                    flg = context.T_ArrivalDetails.Any(x => x.ArDetailID == ArDetailID);
+                    //DB更新
+                    context.Dispose();
+                }
             }
             catch (Exception ex)
             {
@@ -34,11 +36,12 @@ namespace SalesManagement_SysDev
         {
             try
             {
-                var context = new SalesManagement_DevContext();
-                context.T_ArrivalDetails.Add(regArD);
-                context.SaveChanges();
-                context.Dispose();
-
+                using (var context = new SalesManagement_DevContext())
+                {
+                    context.T_ArrivalDetails.Add(regArD);
+                    context.SaveChanges();
+                    context.Dispose();
+                }
                 return true;
             }
             catch (Exception ex)
@@ -53,9 +56,11 @@ namespace SalesManagement_SysDev
             List<T_ArrivalDetail> arrivalDetail = new List<T_ArrivalDetail>();
             try
             {
-                var context = new SalesManagement_DevContext();
-                arrivalDetail = context.T_ArrivalDetails.ToList();
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    arrivalDetail = context.T_ArrivalDetails.ToList();
+                    context.Dispose();
+                }
             }
             catch (Exception ex)
             {
@@ -70,17 +75,19 @@ namespace SalesManagement_SysDev
             List<T_ArrivalDetail> arrivalDetail = new List<T_ArrivalDetail>();
             try
             {
-                var context = new SalesManagement_DevContext();
-                arrivalDetail = context.T_ArrivalDetails.Where(x =>
-                  (selectCondition.ArDetailID == 0 || x.ArDetailID == selectCondition.ArDetailID) &&
-                  (selectCondition.ArID == 0 || x.ArID == selectCondition.ArID) &&
-                  (selectCondition.PrID == 0 || x.PrID == selectCondition.PrID) &&
-                  (selectCondition.ArQuantity == 0 ||
-                  (quantityCondition == 0 && x.ArQuantity == selectCondition.ArQuantity) ||
-                  (quantityCondition == 1 && x.ArQuantity >= selectCondition.ArQuantity) ||
-                  (quantityCondition == 2 && x.ArQuantity <= selectCondition.ArQuantity))
-                ).ToList();
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    arrivalDetail = context.T_ArrivalDetails.Where(x =>
+                      (selectCondition.ArDetailID == 0 || x.ArDetailID == selectCondition.ArDetailID) &&
+                      (selectCondition.ArID == 0 || x.ArID == selectCondition.ArID) &&
+                      (selectCondition.PrID == 0 || x.PrID == selectCondition.PrID) &&
+                      (selectCondition.ArQuantity == 0 ||
+                      (quantityCondition == 0 && x.ArQuantity == selectCondition.ArQuantity) ||
+                      (quantityCondition == 1 && x.ArQuantity >= selectCondition.ArQuantity) ||
+                      (quantityCondition == 2 && x.ArQuantity <= selectCondition.ArQuantity))
+                    ).ToList();
+                    context.Dispose();
+                }
             }
             catch (Exception ex)
             {

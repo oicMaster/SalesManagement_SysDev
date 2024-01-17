@@ -15,11 +15,13 @@ namespace SalesManagement_SysDev
             bool flg = false;
             try
             {
-                var context = new SalesManagement_DevContext();
-                //顧客IDと一致するデータがあるかどうか
-                flg = context.T_Chumons.Any(x => x.ChID == ChID);
-                //DB更新
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    //顧客IDと一致するデータがあるかどうか
+                    flg = context.T_Chumons.Any(x => x.ChID == ChID);
+                    //DB更新
+                    context.Dispose();
+                }
             }
             catch (Exception ex)
             {
@@ -33,10 +35,12 @@ namespace SalesManagement_SysDev
         {
             try
             {
-                var context = new SalesManagement_DevContext();
-                context.T_Chumons.Add(regCh);
-                context.SaveChanges();
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    context.T_Chumons.Add(regCh);
+                    context.SaveChanges();
+                    context.Dispose();
+                }
 
                 return true;
             }
@@ -51,24 +55,26 @@ namespace SalesManagement_SysDev
         {
             try
             {
-                var context = new SalesManagement_DevContext();
-                var chumon = context.T_Chumons.Single(x => x.ChID == updCh.ChID);
-                if (updCh.SoID != 0)
-                    chumon.SoID = updCh.SoID;
-                if (updCh.EmID != 0)
-                    chumon.EmID = updCh.EmID;
-                if (updCh.ClID != 0)
-                    chumon.ClID = updCh.ClID;
-                if (updCh.OrID != 0)
-                    chumon.OrID = updCh.OrID;
-                if (updCh.ChDate != null)
-                    chumon.ChDate = updCh.ChDate;
-                chumon.ChStateFlag = updCh.ChStateFlag;
-                chumon.ChFlag = updCh.ChFlag;
-                chumon.ChHidden = updCh.ChHidden;
+                using (var context = new SalesManagement_DevContext())
+                {
+                    var chumon = context.T_Chumons.Single(x => x.ChID == updCh.ChID);
+                    if (updCh.SoID != 0)
+                        chumon.SoID = updCh.SoID;
+                    if (updCh.EmID != 0)
+                        chumon.EmID = updCh.EmID;
+                    if (updCh.ClID != 0)
+                        chumon.ClID = updCh.ClID;
+                    if (updCh.OrID != 0)
+                        chumon.OrID = updCh.OrID;
+                    if (updCh.ChDate != null)
+                        chumon.ChDate = updCh.ChDate;
+                    chumon.ChStateFlag = updCh.ChStateFlag;
+                    chumon.ChFlag = updCh.ChFlag;
+                    chumon.ChHidden = updCh.ChHidden;
 
-                context.SaveChanges();
-                context.Dispose();
+                    context.SaveChanges();
+                    context.Dispose();
+                }
                 return true;
             }
             catch (Exception ex)
@@ -80,21 +86,23 @@ namespace SalesManagement_SysDev
 
         public T_Chumon GenerateDataAdError()
         {
-            var context = new SalesManagement_DevContext();
-            var chumon = context.T_Chumons.Max(x => x.ChID);
-
-            return new T_Chumon
+            using (var context = new SalesManagement_DevContext())
             {
-                ChID = chumon,
-                SoID = 0,
-                EmID = 0,
-                ClID = 0,
-                OrID = 0,
-                ChDate = null,
-                ChFlag = 2,
-                ChStateFlag = 0,
-                ChHidden = "SystemError"
-            };
+                var chumon = context.T_Chumons.Max(x => x.ChID);
+
+                return new T_Chumon
+                {
+                    ChID = chumon,
+                    SoID = 0,
+                    EmID = 0,
+                    ClID = 0,
+                    OrID = 0,
+                    ChDate = null,
+                    ChFlag = 2,
+                    ChStateFlag = 0,
+                    ChHidden = "SystemError"
+                };
+            }
         }
 
         public List<T_Chumon> GetChumonData()
@@ -102,9 +110,11 @@ namespace SalesManagement_SysDev
             List<T_Chumon> chumon = new List<T_Chumon>();
             try
             {
-                var context = new SalesManagement_DevContext();
-                chumon = context.T_Chumons.Where(x => x.ChStateFlag == 0 && x.ChFlag == 0).ToList();
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    chumon = context.T_Chumons.Where(x => x.ChStateFlag == 0 && x.ChFlag == 0).ToList();
+                    context.Dispose();
+                }
             }
             catch (Exception ex)
             {
@@ -119,21 +129,23 @@ namespace SalesManagement_SysDev
             List<T_Chumon> chumon = new List<T_Chumon>();
             try
             {
-                var context = new SalesManagement_DevContext();
-                chumon = context.T_Chumons.Where(x =>
-                  (selectCondition.ChID == 0 || x.ChID == selectCondition.ChID) &&
-                  (selectCondition.SoID == 0 || x.SoID == selectCondition.SoID) &&
-                  (selectCondition.EmID == 0 || x.EmID == selectCondition.EmID) &&
-                  (selectCondition.ClID == 0 || x.ClID == selectCondition.ClID) &&
-                  (selectCondition.OrID == 0 || x.OrID == selectCondition.OrID) &&
-                  (selectCondition.ChDate == null||
-                  (dateCondition == 0 && x.ChDate == selectCondition.ChDate) ||
-                  (dateCondition == 1 && x.ChDate >= selectCondition.ChDate) ||
-                  (dateCondition == 2 && x.ChDate <= selectCondition.ChDate)) &&
-                  (selectCondition.ChStateFlag == 3 || x.ChStateFlag == selectCondition.ChStateFlag) &&
-                  (selectCondition.ChFlag == 3 || x.ChFlag == selectCondition.ChFlag)
-                  ).ToList();
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    chumon = context.T_Chumons.Where(x =>
+                      (selectCondition.ChID == 0 || x.ChID == selectCondition.ChID) &&
+                      (selectCondition.SoID == 0 || x.SoID == selectCondition.SoID) &&
+                      (selectCondition.EmID == 0 || x.EmID == selectCondition.EmID) &&
+                      (selectCondition.ClID == 0 || x.ClID == selectCondition.ClID) &&
+                      (selectCondition.OrID == 0 || x.OrID == selectCondition.OrID) &&
+                      (selectCondition.ChDate == null ||
+                      (dateCondition == 0 && x.ChDate == selectCondition.ChDate) ||
+                      (dateCondition == 1 && x.ChDate >= selectCondition.ChDate) ||
+                      (dateCondition == 2 && x.ChDate <= selectCondition.ChDate)) &&
+                      (selectCondition.ChStateFlag == 3 || x.ChStateFlag == selectCondition.ChStateFlag) &&
+                      (selectCondition.ChFlag == 3 || x.ChFlag == selectCondition.ChFlag)
+                      ).ToList();
+                    context.Dispose();
+                }
             }
             catch (Exception ex)
             {
@@ -151,12 +163,14 @@ namespace SalesManagement_SysDev
                 if (CheckChIDExistence(int.Parse((sender as TextBox).Text)))
                 {
 
-                    var context = new SalesManagement_DevContext();
-                    chumon = context.T_Chumons.ToList();
-                    var data = chumon.Single(x => x.ChID == int.Parse((sender as TextBox).Text));
-                    confirm.Text = data.ChStateFlag.ToString();
-                    hidden.Text = data.ChFlag.ToString();
-                    context.Dispose();
+                    using (var context = new SalesManagement_DevContext())
+                    {
+                        chumon = context.T_Chumons.ToList();
+                        var data = chumon.Single(x => x.ChID == int.Parse((sender as TextBox).Text));
+                        confirm.Text = data.ChStateFlag.ToString();
+                        hidden.Text = data.ChFlag.ToString();
+                        context.Dispose();
+                    }
                     return;
                 }
                 confirm.Text = "------";

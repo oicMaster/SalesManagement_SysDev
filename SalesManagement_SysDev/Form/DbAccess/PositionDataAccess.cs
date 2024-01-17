@@ -14,11 +14,13 @@ namespace SalesManagement_SysDev
             bool flg = false;
             try
             {
-                var context = new SalesManagement_DevContext();
-                //顧客IDと一致するデータがあるかどうか
-                flg = context.M_Positions.Any(x => x.PoID == PoID);
-                //DB更新
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    //顧客IDと一致するデータがあるかどうか
+                    flg = context.M_Positions.Any(x => x.PoID == PoID);
+                    //DB更新
+                    context.Dispose();
+                }
             }
             catch (Exception ex)
             {
@@ -33,9 +35,11 @@ namespace SalesManagement_SysDev
             List<M_Position> position = new List<M_Position>();
             try
             {
-                var context = new SalesManagement_DevContext();
-                position = context.M_Positions.Where(x => x.PoFlag == 0).ToList();
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    position = context.M_Positions.Where(x => x.PoFlag == 0).ToList();
+                    context.Dispose();
+                }
             }
             catch (Exception ex)
             {

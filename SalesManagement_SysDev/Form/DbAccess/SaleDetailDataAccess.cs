@@ -14,11 +14,13 @@ namespace SalesManagement_SysDev
             bool flg = false;
             try
             {
-                var context = new SalesManagement_DevContext();
-                //顧客IDと一致するデータがあるかどうか
-                flg = context.T_SaleDetails.Any(x => x.SaDetailID == SaDetailID);
-                //DB更新
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    //顧客IDと一致するデータがあるかどうか
+                    flg = context.T_SaleDetails.Any(x => x.SaDetailID == SaDetailID);
+                    //DB更新
+                    context.Dispose();
+                }
             }
             catch (Exception ex)
             {
@@ -32,11 +34,12 @@ namespace SalesManagement_SysDev
         {
             try
             {
-                var context = new SalesManagement_DevContext();
-                context.T_SaleDetails.Add(regSaD);
-                context.SaveChanges();
-                context.Dispose();
-
+                using (var context = new SalesManagement_DevContext())
+                {
+                    context.T_SaleDetails.Add(regSaD);
+                    context.SaveChanges();
+                    context.Dispose();
+                }
                 return true;
             }
             catch (Exception ex)
@@ -52,9 +55,11 @@ namespace SalesManagement_SysDev
             List<T_SaleDetail> saleDetail = new List<T_SaleDetail>();
             try
             {
-                var context = new SalesManagement_DevContext();
-                saleDetail = context.T_SaleDetails.ToList();
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    saleDetail = context.T_SaleDetails.ToList();
+                    context.Dispose();
+                }
             }
             catch (Exception ex)
             {
@@ -69,21 +74,23 @@ namespace SalesManagement_SysDev
             List<T_SaleDetail> saleDetail = new List<T_SaleDetail>();
             try
             {
-                var context = new SalesManagement_DevContext();
-                saleDetail = context.T_SaleDetails.Where(x =>
-                (selectCondition.SaDetailID == 0 || x.SaDetailID == selectCondition.SaDetailID) &&
-                  (selectCondition.SaID == 0 || x.SaID == selectCondition.SaID) &&
-                  (selectCondition.PrID == 0 || x.PrID == selectCondition.PrID) &&
-                  (selectCondition.SaQuantity == 0 ||
-                  (quantityCondition == 0 && x.SaQuantity == selectCondition.SaQuantity) ||
-                  (quantityCondition == 1 && x.SaQuantity >= selectCondition.SaQuantity) ||
-                  (quantityCondition == 2 && x.SaQuantity <= selectCondition.SaQuantity)) &&
-                  (selectCondition.SaTotalPrice == 0 ||
-                  (sumCondition == 0 && x.SaTotalPrice == selectCondition.SaTotalPrice) ||
-                  (sumCondition == 1 && x.SaTotalPrice >= selectCondition.SaTotalPrice) ||
-                  (sumCondition == 2 && x.SaTotalPrice <= selectCondition.SaTotalPrice))
-                ).ToList();
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    saleDetail = context.T_SaleDetails.Where(x =>
+                    (selectCondition.SaDetailID == 0 || x.SaDetailID == selectCondition.SaDetailID) &&
+                      (selectCondition.SaID == 0 || x.SaID == selectCondition.SaID) &&
+                      (selectCondition.PrID == 0 || x.PrID == selectCondition.PrID) &&
+                      (selectCondition.SaQuantity == 0 ||
+                      (quantityCondition == 0 && x.SaQuantity == selectCondition.SaQuantity) ||
+                      (quantityCondition == 1 && x.SaQuantity >= selectCondition.SaQuantity) ||
+                      (quantityCondition == 2 && x.SaQuantity <= selectCondition.SaQuantity)) &&
+                      (selectCondition.SaTotalPrice == 0 ||
+                      (sumCondition == 0 && x.SaTotalPrice == selectCondition.SaTotalPrice) ||
+                      (sumCondition == 1 && x.SaTotalPrice >= selectCondition.SaTotalPrice) ||
+                      (sumCondition == 2 && x.SaTotalPrice <= selectCondition.SaTotalPrice))
+                    ).ToList();
+                    context.Dispose();
+                }
             }
             catch (Exception ex)
             {

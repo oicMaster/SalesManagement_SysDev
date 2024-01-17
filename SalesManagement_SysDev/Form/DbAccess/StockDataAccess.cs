@@ -15,11 +15,13 @@ namespace SalesManagement_SysDev
             bool flg = false;
             try
             {
-                var context = new SalesManagement_DevContext();
-                //在庫IDと一致するデータがあるかどうか
-                flg = context.T_Stocks.Any(x => x.PrID == prID);
-                //DB更新
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    //在庫IDと一致するデータがあるかどうか
+                    flg = context.T_Stocks.Any(x => x.PrID == prID);
+                    //DB更新
+                    context.Dispose();
+                }
             }
             catch (Exception ex)
             {
@@ -32,11 +34,12 @@ namespace SalesManagement_SysDev
         {
             try
             {
-                var context = new SalesManagement_DevContext();
-                context.T_Stocks.Add(regPr);
-                context.SaveChanges();
-                context.Dispose();
-
+                using (var context = new SalesManagement_DevContext())
+                {
+                    context.T_Stocks.Add(regPr);
+                    context.SaveChanges();
+                    context.Dispose();
+                }
                 return true;
             }
             catch (Exception ex)
@@ -51,17 +54,19 @@ namespace SalesManagement_SysDev
         {
             try
             {
-                var context = new SalesManagement_DevContext();
-                var stock = context.T_Stocks.Single(x => x.PrID == updSt.PrID);
-                if(updSt.StQuantity != -1)
-                    stock.StQuantity = updSt.StQuantity;
-                if (updSt.StState != -1)
-                    stock.StState = updSt.StState;
-                stock.StFlag = updSt.StFlag;
-                stock.StHidden = updSt.StHidden;
+                using (var context = new SalesManagement_DevContext())
+                {
+                    var stock = context.T_Stocks.Single(x => x.PrID == updSt.PrID);
+                    if (updSt.StQuantity != -1)
+                        stock.StQuantity = updSt.StQuantity;
+                    if (updSt.StState != -1)
+                        stock.StState = updSt.StState;
+                    stock.StFlag = updSt.StFlag;
+                    stock.StHidden = updSt.StHidden;
 
-                context.SaveChanges();
-                context.Dispose();
+                    context.SaveChanges();
+                    context.Dispose();
+                }
                 return true;
             }
             catch (Exception ex)
@@ -76,9 +81,11 @@ namespace SalesManagement_SysDev
             List<T_Stock> stock = new List<T_Stock>();
             try
             {
-                var context = new SalesManagement_DevContext();
-                stock = context.T_Stocks.Where(x => x.StFlag == 0).ToList();
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    stock = context.T_Stocks.Where(x => x.StFlag == 0).ToList();
+                    context.Dispose();
+                }
             }
             catch (Exception ex)
             {
@@ -93,12 +100,14 @@ namespace SalesManagement_SysDev
 
             if (CheckStIDExistence(int.Parse((sender as TextBox).Text)))
             {
-                var context = new SalesManagement_DevContext();
-                stock = context.T_Stocks.ToList();
-                var data = stock.Single(x => x.PrID == int.Parse((sender as TextBox).Text));
-                hidden.Text = data.StFlag.ToString();
-                state.Text = data.StState.ToString();
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    stock = context.T_Stocks.ToList();
+                    var data = stock.Single(x => x.PrID == int.Parse((sender as TextBox).Text));
+                    hidden.Text = data.StFlag.ToString();
+                    state.Text = data.StState.ToString();
+                    context.Dispose();
+                }
                 return;
             }
             hidden.Text = "------";
@@ -119,46 +128,49 @@ namespace SalesManagement_SysDev
 
         public void GetStockValueData(TextBox txbPrID, TextBox Quantity,Label stockValue,int chk)
         {
-            var context = new SalesManagement_DevContext();
-            bool flg = false;
-            if (!String.IsNullOrEmpty(txbPrID.Text))
+            using (var context = new SalesManagement_DevContext())
             {
-                int prID = int.Parse(txbPrID.Text);
-                flg = context.T_Stocks.Any(x => x.PrID == prID);
-                if (flg)
+                bool flg = false;
+                if (!String.IsNullOrEmpty(txbPrID.Text))
                 {
-                    var stock = context.T_Stocks.Single(x => x.PrID == prID);
-                    stockValue.Text = stock.StQuantity.ToString();
-                    switch(chk)
+                    int prID = int.Parse(txbPrID.Text);
+                    flg = context.T_Stocks.Any(x => x.PrID == prID);
+                    if (flg)
                     {
-                        case 0:
-                            if (!String.IsNullOrEmpty(Quantity.Text))
-                            {
-                                if (int.Parse(Quantity.Text) > int.Parse(stockValue.Text))
-                                    stockValue.ForeColor = System.Drawing.Color.Red;
+                        var stock = context.T_Stocks.Single(x => x.PrID == prID);
+                        stockValue.Text = stock.StQuantity.ToString();
+                        switch (chk)
+                        {
+                            case 0:
+                                if (!String.IsNullOrEmpty(Quantity.Text))
+                                {
+                                    if (int.Parse(Quantity.Text) > int.Parse(stockValue.Text))
+                                        stockValue.ForeColor = System.Drawing.Color.Red;
+                                    else
+                                        stockValue.ForeColor = System.Drawing.Color.Black;
+                                }
                                 else
                                     stockValue.ForeColor = System.Drawing.Color.Black;
-                            }
-                            else
-                                stockValue.ForeColor= System.Drawing.Color.Black;
-                            break;
+                                break;
 
-                        case 1:
+                            case 1:
                                 var product = context.M_Products.Single(x => x.PrID == prID);
-                            if (int.Parse(stockValue.Text) < product.PrSafetyStock)
-                                stockValue.ForeColor = System.Drawing.Color.Red;
-                            else
-                                stockValue.ForeColor = System.Drawing.Color.Black;
-                            if (!String.IsNullOrEmpty(Quantity.Text))
-                            {
-                                if (int.Parse(stockValue.Text)+int.Parse(Quantity.Text) < product.PrSafetyStock)
+                                if (int.Parse(stockValue.Text) < product.PrSafetyStock)
                                     stockValue.ForeColor = System.Drawing.Color.Red;
                                 else
                                     stockValue.ForeColor = System.Drawing.Color.Black;
-                            }
-                            break;
+                                if (!String.IsNullOrEmpty(Quantity.Text))
+                                {
+                                    if (int.Parse(stockValue.Text) + int.Parse(Quantity.Text) < product.PrSafetyStock)
+                                        stockValue.ForeColor = System.Drawing.Color.Red;
+                                    else
+                                        stockValue.ForeColor = System.Drawing.Color.Black;
+                                }
+                                break;
+                        }
+                        return;
                     }
-                    return;
+
                 }
             }
             stockValue.Text = "----";
@@ -174,19 +186,21 @@ namespace SalesManagement_SysDev
             List<T_Stock> stock = new List<T_Stock>();
             try
             {
-                var context = new SalesManagement_DevContext();
-                stock = context.T_Stocks.Where(x =>
-                  (selectCondition.StID == 0 || x.StID == selectCondition.StID) &&
-                  (selectCondition.PrID == 0 || x.PrID == selectCondition.PrID) &&
-                  (selectCondition.StState == 3||x.StState == selectCondition.StState)&&
-                  (selectCondition.StQuantity == -1 ||
-                  (quantityCondition == 0 && x.StQuantity == selectCondition.StQuantity) ||
-                  (quantityCondition == 1 && x.StQuantity >= selectCondition.StQuantity) ||
-                  (quantityCondition == 2 && x.StQuantity <= selectCondition.StQuantity))&&
-                  (selectCondition.StFlag == 3 || x.StFlag == selectCondition.StFlag)
+                using (var context = new SalesManagement_DevContext())
+                {
+                    stock = context.T_Stocks.Where(x =>
+                      (selectCondition.StID == 0 || x.StID == selectCondition.StID) &&
+                      (selectCondition.PrID == 0 || x.PrID == selectCondition.PrID) &&
+                      (selectCondition.StState == 3 || x.StState == selectCondition.StState) &&
+                      (selectCondition.StQuantity == -1 ||
+                      (quantityCondition == 0 && x.StQuantity == selectCondition.StQuantity) ||
+                      (quantityCondition == 1 && x.StQuantity >= selectCondition.StQuantity) ||
+                      (quantityCondition == 2 && x.StQuantity <= selectCondition.StQuantity)) &&
+                      (selectCondition.StFlag == 3 || x.StFlag == selectCondition.StFlag)
 
-                ).ToList();
-                context.Dispose();
+                    ).ToList();
+                    context.Dispose();
+                }
             }
             catch (Exception ex)
             {

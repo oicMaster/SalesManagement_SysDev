@@ -14,10 +14,12 @@ namespace SalesManagement_SysDev
             bool flg = false;
             try
             {
-                var context = new SalesManagement_DevContext();
-                flg = context.M_MajorCassifications.Any(x => x.McID == McID);
-                //DB更新
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    flg = context.M_MajorCassifications.Any(x => x.McID == McID);
+                    //DB更新
+                    context.Dispose();
+                }
             }
             catch (Exception ex)
             {

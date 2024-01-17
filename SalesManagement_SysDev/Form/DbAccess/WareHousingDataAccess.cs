@@ -14,11 +14,13 @@ namespace SalesManagement_SysDev
             bool flg = false;
             try
             {
-                var context = new SalesManagement_DevContext();
-                //顧客IDと一致するデータがあるかどうか
-                flg = context.T_Warehousings.Any(x => x.WaID == WaID);
-                //DB更新
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    //顧客IDと一致するデータがあるかどうか
+                    flg = context.T_Warehousings.Any(x => x.WaID == WaID);
+                    //DB更新
+                    context.Dispose();
+                }
             }
             catch (Exception ex)
             {
@@ -32,11 +34,12 @@ namespace SalesManagement_SysDev
         {
             try
             {
-                var context = new SalesManagement_DevContext();
-                context.T_Warehousings.Add(regWa);
-                context.SaveChanges();
-                context.Dispose();
-
+                using (var context = new SalesManagement_DevContext())
+                {
+                    context.T_Warehousings.Add(regWa);
+                    context.SaveChanges();
+                    context.Dispose();
+                }
                 return true;
             }
             catch (Exception ex)
@@ -50,24 +53,26 @@ namespace SalesManagement_SysDev
         {
             try
             {
-                var context = new SalesManagement_DevContext();
-                var warehousing = context.T_Warehousings.Single(x => x.WaID == updWa.WaID);
+                using (var context = new SalesManagement_DevContext())
+                {
+                    var warehousing = context.T_Warehousings.Single(x => x.WaID == updWa.WaID);
 
-                if (updWa.WaID != 0)
-                    warehousing.WaID = updWa.WaID;
-                if (updWa.HaID != 0)
-                    warehousing.HaID = updWa.HaID;
-                if (updWa.EmID != 0)
-                    warehousing.EmID = updWa.EmID;
-                if (updWa.WaDate != null)
-                    warehousing.WaDate = updWa.WaDate;
-               warehousing.WaShelfFlag = updWa.WaShelfFlag;
-                warehousing.WaHidden = updWa.WaHidden;
-                warehousing.WaFlag = updWa.WaFlag;
+                    if (updWa.WaID != 0)
+                        warehousing.WaID = updWa.WaID;
+                    if (updWa.HaID != 0)
+                        warehousing.HaID = updWa.HaID;
+                    if (updWa.EmID != 0)
+                        warehousing.EmID = updWa.EmID;
+                    if (updWa.WaDate != null)
+                        warehousing.WaDate = updWa.WaDate;
+                    warehousing.WaShelfFlag = updWa.WaShelfFlag;
+                    warehousing.WaHidden = updWa.WaHidden;
+                    warehousing.WaFlag = updWa.WaFlag;
 
-                context.SaveChanges();
-                context.Dispose();
-                return true;
+                    context.SaveChanges();
+                    context.Dispose();
+                    return true;
+                }
             }
             catch (Exception ex)
             {
@@ -77,19 +82,21 @@ namespace SalesManagement_SysDev
         }
         public T_Warehousing GenerateDataAdError()
         {
-            var context = new SalesManagement_DevContext();
-            var warehousing = context.T_Warehousings.Max(x => x.WaID);
-
-            return new T_Warehousing
+            using (var context = new SalesManagement_DevContext())
             {
-                WaID = warehousing,
-                HaID = 0,
-                EmID = 0,
-                WaDate = null,
-                WaShelfFlag = 0,
-                WaFlag = 2,
-                WaHidden = "SystemError"
-            };
+                var warehousing = context.T_Warehousings.Max(x => x.WaID);
+
+                return new T_Warehousing
+                {
+                    WaID = warehousing,
+                    HaID = 0,
+                    EmID = 0,
+                    WaDate = null,
+                    WaShelfFlag = 0,
+                    WaFlag = 2,
+                    WaHidden = "SystemError"
+                };
+            }
         }
 
 
@@ -99,9 +106,11 @@ namespace SalesManagement_SysDev
             List<T_Warehousing> warehousing = new List<T_Warehousing>();
             try
             {
-                var context = new SalesManagement_DevContext();
-                warehousing = context.T_Warehousings.Where(x => x.WaShelfFlag == 0 && x.WaFlag == 0).ToList();
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    warehousing = context.T_Warehousings.Where(x => x.WaShelfFlag == 0 && x.WaFlag == 0).ToList();
+                    context.Dispose();
+                }
             }
             catch (Exception ex)
             {
@@ -117,19 +126,21 @@ namespace SalesManagement_SysDev
             List<T_Warehousing> warehousing = new List<T_Warehousing>();
             try
             {
-                var context = new SalesManagement_DevContext();
-                warehousing = context.T_Warehousings.Where(x =>
-                  (selectCondition.WaID == 0 || x.WaID == selectCondition.WaID) &&
-                  (selectCondition.HaID == 0 || x.HaID == selectCondition.HaID) &&
-                  (selectCondition.EmID == 0 || x.EmID == selectCondition.EmID) &&
-                  (selectCondition.WaDate == null ||
-                  (dateCondition == 0 && x.WaDate == selectCondition.WaDate) ||
-                  (dateCondition == 1 && x.WaDate >= selectCondition.WaDate) ||
-                  (dateCondition == 2 && x.WaDate <= selectCondition.WaDate)) &&
-                  (selectCondition.WaShelfFlag == 3 || x.WaShelfFlag == selectCondition.WaShelfFlag) &&
-                  (selectCondition.WaFlag == 3 || x.WaFlag == selectCondition.WaFlag)
-                ).ToList();
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    warehousing = context.T_Warehousings.Where(x =>
+                      (selectCondition.WaID == 0 || x.WaID == selectCondition.WaID) &&
+                      (selectCondition.HaID == 0 || x.HaID == selectCondition.HaID) &&
+                      (selectCondition.EmID == 0 || x.EmID == selectCondition.EmID) &&
+                      (selectCondition.WaDate == null ||
+                      (dateCondition == 0 && x.WaDate == selectCondition.WaDate) ||
+                      (dateCondition == 1 && x.WaDate >= selectCondition.WaDate) ||
+                      (dateCondition == 2 && x.WaDate <= selectCondition.WaDate)) &&
+                      (selectCondition.WaShelfFlag == 3 || x.WaShelfFlag == selectCondition.WaShelfFlag) &&
+                      (selectCondition.WaFlag == 3 || x.WaFlag == selectCondition.WaFlag)
+                    ).ToList();
+                    context.Dispose();
+                }
             }
             catch (Exception ex)
             {
@@ -146,12 +157,14 @@ namespace SalesManagement_SysDev
             if (CheckWaIDExistence(int.Parse((sender as TextBox).Text)))
             {
 
-                var context = new SalesManagement_DevContext();
-                warehousing = context.T_Warehousings.ToList();
-                var data = warehousing.Single(x => x.WaID == int.Parse((sender as TextBox).Text));
-                confirm.Text = data.WaShelfFlag.ToString();
-                hidden.Text = data.WaFlag.ToString();
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    warehousing = context.T_Warehousings.ToList();
+                    var data = warehousing.Single(x => x.WaID == int.Parse((sender as TextBox).Text));
+                    confirm.Text = data.WaShelfFlag.ToString();
+                    hidden.Text = data.WaFlag.ToString();
+                    context.Dispose();
+                }
                 return;
             }
             confirm.Text = "------";

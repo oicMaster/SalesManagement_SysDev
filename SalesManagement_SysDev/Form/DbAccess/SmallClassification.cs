@@ -14,10 +14,12 @@ namespace SalesManagement_SysDev
             bool flg = false;
             try
             {
-                var context = new SalesManagement_DevContext();
-                flg = context.M_SmallClassifications.Any(x => x.ScID == ScID);
-                //DB更新
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    flg = context.M_SmallClassifications.Any(x => x.ScID == ScID);
+                    //DB更新
+                    context.Dispose();
+                }
             }
             catch (Exception ex)
             {
@@ -32,9 +34,11 @@ namespace SalesManagement_SysDev
             List<M_SmallClassification> smallClassifications = new List<M_SmallClassification>();
             try
             {
-                var context = new SalesManagement_DevContext();
-                smallClassifications = context.M_SmallClassifications.Where(x => x.ScFlag == 0).ToList();
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    smallClassifications = context.M_SmallClassifications.Where(x => x.ScFlag == 0).ToList();
+                    context.Dispose();
+                }
             }
             catch (Exception ex)
             {

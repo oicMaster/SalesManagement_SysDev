@@ -15,11 +15,13 @@ namespace SalesManagement_SysDev
             bool flg = false;
             try
             {
-                var context = new SalesManagement_DevContext();
-                //顧客IDと一致するデータがあるかどうか
-                flg = context.T_OrderDetails.Any(x => x.OrDetailID == OrDetailID);
-                //DB更新
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    //顧客IDと一致するデータがあるかどうか
+                    flg = context.T_OrderDetails.Any(x => x.OrDetailID == OrDetailID);
+                    //DB更新
+                    context.Dispose();
+                }
             }
             catch (Exception ex)
             {
@@ -33,11 +35,12 @@ namespace SalesManagement_SysDev
         {
             try
             {
-                var context = new SalesManagement_DevContext();
-                context.T_OrderDetails.Add(regOrD);
-                context.SaveChanges();
-                context.Dispose();
-
+                using (var context = new SalesManagement_DevContext())
+                {
+                    context.T_OrderDetails.Add(regOrD);
+                    context.SaveChanges();
+                    context.Dispose();
+                }
                 return true;
             }
             catch (Exception ex)
@@ -54,9 +57,11 @@ namespace SalesManagement_SysDev
             List<T_OrderDetail> orderDetail = new List<T_OrderDetail>();
             try
             {
-                var context = new SalesManagement_DevContext();
-                orderDetail = context.T_OrderDetails.ToList();
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    orderDetail = context.T_OrderDetails.ToList();
+                    context.Dispose();
+                }
             }
             catch (Exception ex)
             {
@@ -72,21 +77,23 @@ namespace SalesManagement_SysDev
             List<T_OrderDetail> orderDetail = new List<T_OrderDetail>();
             try
             {
-                var context = new SalesManagement_DevContext();
-                orderDetail = context.T_OrderDetails.Where(x =>
-                  (selectCondition.OrDetailID == 0 || x.OrDetailID == selectCondition.OrDetailID) &&
-                  (selectCondition.OrID == 0 || x.OrID == selectCondition.OrID) &&
-                  (selectCondition.PrID == 0 || x.PrID == selectCondition.PrID) &&
-                  (selectCondition.OrQuantity == 0 ||
-                  (quantityCondition == 0 && x.OrQuantity == selectCondition.OrQuantity) ||
-                  (quantityCondition == 1 && x.OrQuantity >= selectCondition.OrQuantity) ||
-                  (quantityCondition == 2 && x.OrQuantity <= selectCondition.OrQuantity))&&
-                  (selectCondition.OrTotalPrice == 0 ||
-                  (sumCondition == 0 && x.OrTotalPrice == selectCondition.OrTotalPrice) ||
-                  (sumCondition == 1 && x.OrTotalPrice >= selectCondition.OrTotalPrice) ||
-                  (sumCondition == 2 && x.OrTotalPrice <= selectCondition.OrTotalPrice))
-                ).ToList();
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    orderDetail = context.T_OrderDetails.Where(x =>
+                      (selectCondition.OrDetailID == 0 || x.OrDetailID == selectCondition.OrDetailID) &&
+                      (selectCondition.OrID == 0 || x.OrID == selectCondition.OrID) &&
+                      (selectCondition.PrID == 0 || x.PrID == selectCondition.PrID) &&
+                      (selectCondition.OrQuantity == 0 ||
+                      (quantityCondition == 0 && x.OrQuantity == selectCondition.OrQuantity) ||
+                      (quantityCondition == 1 && x.OrQuantity >= selectCondition.OrQuantity) ||
+                      (quantityCondition == 2 && x.OrQuantity <= selectCondition.OrQuantity)) &&
+                      (selectCondition.OrTotalPrice == 0 ||
+                      (sumCondition == 0 && x.OrTotalPrice == selectCondition.OrTotalPrice) ||
+                      (sumCondition == 1 && x.OrTotalPrice >= selectCondition.OrTotalPrice) ||
+                      (sumCondition == 2 && x.OrTotalPrice <= selectCondition.OrTotalPrice))
+                    ).ToList();
+                    context.Dispose();
+                }
             }
             catch (Exception ex)
             {
@@ -218,17 +225,19 @@ namespace SalesManagement_SysDev
             {
                 int sum = 0;
                 int prID = int.Parse((sender as TextBox).Text);
-                var context = new SalesManagement_DevContext();
-                if (context.M_Products.Any(x => x.PrID == prID))
+                using (var context = new SalesManagement_DevContext())
                 {
-                    List<T_OrderDetail> orderDetail = context.T_OrderDetails.Where(x => x.PrID == prID).ToList();
-                    foreach (var orDetail in orderDetail)
+                    if (context.M_Products.Any(x => x.PrID == prID))
                     {
-                        sum += orDetail.OrQuantity;
+                        List<T_OrderDetail> orderDetail = context.T_OrderDetails.Where(x => x.PrID == prID).ToList();
+                        foreach (var orDetail in orderDetail)
+                        {
+                            sum += orDetail.OrQuantity;
+                        }
+                        context.Dispose();
+                        Quantity.Text = sum.ToString();
+                        return;
                     }
-                    context.Dispose();
-                    Quantity.Text = sum.ToString();
-                    return;
                 }
             }
             Quantity.Text = "----";

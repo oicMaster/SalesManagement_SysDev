@@ -14,10 +14,11 @@ namespace SalesManagement_SysDev
             bool flg = false;
             try
             {
-                var context = new SalesManagement_DevContext();
-
-                flg = context.M_SalesOffices.Any(x => x.SoID == soID && x.SoFlag == 0);
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    flg = context.M_SalesOffices.Any(x => x.SoID == soID && x.SoFlag == 0);
+                    context.Dispose();
+                }
             }
             catch (Exception ex)
             {
@@ -50,24 +51,26 @@ namespace SalesManagement_SysDev
         {
             try
             {
-                var context = new SalesManagement_DevContext();
-                var salesoffice = context.M_SalesOffices.Single(x => x.SoID == updSo.SoID);
+                using (var context = new SalesManagement_DevContext())
+                {
+                    var salesoffice = context.M_SalesOffices.Single(x => x.SoID == updSo.SoID);
 
-                if (updSo.SoName != String.Empty)
-                    salesoffice.SoName = updSo.SoName;
-                if (updSo.SoAddress != String.Empty)
-                    salesoffice.SoAddress = updSo.SoAddress;
-                if (updSo.SoPhone != String.Empty)
-                    salesoffice.SoPhone = updSo.SoPhone;
-                if (updSo.SoPostal != String.Empty)
-                    salesoffice.SoPostal = updSo.SoPostal;
-                if (updSo.SoFAX != String.Empty)
-                    salesoffice.SoFAX = updSo.SoFAX;
-                salesoffice.SoFlag = updSo.SoFlag;
-                salesoffice.SoHidden = updSo.SoHidden;
+                    if (updSo.SoName != String.Empty)
+                        salesoffice.SoName = updSo.SoName;
+                    if (updSo.SoAddress != String.Empty)
+                        salesoffice.SoAddress = updSo.SoAddress;
+                    if (updSo.SoPhone != String.Empty)
+                        salesoffice.SoPhone = updSo.SoPhone;
+                    if (updSo.SoPostal != String.Empty)
+                        salesoffice.SoPostal = updSo.SoPostal;
+                    if (updSo.SoFAX != String.Empty)
+                        salesoffice.SoFAX = updSo.SoFAX;
+                    salesoffice.SoFlag = updSo.SoFlag;
+                    salesoffice.SoHidden = updSo.SoHidden;
 
-                context.SaveChanges();
-                context.Dispose();
+                    context.SaveChanges();
+                    context.Dispose();
+                }
                 return true;
             }
             catch (Exception ex)
@@ -84,9 +87,11 @@ namespace SalesManagement_SysDev
             List<M_SalesOffice> salesOffice = new List<M_SalesOffice>();
             try
             {
-                var context = new SalesManagement_DevContext();
-                salesOffice = context.M_SalesOffices.Where(x => x.SoFlag == 0).ToList();
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    salesOffice = context.M_SalesOffices.Where(x => x.SoFlag == 0).ToList();
+                    context.Dispose();
+                }
             }
             catch (Exception ex)
             {
@@ -101,17 +106,19 @@ namespace SalesManagement_SysDev
             List<M_SalesOffice> salesOffice = new List<M_SalesOffice>();
             try
             {
-                var context = new SalesManagement_DevContext();
-                salesOffice = context.M_SalesOffices.Where(x =>
-                        (selectCondition.SoID == 0 || x.SoID == selectCondition.SoID) &&
-                        (selectCondition.SoName == null || x.SoName.Contains(selectCondition.SoName)) &&
-                        (selectCondition.SoAddress == null || x.SoAddress.Contains(selectCondition.SoAddress)) &&
-                        (selectCondition.SoPhone == null || x.SoPhone.Contains(selectCondition.SoPhone)) &&
-                        (selectCondition.SoPostal == null || x.SoPostal.Contains(selectCondition.SoPostal)) &&
-                        (selectCondition.SoFAX == null || x.SoFAX.Contains(selectCondition.SoFAX)) &&
-                        (selectCondition.SoFlag == 3 || x.SoFlag == selectCondition.SoFlag)
-                ).ToList();
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    salesOffice = context.M_SalesOffices.Where(x =>
+                            (selectCondition.SoID == 0 || x.SoID == selectCondition.SoID) &&
+                            (selectCondition.SoName == null || x.SoName.Contains(selectCondition.SoName)) &&
+                            (selectCondition.SoAddress == null || x.SoAddress.Contains(selectCondition.SoAddress)) &&
+                            (selectCondition.SoPhone == null || x.SoPhone.Contains(selectCondition.SoPhone)) &&
+                            (selectCondition.SoPostal == null || x.SoPostal.Contains(selectCondition.SoPostal)) &&
+                            (selectCondition.SoFAX == null || x.SoFAX.Contains(selectCondition.SoFAX)) &&
+                            (selectCondition.SoFlag == 3 || x.SoFlag == selectCondition.SoFlag)
+                    ).ToList();
+                    context.Dispose();
+                }
             }
             catch (Exception ex)
             {
@@ -144,11 +151,13 @@ namespace SalesManagement_SysDev
             if (CheckSoIDExistence(int.Parse((sender as TextBox).Text)))
             {
 
-                var context = new SalesManagement_DevContext();
-                salesoffice = context.M_SalesOffices.ToList();
-                var data = salesoffice.Single(x => x.SoID == int.Parse((sender as TextBox).Text));
-                hidden.Text = data.SoFlag.ToString();
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    salesoffice = context.M_SalesOffices.ToList();
+                    var data = salesoffice.Single(x => x.SoID == int.Parse((sender as TextBox).Text));
+                    hidden.Text = data.SoFlag.ToString();
+                    context.Dispose();
+                }
                 return;
             }
             hidden.Text = "------";

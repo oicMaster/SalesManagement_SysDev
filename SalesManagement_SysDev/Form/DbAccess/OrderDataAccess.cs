@@ -14,11 +14,13 @@ namespace SalesManagement_SysDev
             bool flg = false;
             try
             {
-                var context = new SalesManagement_DevContext();
-                //顧客IDと一致するデータがあるかどうか
-                flg = context.T_Orders.Any(x => x.OrID == OrID);
-                //DB更新
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    //顧客IDと一致するデータがあるかどうか
+                    flg = context.T_Orders.Any(x => x.OrID == OrID);
+                    //DB更新
+                    context.Dispose();
+                }
             }
             catch (Exception ex)
             {
@@ -86,21 +88,23 @@ namespace SalesManagement_SysDev
 
         public T_Order GenerateDataAdError()
         {
-            var context = new SalesManagement_DevContext();
-            var order= context.T_Orders.Max(x => x.OrID);
-
-            return new T_Order
+            using (var context = new SalesManagement_DevContext())
             {
-                OrID = order,
-                SoID = 0,
-                EmID = 0,
-                ClID = 0,
-                ClCharge = String.Empty,
-                OrDate = null,
-                OrStateFlag = 0,
-                OrFlag = 2,
-                OrHidden = "SystemError"
-            };
+                var order = context.T_Orders.Max(x => x.OrID);
+
+                return new T_Order
+                {
+                    OrID = order,
+                    SoID = 0,
+                    EmID = 0,
+                    ClID = 0,
+                    ClCharge = String.Empty,
+                    OrDate = null,
+                    OrStateFlag = 0,
+                    OrFlag = 2,
+                    OrHidden = "SystemError"
+                };
+            }
         }
 
         //データの取得
@@ -109,10 +113,13 @@ namespace SalesManagement_SysDev
             List<T_Order> order = new List<T_Order>();
             try
             {
-                var context = new SalesManagement_DevContext();
-                order = context.T_Orders.Where(x => x.OrStateFlag == 0 && x.OrFlag == 0).ToList();
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    order = context.T_Orders.Where(x => x.OrStateFlag == 0 && x.OrFlag == 0).ToList();
+                    context.Dispose();
+                }
             }
+
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -126,21 +133,23 @@ namespace SalesManagement_SysDev
             List<T_Order> order = new List<T_Order>();
             try
             {
-                var context = new SalesManagement_DevContext();
-                order = context.T_Orders.Where(x =>
-                  (selectCondition.OrID == 0 || x.OrID == selectCondition.OrID) &&
-                  (selectCondition.SoID == 0 || x.SoID == selectCondition.SoID) &&
-                  (selectCondition.EmID == 0 || x.EmID == selectCondition.EmID) &&
-                  (selectCondition.ClID == 0 || x.ClID == selectCondition.ClID) &&
-                  (selectCondition.ClCharge == String.Empty||x.ClCharge == selectCondition.ClCharge)&&
-                  (selectCondition.OrDate == null ||
-                  (dateCondition == 0 && x.OrDate == selectCondition.OrDate) ||
-                  (dateCondition == 1 && x.OrDate >= selectCondition.OrDate) ||
-                  (dateCondition == 2 && x.OrDate <= selectCondition.OrDate)) &&
-                  (selectCondition.OrStateFlag == 3 || x.OrStateFlag == selectCondition.OrStateFlag) &&
-                  (selectCondition.OrFlag == 3 || x.OrFlag == selectCondition.OrFlag)
-                ).ToList();
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    order = context.T_Orders.Where(x =>
+                      (selectCondition.OrID == 0 || x.OrID == selectCondition.OrID) &&
+                      (selectCondition.SoID == 0 || x.SoID == selectCondition.SoID) &&
+                      (selectCondition.EmID == 0 || x.EmID == selectCondition.EmID) &&
+                      (selectCondition.ClID == 0 || x.ClID == selectCondition.ClID) &&
+                      (selectCondition.ClCharge == String.Empty || x.ClCharge == selectCondition.ClCharge) &&
+                      (selectCondition.OrDate == null ||
+                      (dateCondition == 0 && x.OrDate == selectCondition.OrDate) ||
+                      (dateCondition == 1 && x.OrDate >= selectCondition.OrDate) ||
+                      (dateCondition == 2 && x.OrDate <= selectCondition.OrDate)) &&
+                      (selectCondition.OrStateFlag == 3 || x.OrStateFlag == selectCondition.OrStateFlag) &&
+                      (selectCondition.OrFlag == 3 || x.OrFlag == selectCondition.OrFlag)
+                    ).ToList();
+                    context.Dispose();
+                }
             }
             catch (Exception ex)
             {
@@ -154,10 +163,12 @@ namespace SalesManagement_SysDev
             int OrID = 0;
             try
             {
-                var context = new SalesManagement_DevContext();
-                var order = context.T_Orders.Max(x => x.OrID);
-                OrID = order;
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    var order = context.T_Orders.Max(x => x.OrID);
+                    OrID = order;
+                    context.Dispose();
+                }
             }
             catch (Exception ex)
             {
@@ -176,12 +187,14 @@ namespace SalesManagement_SysDev
             if (CheckOrIDExistence(int.Parse((sender as TextBox).Text)))
             {
 
-                var context = new SalesManagement_DevContext();
-                order = context.T_Orders.ToList();
-                var data = order.Single(x => x.OrID == int.Parse((sender as TextBox).Text));
-                confirm.Text = data.OrStateFlag.ToString();
-                hidden.Text = data.OrFlag.ToString();
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    order = context.T_Orders.ToList();
+                    var data = order.Single(x => x.OrID == int.Parse((sender as TextBox).Text));
+                    confirm.Text = data.OrStateFlag.ToString();
+                    hidden.Text = data.OrFlag.ToString();
+                    context.Dispose();
+                }
                 return;
             }
             confirm.Text = "------";

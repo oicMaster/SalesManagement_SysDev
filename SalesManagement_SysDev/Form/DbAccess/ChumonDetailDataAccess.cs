@@ -14,11 +14,13 @@ namespace SalesManagement_SysDev
             bool flg = false;
             try
             {
-                var context = new SalesManagement_DevContext();
-                //顧客IDと一致するデータがあるかどうか
-                flg = context.T_ChumonDetails.Any(x => x.ChDetailID == ChDetailID);
-                //DB更新
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    //顧客IDと一致するデータがあるかどうか
+                    flg = context.T_ChumonDetails.Any(x => x.ChDetailID == ChDetailID);
+                    //DB更新
+                    context.Dispose();
+                }
             }
             catch (Exception ex)
             {
@@ -33,11 +35,12 @@ namespace SalesManagement_SysDev
         {
             try
             {
-                var context = new SalesManagement_DevContext();
-                context.T_ChumonDetails.Add(regChD);
-                context.SaveChanges();
-                context.Dispose();
-
+                using (var context = new SalesManagement_DevContext())
+                {
+                    context.T_ChumonDetails.Add(regChD);
+                    context.SaveChanges();
+                    context.Dispose();
+                }
                 return true;
             }
             catch (Exception ex)
@@ -52,9 +55,11 @@ namespace SalesManagement_SysDev
             List<T_ChumonDetail> chumonDetail = new List<T_ChumonDetail>();
             try
             {
-                var context = new SalesManagement_DevContext();
-                chumonDetail = context.T_ChumonDetails.ToList();
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    chumonDetail = context.T_ChumonDetails.ToList();
+                    context.Dispose();
+                }
             }
             catch (Exception ex)
             {
@@ -69,17 +74,19 @@ namespace SalesManagement_SysDev
             List<T_ChumonDetail> chumonDetail = new List<T_ChumonDetail>();
             try
             {
-                var context = new SalesManagement_DevContext();
-                chumonDetail = context.T_ChumonDetails.Where(x =>
-                  (selectCondition.ChDetailID == 0 || x.ChDetailID == selectCondition.ChDetailID) &&
-                  (selectCondition.ChID == 0 || x.ChID == selectCondition.ChID) &&
-                  (selectCondition.PrID == 0 || x.PrID == selectCondition.PrID) &&
-                  (selectCondition.ChQuantity == 0 ||
-                  (quantityCondition == 0 && x.ChQuantity == selectCondition.ChQuantity) ||
-                  (quantityCondition == 1 && x.ChQuantity >= selectCondition.ChQuantity) ||
-                  (quantityCondition == 2 && x.ChQuantity <= selectCondition.ChQuantity))
-                ).ToList();
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    chumonDetail = context.T_ChumonDetails.Where(x =>
+                      (selectCondition.ChDetailID == 0 || x.ChDetailID == selectCondition.ChDetailID) &&
+                      (selectCondition.ChID == 0 || x.ChID == selectCondition.ChID) &&
+                      (selectCondition.PrID == 0 || x.PrID == selectCondition.PrID) &&
+                      (selectCondition.ChQuantity == 0 ||
+                      (quantityCondition == 0 && x.ChQuantity == selectCondition.ChQuantity) ||
+                      (quantityCondition == 1 && x.ChQuantity >= selectCondition.ChQuantity) ||
+                      (quantityCondition == 2 && x.ChQuantity <= selectCondition.ChQuantity))
+                    ).ToList();
+                    context.Dispose();
+                }
             }
             catch (Exception ex)
             {

@@ -14,11 +14,13 @@ namespace SalesManagement_SysDev
             bool flg = false;
             try
             {
-                var context = new SalesManagement_DevContext();
-                //顧客IDと一致するデータがあるかどうか
-                flg = context.M_Makers.Any(x => x.MaID == MaID && x.MaFlag == 0);
-                //DB更新
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    //顧客IDと一致するデータがあるかどうか
+                    flg = context.M_Makers.Any(x => x.MaID == MaID && x.MaFlag == 0);
+                    //DB更新
+                    context.Dispose();
+                }
             }
             catch (Exception ex)
             {
@@ -32,11 +34,12 @@ namespace SalesManagement_SysDev
         {
             try
             {
-                var context = new SalesManagement_DevContext();
-                context.M_Makers.Add(regMa);
-                context.SaveChanges();
-                context.Dispose();
-
+                using (var context = new SalesManagement_DevContext())
+                {
+                    context.M_Makers.Add(regMa);
+                    context.SaveChanges();
+                    context.Dispose();
+                }
                 return true;
             }
             catch (Exception ex)
@@ -50,24 +53,28 @@ namespace SalesManagement_SysDev
         {
             try
             {
-                var context = new SalesManagement_DevContext();
-                var maker = context.M_Makers.Single(x => x.MaID == updMa.MaID);
-                if(maker.MaID != 0)
-                maker.MaID = updMa.MaID;
-                if (updMa.MaName != String.Empty)
-                    maker.MaName = updMa.MaName;
-                if (updMa.MaAddress != String.Empty)
-                    maker.MaAddress = updMa.MaAddress;
-                if (updMa.MaPhone != String.Empty)
-                    maker.MaPhone = updMa.MaPhone;
-                if (updMa.MaPostal != String.Empty)
-                    maker.MaPostal = updMa.MaPostal;
-                if (updMa.MaFAX != String.Empty)
-                    maker.MaFAX = updMa.MaFAX;
-                maker.MaFlag = updMa.MaFlag;
-                maker.MaHidden = updMa.MaHidden;
+                using (var context = new SalesManagement_DevContext())
+                {
 
-                context.Dispose();
+
+                    var maker = context.M_Makers.Single(x => x.MaID == updMa.MaID);
+                    if (maker.MaID != 0)
+                        maker.MaID = updMa.MaID;
+                    if (updMa.MaName != String.Empty)
+                        maker.MaName = updMa.MaName;
+                    if (updMa.MaAddress != String.Empty)
+                        maker.MaAddress = updMa.MaAddress;
+                    if (updMa.MaPhone != String.Empty)
+                        maker.MaPhone = updMa.MaPhone;
+                    if (updMa.MaPostal != String.Empty)
+                        maker.MaPostal = updMa.MaPostal;
+                    if (updMa.MaFAX != String.Empty)
+                        maker.MaFAX = updMa.MaFAX;
+                    maker.MaFlag = updMa.MaFlag;
+                    maker.MaHidden = updMa.MaHidden;
+
+                    context.Dispose();
+                }
                 return true;
             }
             catch (Exception ex)
@@ -81,9 +88,11 @@ namespace SalesManagement_SysDev
             List<M_Maker> maker = new List<M_Maker>();
             try
             {
-                var context = new SalesManagement_DevContext();
-                maker = context.M_Makers.Where(x => x.MaFlag == 0).ToList();
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    maker = context.M_Makers.Where(x => x.MaFlag == 0).ToList();
+                    context.Dispose();
+                }
             }
             catch (Exception ex)
             {
@@ -98,17 +107,19 @@ namespace SalesManagement_SysDev
             List<M_Maker> maker = new List<M_Maker>();
             try
             {
-                var context = new SalesManagement_DevContext();
-                maker = context.M_Makers.Where(x =>
-                        (selectCondition.MaID == 0 || x.MaID == selectCondition.MaID) &&
-                        (selectCondition.MaName == null || x.MaName.Contains(selectCondition.MaName)) &&
-                        (selectCondition.MaAddress == null || x.MaAddress.Contains(selectCondition.MaAddress)) &&
-                        (selectCondition.MaPhone == null || x.MaPhone.Contains(selectCondition.MaPhone)) &&
-                        (selectCondition.MaPostal == null || x.MaPostal.Contains(selectCondition.MaPostal)) &&
-                        (selectCondition.MaFAX == null || x.MaFAX.Contains(selectCondition.MaFAX)) &&
-                        (selectCondition.MaFlag == 3 || x.MaFlag == selectCondition.MaFlag)
-                ).ToList();
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    maker = context.M_Makers.Where(x =>
+                            (selectCondition.MaID == 0 || x.MaID == selectCondition.MaID) &&
+                            (selectCondition.MaName == null || x.MaName.Contains(selectCondition.MaName)) &&
+                            (selectCondition.MaAddress == null || x.MaAddress.Contains(selectCondition.MaAddress)) &&
+                            (selectCondition.MaPhone == null || x.MaPhone.Contains(selectCondition.MaPhone)) &&
+                            (selectCondition.MaPostal == null || x.MaPostal.Contains(selectCondition.MaPostal)) &&
+                            (selectCondition.MaFAX == null || x.MaFAX.Contains(selectCondition.MaFAX)) &&
+                            (selectCondition.MaFlag == 3 || x.MaFlag == selectCondition.MaFlag)
+                    ).ToList();
+                    context.Dispose();
+                }
             }
             catch (Exception ex)
             {
@@ -142,11 +153,13 @@ namespace SalesManagement_SysDev
             if (CheckMaIDExistence(int.Parse((sender as TextBox).Text)))
             {
 
-                var context = new SalesManagement_DevContext();
-                maker = context.M_Makers.ToList();
-                var data = maker.Single(x => x.MaID == int.Parse((sender as TextBox).Text));
-                hidden.Text = data.MaFlag.ToString();
-                context.Dispose();
+                using (var context = new SalesManagement_DevContext())
+                {
+                    maker = context.M_Makers.ToList();
+                    var data = maker.Single(x => x.MaID == int.Parse((sender as TextBox).Text));
+                    hidden.Text = data.MaFlag.ToString();
+                    context.Dispose();
+                }
                 return;
             }
             hidden.Text = "------";
