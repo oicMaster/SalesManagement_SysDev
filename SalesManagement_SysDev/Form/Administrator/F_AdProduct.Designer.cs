@@ -84,6 +84,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.cmbPrice = new System.Windows.Forms.ComboBox();
             this.lblPriceCondition = new System.Windows.Forms.Label();
+            this.cmbSafetyStock = new System.Windows.Forms.ComboBox();
+            this.lblSafetyStockCondition = new System.Windows.Forms.Label();
             this.pnlTitle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDsp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -467,7 +469,7 @@
             // 
             this.btnSearch.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
             this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnSearch.Location = new System.Drawing.Point(936, 421);
+            this.btnSearch.Location = new System.Drawing.Point(1042, 421);
             this.btnSearch.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(135, 50);
@@ -755,12 +757,37 @@
             this.lblPriceCondition.TabIndex = 177;
             this.lblPriceCondition.Text = "価格";
             // 
+            // cmbSafetyStock
+            // 
+            this.cmbSafetyStock.BackColor = System.Drawing.Color.White;
+            this.cmbSafetyStock.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSafetyStock.Font = new System.Drawing.Font("MS UI Gothic", 15F, System.Drawing.FontStyle.Bold);
+            this.cmbSafetyStock.FormattingEnabled = true;
+            this.cmbSafetyStock.Location = new System.Drawing.Point(817, 434);
+            this.cmbSafetyStock.Name = "cmbSafetyStock";
+            this.cmbSafetyStock.Size = new System.Drawing.Size(121, 28);
+            this.cmbSafetyStock.TabIndex = 178;
+            // 
+            // lblSafetyStockCondition
+            // 
+            this.lblSafetyStockCondition.AutoSize = true;
+            this.lblSafetyStockCondition.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
+            this.lblSafetyStockCondition.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
+            this.lblSafetyStockCondition.Location = new System.Drawing.Point(687, 436);
+            this.lblSafetyStockCondition.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblSafetyStockCondition.Name = "lblSafetyStockCondition";
+            this.lblSafetyStockCondition.Size = new System.Drawing.Size(125, 22);
+            this.lblSafetyStockCondition.TabIndex = 179;
+            this.lblSafetyStockCondition.Text = "安全在庫数";
+            // 
             // F_AdProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(1904, 1041);
+            this.Controls.Add(this.cmbSafetyStock);
+            this.Controls.Add(this.lblSafetyStockCondition);
             this.Controls.Add(this.cmbPrice);
             this.Controls.Add(this.lblPriceCondition);
             this.Controls.Add(this.label2);
@@ -882,5 +909,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cmbPrice;
         private System.Windows.Forms.Label lblPriceCondition;
+        private System.Windows.Forms.ComboBox cmbSafetyStock;
+        private System.Windows.Forms.Label lblSafetyStockCondition;
     }
 }

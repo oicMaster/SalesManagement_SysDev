@@ -266,7 +266,6 @@
             this.txbFAX.Size = new System.Drawing.Size(177, 28);
             this.txbFAX.TabIndex = 162;
             this.txbFAX.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
-
             // 
             // btnClose
             // 
@@ -405,7 +404,6 @@
             this.txbPhone.Size = new System.Drawing.Size(181, 28);
             this.txbPhone.TabIndex = 134;
             this.txbPhone.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
-
             // 
             // btnUpdate
             // 
@@ -490,7 +488,6 @@
             this.txbAddress.Size = new System.Drawing.Size(1030, 28);
             this.txbAddress.TabIndex = 104;
             this.txbAddress.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
-
             // 
             // txbSoID
             // 

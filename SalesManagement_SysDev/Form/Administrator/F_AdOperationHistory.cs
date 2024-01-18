@@ -333,20 +333,16 @@ namespace SalesManagement_SysDev
 
         private void GenerateDataAdDisplay()
         {
-            int display = 0;
-            if(!cbxDisplay.Checked)
-                display = 1;
-
             T_OperationHistory selectCondition = new T_OperationHistory()
             {
                 EmID = 0,
                 OpID = 0,
-                OpForm = String.Empty,
-                OpButton = String.Empty,
+                OpForm = "条件なし",
+                OpButton = "条件なし",
                 OpTime = null
             };
 
-            OperationHistory= operationHistoryDataAccess.GetOperationHistoryData(selectCondition, 0,display);
+            OperationHistory= operationHistoryDataAccess.GetOperationHistoryData(selectCondition, 0,0);
         }
         private void btnClose_Click(object sender, EventArgs e)
         {
@@ -360,25 +356,33 @@ namespace SalesManagement_SysDev
             SetSelectData();
         }
         private void GenereteDataAdSelect()
-        {
-            int display = 0;
-            if (!cbxDisplay.Checked)
-                display = 1;
-            DateTime? date = null;
+        { 
 
 
-            string form = string.Empty;
-            if(cmbForm.Text != "条件なし")
-                form = cmbForm.Text;
+            string form = "条件なし";
+            string button = "条件なし";
+            int displayCondition = 0;
 
-            string button = string.Empty;
-            if (cmbButton.Text != "条件なし")
-                button = cmbButton.Text;
+            if (cbxDisplay.Checked) 
+            {
+                displayCondition = 1;
+                if (cmbForm.Text != "条件なし")
+                    form = cmbForm.Text;
+
+                if (cmbButton.Text != "条件なし")
+                    button = cmbButton.Text;
+            }
+            else 
+            {
+                button = "ログ";
+            }
 
             if (!int.TryParse(txbEmID.Text, out int emID))
                 emID = 0;
 
-            if (dtpDate.Checked)
+
+                DateTime? date = null;
+                if (dtpDate.Checked)
                 date = dtpDate.Value;
             //DTPにチェックが入っている場合、検索条件に含める
 
@@ -394,7 +398,7 @@ namespace SalesManagement_SysDev
 
             int dateCondition = commonModule.ComboBoxCondition(cmbDate.Text);
             //検索条件を取り出す
-            OperationHistory = operationHistoryDataAccess.GetOperationHistoryData(selectCondition, dateCondition,display);
+            OperationHistory = operationHistoryDataAccess.GetOperationHistoryData(selectCondition, dateCondition,displayCondition);
 
         }
         private void SetSelectData()

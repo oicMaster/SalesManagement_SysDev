@@ -206,7 +206,7 @@ namespace SalesManagement_SysDev
 
         private void SetFormDataGridView()
         {
-            commonModule.SetFormDataGridView(txbPageSize, txbPageNo, dataGridViewDsp, 10);
+            commonModule.SetFormDataGridView(txbPageSize, txbPageNo, dataGridViewDsp, 20);
             //サイズ_ナンバー_グリッドビュー_サイズの初期値
             GetDataGridView();
         }
@@ -567,7 +567,7 @@ namespace SalesManagement_SysDev
         {
             return new M_Client
             {
-                ClID = int.Parse(txbClID.Text),
+                ClID = 0,
                 SoID = int.Parse(txbSoID.Text),
                 ClName = txbName.Text.Trim(),
                 ClAddress = txbAddress.Text.Trim(),

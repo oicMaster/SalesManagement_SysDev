@@ -71,7 +71,6 @@ namespace SalesManagement_SysDev
                     employee.EmHidden = updEm.EmHidden;
 
                     context.SaveChanges();
-                    context.Dispose();
                 }
                 return true;
             }
@@ -119,7 +118,6 @@ namespace SalesManagement_SysDev
                             (selectCondition.EmPhone == null || x.EmPhone.Contains(selectCondition.EmPhone)) &&
                             (selectCondition.EmFlag == 3 || x.EmFlag == selectCondition.EmFlag)
                     ).ToList();
-                    context.Dispose();
                 }
 
             }
@@ -160,7 +158,6 @@ namespace SalesManagement_SysDev
                     employee = context.M_Employees.ToList();
                     var data = employee.Single(x => x.EmID == int.Parse((sender as TextBox).Text));
                     hidden.Text = data.EmFlag.ToString();
-                    context.Dispose();
                 }
                 return;
             }

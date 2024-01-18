@@ -37,6 +37,8 @@
             this.lblLogin = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnBarcode = new System.Windows.Forms.Button();
+            this.btnSale = new System.Windows.Forms.Button();
             this.btnMaker = new System.Windows.Forms.Button();
             this.btnSalesOffice = new System.Windows.Forms.Button();
             this.btnEmployee = new System.Windows.Forms.Button();
@@ -45,7 +47,6 @@
             this.btnClient = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.btnSale = new System.Windows.Forms.Button();
             this.btnShipment = new System.Windows.Forms.Button();
             this.btnArrival = new System.Windows.Forms.Button();
             this.btnSyukko = new System.Windows.Forms.Button();
@@ -167,16 +168,40 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
+            this.panel1.Controls.Add(this.btnBarcode);
             this.panel1.Controls.Add(this.btnMaker);
             this.panel1.Controls.Add(this.btnSalesOffice);
             this.panel1.Controls.Add(this.btnEmployee);
-            this.panel1.Controls.Add(this.btnStock);
             this.panel1.Controls.Add(this.btnProduct);
             this.panel1.Controls.Add(this.btnClient);
             this.panel1.Location = new System.Drawing.Point(188, 190);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1130, 260);
             this.panel1.TabIndex = 163;
+            // 
+            // btnBarcode
+            // 
+            this.btnBarcode.BackColor = System.Drawing.Color.Silver;
+            this.btnBarcode.Enabled = false;
+            this.btnBarcode.Font = new System.Drawing.Font("ＭＳ 明朝", 24F, System.Drawing.FontStyle.Bold);
+            this.btnBarcode.Location = new System.Drawing.Point(760, 140);
+            this.btnBarcode.Name = "btnBarcode";
+            this.btnBarcode.Size = new System.Drawing.Size(350, 100);
+            this.btnBarcode.TabIndex = 6;
+            this.btnBarcode.Text = "バーコード管理";
+            this.btnBarcode.UseVisualStyleBackColor = false;
+            // 
+            // btnSale
+            // 
+            this.btnSale.BackColor = System.Drawing.Color.Aquamarine;
+            this.btnSale.Font = new System.Drawing.Font("ＭＳ 明朝", 24F, System.Drawing.FontStyle.Bold);
+            this.btnSale.Location = new System.Drawing.Point(760, 140);
+            this.btnSale.Name = "btnSale";
+            this.btnSale.Size = new System.Drawing.Size(350, 100);
+            this.btnSale.TabIndex = 5;
+            this.btnSale.Text = "売上管理";
+            this.btnSale.UseVisualStyleBackColor = false;
+            this.btnSale.Click += new System.EventHandler(this.btnForm_Click);
             // 
             // btnMaker
             // 
@@ -194,7 +219,7 @@
             // 
             this.btnSalesOffice.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(162)))), ((int)(((byte)(162)))));
             this.btnSalesOffice.Font = new System.Drawing.Font("ＭＳ 明朝", 24F, System.Drawing.FontStyle.Bold);
-            this.btnSalesOffice.Location = new System.Drawing.Point(760, 140);
+            this.btnSalesOffice.Location = new System.Drawing.Point(20, 140);
             this.btnSalesOffice.Name = "btnSalesOffice";
             this.btnSalesOffice.Size = new System.Drawing.Size(350, 100);
             this.btnSalesOffice.TabIndex = 4;
@@ -206,7 +231,7 @@
             // 
             this.btnEmployee.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(162)))), ((int)(((byte)(162)))));
             this.btnEmployee.Font = new System.Drawing.Font("ＭＳ 明朝", 24F, System.Drawing.FontStyle.Bold);
-            this.btnEmployee.Location = new System.Drawing.Point(20, 140);
+            this.btnEmployee.Location = new System.Drawing.Point(760, 20);
             this.btnEmployee.Name = "btnEmployee";
             this.btnEmployee.Size = new System.Drawing.Size(350, 100);
             this.btnEmployee.TabIndex = 3;
@@ -216,7 +241,7 @@
             // 
             // btnStock
             // 
-            this.btnStock.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(162)))), ((int)(((byte)(162)))));
+            this.btnStock.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnStock.Font = new System.Drawing.Font("ＭＳ 明朝", 24F, System.Drawing.FontStyle.Bold);
             this.btnStock.Location = new System.Drawing.Point(760, 20);
             this.btnStock.Name = "btnStock";
@@ -263,8 +288,8 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
-            this.panel2.Controls.Add(this.btnSale);
             this.panel2.Controls.Add(this.btnShipment);
+            this.panel2.Controls.Add(this.btnSale);
             this.panel2.Controls.Add(this.btnArrival);
             this.panel2.Controls.Add(this.btnSyukko);
             this.panel2.Controls.Add(this.btnChumon);
@@ -273,18 +298,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1130, 260);
             this.panel2.TabIndex = 164;
-            // 
-            // btnSale
-            // 
-            this.btnSale.BackColor = System.Drawing.Color.Aquamarine;
-            this.btnSale.Font = new System.Drawing.Font("ＭＳ 明朝", 24F, System.Drawing.FontStyle.Bold);
-            this.btnSale.Location = new System.Drawing.Point(760, 140);
-            this.btnSale.Name = "btnSale";
-            this.btnSale.Size = new System.Drawing.Size(350, 100);
-            this.btnSale.TabIndex = 5;
-            this.btnSale.Text = "売上管理";
-            this.btnSale.UseVisualStyleBackColor = false;
-            this.btnSale.Click += new System.EventHandler(this.btnForm_Click);
             // 
             // btnShipment
             // 
@@ -361,9 +374,10 @@
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
             this.panel3.Controls.Add(this.btnWarehousing);
             this.panel3.Controls.Add(this.btnHattyu);
+            this.panel3.Controls.Add(this.btnStock);
             this.panel3.Location = new System.Drawing.Point(188, 506);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(761, 145);
+            this.panel3.Size = new System.Drawing.Size(1130, 145);
             this.panel3.TabIndex = 165;
             // 
             // btnWarehousing
@@ -404,9 +418,9 @@
             // 
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
             this.panel4.Controls.Add(this.btnPassword);
-            this.panel4.Location = new System.Drawing.Point(1412, 310);
+            this.panel4.Location = new System.Drawing.Point(1393, 506);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(390, 140);
+            this.panel4.Size = new System.Drawing.Size(390, 145);
             this.panel4.TabIndex = 166;
             // 
             // btnPassword
@@ -425,7 +439,7 @@
             // 
             this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
             this.panel5.Controls.Add(this.btnOperationHistory);
-            this.panel5.Location = new System.Drawing.Point(1412, 641);
+            this.panel5.Location = new System.Drawing.Point(1396, 830);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(390, 140);
             this.panel5.TabIndex = 167;
@@ -446,7 +460,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("ＭＳ 明朝", 35F, System.Drawing.FontStyle.Bold);
-            this.label4.Location = new System.Drawing.Point(1424, 260);
+            this.label4.Location = new System.Drawing.Point(1388, 456);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(363, 47);
             this.label4.TabIndex = 168;
@@ -456,7 +470,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("ＭＳ 明朝", 35F, System.Drawing.FontStyle.Bold);
-            this.label5.Location = new System.Drawing.Point(1424, 591);
+            this.label5.Location = new System.Drawing.Point(1388, 780);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(216, 47);
             this.label5.TabIndex = 169;
@@ -530,5 +544,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btnBarcode;
     }
 }

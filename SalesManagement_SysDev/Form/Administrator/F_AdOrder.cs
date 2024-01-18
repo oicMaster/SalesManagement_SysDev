@@ -468,7 +468,7 @@ namespace SalesManagement_SysDev
             dataGridViewDsp.Columns[4].HeaderText = "顧客担当者名";
             dataGridViewDsp.Columns[5].HeaderText = "受注年月日";
             dataGridViewDsp.Columns[6].HeaderText = "受注状態フラグ";
-            dataGridViewDsp.Columns[7].HeaderText = "受注管理フラフ";
+            dataGridViewDsp.Columns[7].HeaderText = "受注管理フラグ";
             dataGridViewDsp.Columns[8].HeaderText = "非表示理由";
 
             dataGridViewDsp.Columns[9].Visible = false;

@@ -420,7 +420,7 @@ namespace SalesManagement_SysDev
             dataGridViewDetailDsp.Columns[0].HeaderText = "売上詳細ID";
             dataGridViewDetailDsp.Columns[1].HeaderText = "売上ID";
             dataGridViewDetailDsp.Columns[2].HeaderText = "商品ID";
-            dataGridViewDetailDsp.Columns[3].HeaderText = "個数";
+            dataGridViewDetailDsp.Columns[3].HeaderText = "数量";
             dataGridViewDetailDsp.Columns[4].HeaderText = "合計金額";
 
             dataGridViewDetailDsp.Columns[5].Visible = false;

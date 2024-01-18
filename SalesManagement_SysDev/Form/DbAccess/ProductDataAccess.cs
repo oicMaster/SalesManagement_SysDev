@@ -83,7 +83,6 @@ namespace SalesManagement_SysDev
                     product.PrHidden = updPr.PrHidden;
 
                     context.SaveChanges();
-                    context.Dispose();
                 }
                 return true;
             }
@@ -114,7 +113,7 @@ namespace SalesManagement_SysDev
         }
 
         //オーバーロード
-        public List<M_Product> GetProductData(M_Product selectCondition,int dateCondition,int priceCondition)
+        public List<M_Product> GetProductData(M_Product selectCondition,int dateCondition,int priceCondition,int stockCondition)
         {
             List<M_Product> product = new List<M_Product>();
             try
@@ -129,7 +128,10 @@ namespace SalesManagement_SysDev
                       (priceCondition == 0 && x.Price == selectCondition.Price) ||
                       (priceCondition == 1 && x.Price >= selectCondition.Price) ||
                       (priceCondition == 2 && x.Price <= selectCondition.Price)) &&
-                       (selectCondition.PrSafetyStock == 0 || x.PrSafetyStock == selectCondition.PrSafetyStock) &&
+                      (selectCondition.PrSafetyStock == 0 ||
+                      (stockCondition == 0 && x.PrSafetyStock == selectCondition.PrSafetyStock) ||
+                      (stockCondition == 1 && x.PrSafetyStock >= selectCondition.PrSafetyStock) ||
+                      (stockCondition == 2 && x.PrSafetyStock <= selectCondition.PrSafetyStock)) &&
                       (selectCondition.ScID == 0 || x.ScID == selectCondition.ScID) &&
                       (selectCondition.PrModelNumber == null || x.PrModelNumber.Contains(selectCondition.PrModelNumber)) &&
                       (selectCondition.PrColor == null || x.PrColor.Contains(selectCondition.PrColor)) &&
@@ -167,15 +169,17 @@ namespace SalesManagement_SysDev
 
         public int GetSafetyStockCheck(TextBox prID,int Quantity)
         {
-            List<M_Product> product = new List<M_Product>();
-            if (Quantity != -1)
+            using (var context = new SalesManagement_DevContext())
             {
-                product = GetProductData();
-                var data = product.Single(x => x.PrID == int.Parse(prID.Text));
-                if (data.PrSafetyStock > Quantity)
-                    return 1;
-                else
-                    return 0;
+                if (CheckPrIDExistence(int.Parse(prID.Text)))
+                    if (Quantity != -1)
+                    {
+                        var data = context.M_Products.Single(x => x.PrID == int.Parse(prID.Text));
+                        if (data.PrSafetyStock > Quantity)
+                            return 1;
+                        else
+                            return 0;
+                    }
             }
             return -1;
         }

@@ -612,7 +612,7 @@
             this.lblQuantity.Name = "lblQuantity";
             this.lblQuantity.Size = new System.Drawing.Size(56, 22);
             this.lblQuantity.TabIndex = 108;
-            this.lblQuantity.Text = "個数";
+            this.lblQuantity.Text = "数量";
             // 
             // txbOrIDsub
             // 

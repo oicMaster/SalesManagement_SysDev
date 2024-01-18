@@ -74,6 +74,7 @@ namespace SalesManagement_SysDev
             //↑閉じる
 
             cmbHint.Items.Add("一覧表示");
+            cmbHint.Items.Add("検索");
             cmbHint.Items.Add("更新");
             cmbHint.SelectedIndex = 0;
 
@@ -132,17 +133,17 @@ namespace SalesManagement_SysDev
                     lblQuantity.ForeColor = Color.Blue;
                     lblState.ForeColor = Color.Black;
                     lblFlag.ForeColor = Color.Black;
-                    lblHidden.ForeColor = Color.Blue;
+                    lblHidden.ForeColor = Color.Black;
                     lblQuantityCondition.ForeColor = Color.Blue;
                     cbxDisplay.ForeColor = Color.Blue;
                     cbxHidden.ForeColor = Color.Blue;
                     cbxState.ForeColor = Color.Blue;
                     break;
                 case "更新":
-                    lblPrID.ForeColor = Color.Black;
+                    lblPrID.ForeColor = Color.Red;
                     lblQuantity.ForeColor = Color.Blue;
                     lblState.ForeColor = Color.Black;
-                    lblFlag.ForeColor = Color.Blue;
+                    lblFlag.ForeColor = Color.Black;
                     lblHidden.ForeColor = Color.Blue;
                     lblQuantityCondition.ForeColor = Color.Black;
                     cbxDisplay.ForeColor = Color.Black;

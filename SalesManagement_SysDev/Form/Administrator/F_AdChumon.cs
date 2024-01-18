@@ -181,8 +181,8 @@ namespace SalesManagement_SysDev
                     lblEmID.ForeColor = Color.Blue;
                     lblClID.ForeColor = Color.Blue;
                     lblOrID.ForeColor = Color.Blue;
-                    lblDate.ForeColor = Color.Blue;
-                    lblFlag.ForeColor = Color.Fuchsia;
+                    lblDate.ForeColor = Color.Fuchsia;
+                    lblFlag.ForeColor = Color.Black;
                     lblStateFlag.ForeColor = Color.Black;
                     lblHidden.ForeColor = Color.Black;
                     lblChDetailID.ForeColor = Color.Black;

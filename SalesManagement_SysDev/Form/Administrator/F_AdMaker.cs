@@ -301,7 +301,7 @@ namespace SalesManagement_SysDev
 
         private void cmbHint_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            fncTextColor((sender as ComboBox).Text);
         }
         private void cbxFlag_CheckedChanged(object sender, EventArgs e)
         {
@@ -352,6 +352,7 @@ namespace SalesManagement_SysDev
         private void TextBox_TextChanged(object sender, EventArgs e)
         {
             RegistEnabled();
+
         }
 
 
@@ -484,11 +485,9 @@ namespace SalesManagement_SysDev
             if (!String.IsNullOrEmpty(txbFAX.Text.Trim()))
                 FAX = txbFAX.Text.Trim();
 
-            if (cbxHidden.Checked && !cbxDisplay.Checked)
-                Flag = 2;
-            if (cbxHidden.Checked && cbxDisplay.Checked)
-                Flag = 3;
 
+            if (!String.IsNullOrEmpty(txbHidden.Text))
+                Flag = 2;
             M_Maker selectCondition = new M_Maker()
             {
                 MaID = maID,
@@ -582,8 +581,6 @@ namespace SalesManagement_SysDev
             string Postal = String.Empty;
             string FAX = String.Empty;
 
-            if (!int.TryParse(txbMaID.Text, out int maID))
-                maID = 0;
 
             if (!String.IsNullOrEmpty(txbName.Text.Trim()))
                 Name = txbName.Text.Trim();
@@ -600,7 +597,7 @@ namespace SalesManagement_SysDev
 
             return new M_Maker
             {
-                MaID = maID,
+                MaID = int.Parse(txbMaID.Text),
                 MaName = Name,
                 MaAddress = Address,
                 MaPhone = Phone,
@@ -652,6 +649,5 @@ namespace SalesManagement_SysDev
             SetSelectData();
             //全件表示
         }
-
     }
 }
