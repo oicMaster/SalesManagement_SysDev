@@ -140,7 +140,7 @@
             this.btnUpdate.Size = new System.Drawing.Size(135, 50);
             this.btnUpdate.TabIndex = 9;
             this.btnUpdate.Text = "更新";
-            this.btnUpdate.UseVisualStyleBackColor = false;
+            this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // pictureBox1
@@ -157,7 +157,7 @@
             this.lblVisible.AutoSize = true;
             this.lblVisible.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
             this.lblVisible.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblVisible.Location = new System.Drawing.Point(1162, 570);
+            this.lblVisible.Location = new System.Drawing.Point(1158, 569);
             this.lblVisible.Name = "lblVisible";
             this.lblVisible.Size = new System.Drawing.Size(64, 24);
             this.lblVisible.TabIndex = 12;

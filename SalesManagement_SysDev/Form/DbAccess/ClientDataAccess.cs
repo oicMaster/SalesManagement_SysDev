@@ -78,7 +78,6 @@ namespace SalesManagement_SysDev
                     client.ClHidden = updCl.ClHidden;
 
                     context.SaveChanges();
-                    context.Dispose();
                 }
                 return true;
             }

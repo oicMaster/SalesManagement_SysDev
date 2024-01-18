@@ -216,7 +216,7 @@ namespace SalesManagement_SysDev
         }
         private void SetFormDataGridView()
         {
-            commonModule.SetFormDataGridView(txbPageSize, txbPageNo, dataGridViewDsp, 10);
+            commonModule.SetFormDataGridView(txbPageSize, txbPageNo, dataGridViewDsp, 20);
             //サイズ_ナンバー_グリッドビュー_サイズの初期値
             GetDataGridView();
         }
@@ -658,10 +658,8 @@ namespace SalesManagement_SysDev
             if (!String.IsNullOrEmpty(txbPhone.Text.Trim()))
                 Phone = txbPhone.Text.Trim();
 
-            if (cbxHidden.Checked && !cbxDisplay.Checked)
+            if (!String.IsNullOrEmpty(txbHidden.Text))
                 Flag = 2;
-            if (cbxHidden.Checked && cbxDisplay.Checked)
-                Flag = 3;
 
             return new M_Employee
             {
@@ -673,7 +671,7 @@ namespace SalesManagement_SysDev
                 EmPhone = Phone,
                 EmFlag = Flag,
                 EmPassword = String.Empty,
-                EmHidden = null
+                EmHidden = txbHidden.Text
             };
         }
 

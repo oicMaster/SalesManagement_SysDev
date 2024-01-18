@@ -462,6 +462,7 @@
             // 
             // txbFlag
             // 
+            this.txbFlag.Enabled = false;
             this.txbFlag.Font = new System.Drawing.Font("MS UI Gothic", 15.75F, System.Drawing.FontStyle.Bold);
             this.txbFlag.Location = new System.Drawing.Point(838, 185);
             this.txbFlag.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
@@ -533,6 +534,7 @@
             // 
             // txbState
             // 
+            this.txbState.Enabled = false;
             this.txbState.Font = new System.Drawing.Font("MS UI Gothic", 15.75F, System.Drawing.FontStyle.Bold);
             this.txbState.Location = new System.Drawing.Point(1063, 183);
             this.txbState.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
@@ -587,9 +589,9 @@
             this.lblQuantityCondition.Location = new System.Drawing.Point(201, 383);
             this.lblQuantityCondition.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblQuantityCondition.Name = "lblQuantityCondition";
-            this.lblQuantityCondition.Size = new System.Drawing.Size(56, 22);
+            this.lblQuantityCondition.Size = new System.Drawing.Size(79, 22);
             this.lblQuantityCondition.TabIndex = 405;
-            this.lblQuantityCondition.Text = "数量";
+            this.lblQuantityCondition.Text = "在庫数";
             // 
             // cmbQuantity
             // 
@@ -597,7 +599,7 @@
             this.cmbQuantity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbQuantity.Font = new System.Drawing.Font("MS UI Gothic", 15F, System.Drawing.FontStyle.Bold);
             this.cmbQuantity.FormattingEnabled = true;
-            this.cmbQuantity.Location = new System.Drawing.Point(263, 380);
+            this.cmbQuantity.Location = new System.Drawing.Point(285, 380);
             this.cmbQuantity.Name = "cmbQuantity";
             this.cmbQuantity.Size = new System.Drawing.Size(121, 28);
             this.cmbQuantity.TabIndex = 404;

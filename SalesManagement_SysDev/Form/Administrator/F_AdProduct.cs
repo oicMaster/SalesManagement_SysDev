@@ -110,6 +110,11 @@ namespace SalesManagement_SysDev
             cmbPrice.Items.Add("以下");
             cmbPrice.SelectedIndex = 0;
 
+            cmbSafetyStock.Items.Add("完全一致");
+            cmbSafetyStock.Items.Add("以上");
+            cmbSafetyStock.Items.Add("以下");
+            cmbSafetyStock.SelectedIndex = 0;
+
             this.FormBorderStyle = FormBorderStyle.None;
             this.WindowState = FormWindowState.Maximized;
         }
@@ -158,6 +163,7 @@ namespace SalesManagement_SysDev
                     lblName.ForeColor = Color.Black;
                     lblSafetyStock.ForeColor = Color.Black;
                     lblModelNumber.ForeColor = Color.Black;
+                    lblPrice.ForeColor = Color.Black;
                     lblColor.ForeColor = Color.Black;
                     lblDate.ForeColor = Color.Black;
                     lblFlag.ForeColor = Color.Black;
@@ -175,8 +181,9 @@ namespace SalesManagement_SysDev
                     lblName.ForeColor = Color.Red;
                     lblSafetyStock.ForeColor = Color.Fuchsia;
                     lblModelNumber.ForeColor = Color.Red;
+                    lblPrice.ForeColor = Color.Fuchsia;
                     lblColor.ForeColor = Color.Red;
-                    lblDate.ForeColor = Color.Black;
+                    lblDate.ForeColor = Color.Red;
                     lblFlag.ForeColor = Color.Black;
                     lblHidden.ForeColor = Color.Black;
                     lblDateCondition.ForeColor = Color.Black;
@@ -190,6 +197,7 @@ namespace SalesManagement_SysDev
                     lblScID.ForeColor = Color.Blue;
                     lblName.ForeColor = Color.Blue;
                     lblSafetyStock.ForeColor = Color.Blue;
+                    lblPrice.ForeColor = Color.Blue;
                     lblModelNumber.ForeColor = Color.Blue;
                     lblColor.ForeColor = Color.Blue;
                     lblDate.ForeColor = Color.Fuchsia;
@@ -206,6 +214,7 @@ namespace SalesManagement_SysDev
                     lblScID.ForeColor = Color.Fuchsia;
                     lblName.ForeColor = Color.Blue;
                     lblSafetyStock.ForeColor = Color.Fuchsia;
+                    lblPrice.ForeColor = Color.Fuchsia;
                     lblModelNumber.ForeColor = Color.Blue;
                     lblColor.ForeColor = Color.Blue;
                     lblDate.ForeColor = Color.Blue;
@@ -593,7 +602,7 @@ namespace SalesManagement_SysDev
                 PrReleaseDate = null,
                 PrHidden = null
             };
-            Product = productDataAccess.GetProductData(selectCondition, 0,0);
+            Product = productDataAccess.GetProductData(selectCondition, 0,0,0);
         }
         private void btnClose_Click(object sender, EventArgs e)
         {
@@ -662,7 +671,8 @@ namespace SalesManagement_SysDev
             };
             int dateCondition = commonModule.ComboBoxCondition(cmbDate.Text);
             int priceCondition = commonModule.ComboBoxCondition(cmbPrice.Text);
-            Product = productDataAccess.GetProductData(selectCondition,dateCondition,priceCondition);
+            int stockCondition = commonModule.ComboBoxCondition(cmbSafetyStock.Text);
+            Product = productDataAccess.GetProductData(selectCondition,dateCondition,priceCondition,stockCondition);
         }
 
         private void SetSelectData()
@@ -750,8 +760,7 @@ namespace SalesManagement_SysDev
 
         private M_Product GenerateDataAdUpdate()
         {
-            if (!int.TryParse(txbPrID.Text, out int prID))
-                prID = 0;
+
             if (!int.TryParse(txbMaID.Text, out int maID))
                 maID = 0;
             if (!int.TryParse(txbScID.Text, out int scID))
@@ -768,7 +777,7 @@ namespace SalesManagement_SysDev
             string color = String.Empty;
 
             if (!String.IsNullOrEmpty(txbName.Text.Trim()))
-                Name = txbName.Text.Trim();
+                name = txbName.Text.Trim();
             
             if (!String.IsNullOrEmpty(txbModelNumber.Text.Trim()))
                 modelNumber = txbModelNumber.Text.Trim();
@@ -781,14 +790,12 @@ namespace SalesManagement_SysDev
                 date = dtpDate.Value;
 
             int flag = 0;
-            if (cbxHidden.Checked && !cbxDisplay.Checked)
+            if (!String.IsNullOrEmpty(txbHidden.Text))
                 flag = 2;
-            if (cbxHidden.Checked && cbxDisplay.Checked)
-                flag = 3;
 
             return new M_Product
             {
-                PrID = prID,
+                PrID = int.Parse(txbPrID.Text),
                 MaID = maID,
                 PrName = name,
                 Price = price,
@@ -798,7 +805,7 @@ namespace SalesManagement_SysDev
                 PrColor = color,
                 PrFlag = flag,
                 PrReleaseDate = date,
-                PrHidden = null
+                PrHidden = txbHidden.Text
             };
         }
         private T_Stock GenerateDataAdUpdatePlus()
