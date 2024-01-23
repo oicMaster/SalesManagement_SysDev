@@ -41,22 +41,24 @@
             // lblLoginID
             // 
             this.lblLoginID.AutoSize = true;
-            this.lblLoginID.BackColor = System.Drawing.Color.White;
-            this.lblLoginID.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
-            this.lblLoginID.Location = new System.Drawing.Point(779, 469);
+            this.lblLoginID.BackColor = System.Drawing.Color.IndianRed;
+            this.lblLoginID.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblLoginID.ForeColor = System.Drawing.Color.Black;
+            this.lblLoginID.Location = new System.Drawing.Point(773, 471);
             this.lblLoginID.Name = "lblLoginID";
-            this.lblLoginID.Size = new System.Drawing.Size(77, 22);
+            this.lblLoginID.Size = new System.Drawing.Size(84, 24);
             this.lblLoginID.TabIndex = 1;
             this.lblLoginID.Text = "社員ID";
             // 
             // lblPassword
             // 
             this.lblPassword.AutoSize = true;
-            this.lblPassword.BackColor = System.Drawing.Color.White;
-            this.lblPassword.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
-            this.lblPassword.Location = new System.Drawing.Point(755, 562);
+            this.lblPassword.BackColor = System.Drawing.Color.IndianRed;
+            this.lblPassword.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblPassword.ForeColor = System.Drawing.Color.Black;
+            this.lblPassword.Location = new System.Drawing.Point(749, 581);
             this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(101, 22);
+            this.lblPassword.Size = new System.Drawing.Size(108, 24);
             this.lblPassword.TabIndex = 2;
             this.lblPassword.Text = "パスワード";
             // 
@@ -72,7 +74,7 @@
             // txbPassword
             // 
             this.txbPassword.Font = new System.Drawing.Font("MS UI Gothic", 16F);
-            this.txbPassword.Location = new System.Drawing.Point(873, 559);
+            this.txbPassword.Location = new System.Drawing.Point(873, 579);
             this.txbPassword.Name = "txbPassword";
             this.txbPassword.Size = new System.Drawing.Size(265, 29);
             this.txbPassword.TabIndex = 4;
@@ -80,20 +82,20 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.White;
-            this.label2.Font = new System.Drawing.Font("ＭＳ 明朝", 39.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label2.BackColor = System.Drawing.Color.IndianRed;
+            this.label2.Font = new System.Drawing.Font("ＭＳ 明朝", 59.75F, System.Drawing.FontStyle.Bold);
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(614, 340);
+            this.label2.Location = new System.Drawing.Point(450, 234);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(685, 53);
+            this.label2.Size = new System.Drawing.Size(1008, 80);
             this.label2.TabIndex = 5;
-            this.label2.Text = "販売管理在庫システム2023";
+            this.label2.Text = "販売在庫管理システム2023";
             // 
             // btnLogin
             // 
             this.btnLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnLogin.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
-            this.btnLogin.Location = new System.Drawing.Point(858, 659);
+            this.btnLogin.Location = new System.Drawing.Point(860, 707);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(168, 74);
             this.btnLogin.TabIndex = 6;
@@ -105,7 +107,7 @@
             // 
             this.btnClose.BackColor = System.Drawing.Color.OrangeRed;
             this.btnClose.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
-            this.btnClose.Location = new System.Drawing.Point(460, 736);
+            this.btnClose.Location = new System.Drawing.Point(408, 786);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(168, 74);
             this.btnClose.TabIndex = 7;
@@ -116,11 +118,12 @@
             // lblVisible
             // 
             this.lblVisible.AutoSize = true;
-            this.lblVisible.BackColor = System.Drawing.Color.White;
-            this.lblVisible.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblVisible.Location = new System.Drawing.Point(1144, 562);
+            this.lblVisible.BackColor = System.Drawing.Color.IndianRed;
+            this.lblVisible.Font = new System.Drawing.Font("MS UI Gothic", 20F, System.Drawing.FontStyle.Bold);
+            this.lblVisible.ForeColor = System.Drawing.Color.Black;
+            this.lblVisible.Location = new System.Drawing.Point(1144, 581);
             this.lblVisible.Name = "lblVisible";
-            this.lblVisible.Size = new System.Drawing.Size(64, 24);
+            this.lblVisible.Size = new System.Drawing.Size(79, 27);
             this.lblVisible.TabIndex = 8;
             this.lblVisible.Text = "(-꒫-)";
             this.lblVisible.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblVisible_MouseDown);
@@ -130,7 +133,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.Color.IndianRed;
             this.ClientSize = new System.Drawing.Size(1904, 1041);
             this.Controls.Add(this.lblVisible);
             this.Controls.Add(this.btnClose);

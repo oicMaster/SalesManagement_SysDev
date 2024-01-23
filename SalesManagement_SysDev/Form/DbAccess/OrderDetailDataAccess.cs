@@ -121,6 +121,8 @@ namespace SalesManagement_SysDev
                         context.T_ChumonDetails.Add(chumonDetail);
 
                     }
+
+                   
                     context.SaveChanges();
                     return true;
                 }

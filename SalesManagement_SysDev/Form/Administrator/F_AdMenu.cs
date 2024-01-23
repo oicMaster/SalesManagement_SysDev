@@ -97,11 +97,10 @@ namespace SalesManagement_SysDev
             OpenForm(((Button)sender).Text);
         }
 
-        private void F_AdMenu_Load(object sender, EventArgs e)
+        private void F_Menu_Load(object sender, EventArgs e)
         {
             this.FormBorderStyle = FormBorderStyle.None;
             this.WindowState = FormWindowState.Maximized;
-
         }
 
         private void btnClose_Click(object sender, EventArgs e)

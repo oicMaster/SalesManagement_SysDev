@@ -62,7 +62,7 @@ namespace SalesManagement_SysDev
             bool flg = employeeDataAccess.GetEmployeePassData(txbEmID.Text, txbPassword.Text);
             if (!flg)
             {
-                messageDsp.MsgDsp("M4003");
+                messageDsp.MsgDsp("M4005");
                 return;
             }
             var regOh = operationHistoryDataAccess.GenereteDataAdRegistration(int.Parse(txbEmID.Text), this.Text, btnLogin.Text);

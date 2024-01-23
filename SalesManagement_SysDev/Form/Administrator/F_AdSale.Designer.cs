@@ -107,6 +107,9 @@
             this.btnSort = new System.Windows.Forms.Button();
             this.btnDetailSort = new System.Windows.Forms.Button();
             this.cbxLink = new System.Windows.Forms.CheckBox();
+            this.lblSumDate = new System.Windows.Forms.Label();
+            this.lblSumPrice = new System.Windows.Forms.Label();
+            this.cmbSum = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDsp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDetailDsp)).BeginInit();
             this.pnlTitle.SuspendLayout();
@@ -868,11 +871,12 @@
             this.dtpDate.ShowCheckBox = true;
             this.dtpDate.Size = new System.Drawing.Size(210, 29);
             this.dtpDate.TabIndex = 158;
+            this.dtpDate.ValueChanged += new System.EventHandler(this.dtpDate_ValueChanged);
             // 
             // txbTotalPrice
             // 
             this.txbTotalPrice.Font = new System.Drawing.Font("MS UI Gothic", 15.75F, System.Drawing.FontStyle.Bold);
-            this.txbTotalPrice.Location = new System.Drawing.Point(406, 818);
+            this.txbTotalPrice.Location = new System.Drawing.Point(391, 818);
             this.txbTotalPrice.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.txbTotalPrice.Multiline = true;
             this.txbTotalPrice.Name = "txbTotalPrice";
@@ -886,7 +890,7 @@
             this.lblTotalPrice.AutoSize = true;
             this.lblTotalPrice.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
             this.lblTotalPrice.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
-            this.lblTotalPrice.Location = new System.Drawing.Point(300, 821);
+            this.lblTotalPrice.Location = new System.Drawing.Point(285, 821);
             this.lblTotalPrice.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTotalPrice.Name = "lblTotalPrice";
             this.lblTotalPrice.Size = new System.Drawing.Size(102, 22);
@@ -973,6 +977,7 @@
             this.cmbDate.Name = "cmbDate";
             this.cmbDate.Size = new System.Drawing.Size(121, 28);
             this.cmbDate.TabIndex = 159;
+            this.cmbDate.SelectedIndexChanged += new System.EventHandler(this.cmbDate_SelectedIndexChanged);
             // 
             // pictureBox3
             // 
@@ -1076,12 +1081,50 @@
             this.cbxLink.Text = "連動";
             this.cbxLink.UseVisualStyleBackColor = false;
             // 
+            // lblSumDate
+            // 
+            this.lblSumDate.AutoSize = true;
+            this.lblSumDate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.lblSumDate.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
+            this.lblSumDate.Location = new System.Drawing.Point(1477, 277);
+            this.lblSumDate.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblSumDate.Name = "lblSumDate";
+            this.lblSumDate.Size = new System.Drawing.Size(130, 22);
+            this.lblSumDate.TabIndex = 2001;
+            this.lblSumDate.Text = "2023/01/01";
+            // 
+            // lblSumPrice
+            // 
+            this.lblSumPrice.AutoSize = true;
+            this.lblSumPrice.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.lblSumPrice.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
+            this.lblSumPrice.Location = new System.Drawing.Point(1478, 306);
+            this.lblSumPrice.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblSumPrice.Name = "lblSumPrice";
+            this.lblSumPrice.Size = new System.Drawing.Size(90, 22);
+            this.lblSumPrice.TabIndex = 2004;
+            this.lblSumPrice.Text = "__________";
+            // 
+            // cmbSum
+            // 
+            this.cmbSum.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSum.Font = new System.Drawing.Font("MS UI Gothic", 15F, System.Drawing.FontStyle.Bold);
+            this.cmbSum.FormattingEnabled = true;
+            this.cmbSum.Location = new System.Drawing.Point(1300, 289);
+            this.cmbSum.Name = "cmbSum";
+            this.cmbSum.Size = new System.Drawing.Size(172, 28);
+            this.cmbSum.TabIndex = 2005;
+            this.cmbSum.SelectedIndexChanged += new System.EventHandler(this.cmbSum_SelectedIndexChanged);
+            // 
             // F_AdSale
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(1904, 1041);
+            this.Controls.Add(this.cmbSum);
+            this.Controls.Add(this.lblSumPrice);
+            this.Controls.Add(this.lblSumDate);
             this.Controls.Add(this.cbxLink);
             this.Controls.Add(this.btnDetailSort);
             this.Controls.Add(this.btnSort);
@@ -1252,5 +1295,8 @@
         private System.Windows.Forms.Button btnSort;
         private System.Windows.Forms.Button btnDetailSort;
         private System.Windows.Forms.CheckBox cbxLink;
+        private System.Windows.Forms.Label lblSumDate;
+        private System.Windows.Forms.Label lblSumPrice;
+        private System.Windows.Forms.ComboBox cmbSum;
     }
 }

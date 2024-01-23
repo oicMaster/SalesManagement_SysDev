@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity;
 using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Drawing.Text;
@@ -27,6 +28,7 @@ namespace SalesManagement_SysDev
 
         EmployeeDataAccess employeeDataAccess = new EmployeeDataAccess();
         private static List<M_Employee> Employee;
+        PasswordHash passwordHash = new PasswordHash();
 
         SalesOfficeDataAccess salesOfficeDataAccess = new SalesOfficeDataAccess();
         PositionDataAccess positionDataAccess = new PositionDataAccess();
@@ -284,6 +286,7 @@ namespace SalesManagement_SysDev
             dataGridViewDsp.Columns[18].Visible = false;
             dataGridViewDsp.Columns[19].Visible = false;
             dataGridViewDsp.Columns[20].Visible = false;
+            dataGridViewDsp.Columns[21].Visible = false;
 
 
 
@@ -314,7 +317,7 @@ namespace SalesManagement_SysDev
             else
                 txbHidden.Text = String.Empty;
             //Null値のif
-
+            txbPassword.Text = String.Empty;
         }
 
 
@@ -389,12 +392,14 @@ namespace SalesManagement_SysDev
                 {
                     fncButtonEnable(9);
                 }
+                else
+                    fncButtonEnable(8);
 
             }
         }
         private void txbPoID_TextChanged(object sender, EventArgs e)
         {
-            positionDataAccess.GetPositionNameData(sender, lblSoName);
+            positionDataAccess.GetPositionNameData(sender, lblPoName);
         }
         private void txbSoID_TextChanged(object sender, EventArgs e)
         {
@@ -591,17 +596,42 @@ namespace SalesManagement_SysDev
 
         private M_Employee GenereteDataAdRegistration()
         {
+            // パスワードのハッシュ化とソルトの生成
+            string password = txbPassword.Text.Trim();
+            string salt;
+            string hashedPassword = passwordHash.GenerateSaltedHash(password, out salt);
+
+
+
+            Random random = new Random();
+            int emID = 0;
+            do
+            {
+                // 6桁のランダムな数値を生成
+                int generatedNumber = random.Next(1, 1000000);
+
+                if (!employeeDataAccess.CheckEmIDExistence(generatedNumber))
+                {
+                    // V一致しない場合はemIDに生成した数値を代入
+                    emID = generatedNumber;
+                    break;
+                }
+                // 一致する場合はもう一度ループして新しい数値を生成
+            } while (true);
+
+          
             return new M_Employee
             {
-                EmID = 0,
+                EmID = emID,
                 SoID = int.Parse(txbSoID.Text),
                 PoID = int.Parse(txbPoID.Text),
                 EmName = txbName.Text.Trim(),
                 EmHiredate = dtpDate.Value,
                 EmPhone = txbPhone.Text.Trim(),
                 EmFlag = 0,
-                EmPassword = txbPassword.Text.Trim(),
-                EmHidden = null
+                EmPassword = hashedPassword,  // ハッシュ化されたパスワードを保存
+                EmSalt = salt,  // ソルトを保存
+                EmHidden = null,
             };
         }
 
@@ -671,6 +701,7 @@ namespace SalesManagement_SysDev
                 EmPhone = Phone,
                 EmFlag = Flag,
                 EmPassword = String.Empty,
+                EmSalt = String.Empty,
                 EmHidden = txbHidden.Text
             };
         }

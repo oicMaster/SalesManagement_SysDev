@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Core.Common.CommandTrees;
 using System.Data.Entity.Core.Objects;
 using System.Data.Entity.Validation;
 using System.Linq;
@@ -34,15 +35,22 @@ namespace SalesManagement_SysDev
             List<T_OperationHistory> operationHistory = new List<T_OperationHistory>();
             try
             {
- 
+
                 using (var context = new SalesManagement_DevContext())
                 {
                     operationHistory = context.T_OperationHistorys.Where(x =>
-                    (selectCondition.EmID == 0||x.EmID == selectCondition.EmID)&&
-                  (selectCondition.OpForm == "条件なし" || x.OpForm == selectCondition.OpForm) &&
-                   selectCondition.OpButton == "条件なし"&& displayCondition == 1 ||displayCondition == 0&& x.OpButton != "ログ"|| displayCondition == 1 && x.OpButton.Contains(selectCondition.OpButton )&&
+                    (selectCondition.EmID == 0 || x.EmID == selectCondition.EmID) &&
+                   (selectCondition.OpForm == "条件なし" || x.OpForm == selectCondition.OpForm) &&
+                  (
+                  (displayCondition == 0 && selectCondition.OpButton =="条件なし") ||
+                        (displayCondition == 0 && x.OpButton.Contains(selectCondition.OpButton)) ||
+                         (displayCondition == 1 && x.OpButton.Contains("ログ") && selectCondition.OpButton == "条件なし") ||
+                        (displayCondition == 1 && x.OpButton.Contains("ログ") && x.OpButton.Contains(selectCondition.OpButton)) ||
+                         (displayCondition == 2 && !x.OpButton.Contains("ログ") && selectCondition.OpButton == "条件なし") ||
+                        (displayCondition == 2 && !x.OpButton.Contains("ログ") && x.OpButton.Contains(selectCondition.OpButton))
+                    ) &&
                    (selectCondition.OpTime == null ||
-                  (dateCondition == 0 && DbFunctions.TruncateTime(x.OpTime.Value) == DbFunctions.TruncateTime(selectCondition.OpTime) )||
+                  (dateCondition == 0 && DbFunctions.TruncateTime(x.OpTime.Value) == DbFunctions.TruncateTime(selectCondition.OpTime)) ||
                   (dateCondition == 1 && DbFunctions.TruncateTime(x.OpTime.Value) >= DbFunctions.TruncateTime(selectCondition.OpTime)) ||
                   (dateCondition == 2 && DbFunctions.TruncateTime(x.OpTime.Value) <= DbFunctions.TruncateTime(selectCondition.OpTime)))
                   ).ToList();

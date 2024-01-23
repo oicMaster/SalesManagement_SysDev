@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -55,6 +56,7 @@ namespace SalesManagement_SysDev
             {
                 using (var context = new SalesManagement_DevContext())
                 {
+
                     var order = context.T_Orders.Single(x => x.OrID == updOr.OrID);
 
                     if (updOr.SoID != 0)
@@ -74,10 +76,10 @@ namespace SalesManagement_SysDev
                     order.OrFlag = updOr.OrFlag;
                     order.OrHidden = updOr.OrHidden;
 
+                
                     context.SaveChanges();
-
-                    return true;
                 }
+                return true;
             }
             catch (Exception ex)
             {
@@ -142,9 +144,9 @@ namespace SalesManagement_SysDev
                       (selectCondition.ClID == 0 || x.ClID == selectCondition.ClID) &&
                       (selectCondition.ClCharge == String.Empty || x.ClCharge == selectCondition.ClCharge) &&
                       (selectCondition.OrDate == null ||
-                      (dateCondition == 0 && x.OrDate == selectCondition.OrDate) ||
-                      (dateCondition == 1 && x.OrDate >= selectCondition.OrDate) ||
-                      (dateCondition == 2 && x.OrDate <= selectCondition.OrDate)) &&
+                      (dateCondition == 0 && DbFunctions.TruncateTime(x.OrDate) == DbFunctions.TruncateTime(selectCondition.OrDate)) ||
+                      (dateCondition == 1 && DbFunctions.TruncateTime(x.OrDate )>= DbFunctions.TruncateTime(selectCondition.OrDate)) ||
+                      (dateCondition == 2 && DbFunctions.TruncateTime(x.OrDate )<= DbFunctions.TruncateTime(selectCondition.OrDate))) &&
                       (selectCondition.OrStateFlag == 3 || x.OrStateFlag == selectCondition.OrStateFlag) &&
                       (selectCondition.OrFlag == 3 || x.OrFlag == selectCondition.OrFlag)
                     ).ToList();
@@ -221,6 +223,7 @@ namespace SalesManagement_SysDev
                         ChHidden = null
                     };
                     context.T_Chumons.Add(chumon);
+               
                     context.SaveChanges();
                     return true;
                 }

@@ -231,17 +231,17 @@
     <Compile Include="Form\Sales\F_SaSale.Designer.cs">
       <DependentUpon>F_SaSale.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\Sales\F_SaShipmant.cs">
+    <Compile Include="Form\Sales\F_SaShipment.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Sales\F_SaShipmant.Designer.cs">
-      <DependentUpon>F_SaShipmant.cs</DependentUpon>
+    <Compile Include="Form\Sales\F_SaShipment.Designer.cs">
+      <DependentUpon>F_SaShipment.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\Logistics\F_LoWereHousing.cs">
+    <Compile Include="Form\Logistics\F_LoWarehousing.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Logistics\F_LoWereHousing.Designer.cs">
-      <DependentUpon>F_LoWereHousing.cs</DependentUpon>
+    <Compile Include="Form\Logistics\F_LoWarehousing.Designer.cs">
+      <DependentUpon>F_LoWarehousing.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\Administrator\F_AdOperationManegement.cs">
       <SubType>Form</SubType>
@@ -348,14 +348,50 @@
     <EmbeddedResource Include="Form\Administrator\F_AdClient.resx">
       <DependentUpon>F_AdClient.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\Logistics\F_LoHattyu.resx">
+      <DependentUpon>F_LoHattyu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Logistics\F_LoMenu.resx">
       <DependentUpon>F_LoMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Logistics\F_LoOperationManegement.resx">
+      <DependentUpon>F_LoOperationManegement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Logistics\F_LoProduct.resx">
+      <DependentUpon>F_LoProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Logistics\F_LoStock.resx">
+      <DependentUpon>F_LoStock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Logistics\F_LoSyukko.resx">
+      <DependentUpon>F_LoSyukko.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Logistics\F_LoWarehousing.resx">
+      <DependentUpon>F_LoWarehousing.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Sales\F_SaArrival.resx">
       <DependentUpon>F_SaArrival.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\Sales\F_SaChumon.resx">
+      <DependentUpon>F_SaChumon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Sales\F_SaClient.resx">
+      <DependentUpon>F_SaClient.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Sales\F_SaMenu.resx">
       <DependentUpon>F_SaMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Sales\F_SaOperationManegement.resx">
+      <DependentUpon>F_SaOperationManegement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Sales\F_SaOrder.resx">
+      <DependentUpon>F_SaOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Sales\F_SaSale.resx">
+      <DependentUpon>F_SaSale.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Sales\F_SaShipment.resx">
+      <DependentUpon>F_SaShipment.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Store\F_login.resx">
       <DependentUpon>F_login.cs</DependentUpon>
@@ -422,6 +458,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\SMfirst.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SMDEV.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

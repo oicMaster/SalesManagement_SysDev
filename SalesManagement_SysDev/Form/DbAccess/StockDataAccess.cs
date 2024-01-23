@@ -50,6 +50,7 @@ namespace SalesManagement_SysDev
         }
 
 
+
         public bool UpdateStockData(T_Stock updSt)//更新
         {
             try
@@ -113,6 +114,8 @@ namespace SalesManagement_SysDev
             hidden.Text = "------";
             state.Text = "--------";
         }
+
+
         public int GetFlagAndStockCheck(TextBox prID, int chk)
         {
             List<T_Stock> stock = new List<T_Stock>();

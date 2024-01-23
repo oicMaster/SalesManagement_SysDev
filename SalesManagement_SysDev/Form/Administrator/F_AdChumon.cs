@@ -330,7 +330,7 @@ namespace SalesManagement_SysDev
             dataGridViewDsp.Columns[4].HeaderText = "受付ID";
             dataGridViewDsp.Columns[5].HeaderText = "注文年月日";
             dataGridViewDsp.Columns[6].HeaderText = "注文状態フラグ";
-            dataGridViewDsp.Columns[7].HeaderText = "注文管理グラフ";
+            dataGridViewDsp.Columns[7].HeaderText = "注文管理フラグ";
             dataGridViewDsp.Columns[8].HeaderText = "非表示理由";
 
             dataGridViewDsp.Columns[9].Visible = false;
@@ -795,7 +795,7 @@ namespace SalesManagement_SysDev
 
         private void UpdateArrival(T_Chumon updCh)
         {
-            DialogResult result = messageDsp.MsgDsp("M1001", lblChID, txbChID);
+            DialogResult result = messageDsp.MsgDspQ("M1001", lblChID, txbChID);
             if (result != DialogResult.OK)
                 return;
 
@@ -833,7 +833,7 @@ namespace SalesManagement_SysDev
                 EmID = int.Parse(lblLoginIDData.Text),
                 ClID = 0,
                 OrID = 0,
-                ChDate = DateTime.Now,
+                ChDate = null,
                 ChStateFlag = 1,
                 ChFlag = 0,
                 ChHidden = null

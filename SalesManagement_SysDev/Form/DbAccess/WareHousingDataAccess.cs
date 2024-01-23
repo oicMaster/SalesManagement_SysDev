@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -133,9 +134,9 @@ namespace SalesManagement_SysDev
                       (selectCondition.HaID == 0 || x.HaID == selectCondition.HaID) &&
                       (selectCondition.EmID == 0 || x.EmID == selectCondition.EmID) &&
                       (selectCondition.WaDate == null ||
-                      (dateCondition == 0 && x.WaDate == selectCondition.WaDate) ||
-                      (dateCondition == 1 && x.WaDate >= selectCondition.WaDate) ||
-                      (dateCondition == 2 && x.WaDate <= selectCondition.WaDate)) &&
+                      (dateCondition == 0 && DbFunctions.TruncateTime(x.WaDate ) == DbFunctions.TruncateTime(selectCondition.WaDate)) ||
+                      (dateCondition == 1 && DbFunctions.TruncateTime(x.WaDate ) >= DbFunctions.TruncateTime(selectCondition.WaDate)) ||
+                      (dateCondition == 2 && DbFunctions.TruncateTime(x.WaDate) <= DbFunctions.TruncateTime(selectCondition.WaDate))) &&
                       (selectCondition.WaShelfFlag == 3 || x.WaShelfFlag == selectCondition.WaShelfFlag) &&
                       (selectCondition.WaFlag == 3 || x.WaFlag == selectCondition.WaFlag)
                     ).ToList();

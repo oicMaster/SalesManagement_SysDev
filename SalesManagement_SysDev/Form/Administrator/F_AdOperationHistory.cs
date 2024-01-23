@@ -71,6 +71,9 @@ namespace SalesManagement_SysDev
             cmbButton.Items.Add("条件なし");
             cmbButton.Items.Add("登録");
             cmbButton.Items.Add("更新");
+            cmbButton.Items.Add("確定");
+            cmbButton.Items.Add("ログイン");
+            cmbButton.Items.Add("ログアウト");
             cmbButton.SelectedIndex = 0;
 
             cmbForm.Items.Add("条件なし");
@@ -131,7 +134,12 @@ namespace SalesManagement_SysDev
 
         private void ComboBoxRegistCheck()
         {
-            if ((cmbForm.Text == "在庫管理"
+
+            if (cmbForm.Text == "パスワード管理"&&cbxDisplay.Checked)
+                cmbButton.SelectedIndex = 2;
+
+
+            if ((  cmbForm.Text == "在庫管理"
                 || cmbForm.Text == "注文管理"
                 || cmbForm.Text == "出庫管理"
                 || cmbForm.Text == "入荷管理"
@@ -142,14 +150,38 @@ namespace SalesManagement_SysDev
                 ) && cmbButton.Text == "登録")
                 cmbButton.SelectedIndex = 0;
 
-            if(cmbForm.Text == "パスワード管理")
-                cmbButton.SelectedIndex = 2;
+            if ((   cmbForm.Text == "顧客管理"
+                 || cmbForm.Text == "商品管理"
+                 || cmbForm.Text == "在庫管理"
+                 || cmbForm.Text == "社員管理"
+                 || cmbForm.Text == "メーカ管理"
+                 || cmbForm.Text == "営業所管理"
+                 || cmbForm.Text == "売上管理"
+                 || cmbForm.Text == "パスワード管理"
+                  ) && cmbButton.Text == "確定")
+                cmbButton.SelectedIndex = 0;
 
-            if (!cbxDisplay.Checked)
+
+
+            if (!cbxAccount.Checked &&( cmbButton.Text == "ログイン" || cmbButton.Text == "ログアウト"))
             {
                 cmbButton.SelectedIndex = 0;
+            }
+            if(cmbForm.Text != "条件なし" && (cmbButton.Text == "ログイン" || cmbButton.Text == "ログアウト"))
+            {
+                cmbButton.SelectedIndex = 0;
+            }
+
+            if (!cbxDisplay.Checked && (cmbButton.Text == "登録" || cmbButton.Text == "更新" || cmbButton.Text == "確定"))
+            {
+                cmbButton.SelectedIndex = 0;
+            }
+            if (!cbxDisplay.Checked && cmbForm.Text != "条件なし")
+            {
                 cmbForm.SelectedIndex = 0;
             }
+
+ 
 
         }
         private void SetFormDataGridView()
@@ -246,9 +278,13 @@ namespace SalesManagement_SysDev
         private void cbxFlag_CheckedChanged(object sender, EventArgs e)
         {
             if (!cbxDisplay.Checked && !cbxAccount.Checked)
-                cbxDisplay.Checked = true;
-            //全てのチェックボックスが消えることはない。
-            ComboBoxRegistCheck();
+            { if ((sender as CheckBox) == cbxAccount)
+                    cbxDisplay.Checked = true;
+                else if ((sender as CheckBox) == cbxDisplay)
+                    cbxAccount.Checked = true;
+            }
+                    //全てのチェックボックスが消えることはない。
+          ComboBoxRegistCheck();
        }
         private void txbPageSize_TextChanged(object sender, EventArgs e)
         {
@@ -356,36 +392,32 @@ namespace SalesManagement_SysDev
             SetSelectData();
         }
         private void GenereteDataAdSelect()
-        { 
-
-
-            string form = "条件なし";
-            string button = "条件なし";
+        {
+            string form = cmbForm.Text;
+            string button = cmbButton.Text;
             int displayCondition = 0;
 
-            if (cbxDisplay.Checked) 
+
+            if (!cbxDisplay.Checked && cbxAccount.Checked)
             {
                 displayCondition = 1;
-                if (cmbForm.Text != "条件なし")
-                    form = cmbForm.Text;
-
-                if (cmbButton.Text != "条件なし")
-                    button = cmbButton.Text;
             }
-            else 
+            if (cbxDisplay.Checked && !cbxAccount.Checked)
             {
-                button = "ログ";
+                displayCondition = 2;
             }
+
+
 
             if (!int.TryParse(txbEmID.Text, out int emID))
                 emID = 0;
 
 
-                DateTime? date = null;
-                if (dtpDate.Checked)
+            DateTime? date = null;
+            if (dtpDate.Checked)
                 date = dtpDate.Value;
             //DTPにチェックが入っている場合、検索条件に含める
-
+        
 
             T_OperationHistory selectCondition = new T_OperationHistory()
             {

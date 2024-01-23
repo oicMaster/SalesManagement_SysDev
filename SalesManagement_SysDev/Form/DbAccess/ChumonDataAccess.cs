@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -73,9 +74,9 @@ namespace SalesManagement_SysDev
                     chumon.ChHidden = updCh.ChHidden;
 
                     context.SaveChanges();
-                    context.Dispose();
+                    return true;
                 }
-                return true;
+
             }
             catch (Exception ex)
             {
@@ -138,9 +139,9 @@ namespace SalesManagement_SysDev
                       (selectCondition.ClID == 0 || x.ClID == selectCondition.ClID) &&
                       (selectCondition.OrID == 0 || x.OrID == selectCondition.OrID) &&
                       (selectCondition.ChDate == null ||
-                      (dateCondition == 0 && x.ChDate == selectCondition.ChDate) ||
-                      (dateCondition == 1 && x.ChDate >= selectCondition.ChDate) ||
-                      (dateCondition == 2 && x.ChDate <= selectCondition.ChDate)) &&
+                      (dateCondition == 0 && DbFunctions.TruncateTime(x.ChDate) == DbFunctions.TruncateTime(selectCondition.ChDate)) ||
+                      (dateCondition == 1 && DbFunctions.TruncateTime(x.ChDate )>= DbFunctions.TruncateTime(selectCondition.ChDate)) ||
+                      (dateCondition == 2 && DbFunctions.TruncateTime(x.ChDate )<= DbFunctions.TruncateTime(selectCondition.ChDate))) &&
                       (selectCondition.ChStateFlag == 3 || x.ChStateFlag == selectCondition.ChStateFlag) &&
                       (selectCondition.ChFlag == 3 || x.ChFlag == selectCondition.ChFlag)
                       ).ToList();

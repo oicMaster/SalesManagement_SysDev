@@ -246,3 +246,15 @@ C:\Users\retro\Desktop\システム開発作業\SalesManagement_SysDev\SalesMana
 C:\Users\retro\Desktop\システム開発作業\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.F_Success.resources
 C:\Users\retro\Desktop\システム開発作業\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.F_AdOperationManegement.resources
 C:\Users\retro\Desktop\システム開発作業\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.F_Start.resources
+C:\Users\retro\Desktop\システム開発作業\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.F_SaChumon.resources
+C:\Users\retro\Desktop\システム開発作業\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.F_SaClient.resources
+C:\Users\retro\Desktop\システム開発作業\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.F_SaOperationManegement.resources
+C:\Users\retro\Desktop\システム開発作業\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.F_SaOrder.resources
+C:\Users\retro\Desktop\システム開発作業\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.F_SaSale.resources
+C:\Users\retro\Desktop\システム開発作業\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.F_SaShipment.resources
+C:\Users\retro\Desktop\システム開発作業\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.F_LoHattyu.resources
+C:\Users\retro\Desktop\システム開発作業\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.F_LoOperationManegement.resources
+C:\Users\retro\Desktop\システム開発作業\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.F_LoProduct.resources
+C:\Users\retro\Desktop\システム開発作業\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.F_LoStock.resources
+C:\Users\retro\Desktop\システム開発作業\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.F_LoSyukko.resources
+C:\Users\retro\Desktop\システム開発作業\SalesManagement_SysDev\SalesManagement_SysDev\obj\Debug\SalesManagement_SysDev.F_LoWarehousing.resources
