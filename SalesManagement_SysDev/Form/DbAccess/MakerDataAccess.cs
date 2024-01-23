@@ -56,8 +56,7 @@ namespace SalesManagement_SysDev
                 using (var context = new SalesManagement_DevContext())
                 {
                     var maker = context.M_Makers.Single(x => x.MaID == updMa.MaID);
-                    if (maker.MaID != 0)
-                        maker.MaID = updMa.MaID;
+
                     if (updMa.MaName != String.Empty)
                         maker.MaName = updMa.MaName;
                     if (updMa.MaAddress != String.Empty)
@@ -71,6 +70,8 @@ namespace SalesManagement_SysDev
                     maker.MaFlag = updMa.MaFlag;
                     maker.MaHidden = updMa.MaHidden;
 
+
+                    context.SaveChanges();
                 }
                 return true;
             }

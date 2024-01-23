@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
@@ -13,6 +14,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Serialization;
+using static System.Data.Entity.Infrastructure.Design.Executor;
 
 namespace SalesManagement_SysDev.Common
 {
@@ -361,5 +363,41 @@ namespace SalesManagement_SysDev.Common
             }
 
         }
+
+        public void dtpDate_ValueChanged(DateTimePicker dtpDate,Label lblSumDate,ComboBox cmbSum,string date)
+        {
+            string month = String.Empty;
+            string  day = String.Empty;
+            if (dtpDate.Value.Month < 10)
+                month = "0" + dtpDate.Value.Month;
+            else
+                month = dtpDate.Value.Month.ToString();
+            if (dtpDate.Value.Day < 10)
+                day = "0" + dtpDate.Value.Day;
+            else
+                day = dtpDate.Value.Day.ToString();
+
+            switch (cmbSum.Text)
+            {
+
+                case "日間総売上":
+                    lblSumDate.Text =dtpDate.Value.Year + "/" + month + "/"+day;
+                    break;
+                case "月間総売上":
+
+                    lblSumDate.Text = dtpDate.Value.Year + "/" + month + "/--";
+                    break;
+                case "年間総売上":
+                    lblSumDate.Text = dtpDate.Value.Year + "/--/--";
+                    break;
+                case "条件内総売上":
+                    if(date == String.Empty)
+                    lblSumDate.Text = "--/--/--";
+                    else
+                        lblSumDate.Text = dtpDate.Value.Year + "/" + month + "/" + day + "<" + date + ">";
+                    break;
+            }
+        }
+
     }
 }

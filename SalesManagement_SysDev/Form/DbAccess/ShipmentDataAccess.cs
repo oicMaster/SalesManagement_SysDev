@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -139,9 +140,9 @@ namespace SalesManagement_SysDev
                       (selectCondition.ClID == 0 || x.ClID == selectCondition.ClID) &&
                       (selectCondition.OrID == 0 || x.OrID == selectCondition.OrID) &&
                       (selectCondition.ShFinishDate == null ||
-                      (dateCondition == 0 && x.ShFinishDate == selectCondition.ShFinishDate) ||
-                      (dateCondition == 1 && x.ShFinishDate >= selectCondition.ShFinishDate) ||
-                      (dateCondition == 2 && x.ShFinishDate <= selectCondition.ShFinishDate)) &&
+                      (dateCondition == 0 && DbFunctions.TruncateTime(x.ShFinishDate) == DbFunctions.TruncateTime(selectCondition.ShFinishDate)) ||
+                      (dateCondition == 1 && DbFunctions.TruncateTime(x.ShFinishDate) >= DbFunctions.TruncateTime(selectCondition.ShFinishDate)) ||
+                      (dateCondition == 2 && DbFunctions.TruncateTime(x.ShFinishDate) <= DbFunctions.TruncateTime(selectCondition.ShFinishDate))) &&
                       (selectCondition.ShStateFlag == 3 || x.ShStateFlag == selectCondition.ShStateFlag) &&
                       (selectCondition.ShFlag == 3 || x.ShFlag == selectCondition.ShFlag)
                     ).ToList();

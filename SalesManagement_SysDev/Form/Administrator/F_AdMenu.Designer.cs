@@ -495,7 +495,7 @@
             this.Controls.Add(this.pnlTitle);
             this.Name = "F_AdMenu";
             this.Text = "管理者メニュー";
-            this.Load += new System.EventHandler(this.F_AdMenu_Load);
+            this.Load += new System.EventHandler(this.F_Menu_Load);
             this.pnlTitle.ResumeLayout(false);
             this.pnlTitle.PerformLayout();
             this.panel1.ResumeLayout(false);

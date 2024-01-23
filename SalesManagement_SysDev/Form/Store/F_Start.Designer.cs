@@ -41,7 +41,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::SalesManagement_SysDev.Properties.Resources.SMfirst;
+            this.BackgroundImage = global::SalesManagement_SysDev.Properties.Resources.SMDEV;
             this.ClientSize = new System.Drawing.Size(1904, 1041);
             this.Name = "F_Start";
             this.Text = "F_Display";

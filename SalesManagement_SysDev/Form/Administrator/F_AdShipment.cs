@@ -356,8 +356,8 @@ namespace SalesManagement_SysDev
             dataGridViewDsp.Columns[3].HeaderText = "営業所ID";
             dataGridViewDsp.Columns[4].HeaderText = "受注ID";
             dataGridViewDsp.Columns[5].HeaderText = "出荷状態フラグ";
-            dataGridViewDsp.Columns[6].HeaderText = "出荷完了年月日";
-            dataGridViewDsp.Columns[7].HeaderText = "出荷管理フラフ";
+            dataGridViewDsp.Columns[6].HeaderText = "出荷年月日";
+            dataGridViewDsp.Columns[7].HeaderText = "出荷管理フラグ";
             dataGridViewDsp.Columns[8].HeaderText = "非表示理由";
 
             

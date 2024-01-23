@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SalesManagement_SysDev.Common;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -99,6 +100,7 @@ namespace SalesManagement_SysDev
         private void InsertSampleData()
         {
             SalesManagement_DevContext context = new SalesManagement_DevContext();
+            PasswordHash passwordHash = new PasswordHash();
 
             List<M_Position> po = context.M_Positions.OrderBy(x => x.PoID).ToList();
             List<M_Maker> ma = new List<M_Maker>();
@@ -201,8 +203,8 @@ namespace SalesManagement_SysDev
                 context.M_Messages.AddRange(me);
                 context.SaveChanges();
             }
-
             /*
+            
             List<T_Order> or = new List<T_Order>();
             {
                 or.Add(new T_Order
@@ -211,9 +213,29 @@ namespace SalesManagement_SysDev
                     M_Employee = em[310],
                     M_Client = cl[1],
                     ClCharge = "萬田銀次郎",
-                    OrDate = new DateTime(2020, 12, 10),
+                    OrDate = new DateTime(2024, 1, 16),
                     OrStateFlag = 0,
                     OrFlag = 0,
+                });
+                or.Add(new T_Order
+                {
+                    M_SalesOffice = so[0],
+                    M_Employee = em[310],
+                    M_Client = cl[1],
+                    ClCharge = "真木栄太郎",
+                    OrDate = new DateTime(2024, 11, 15),
+                    OrStateFlag = 1,
+                    OrFlag = 0,
+                });
+                or.Add(new T_Order
+                {
+                    M_SalesOffice = so[0],
+                    M_Employee = em[310],
+                    M_Client = cl[1],
+                    ClCharge = "麻田さとし",
+                    OrDate = new DateTime(2024, 1, 12),
+                    OrStateFlag = 0,
+                    OrFlag = 2,
                 });
                 context.T_Orders.AddRange(or);
                 context.SaveChanges();
@@ -224,6 +246,20 @@ namespace SalesManagement_SysDev
                 {
                     T_Order = or[0],
                     M_Product = pr[2],
+                    OrQuantity = 10,
+                    OrTotalPrice = 200000,
+                });
+                ord.Add(new T_OrderDetail()
+                {
+                    T_Order = or[0],
+                    M_Product = pr[3],
+                    OrQuantity = 20,
+                    OrTotalPrice = 200000,
+                });
+                ord.Add(new T_OrderDetail()
+                {
+                    T_Order = or[0],
+                    M_Product = pr[1],
                     OrQuantity = 40,
                     OrTotalPrice = 200000,
                 });
@@ -232,36 +268,68 @@ namespace SalesManagement_SysDev
                 context.SaveChanges();
             }
             */
-
             /*
-                        List<T_Chumon> ch = new List<T_Chumon>();
-                        {
-                            ch.Add(new T_Chumon()
-                            {
-                                M_SalesOffice = so[0],
-                                M_Employee = em[1002],
-                                M_Client = cl[1],
-                                T_Order = or[0],
-                                ChDate = new DateTime(2020, 12, 11),
-                                ChStateFlag = 1,
-                                ChFlag = 0,
-                            });
 
-                            context.T_Chumons.AddRange(ch);
-                            context.SaveChanges();
-                        }
-                        List<T_ChumonDetail> chd = new List<T_ChumonDetail>();
-                        {
-                            chd.Add(new T_ChumonDetail()
-                            {
-                                T_Chumon = ch[0],
-                                M_Product = pr[2],
-                                ChQuantity = 40,
-                            });
+            List<T_Chumon> ch = new List<T_Chumon>();
+            {
+                ch.Add(new T_Chumon()
+                {
+                    M_SalesOffice = so[0],
+                    M_Employee = em[1002],
+                    M_Client = cl[1],
+                    T_Order = or[0],
+                    ChDate = new DateTime(2024, 1, 15),
+                    ChStateFlag = 1,
+                    ChFlag = 0,
+                });
+                ch.Add(new T_Chumon()
+                {
+                    M_SalesOffice = so[0],
+                    M_Employee = em[1002],
+                    M_Client = cl[1],
+                    T_Order = or[0],
+                    ChDate = new DateTime(2024, 1, 15),
+                    ChStateFlag = 1,
+                    ChFlag = 0,
+                });
+                ch.Add(new T_Chumon()
+                {
+                    M_SalesOffice = so[0],
+                    M_Employee = em[1002],
+                    M_Client = cl[1],
+                    T_Order = or[0],
+                    ChDate = new DateTime(2024, 1, 15),
+                    ChStateFlag = 0,
+                    ChFlag = 2,
+                });
 
-                            context.T_ChumonDetails.AddRange(chd);
-                            context.SaveChanges();
-                        }
+                context.T_Chumons.AddRange(ch);
+                context.SaveChanges();
+            }
+            List<T_ChumonDetail> chd = new List<T_ChumonDetail>();
+            {
+                chd.Add(new T_ChumonDetail()
+                {
+                    T_Chumon = ch[0],
+                    M_Product = pr[1],
+                    ChQuantity = 20,
+                });
+                chd.Add(new T_ChumonDetail()
+                {
+                    T_Chumon = ch[0],
+                    M_Product = pr[2],
+                    ChQuantity = 40,
+                });
+                chd.Add(new T_ChumonDetail()
+                {
+                    T_Chumon = ch[0],
+                    M_Product = pr[1],
+                    ChQuantity = 20,
+                });
+
+                context.T_ChumonDetails.AddRange(chd);
+                context.SaveChanges();
+            }
 
 
 
@@ -372,7 +440,7 @@ namespace SalesManagement_SysDev
                         List<T_WarehousingDetail> wad = new List<T_WarehousingDetail>();
 
 
-                        */
+                       */
 
             {
                 ma.Add(new M_Maker()
@@ -938,184 +1006,243 @@ namespace SalesManagement_SysDev
             {
                 if (context.M_Employees.Where(x => x.EmID == 1).Count() == 0)
                 {
+                    string password = "1111";
+                    string salt;
+                    string hashedPassword = passwordHash.GenerateSaltedHash(password, out salt);
+
                     em.Add(1, new M_Employee()
                     {
                         EmID = 1,
                         EmName = "田中杏一",
                         EmHiredate = new DateTime(2020, 4, 17),
-                        EmPassword = "1111",
+                        EmPassword = hashedPassword,
                         EmPhone = "06-0000-0000",
                         M_SalesOffice = so[26],
                         M_Position = po[0],
+                        EmSalt = salt,
                     });
                 }
                 if (context.M_Employees.Where(x => x.EmID == 2).Count() == 0)
                 {
+                    string password = "2222";
+                    string salt;
+                    string hashedPassword = passwordHash.GenerateSaltedHash(password, out salt);
+
                     em.Add(2, new M_Employee()
                     {
                         EmID = 2,
                         EmName = "太田秀哉",
                         EmHiredate = new DateTime(2020, 4, 17),
-                        EmPassword = "2222",
+                        EmPassword = hashedPassword,
                         EmPhone = "06-0000-0000",
                         M_SalesOffice = so[26],
                         M_Position = po[0],
+                        EmSalt = salt,
                     });
                 }
                 if (context.M_Employees.Where(x => x.EmID == 3).Count() == 0)
                 {
+                    string password = "3333";
+                    string salt;
+                    string hashedPassword = passwordHash.GenerateSaltedHash(password, out salt);
+
                     em.Add(3, new M_Employee()
                     {
                         EmID = 3,
                         EmName = "西山和樹",
                         EmHiredate = new DateTime(2020, 4, 17),
-                        EmPassword = "3333",
+                        EmPassword = hashedPassword,
                         EmPhone = "06-0000-0000",
                         M_SalesOffice = so[26],
                         M_Position = po[1],
+                        EmSalt = salt,
                     });
                 }
                 if (context.M_Employees.Where(x => x.EmID == 4).Count() == 0)
                 {
+                    string password = "4444";
+                    string salt;
+                    string hashedPassword = passwordHash.GenerateSaltedHash(password, out salt);
                     em.Add(4, new M_Employee()
                     {
                         EmID = 4,
                         EmName = "中野紀幸",
                         EmHiredate = new DateTime(2020, 4, 17),
-                        EmPassword = "4444",
+                        EmPassword = hashedPassword,
                         EmPhone = "06-0000-0000",
                         M_SalesOffice = so[26],
                         M_Position = po[1],
+                        EmSalt = salt
                     });
                 }
                 if (context.M_Employees.Where(x => x.EmID == 5).Count() == 0)
                 {
+                    string password = "5555";
+                    string salt;
+                    string hashedPassword = passwordHash.GenerateSaltedHash(password, out salt);
                     em.Add(5, new M_Employee()
                     {
                         EmID = 5,
                         EmName = "千田真隆",
                         EmHiredate = new DateTime(2020, 4, 17),
-                        EmPassword = "5555",
+                        EmPassword = hashedPassword,
                         EmPhone = "06-0000-0000",
                         M_SalesOffice = so[26],
                         M_Position = po[2],
+                        EmSalt = salt
                     });
                 }
                 if (context.M_Employees.Where(x => x.EmID == 6).Count() == 0)
                 {
+                    string password = "6666";
+                    string salt;
+                    string hashedPassword = passwordHash.GenerateSaltedHash(password, out salt);
                     em.Add(6, new M_Employee()
                     {
                         EmID = 6,
                         EmName = "山路和希",
                         EmHiredate = new DateTime(2020, 4, 17),
-                        EmPassword = "6666",
+                        EmPassword = hashedPassword,
                         EmPhone = "06-0000-0000",
                         M_SalesOffice = so[26],
                         M_Position = po[2],
+                        EmSalt = salt
                     });
                 }
                 if (context.M_Employees.Where(x => x.EmID == 7).Count() == 0)
                 {
+                    string password = "7777";
+                    string salt;
+                    string hashedPassword = passwordHash.GenerateSaltedHash(password, out salt);
                     em.Add(7, new M_Employee()
                     {
                         EmID = 7,
                         EmName = "安井悠太",
                         EmHiredate = new DateTime(2020, 4, 17),
-                        EmPassword = "7777",
+                        EmPassword = hashedPassword,
                         EmPhone = "06-0000-0000",
                         M_SalesOffice = so[26],
                         M_Position = po[2],
+                        EmSalt = salt
                     });
                 }
                 if (context.M_Employees.Where(x => x.EmID == 116).Count() == 0)
                 {
+                    string password = "0116";
+                    string salt;
+                    string hashedPassword = passwordHash.GenerateSaltedHash(password, out salt);
                     em.Add(116, new M_Employee()
                     {
                         EmID = 116,
                         EmName = "坂口郁美",
                         EmHiredate = new DateTime(1980, 6, 17),
-                        EmPassword = "0116",
+                        EmPassword = hashedPassword,
                         EmPhone = "06-6813-5485",
                         M_SalesOffice = so[1],
                         M_Position = po[2],
+                        EmSalt = salt
                     });
                 }
                 if (context.M_Employees.Where(x => x.EmID == 310).Count() == 0)
                 {
+                    string password = "1310";
+                    string salt;
+                    string hashedPassword = passwordHash.GenerateSaltedHash(password, out salt);
                     em.Add(310, new M_Employee()
                     {
                         EmID = 310,
                         EmName = "高谷春男",
                         EmHiredate = new DateTime(1973, 3, 21),
-                        EmPassword = "0310",
+                        EmPassword = hashedPassword,
                         EmPhone = "06-6356-8742",
                         M_SalesOffice = so[0],
                         M_Position = po[1],
+                        EmSalt = salt,
                     });
                 }
                 if (context.M_Employees.Where(x => x.EmID == 1002).Count() == 0)
                 {
+                    string password = "1234";
+                    string salt;
+                    string hashedPassword = passwordHash.GenerateSaltedHash(password, out salt);
                     em.Add(1002, new M_Employee()
                     {
                         EmID = 1002,
                         EmName = "日下部俊夫",
                         EmHiredate = new DateTime(1990, 9, 4),
-                        EmPassword = "1002",
+                        EmPassword =hashedPassword,
                         EmPhone = "06-6579-0622",
                         M_SalesOffice = so[0],
                         M_Position = po[1],
+                        EmSalt = salt
                     });
                 }
                 if (context.M_Employees.Where(x => x.EmID == 1007).Count() == 0)
                 {
+                    string password = "1007";
+                    string salt;
+                    string hashedPassword = passwordHash.GenerateSaltedHash(password, out salt);
                     em.Add(1007, new M_Employee()
                     {
                         EmID = 1007,
                         EmName = "岸本芽生",
                         EmHiredate = new DateTime(1997, 2, 4),
-                        EmPassword = "1007",
+                        EmPassword =hashedPassword,
                         EmPhone = "075-425-3371",
                         M_SalesOffice = so[2],
                         M_Position = po[1],
+                        EmSalt = salt
                     });
                 }
                 if (context.M_Employees.Where(x => x.EmID == 1111).Count() == 0)
                 {
+                    string password = "999";
+                    string salt;
+                    string hashedPassword = passwordHash.GenerateSaltedHash(password, out salt);
                     em.Add(1111, new M_Employee()
                     {
                         EmID = 1111,
                         EmName = "奥村敦彦",
                         EmHiredate = new DateTime(1985, 3, 17),
-                        EmPassword = "999",
+                        EmPassword = hashedPassword,
                         EmPhone = "079-145-6121",
                         M_SalesOffice = so[3],
                         M_Position = po[2],
+                        EmSalt = salt,
                     });
                 }
                 if (context.M_Employees.Where(x => x.EmID == 1208).Count() == 0)
                 {
+                    string password = "265";
+                    string salt;
+                    string hashedPassword = passwordHash.GenerateSaltedHash(password, out salt);
                     em.Add(1208, new M_Employee()
                     {
                         EmID = 1208,
                         EmName = "渋谷秋昴",
                         EmHiredate = new DateTime(1994, 1, 31),
-                        EmPassword = "1208",
+                        EmPassword = hashedPassword,
                         EmPhone = "0790-68-8043",
                         M_SalesOffice = so[4],
                         M_Position = po[1],
+                        EmSalt = salt
                     });
                 }
                 if (context.M_Employees.Where(x => x.EmID == 1227).Count() == 0)
                 {
+                    string password = "1227";
+                    string salt;
+                    string hashedPassword = passwordHash.GenerateSaltedHash(password, out salt);
                     em.Add(1227, new M_Employee()
                     {
                         EmID = 1227,
                         EmName = "生田徳次郎",
                         EmHiredate = new DateTime(1964, 3, 20),
-                        EmPassword = "1227",
+                        EmPassword =hashedPassword,
                         EmPhone = "06-3021-1630",
                         M_SalesOffice = so[0],
                         M_Position = po[0],
+                        EmSalt  = salt
                     });
                 }
                 context.M_Employees.AddRange(em.Values);

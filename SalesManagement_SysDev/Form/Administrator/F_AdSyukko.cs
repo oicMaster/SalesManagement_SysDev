@@ -786,7 +786,7 @@ namespace SalesManagement_SysDev
 
         private void UpdateSyukko(T_Syukko updSy)
         {
-            DialogResult result = messageDsp.MsgDsp("M1001", lblSyID, txbSyID);
+            DialogResult result = messageDsp.MsgDspQ("M1001", lblSyID, txbSyID);
             if (result == DialogResult.Cancel)
                 return;
 

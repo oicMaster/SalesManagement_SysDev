@@ -383,7 +383,7 @@
             this.lblFlag.Name = "lblFlag";
             this.lblFlag.Size = new System.Drawing.Size(152, 22);
             this.lblFlag.TabIndex = 68;
-            this.lblFlag.Text = "入荷管理フラグ";
+            this.lblFlag.Text = "注文管理フラグ";
             // 
             // lblHidden
             // 
@@ -407,7 +407,7 @@
             this.lblStateFlag.Name = "lblStateFlag";
             this.lblStateFlag.Size = new System.Drawing.Size(152, 22);
             this.lblStateFlag.TabIndex = 66;
-            this.lblStateFlag.Text = "入荷状態フラグ";
+            this.lblStateFlag.Text = "注文状態フラグ";
             // 
             // lblDate
             // 

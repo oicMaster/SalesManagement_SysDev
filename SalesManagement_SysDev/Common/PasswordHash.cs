@@ -11,35 +11,17 @@ namespace SalesManagement_SysDev.Common
 {
     internal class PasswordHash
     {
-
-        public void GenerateSalt(string password)
+        public string GenerateSaltedHash(string password, out string salt)
         {
-            RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
-            byte[] saltBytes = new byte[16]; // 16バイトのソルト
-            rng.GetBytes(saltBytes);
-
-            string saltText = Convert.ToBase64String(saltBytes);
-            string saltedPassword = saltText + password;
-
-            string hashedPassword = HashPassword(saltedPassword);
-        }
-
-        public string HashPassword(string password)
-        {
-
-
-            using (SHA256 sha256 = SHA256.Create())
+            using (RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider())
             {
-                byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
-                StringBuilder builder = new StringBuilder();
-                for (int i = 0; i < bytes.Length; i++)
-                {
-                    builder.Append(bytes[i].ToString("x2"));
-                }
-                return builder.ToString();
+                byte[] saltBytes = new byte[16]; // 16バイトのソルト
+                rng.GetBytes(saltBytes);
+                salt = Convert.ToBase64String(saltBytes);
+
+                string saltedPassword = salt + password;
+                return HashPasswordWithStretching(saltedPassword, salt, 10000);
             }
-
-
         }
 
         public string HashPasswordWithStretching(string password, string salt, int iterations)
@@ -58,5 +40,32 @@ namespace SalesManagement_SysDev.Common
 
             return hash;
         }
+
+        private string HashPassword(string password)
+        {
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+                StringBuilder builder = new StringBuilder();
+                for (int i = 0; i < bytes.Length; i++)
+                {
+                    builder.Append(bytes[i].ToString("x2"));
+                }
+                return builder.ToString();
+            }
+        }
+
+        // パスワードの認証メソッド
+        public bool AuthenticatePassword(string inputPassword, string storedHash, string storedSalt, int iterations)
+        {
+            string hashedPasswordToCheck = HashPasswordWithStretching(storedSalt + inputPassword, storedSalt, iterations);
+            return hashedPasswordToCheck == storedHash;
+        }
+
+
+
+
+
+
     }
 }

@@ -94,7 +94,7 @@
             // txbMaID
             // 
             this.txbMaID.Font = new System.Drawing.Font("MS UI Gothic", 15.75F, System.Drawing.FontStyle.Bold);
-            this.txbMaID.Location = new System.Drawing.Point(410, 149);
+            this.txbMaID.Location = new System.Drawing.Point(412, 158);
             this.txbMaID.Margin = new System.Windows.Forms.Padding(2);
             this.txbMaID.Name = "txbMaID";
             this.txbMaID.Size = new System.Drawing.Size(115, 28);
@@ -107,7 +107,7 @@
             this.lblMaID.AutoSize = true;
             this.lblMaID.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
             this.lblMaID.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
-            this.lblMaID.Location = new System.Drawing.Point(327, 151);
+            this.lblMaID.Location = new System.Drawing.Point(329, 160);
             this.lblMaID.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblMaID.Name = "lblMaID";
             this.lblMaID.Size = new System.Drawing.Size(83, 22);
@@ -119,7 +119,7 @@
             this.lblScID.AutoSize = true;
             this.lblScID.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
             this.lblScID.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
-            this.lblScID.Location = new System.Drawing.Point(615, 151);
+            this.lblScID.Location = new System.Drawing.Point(617, 160);
             this.lblScID.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblScID.Name = "lblScID";
             this.lblScID.Size = new System.Drawing.Size(100, 22);
@@ -131,7 +131,7 @@
             this.btnRegist.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnRegist.Enabled = false;
             this.btnRegist.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
-            this.btnRegist.Location = new System.Drawing.Point(1656, 249);
+            this.btnRegist.Location = new System.Drawing.Point(1658, 258);
             this.btnRegist.Margin = new System.Windows.Forms.Padding(2);
             this.btnRegist.Name = "btnRegist";
             this.btnRegist.Size = new System.Drawing.Size(135, 50);
@@ -143,7 +143,7 @@
             // btnDisplay
             // 
             this.btnDisplay.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
-            this.btnDisplay.Location = new System.Drawing.Point(1252, 152);
+            this.btnDisplay.Location = new System.Drawing.Point(1254, 161);
             this.btnDisplay.Margin = new System.Windows.Forms.Padding(2);
             this.btnDisplay.Name = "btnDisplay";
             this.btnDisplay.Size = new System.Drawing.Size(135, 50);
@@ -155,7 +155,7 @@
             // txbHidden
             // 
             this.txbHidden.Font = new System.Drawing.Font("MS UI Gothic", 15.75F, System.Drawing.FontStyle.Bold);
-            this.txbHidden.Location = new System.Drawing.Point(187, 378);
+            this.txbHidden.Location = new System.Drawing.Point(189, 387);
             this.txbHidden.Margin = new System.Windows.Forms.Padding(2);
             this.txbHidden.Name = "txbHidden";
             this.txbHidden.Size = new System.Drawing.Size(990, 28);
@@ -165,7 +165,7 @@
             // 
             this.txbFlag.Enabled = false;
             this.txbFlag.Font = new System.Drawing.Font("MS UI Gothic", 15.75F, System.Drawing.FontStyle.Bold);
-            this.txbFlag.Location = new System.Drawing.Point(1087, 317);
+            this.txbFlag.Location = new System.Drawing.Point(1089, 326);
             this.txbFlag.Margin = new System.Windows.Forms.Padding(2);
             this.txbFlag.Name = "txbFlag";
             this.txbFlag.ReadOnly = true;
@@ -176,7 +176,7 @@
             // txbPrID
             // 
             this.txbPrID.Font = new System.Drawing.Font("MS UI Gothic", 15.75F, System.Drawing.FontStyle.Bold);
-            this.txbPrID.Location = new System.Drawing.Point(134, 149);
+            this.txbPrID.Location = new System.Drawing.Point(136, 158);
             this.txbPrID.Margin = new System.Windows.Forms.Padding(2);
             this.txbPrID.Name = "txbPrID";
             this.txbPrID.Size = new System.Drawing.Size(115, 28);
@@ -186,7 +186,7 @@
             // txbScID
             // 
             this.txbScID.Font = new System.Drawing.Font("MS UI Gothic", 15.75F, System.Drawing.FontStyle.Bold);
-            this.txbScID.Location = new System.Drawing.Point(720, 149);
+            this.txbScID.Location = new System.Drawing.Point(722, 158);
             this.txbScID.Margin = new System.Windows.Forms.Padding(2);
             this.txbScID.Name = "txbScID";
             this.txbScID.Size = new System.Drawing.Size(115, 28);
@@ -197,7 +197,7 @@
             // txbName
             // 
             this.txbName.Font = new System.Drawing.Font("MS UI Gothic", 15.75F, System.Drawing.FontStyle.Bold);
-            this.txbName.Location = new System.Drawing.Point(134, 201);
+            this.txbName.Location = new System.Drawing.Point(136, 210);
             this.txbName.Margin = new System.Windows.Forms.Padding(2);
             this.txbName.Name = "txbName";
             this.txbName.Size = new System.Drawing.Size(860, 28);
@@ -209,7 +209,7 @@
             this.lblHidden.AutoSize = true;
             this.lblHidden.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
             this.lblHidden.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
-            this.lblHidden.Location = new System.Drawing.Point(58, 381);
+            this.lblHidden.Location = new System.Drawing.Point(60, 390);
             this.lblHidden.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblHidden.Name = "lblHidden";
             this.lblHidden.Size = new System.Drawing.Size(125, 22);
@@ -221,7 +221,7 @@
             this.lblFlag.AutoSize = true;
             this.lblFlag.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
             this.lblFlag.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
-            this.lblFlag.Location = new System.Drawing.Point(931, 319);
+            this.lblFlag.Location = new System.Drawing.Point(933, 328);
             this.lblFlag.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblFlag.Name = "lblFlag";
             this.lblFlag.Size = new System.Drawing.Size(152, 22);
@@ -233,7 +233,7 @@
             this.lblDate.AutoSize = true;
             this.lblDate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
             this.lblDate.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
-            this.lblDate.Location = new System.Drawing.Point(801, 262);
+            this.lblDate.Location = new System.Drawing.Point(803, 271);
             this.lblDate.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblDate.Name = "lblDate";
             this.lblDate.Size = new System.Drawing.Size(79, 22);
@@ -245,7 +245,7 @@
             this.lblPrID.AutoSize = true;
             this.lblPrID.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
             this.lblPrID.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
-            this.lblPrID.Location = new System.Drawing.Point(54, 152);
+            this.lblPrID.Location = new System.Drawing.Point(56, 161);
             this.lblPrID.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPrID.Name = "lblPrID";
             this.lblPrID.Size = new System.Drawing.Size(77, 22);
@@ -257,7 +257,7 @@
             this.lblName.AutoSize = true;
             this.lblName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
             this.lblName.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
-            this.lblName.Location = new System.Drawing.Point(54, 204);
+            this.lblName.Location = new System.Drawing.Point(56, 213);
             this.lblName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(79, 22);
@@ -269,7 +269,7 @@
             this.btnUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnUpdate.Enabled = false;
             this.btnUpdate.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
-            this.btnUpdate.Location = new System.Drawing.Point(1656, 152);
+            this.btnUpdate.Location = new System.Drawing.Point(1658, 161);
             this.btnUpdate.Margin = new System.Windows.Forms.Padding(2);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(135, 50);
@@ -281,7 +281,7 @@
             // txbPrice
             // 
             this.txbPrice.Font = new System.Drawing.Font("MS UI Gothic", 15.75F, System.Drawing.FontStyle.Bold);
-            this.txbPrice.Location = new System.Drawing.Point(135, 259);
+            this.txbPrice.Location = new System.Drawing.Point(137, 268);
             this.txbPrice.Margin = new System.Windows.Forms.Padding(2);
             this.txbPrice.Name = "txbPrice";
             this.txbPrice.Size = new System.Drawing.Size(203, 28);
@@ -294,7 +294,7 @@
             this.lblPrice.AutoSize = true;
             this.lblPrice.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
             this.lblPrice.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
-            this.lblPrice.Location = new System.Drawing.Point(75, 261);
+            this.lblPrice.Location = new System.Drawing.Point(77, 270);
             this.lblPrice.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPrice.Name = "lblPrice";
             this.lblPrice.Size = new System.Drawing.Size(56, 22);
@@ -304,7 +304,7 @@
             // btnClear
             // 
             this.btnClear.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
-            this.btnClear.Location = new System.Drawing.Point(1252, 253);
+            this.btnClear.Location = new System.Drawing.Point(1254, 262);
             this.btnClear.Margin = new System.Windows.Forms.Padding(2);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(135, 50);
@@ -318,7 +318,7 @@
             this.cmbHint.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbHint.Font = new System.Drawing.Font("MS UI Gothic", 15F, System.Drawing.FontStyle.Bold);
             this.cmbHint.FormattingEnabled = true;
-            this.cmbHint.Location = new System.Drawing.Point(1457, 174);
+            this.cmbHint.Location = new System.Drawing.Point(1459, 183);
             this.cmbHint.Name = "cmbHint";
             this.cmbHint.Size = new System.Drawing.Size(140, 28);
             this.cmbHint.TabIndex = 158;
@@ -328,7 +328,7 @@
             // 
             this.dtpDate.Checked = false;
             this.dtpDate.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
-            this.dtpDate.Location = new System.Drawing.Point(885, 258);
+            this.dtpDate.Location = new System.Drawing.Point(887, 267);
             this.dtpDate.MaxDate = new System.DateTime(3000, 12, 31, 0, 0, 0, 0);
             this.dtpDate.MinDate = new System.DateTime(2023, 1, 1, 0, 0, 0, 0);
             this.dtpDate.Name = "dtpDate";
@@ -422,7 +422,7 @@
             this.lblDateCondition.AutoSize = true;
             this.lblDateCondition.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
             this.lblDateCondition.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
-            this.lblDateCondition.Location = new System.Drawing.Point(183, 436);
+            this.lblDateCondition.Location = new System.Drawing.Point(185, 445);
             this.lblDateCondition.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblDateCondition.Name = "lblDateCondition";
             this.lblDateCondition.Size = new System.Drawing.Size(79, 22);
@@ -434,7 +434,7 @@
             this.lblCondition.AutoSize = true;
             this.lblCondition.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
             this.lblCondition.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Bold);
-            this.lblCondition.Location = new System.Drawing.Point(58, 433);
+            this.lblCondition.Location = new System.Drawing.Point(60, 442);
             this.lblCondition.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblCondition.Name = "lblCondition";
             this.lblCondition.Size = new System.Drawing.Size(110, 24);
@@ -447,7 +447,7 @@
             this.cmbDate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbDate.Font = new System.Drawing.Font("MS UI Gothic", 15F, System.Drawing.FontStyle.Bold);
             this.cmbDate.FormattingEnabled = true;
-            this.cmbDate.Location = new System.Drawing.Point(267, 434);
+            this.cmbDate.Location = new System.Drawing.Point(269, 443);
             this.cmbDate.Name = "cmbDate";
             this.cmbDate.Size = new System.Drawing.Size(121, 28);
             this.cmbDate.TabIndex = 1;
@@ -455,7 +455,7 @@
             // dataGridViewDsp
             // 
             this.dataGridViewDsp.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewDsp.Location = new System.Drawing.Point(20, 486);
+            this.dataGridViewDsp.Location = new System.Drawing.Point(20, 495);
             this.dataGridViewDsp.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.dataGridViewDsp.Name = "dataGridViewDsp";
             this.dataGridViewDsp.RowHeadersWidth = 51;
@@ -469,7 +469,7 @@
             // 
             this.btnSearch.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
             this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnSearch.Location = new System.Drawing.Point(1042, 421);
+            this.btnSearch.Location = new System.Drawing.Point(1044, 430);
             this.btnSearch.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(135, 50);
@@ -483,7 +483,7 @@
             this.lblPageNo.AutoSize = true;
             this.lblPageNo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
             this.lblPageNo.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
-            this.lblPageNo.Location = new System.Drawing.Point(1483, 1032);
+            this.lblPageNo.Location = new System.Drawing.Point(1485, 1041);
             this.lblPageNo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPageNo.Name = "lblPageNo";
             this.lblPageNo.Size = new System.Drawing.Size(67, 22);
@@ -493,7 +493,7 @@
             // btnLastPage
             // 
             this.btnLastPage.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
-            this.btnLastPage.Location = new System.Drawing.Point(1217, 1028);
+            this.btnLastPage.Location = new System.Drawing.Point(1219, 1037);
             this.btnLastPage.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnLastPage.Name = "btnLastPage";
             this.btnLastPage.Size = new System.Drawing.Size(54, 32);
@@ -505,7 +505,7 @@
             // btnNextPage
             // 
             this.btnNextPage.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
-            this.btnNextPage.Location = new System.Drawing.Point(1159, 1028);
+            this.btnNextPage.Location = new System.Drawing.Point(1161, 1037);
             this.btnNextPage.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnNextPage.Name = "btnNextPage";
             this.btnNextPage.Size = new System.Drawing.Size(54, 32);
@@ -517,7 +517,7 @@
             // btnPreviousPage
             // 
             this.btnPreviousPage.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
-            this.btnPreviousPage.Location = new System.Drawing.Point(1101, 1028);
+            this.btnPreviousPage.Location = new System.Drawing.Point(1103, 1037);
             this.btnPreviousPage.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnPreviousPage.Name = "btnPreviousPage";
             this.btnPreviousPage.Size = new System.Drawing.Size(54, 32);
@@ -529,7 +529,7 @@
             // btnFirstPage
             // 
             this.btnFirstPage.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
-            this.btnFirstPage.Location = new System.Drawing.Point(1043, 1028);
+            this.btnFirstPage.Location = new System.Drawing.Point(1045, 1037);
             this.btnFirstPage.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnFirstPage.Name = "btnFirstPage";
             this.btnFirstPage.Size = new System.Drawing.Size(54, 32);
@@ -541,7 +541,7 @@
             // txbPageSize
             // 
             this.txbPageSize.Font = new System.Drawing.Font("MS UI Gothic", 14F, System.Drawing.FontStyle.Bold);
-            this.txbPageSize.Location = new System.Drawing.Point(161, 1028);
+            this.txbPageSize.Location = new System.Drawing.Point(163, 1037);
             this.txbPageSize.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.txbPageSize.Multiline = true;
             this.txbPageSize.Name = "txbPageSize";
@@ -557,7 +557,7 @@
             this.llblPageSize.AutoSize = true;
             this.llblPageSize.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
             this.llblPageSize.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
-            this.llblPageSize.Location = new System.Drawing.Point(32, 1032);
+            this.llblPageSize.Location = new System.Drawing.Point(34, 1041);
             this.llblPageSize.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.llblPageSize.Name = "llblPageSize";
             this.llblPageSize.Size = new System.Drawing.Size(125, 22);
@@ -567,7 +567,7 @@
             // txbPageNo
             // 
             this.txbPageNo.Font = new System.Drawing.Font("MS UI Gothic", 14F, System.Drawing.FontStyle.Bold);
-            this.txbPageNo.Location = new System.Drawing.Point(1349, 1028);
+            this.txbPageNo.Location = new System.Drawing.Point(1351, 1037);
             this.txbPageNo.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.txbPageNo.Multiline = true;
             this.txbPageNo.Name = "txbPageNo";
@@ -584,7 +584,7 @@
             this.cbxHidden.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
             this.cbxHidden.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
             this.cbxHidden.ForeColor = System.Drawing.Color.Blue;
-            this.cbxHidden.Location = new System.Drawing.Point(630, 1030);
+            this.cbxHidden.Location = new System.Drawing.Point(632, 1039);
             this.cbxHidden.Name = "cbxHidden";
             this.cbxHidden.Size = new System.Drawing.Size(121, 26);
             this.cbxHidden.TabIndex = 90;
@@ -600,7 +600,7 @@
             this.cbxDisplay.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbxDisplay.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
             this.cbxDisplay.ForeColor = System.Drawing.Color.Blue;
-            this.cbxDisplay.Location = new System.Drawing.Point(526, 1030);
+            this.cbxDisplay.Location = new System.Drawing.Point(528, 1039);
             this.cbxDisplay.Name = "cbxDisplay";
             this.cbxDisplay.Size = new System.Drawing.Size(98, 26);
             this.cbxDisplay.TabIndex = 165;
@@ -613,7 +613,7 @@
             this.lblMaName.AutoSize = true;
             this.lblMaName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
             this.lblMaName.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.lblMaName.Location = new System.Drawing.Point(409, 128);
+            this.lblMaName.Location = new System.Drawing.Point(411, 137);
             this.lblMaName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblMaName.Name = "lblMaName";
             this.lblMaName.Size = new System.Drawing.Size(43, 16);
@@ -625,7 +625,7 @@
             this.lblScName.AutoSize = true;
             this.lblScName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
             this.lblScName.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.lblScName.Location = new System.Drawing.Point(719, 129);
+            this.lblScName.Location = new System.Drawing.Point(721, 138);
             this.lblScName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblScName.Name = "lblScName";
             this.lblScName.Size = new System.Drawing.Size(43, 16);
@@ -635,7 +635,7 @@
             // txbSafetyStock
             // 
             this.txbSafetyStock.Font = new System.Drawing.Font("MS UI Gothic", 15.75F, System.Drawing.FontStyle.Bold);
-            this.txbSafetyStock.Location = new System.Drawing.Point(510, 259);
+            this.txbSafetyStock.Location = new System.Drawing.Point(512, 268);
             this.txbSafetyStock.Margin = new System.Windows.Forms.Padding(2);
             this.txbSafetyStock.Name = "txbSafetyStock";
             this.txbSafetyStock.Size = new System.Drawing.Size(203, 28);
@@ -648,7 +648,7 @@
             this.lblSafetyStock.AutoSize = true;
             this.lblSafetyStock.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
             this.lblSafetyStock.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
-            this.lblSafetyStock.Location = new System.Drawing.Point(375, 261);
+            this.lblSafetyStock.Location = new System.Drawing.Point(377, 270);
             this.lblSafetyStock.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblSafetyStock.Name = "lblSafetyStock";
             this.lblSafetyStock.Size = new System.Drawing.Size(125, 22);
@@ -658,7 +658,7 @@
             // txbModelNumber
             // 
             this.txbModelNumber.Font = new System.Drawing.Font("MS UI Gothic", 15.75F, System.Drawing.FontStyle.Bold);
-            this.txbModelNumber.Location = new System.Drawing.Point(137, 318);
+            this.txbModelNumber.Location = new System.Drawing.Point(139, 327);
             this.txbModelNumber.Margin = new System.Windows.Forms.Padding(2);
             this.txbModelNumber.Name = "txbModelNumber";
             this.txbModelNumber.Size = new System.Drawing.Size(334, 28);
@@ -670,17 +670,16 @@
             this.lblModelNumber.AutoSize = true;
             this.lblModelNumber.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
             this.lblModelNumber.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
-            this.lblModelNumber.Location = new System.Drawing.Point(77, 320);
+            this.lblModelNumber.Location = new System.Drawing.Point(79, 329);
             this.lblModelNumber.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblModelNumber.Name = "lblModelNumber";
             this.lblModelNumber.Size = new System.Drawing.Size(56, 22);
             this.lblModelNumber.TabIndex = 169;
             this.lblModelNumber.Text = "型番";
-            // 
             // txbColor
             // 
             this.txbColor.Font = new System.Drawing.Font("MS UI Gothic", 15.75F, System.Drawing.FontStyle.Bold);
-            this.txbColor.Location = new System.Drawing.Point(548, 318);
+            this.txbColor.Location = new System.Drawing.Point(550, 327);
             this.txbColor.Margin = new System.Windows.Forms.Padding(2);
             this.txbColor.Name = "txbColor";
             this.txbColor.Size = new System.Drawing.Size(334, 28);
@@ -692,7 +691,7 @@
             this.lblColor.AutoSize = true;
             this.lblColor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
             this.lblColor.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
-            this.lblColor.Location = new System.Drawing.Point(508, 320);
+            this.lblColor.Location = new System.Drawing.Point(510, 329);
             this.lblColor.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblColor.Name = "lblColor";
             this.lblColor.Size = new System.Drawing.Size(33, 22);
@@ -702,7 +701,7 @@
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
-            this.pictureBox1.Location = new System.Drawing.Point(10, 116);
+            this.pictureBox1.Location = new System.Drawing.Point(10, 125);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(1900, 948);
             this.pictureBox1.TabIndex = 173;
@@ -713,7 +712,7 @@
             this.btnSort.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnSort.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
             this.btnSort.ForeColor = System.Drawing.Color.Black;
-            this.btnSort.Location = new System.Drawing.Point(839, 1028);
+            this.btnSort.Location = new System.Drawing.Point(841, 1037);
             this.btnSort.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnSort.Name = "btnSort";
             this.btnSort.Size = new System.Drawing.Size(69, 32);
@@ -727,7 +726,7 @@
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
             this.label2.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
-            this.label2.Location = new System.Drawing.Point(1453, 149);
+            this.label2.Location = new System.Drawing.Point(1455, 158);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(102, 22);
@@ -740,7 +739,7 @@
             this.cmbPrice.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbPrice.Font = new System.Drawing.Font("MS UI Gothic", 15F, System.Drawing.FontStyle.Bold);
             this.cmbPrice.FormattingEnabled = true;
-            this.cmbPrice.Location = new System.Drawing.Point(505, 434);
+            this.cmbPrice.Location = new System.Drawing.Point(507, 443);
             this.cmbPrice.Name = "cmbPrice";
             this.cmbPrice.Size = new System.Drawing.Size(121, 28);
             this.cmbPrice.TabIndex = 176;
@@ -750,7 +749,7 @@
             this.lblPriceCondition.AutoSize = true;
             this.lblPriceCondition.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
             this.lblPriceCondition.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
-            this.lblPriceCondition.Location = new System.Drawing.Point(444, 436);
+            this.lblPriceCondition.Location = new System.Drawing.Point(446, 445);
             this.lblPriceCondition.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPriceCondition.Name = "lblPriceCondition";
             this.lblPriceCondition.Size = new System.Drawing.Size(56, 22);
@@ -763,7 +762,7 @@
             this.cmbSafetyStock.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbSafetyStock.Font = new System.Drawing.Font("MS UI Gothic", 15F, System.Drawing.FontStyle.Bold);
             this.cmbSafetyStock.FormattingEnabled = true;
-            this.cmbSafetyStock.Location = new System.Drawing.Point(817, 434);
+            this.cmbSafetyStock.Location = new System.Drawing.Point(819, 443);
             this.cmbSafetyStock.Name = "cmbSafetyStock";
             this.cmbSafetyStock.Size = new System.Drawing.Size(121, 28);
             this.cmbSafetyStock.TabIndex = 178;
@@ -773,7 +772,7 @@
             this.lblSafetyStockCondition.AutoSize = true;
             this.lblSafetyStockCondition.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
             this.lblSafetyStockCondition.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Bold);
-            this.lblSafetyStockCondition.Location = new System.Drawing.Point(687, 436);
+            this.lblSafetyStockCondition.Location = new System.Drawing.Point(689, 445);
             this.lblSafetyStockCondition.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblSafetyStockCondition.Name = "lblSafetyStockCondition";
             this.lblSafetyStockCondition.Size = new System.Drawing.Size(125, 22);
@@ -841,7 +840,7 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "F_AdProduct";
             this.Text = "商品管理";
-            this.Load += new System.EventHandler(this.F_AdProduct_Load);
+            this.Load += new System.EventHandler(this.F_Product_Load);
             this.pnlTitle.ResumeLayout(false);
             this.pnlTitle.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDsp)).EndInit();

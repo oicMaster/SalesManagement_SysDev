@@ -156,10 +156,10 @@
             // 
             this.lblVisible.AutoSize = true;
             this.lblVisible.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
-            this.lblVisible.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblVisible.Location = new System.Drawing.Point(1158, 569);
+            this.lblVisible.Font = new System.Drawing.Font("MS UI Gothic", 20F, System.Drawing.FontStyle.Bold);
+            this.lblVisible.Location = new System.Drawing.Point(1143, 567);
             this.lblVisible.Name = "lblVisible";
-            this.lblVisible.Size = new System.Drawing.Size(64, 24);
+            this.lblVisible.Size = new System.Drawing.Size(79, 27);
             this.lblVisible.TabIndex = 12;
             this.lblVisible.Text = "(-꒫-)";
             this.lblVisible.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblVisible_MouseDown);

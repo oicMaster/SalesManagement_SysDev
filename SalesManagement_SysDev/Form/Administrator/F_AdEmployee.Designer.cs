@@ -310,11 +310,11 @@
             // 
             this.lblSoName.AutoSize = true;
             this.lblSoName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
-            this.lblSoName.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblSoName.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.lblSoName.Location = new System.Drawing.Point(393, 191);
             this.lblSoName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblSoName.Name = "lblSoName";
-            this.lblSoName.Size = new System.Drawing.Size(39, 16);
+            this.lblSoName.Size = new System.Drawing.Size(43, 16);
             this.lblSoName.TabIndex = 157;
             this.lblSoName.Text = "----";
             // 
@@ -636,11 +636,11 @@
             // 
             this.lblPoName.AutoSize = true;
             this.lblPoName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(255)))));
-            this.lblPoName.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblPoName.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.lblPoName.Location = new System.Drawing.Point(132, 190);
             this.lblPoName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPoName.Name = "lblPoName";
-            this.lblPoName.Size = new System.Drawing.Size(39, 16);
+            this.lblPoName.Size = new System.Drawing.Size(43, 16);
             this.lblPoName.TabIndex = 166;
             this.lblPoName.Text = "----";
             // 

@@ -16,6 +16,7 @@ namespace SalesManagement_SysDev
     public partial class F_AdOperationManegement : Form
     {
         OperationHistoryDataAccess operationHistoryDataAccess = new OperationHistoryDataAccess();
+        PasswordHash passwordHash = new PasswordHash();
         private F_AdMenu AdMenu;
         public F_AdOperationManegement(F_AdMenu adMenu,string ID,string Name)
         {
@@ -48,9 +49,9 @@ namespace SalesManagement_SysDev
 
         private void ButtonEnabled()
         {
-            if (!String.IsNullOrEmpty(txbCurrentPassword.Text)
-                && !String.IsNullOrEmpty(txbUpdatePassword.Text)
-                && !String.IsNullOrEmpty(txbSecondUpdatePassword.Text))
+            if (!String.IsNullOrEmpty(txbCurrentPassword.Text.Trim())
+                && !String.IsNullOrEmpty(txbUpdatePassword.Text.Trim())
+                && !String.IsNullOrEmpty(txbSecondUpdatePassword.Text.Trim()))
                 if (txbUpdatePassword.Text == txbSecondUpdatePassword.Text)
                 {
                     btnUpdate.Enabled = true;
@@ -109,6 +110,8 @@ namespace SalesManagement_SysDev
 
         private M_Employee GenerateDataAtUpdate()
         {
+            string newSalt;
+            string newHashedPassword = passwordHash.GenerateSaltedHash(txbUpdatePassword.Text.Trim(), out newSalt);
 
             return new M_Employee
             {
@@ -117,10 +120,11 @@ namespace SalesManagement_SysDev
                 SoID = 0,
                 PoID = 0,
                 EmHiredate = null,
-                EmPassword = txbUpdatePassword.Text.Trim(),
+                EmPassword = newHashedPassword,
                 EmPhone = String.Empty,
                 EmFlag = 0,
                 EmHidden = null,
+                EmSalt = newSalt,
             };
         }
         private void UpdatePassword(M_Employee updEm)

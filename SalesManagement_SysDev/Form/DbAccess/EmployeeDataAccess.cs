@@ -1,5 +1,7 @@
-﻿using System;
+﻿using SalesManagement_SysDev.Common;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Security.Cryptography.X509Certificates;
@@ -51,11 +53,18 @@ namespace SalesManagement_SysDev
 
         public bool UpdateEmployeeData(M_Employee updEm)
         {
+        
             try
             {
                 using (var context = new SalesManagement_DevContext())
                 {
                     var employee = context.M_Employees.Single(x => x.EmID == updEm.EmID);
+
+                    if (updEm.EmPassword != String.Empty)
+                    {
+                        employee.EmPassword = updEm.EmPassword;
+                        employee.EmSalt = updEm.EmSalt;
+                    }
 
                     if (updEm.EmName != String.Empty)
                         employee.EmName = updEm.EmName;
@@ -63,7 +72,6 @@ namespace SalesManagement_SysDev
                         employee.SoID = updEm.SoID;
                     if (updEm.PoID != 0)
                         employee.PoID = updEm.PoID;
-                    if (updEm.EmPassword != String.Empty)
                         employee.EmPassword = updEm.EmPassword;
                     if (updEm.EmPhone != String.Empty)
                         employee.EmPhone = updEm.EmPhone;
@@ -112,9 +120,9 @@ namespace SalesManagement_SysDev
                             (selectCondition.SoID == 0 || x.SoID == selectCondition.SoID) &&
                             (selectCondition.PoID == 0 || x.PoID == selectCondition.PoID) &&
                             (selectCondition.EmHiredate == null ||
-                            (dateCondition == 0 && x.EmHiredate == selectCondition.EmHiredate) ||
-                            (dateCondition == 1 && x.EmHiredate >= selectCondition.EmHiredate) ||
-                            (dateCondition == 2 && x.EmHiredate <= selectCondition.EmHiredate)) &&
+                            (dateCondition == 0 && DbFunctions.TruncateTime( x.EmHiredate) == DbFunctions.TruncateTime (selectCondition.EmHiredate)) ||
+                            (dateCondition == 1 && DbFunctions.TruncateTime( x.EmHiredate) >= DbFunctions.TruncateTime( selectCondition.EmHiredate)) ||
+                            (dateCondition == 2 && DbFunctions.TruncateTime( x.EmHiredate )<= DbFunctions.TruncateTime( selectCondition.EmHiredate))) &&
                             (selectCondition.EmPhone == null || x.EmPhone.Contains(selectCondition.EmPhone)) &&
                             (selectCondition.EmFlag == 3 || x.EmFlag == selectCondition.EmFlag)
                     ).ToList();
@@ -164,23 +172,6 @@ namespace SalesManagement_SysDev
             hidden.Text = "------";
         }
 
-        public bool GetEmployeePassData(string emID , string Pass)
-        {
-            List<M_Employee> employee = new List<M_Employee>();
-            if (!String.IsNullOrEmpty(emID))
-            {
-                if (CheckEmIDExistence(int.Parse(emID)))
-                {
-                    employee = GetEmployeeData();
-                    var data = employee.Single(x => x.EmID == int.Parse(emID));
-
-                    if(data.EmPassword == Pass)
-                    return true;
-                }
-            }
-            return false;
-        }
-
         public int GetEmployeePoIDData(string emID)
         {
 
@@ -190,6 +181,27 @@ namespace SalesManagement_SysDev
             return data.PoID;
 
         }
+
+        PasswordHash passwordHash = new PasswordHash();
+        public bool GetEmployeePassData(string emID , string Pass)
+        {
+           
+            List<M_Employee> employee = new List<M_Employee>();
+            if (!String.IsNullOrEmpty(emID))
+            {
+                if (CheckEmIDExistence(int.Parse(emID)))
+                {
+                    employee = GetEmployeeData();
+                    var data = employee.Single(x => x.EmID == int.Parse(emID));
+
+                    bool isAuthenticated = passwordHash.AuthenticatePassword(Pass, data.EmPassword, data.EmSalt, 10000);
+                    return isAuthenticated;
+                }
+            }
+            return false;
+        }
+
+       
     }
 }
 

@@ -262,7 +262,7 @@ namespace SalesManagement_SysDev
             dataGridViewDsp.Columns[4].HeaderText = "電話番号";
             dataGridViewDsp.Columns[5].HeaderText = "郵便番号";
             dataGridViewDsp.Columns[6].HeaderText = "FAX";
-            dataGridViewDsp.Columns[7].HeaderText = "顧客管理グラフ";
+            dataGridViewDsp.Columns[7].HeaderText = "顧客管理フラグ";
             dataGridViewDsp.Columns[8].HeaderText = "非表示理由";
 
             dataGridViewDsp.Columns[9].Visible = false;

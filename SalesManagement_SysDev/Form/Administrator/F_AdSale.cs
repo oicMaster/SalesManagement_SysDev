@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
 using System.Reflection;
@@ -121,6 +122,12 @@ namespace SalesManagement_SysDev
             cmbTotalPrice.Items.Add("以下");
             cmbTotalPrice.SelectedIndex = 0;
 
+            cmbSum.Items.Add("条件内総売上");
+            cmbSum.Items.Add("年間総売上");
+            cmbSum.Items.Add("月間総売上");
+            cmbSum.Items.Add("日間総売上");
+            cmbSum.SelectedIndex = 0;
+
             this.FormBorderStyle = FormBorderStyle.None;
             this.WindowState = FormWindowState.Maximized;
         }
@@ -129,6 +136,7 @@ namespace SalesManagement_SysDev
         {
             dtpDate.Value = DateTime.Now;
             dtpDate.Checked = false;
+            commonModule.dtpDate_ValueChanged(dtpDate, lblSumDate, cmbSum, String.Empty);
             SetFormDataGridView();
             SetFormDetailDataGridView();
             //グリッドビューの設定
@@ -486,6 +494,33 @@ namespace SalesManagement_SysDev
             fncTextColor((sender as ComboBox).Text);
             //項目情報の色設定
         }
+        private void cmbDate_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string date = cmbDate.Text;
+            if (!dtpDate.Checked)
+                date = String.Empty;
+            commonModule.dtpDate_ValueChanged(dtpDate, lblSumDate, cmbSum, date);
+            saleDetailDataAccess.SumSale(dtpDate.Value.Year, dtpDate.Value.Month, dtpDate.Value.Day, cmbSum, lblSumPrice);
+        }
+
+        private void cmbSum_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string date = cmbDate.Text;
+            if (!dtpDate.Checked)
+                date = String.Empty;
+            commonModule.dtpDate_ValueChanged(dtpDate, lblSumDate, cmbSum,date);
+            saleDetailDataAccess.SumSale(dtpDate.Value.Year,dtpDate.Value.Month,dtpDate.Value.Day,cmbSum,lblSumPrice);
+            }
+
+        private void dtpDate_ValueChanged(object sender, EventArgs e)
+        {
+            string date = cmbDate.Text;
+            if (!dtpDate.Checked)
+                date = String.Empty;
+            commonModule.dtpDate_ValueChanged(dtpDate, lblSumDate, cmbSum,date);
+            saleDetailDataAccess.SumSale(dtpDate.Value.Year, dtpDate.Value.Month, dtpDate.Value.Day, cmbSum, lblSumPrice);
+        }
+
 
 
         private void cbxFlag_CheckedChanged(object sender, EventArgs e)
@@ -702,6 +737,7 @@ namespace SalesManagement_SysDev
             txbPrID.Text = String.Empty;
             txbQuantity.Text = String.Empty;
             txbTotalPrice.Text = String.Empty;
+            commonModule.dtpDate_ValueChanged(dtpDate, lblSumDate, cmbSum, String.Empty);
         }
         private void btnDisplay_Click(object sender, EventArgs e)
         {
@@ -804,6 +840,10 @@ namespace SalesManagement_SysDev
             int dateCondition = commonModule.ComboBoxCondition(cmbDate.Text);
             //検索条件を取り出す
             Sale = saleDataAccess.GetSaleData(selectCondition, dateCondition);
+            if(dtpDate.Checked&&cmbSum.SelectedIndex ==0)
+             saleDetailDataAccess.SearchPrice(new List<T_Sale>(Sale), lblSumPrice);
+
+
         }
 
         private void SetSelectData()
@@ -924,8 +964,6 @@ namespace SalesManagement_SysDev
             //Skipなし
             lblDetailPageNo.Text = "/" + ((int)Math.Ceiling(SaleDetail.Count / (double)pageSize)) + "ページ";
         }
-
-      
     }
 }
 

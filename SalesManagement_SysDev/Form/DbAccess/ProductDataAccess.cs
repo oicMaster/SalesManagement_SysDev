@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Runtime.Remoting.Channels;
@@ -21,7 +22,7 @@ namespace SalesManagement_SysDev
                 using (var context = new SalesManagement_DevContext())
                 {
                     //商品IDと一致するデータがあるかどうか
-                    flg = context.M_Products.Any(x => x.PrID == prID && x.PrFlag == 0);
+                    flg = context.M_Products.Any(x => x.PrID == prID);
                     //DB更新
                     context.Dispose();
                 }
@@ -136,9 +137,9 @@ namespace SalesManagement_SysDev
                       (selectCondition.PrModelNumber == null || x.PrModelNumber.Contains(selectCondition.PrModelNumber)) &&
                       (selectCondition.PrColor == null || x.PrColor.Contains(selectCondition.PrColor)) &&
                       (selectCondition.PrReleaseDate == null ||
-                      (dateCondition == 0 && x.PrReleaseDate == selectCondition.PrReleaseDate) ||
-                      (dateCondition == 1 && x.PrReleaseDate >= selectCondition.PrReleaseDate) ||
-                      (dateCondition == 2 && x.PrReleaseDate <= selectCondition.PrReleaseDate)) &&
+                      (dateCondition == 0 && DbFunctions.TruncateTime(x.PrReleaseDate) == DbFunctions.TruncateTime(selectCondition.PrReleaseDate)) ||
+                      (dateCondition == 1 && DbFunctions.TruncateTime(x.PrReleaseDate )>= DbFunctions.TruncateTime(selectCondition.PrReleaseDate)) ||
+                      (dateCondition == 2 && DbFunctions.TruncateTime(x.PrReleaseDate )<= DbFunctions.TruncateTime(selectCondition.PrReleaseDate))) &&
                       (selectCondition.PrFlag == 3 || x.PrFlag == selectCondition.PrFlag)
                     ).ToList();
                     context.Dispose();
@@ -174,7 +175,8 @@ namespace SalesManagement_SysDev
                 if (CheckPrIDExistence(int.Parse(prID.Text)))
                     if (Quantity != -1)
                     {
-                        var data = context.M_Products.Single(x => x.PrID == int.Parse(prID.Text));
+                        int PrID = int.Parse(prID.Text);
+                        var data = context.M_Products.Single(x => x.PrID == PrID);
                         if (data.PrSafetyStock > Quantity)
                             return 1;
                         else
@@ -184,11 +186,20 @@ namespace SalesManagement_SysDev
             return -1;
         }
 
-      
+        public int GetMaxPrIDData()
+        {
+
+                using (var context = new SalesManagement_DevContext())
+                {
+                   var product = context.M_Products.Max(x => x.PrID);
+                    return product;
+                }            
+           
+        }
 
 
 
-        public void GetSafetyStockData(object sender, Label lblSafetyStock)
+            public void GetSafetyStockData(object sender, Label lblSafetyStock)
         {
             List<M_Product> product = new List<M_Product>();
             if (!String.IsNullOrEmpty((sender as TextBox).Text))

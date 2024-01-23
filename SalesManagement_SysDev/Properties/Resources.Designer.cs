@@ -63,6 +63,16 @@ namespace SalesManagement_SysDev.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
+        internal static System.Drawing.Bitmap SMDEV {
+            get {
+                object obj = ResourceManager.GetObject("SMDEV", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        /// </summary>
         internal static System.Drawing.Bitmap SMfirst {
             get {
                 object obj = ResourceManager.GetObject("SMfirst", resourceCulture);

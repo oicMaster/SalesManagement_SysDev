@@ -36,7 +36,6 @@ namespace SalesManagement_SysDev
         [Column(TypeName = "date")]
         [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
         public DateTime? EmHiredate { get; set; }    //入社年月日
-        [MaxLength(10)]
         [Required]
         public string EmPassword { get; set; }      //パスワード
         [MaxLength(13)]
@@ -46,7 +45,9 @@ namespace SalesManagement_SysDev
         //[Required]
         // public String EmBarcode { get; set; }    //社員バーコード		
         public int EmFlag { get; set; }             //社員管理フラグ
-        public string EmHidden { get; set; }	    //非表示理由		
+        public string EmHidden { get; set; }        //非表示理由		
+        [Required]
+        public string EmSalt { get; set; } //ソルト
 
         public virtual M_Position M_Position { get; set; }
         public virtual M_SalesOffice M_SalesOffice { get; set; }

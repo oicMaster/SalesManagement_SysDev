@@ -393,7 +393,7 @@ namespace SalesManagement_SysDev
             dataGridViewDsp.Columns[1].HeaderText = "メーカID";
             dataGridViewDsp.Columns[2].HeaderText = "社員ID";
             dataGridViewDsp.Columns[3].HeaderText = "発注年月日";
-            dataGridViewDsp.Columns[4].HeaderText = "入庫済フラグ";
+            dataGridViewDsp.Columns[4].HeaderText = "入庫状態フラグ";
             dataGridViewDsp.Columns[5].HeaderText = "発注管理フラグ";
             dataGridViewDsp.Columns[6].HeaderText = "非表示理由";
 

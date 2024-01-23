@@ -119,7 +119,7 @@ namespace SalesManagement_SysDev
             this.WindowState = FormWindowState.Maximized;
         }
 
-        private void F_AdProduct_Load(object sender, EventArgs e)
+        private void F_Product_Load(object sender, EventArgs e)
         {
 
             SetFormDataGridView();
@@ -721,7 +721,7 @@ namespace SalesManagement_SysDev
             return new T_Stock
             {
                 StID = 0,
-                PrID = int.Parse(txbPrID.Text),
+                PrID = productDataAccess.GetMaxPrIDData(),
                 StQuantity = 0,
                 StState = 1,
                 StFlag = 0,
@@ -872,5 +872,6 @@ namespace SalesManagement_SysDev
             SetSelectData();
             //全件表示
         }
+
     }
 }

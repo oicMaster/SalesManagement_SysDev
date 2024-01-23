@@ -773,8 +773,7 @@ namespace SalesManagement_SysDev
             if (cbxHidden.Checked && cbxDisplay.Checked)
                 Flag = 3;
 
-            //0は表示未確定のみ　1は確定のみ　2は非表示済のみ　3は全件表示
-
+  
             T_Arrival selectCondition = new T_Arrival()
             {
                 ArID = 0,
